@@ -1,0 +1,17 @@
+# Nix build results (symlinks)
+result
+result-*
+
+# Nix shell/Direnv
+.direnv/
+.envrc
+
+# VM artifacts (you have these!)
+*.qcow2
+*.img
+*.iso
+
+# Secrets (DANGER: Never commit these)
+*.age
+*.secret
+.env
