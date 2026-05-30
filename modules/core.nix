@@ -10,16 +10,19 @@
   ];
   # }}}
 
-  # Bootloader {{{
-  boot.loader = {
-    systemd-boot = {
-      enable = true;
-      configurationLimit = 10;
-      editor = false;
-      memtest86.enable = true;
+  # Boot {{{
+  boot = {
+    initrd.systemd.enable = true;
+    loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 10;
+        editor = false;
+        memtest86.enable = true;
+      };
+      efi.canTouchEfiVariables = true;
+      timeout = 0;
     };
-    efi.canTouchEfiVariables = true;
-    timeout = 0;
   };
   # }}}
 
