@@ -8,7 +8,6 @@
 
   imports = [
     ./modules/core.nix
-    ./modules/temp.nix
   ];
 
   system.stateVersion = "25.11";
