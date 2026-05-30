@@ -73,7 +73,7 @@
   };
   # }}}
 
-  # User definition {{{
+  # User definitions and configurations {{{1
   users.users.skarphet = {
     isNormalUser = true;
     extraGroups = [
@@ -83,13 +83,11 @@
       "audio"
       "input"
     ];
-    packages = with pkgs; [
-      firefox
-      alacritty
-    ];
+    packages = [ ];
     initialPassword = "nixos";
   };
   users.users.root.initialPassword = "nixos";
+  services.getty.autologinUser = "skarphet";
   # }}}
 
   # Localization / Time {{{
