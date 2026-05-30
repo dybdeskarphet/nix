@@ -34,7 +34,8 @@
   };
   # }}}
 
-  # Networking {{{
+  # Networking {{{1
+  # rfkill unblock {{{2
   system.activationScripts = {
     rfkillUnblockWlan = {
       text = ''
@@ -43,8 +44,25 @@
       deps = [ ];
     };
   };
+  # }}}
 
-  services.resolved.enable = true;
+  # systemd-resolved {{{2
+  services.resolved = {
+    enable = true;
+    dns = [
+      "1.1.1.1"
+      "8.8.8.8"
+    ];
+    fallbackDns = [
+      "1.0.0.1"
+      "8.8.4.4"
+    ];
+    dnsovertls = "true";
+    dnssec = "true";
+  };
+  # }}}
+
+  # Main initialization {{{2
   networking = {
     hostName = "nixos";
     useNetworkd = true;
@@ -63,6 +81,7 @@
       };
     };
   };
+  # }}}
   # }}}
 
   # Documentation {{{
