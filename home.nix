@@ -7,5 +7,6 @@
 
   imports = [
     ./modules/home/fish/fish.nix
+    ./modules/home/env.nix
   ];
 }
