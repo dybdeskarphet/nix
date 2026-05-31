@@ -5,19 +5,19 @@
     plugins = [
       {
         name = "fzf";
-        src = pkgs.fishPlugins.fzf;
+        src = pkgs.fishPlugins.fzf.src;
       }
       {
         name = "sponge";
-        src = pkgs.fishPlugins.sponge;
+        src = pkgs.fishPlugins.sponge.src;
       }
       {
         name = "autopair";
-        src = pkgs.fishPlugins.autopair;
+        src = pkgs.fishPlugins.autopair.src;
       }
       {
         name = "done";
-        src = pkgs.fishPlugins.done;
+        src = pkgs.fishPlugins.done.src;
       }
     ];
   };
