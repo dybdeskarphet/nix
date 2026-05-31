@@ -52,12 +52,16 @@
   # systemd-resolved {{{2
   services.resolved = {
     enable = true;
-    fallbackDns = [
-      "1.0.0.1"
-      "8.8.4.4"
-    ];
-    dnsovertls = "true";
-    dnssec = "true";
+    settings = {
+      Resolve = {
+        DNSOverTLS = true;
+        DNSSEC = true;
+        FallbackDNS = [
+          "1.0.0.1"
+          "8.8.4.4"
+        ];
+      };
+    };
   };
   # }}}
 
