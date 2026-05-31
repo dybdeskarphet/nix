@@ -22,5 +22,6 @@
     ];
   };
 
-  xdg.configFile."fish/functions/prompts.fish".source = ./prompt.fish;
+  xdg.configFile."fish/functions/fish_prompt.fish".source = ./prompt.fish;
+  xdg.configFile."fish/functions/fish_right_prompt.fish".source = ./right_prompt.fish;
 }
