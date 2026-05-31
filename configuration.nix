@@ -8,6 +8,7 @@
 
   imports = [
     ./modules/core.nix
+    ./modules/tlp.nix
   ];
 
   system.stateVersion = "25.11";
