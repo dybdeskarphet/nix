@@ -96,6 +96,7 @@
   # }}}
 
   # User definitions and configurations {{{1
+  programs.fish.enable = true;
   users.users.skarphet = {
     isNormalUser = true;
     extraGroups = [
@@ -106,6 +107,7 @@
       "input"
     ];
     packages = [ ];
+    shell = pkgs.fish;
     initialPassword = "nixos";
   };
   users.users.root.initialPassword = "nixos";
