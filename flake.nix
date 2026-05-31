@@ -1,29 +1,39 @@
 {
-  description = "NixOS Bare Metal Transition Config";
+  description = "Dybdeskraphet NixOS";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { self, nixpkgs }:
+    inputs@{
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
     in
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
+        specialArgs = { inherit inputs system; };
         modules = [
           ./configuration.nix
           ./hardware-vm.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs system; };
+            home-manager.users.skarphet = ./home.nix;
+          }
         ];
-      };
-      apps.${system}.build-vm = {
-        type = "app";
-        program = "${pkgs.writeShellScript "build-vm" ''
-          nix build .#nixosConfigurations.nixos.config.system.build.vm "$@"
-        ''}";
       };
     };
 }
