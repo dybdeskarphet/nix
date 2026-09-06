@@ -5,6 +5,7 @@
   home.homeDirectory = "/home/skarphet";
   home.packages = with pkgs; [
     fzf
+    lsd
   ];
 
   imports = [
