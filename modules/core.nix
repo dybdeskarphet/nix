@@ -39,14 +39,15 @@
 
   # Networking {{{1
   # rfkill unblock {{{2
-  system.activationScripts = {
-    rfkillUnblockWlan = {
-      text = ''
-        rfkill unblock all
-      '';
-      deps = [ ];
-    };
-  };
+  # NOTE: TLP is already handling this
+  # system.activationScripts = {
+  #   rfkillUnblockWlan = {
+  #     text = ''
+  #       rfkill unblock all
+  #     '';
+  #     deps = [ ];
+  #   };
+  # };
   # }}}
 
   # systemd-resolved {{{2
