@@ -4,6 +4,7 @@
   services.tlp = {
     enable = true;
     settings = {
+      # TODO: I changed some of these on my Arch machine
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
       AMDGPU_ABM_LEVEL_ON_BAT = 2;
