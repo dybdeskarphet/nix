@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 let
   generalVars = {
     EDITOR = "nvim";
@@ -46,12 +46,18 @@ let
     XDG_SESSION_DESKTOP = "niri";
     XDG_SESSION_TYPE = "wayland";
   };
-in
-{
-  home.sessionVariables = xdgVars // waylandVars // generalVars;
 
-  home.sessionPath = [
+  sessionPath = [
     "$HOME/.local/bin"
     "$HOME/code/system"
   ];
+in
+{
+  systemd.user.sessionVariables =
+    xdgVars
+    // waylandVars
+    // generalVars
+    // {
+      PATH = "${lib.concatStringsSep ":" sessionPath}:$PATH";
+    };
 }
