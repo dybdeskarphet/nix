@@ -14,7 +14,7 @@
 
     # nix lsp
     nixd
-    nixfmt-rfc-style
+    nixfmt
 
     # markdown
     pandoc
