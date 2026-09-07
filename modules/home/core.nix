@@ -9,8 +9,10 @@
   # Clipboard {{{
   services.clipse = {
     enable = true;
-    allowDuplicates = true;
-    historySize = 100;
+    settings = {
+      allowDuplicates = true;
+      historySize = 100;
+    };
   };
 
   home.packages = with pkgs; [
