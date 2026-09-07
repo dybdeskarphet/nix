@@ -9,8 +9,6 @@
   ];
 
   imports = [
-    ./modules/home/fish/fish.nix
-    ./modules/home/niri/niri.nix
-    ./modules/home/env.nix
+    ./modules/home/core.nix
   ];
 }

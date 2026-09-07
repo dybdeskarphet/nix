@@ -1,9 +1,13 @@
 { pkgs, lib, ... }:
 {
+  imports = [
+    ./niri.nix
+    ./neovim.nix
+    ./tlp.nix
+  ];
   # Essential Packages {{{
   environment.systemPackages = with pkgs; [
     git
-    neovim
     wget
     curl
     htop
@@ -121,6 +125,10 @@
   i18n.defaultLocale = "en_US.UTF-8";
   console.keyMap = "trq";
   services.timesyncd.enable = lib.mkDefault true;
+  # }}}
+
+  # Dynamic binary support {{{
+  programs.nix-ld.enable = true;
   # }}}
 }
 
