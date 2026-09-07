@@ -18,5 +18,9 @@
   home.packages = with pkgs; [
     wl-clipboard
   ];
+
+  programs.fish.shellAbbrs = {
+    toclipboard = "wl-copy";
+  };
   # }}}
 }
