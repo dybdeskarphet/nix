@@ -1,4 +1,22 @@
 { pkgs, ... }:
+let
+  generalAbbrs = {
+    ".." = "cd ..";
+    "..." = "cd ../..";
+    "...." = "cd ../../..";
+    ":q" = "exit";
+    "Q" = "exit";
+    "b" = "tput bel";
+    "bell" = "tput bel";
+    "cal" = "cal --monday";
+    "date" = "LANG=tr_TR.UTF-8 date";
+    "rm" = "rm -i";
+    "sd" = "shutdown now";
+    "suspend" = "systemctl suspend";
+    "svim" = "sudo nvim";
+    "uefi" = "systemctl reboot --firmware-setup";
+  };
+in
 {
   programs.fish = {
     enable = true;
@@ -21,6 +39,7 @@
         src = pkgs.fishPlugins.done.src;
       }
     ];
+    shellAbbrs = generalAbbrs;
   };
 
   xdg.configFile."fish/functions/fish_prompt.fish".source = ./prompt.fish;
