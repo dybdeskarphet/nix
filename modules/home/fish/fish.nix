@@ -2,6 +2,7 @@
 {
   programs.fish = {
     enable = true;
+    loginShellInit = builtins.readFile ./init.fish;
     plugins = [
       {
         name = "fzf";
