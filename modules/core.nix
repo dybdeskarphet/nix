@@ -60,7 +60,8 @@
     enable = true;
     settings = {
       Resolve = {
-        DNSOverTLS = true;
+        # TODO: Enable this after vm testing
+        DNSOverTLS = false;
         DNSSEC = true;
         FallbackDNS = [
           "1.0.0.1"
