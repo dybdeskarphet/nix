@@ -28,6 +28,7 @@
 
   # Hardware {{{
   hardware = {
+    graphics.enable = true;
     cpu = {
       amd = {
         updateMicrocode = true;
