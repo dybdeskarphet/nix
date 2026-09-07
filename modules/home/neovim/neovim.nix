@@ -10,7 +10,7 @@
     # treesitter & mason
     gcc
     gnumake
-    npm
+    nodejs
 
     # nix lsp
     nixd
