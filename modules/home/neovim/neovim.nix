@@ -4,6 +4,7 @@
 
   home.packages = with pkgs; [
     # general
+    unzip
     ripgrep
     fd
 
@@ -11,6 +12,8 @@
     gcc
     gnumake
     nodejs
+    dotnet-runtime
+    tree-sitter
 
     # nix lsp
     nixd
