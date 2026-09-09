@@ -2,6 +2,7 @@
 {
   imports = [
     ../desktop/niri/system.nix
+    ../desktop/sunshine
     ../dev/neovim/system.nix
     ../hardware/tlp.nix
     ../hardware/opentabletdriver/system.nix
