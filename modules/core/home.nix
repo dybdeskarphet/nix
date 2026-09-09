@@ -7,15 +7,16 @@ let
 in
 {
   imports = [
-    ./env.nix
+    ../desktop/clipboard.nix
+    ../desktop/matugen
+    ../desktop/niri/home.nix
     ../dev/fish
     ../dev/neovim/home.nix
     ../dev/tmux
-    ../utility/bat.nix
-    ../desktop/niri/home.nix
-    ../desktop/matugen
-    ../desktop/clipboard.nix
     ../hardware/opentabletdriver/home.nix
+    ../utility/bat.nix
+    ../utility/streamlink
+    ./env.nix
   ];
   # Install packages {{{
   home.packages = packagesWithoutConfig;
