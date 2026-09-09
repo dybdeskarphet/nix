@@ -1,4 +1,11 @@
 { pkgs, ... }:
+let
+  utilityPackages = [
+    "fzf"
+    "lsd"
+    "wl-clipboard"
+  ];
+in
 {
   imports = [
     ./env.nix
@@ -7,6 +14,10 @@
     ../desktop/niri/home.nix
     ../hardware/opentabletdriver/home.nix
   ];
+  # Install packages {{{
+  home.packages = with pkgs; utilityPackages;
+  # }}}
+
   # Clipboard {{{
   services.clipse = {
     enable = true;
@@ -15,10 +26,6 @@
       historySize = 100;
     };
   };
-
-  home.packages = with pkgs; [
-    wl-clipboard
-  ];
 
   programs.fish.shellAbbrs = {
     toclipboard = "wl-copy";
