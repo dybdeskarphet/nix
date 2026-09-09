@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  utilityPackages = [
+  utilityPackages = with pkgs; [
     "fzf"
     "lsd"
     "wl-clipboard"
@@ -17,7 +17,7 @@ in
     ../hardware/opentabletdriver/home.nix
   ];
   # Install packages {{{
-  home.packages = with pkgs; utilityPackages;
+  home.packages = utilityPackages;
   # }}}
 
   # Clipboard {{{
