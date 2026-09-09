@@ -2,160 +2,160 @@
 command = "awww img --transition-fps 100 --transition-type center {{image}}"
 
 [templates.niri_layout]
-input_path = './templates/niri_layout.kdl'
+input_path = '~/.config/matugen/templates/niri_layout.kdl'
 output_path = '~/.config/niri/src/modules/layout/normal.kdl'
 post_hook = 'niri-genconfig generate -u'
 
 [templates.niri_recents]
-input_path = './templates/niri_recents.kdl'
+input_path = '~/.config/matugen/templates/niri_recents.kdl'
 output_path = '~/.config/niri/src/modules/recents.kdl'
 post_hook = 'niri-genconfig generate -u'
 
 [templates.foot]
-input_path = './templates/foot.ini'
+input_path = '~/.config/matugen/templates/foot.ini'
 output_path = '~/.config/foot/colors.ini'
 
 [templates.waybar-style]
-input_path = './templates/colors.css'
+input_path = '~/.config/matugen/templates/colors.css'
 output_path = '~/.config/waybar/colors.css'
 
 [templates.waybar-config]
-input_path = './templates/waybar.jsonc'
+input_path = '~/.config/matugen/templates/waybar.jsonc'
 output_path = '~/.config/waybar/config.jsonc'
 post_hook = 'systemctl --user reload waybar.service'
 
 [templates.dunst]
-input_path = './templates/dunstrc.ini'
+input_path = '~/.config/matugen/templates/dunstrc.ini'
 output_path = '~/.config/dunst/dunstrc'
 post_hook = 'dunstctl reload'
 
 [templates.rofi]
-input_path = './templates/rofi.rasi'
+input_path = '~/.config/matugen/templates/rofi.rasi'
 output_path = '~/.local/share/rofi/themes/basic_launcher/colors.rasi'
 
 [templates.rofi-launchpad]
-input_path = './templates/rofi.rasi'
+input_path = '~/.config/matugen/templates/rofi.rasi'
 output_path = '~/.local/share/rofi/themes/launchpad/colors.rasi'
 
 [templates.plaintext]
-input_path = './templates/current_colors.txt'
+input_path = '~/.config/matugen/templates/current_colors.txt'
 output_path = '~/.config/matugen/references/colors.txt'
 
 [templates.yazilua]
 pre_hook = 'mkdir -p ~/.config/yazi/plugins/matugen.yazi'
-input_path = './templates/colors.lua'
+input_path = '~/.config/matugen/templates/colors.lua'
 output_path = '~/.config/yazi/plugins/matugen.yazi/main.lua'
 
 [templates.zathura]
-input_path = './templates/zathurarc'
+input_path = '~/.config/matugen/templates/zathurarc'
 output_path = '~/.config/zathura/zathurarc'
 
 [templates.syshud]
-input_path = './templates/colors.css'
+input_path = '~/.config/matugen/templates/colors.css'
 output_path = '~/.config/sys64/hud/colors.css'
 
 [templates.yazi]
-input_path = './templates/yazi.toml'
+input_path = '~/.config/matugen/templates/yazi.toml'
 output_path = '~/.config/yazi/flavors/matugen.yazi/flavor.toml'
 
 [templates.fish_prompt]
-input_path = './templates/fish_prompt.fish'
+input_path = '~/.config/matugen/templates/fish_prompt.fish'
 output_path = '~/.config/fish/functions/fish_prompt.fish'
 
 [templates.fastfetch]
-input_path = './templates/fastfetch.jsonc'
+input_path = '~/.config/matugen/templates/fastfetch.jsonc'
 output_path = '~/.config/fastfetch/config.jsonc'
 
 [templates.gtk3]
-input_path = './templates/gtk-colors.css'
+input_path = '~/.config/matugen/templates/gtk-colors.css'
 output_path = '~/.config/gtk-3.0/colors.css'
 post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-dark'
 
 [templates.gtk4]
-input_path = './templates/gtk-colors.css'
+input_path = '~/.config/matugen/templates/gtk-colors.css'
 output_path = '~/.config/gtk-4.0/colors.css'
 
 [templates.qt5ct]
-input_path = './templates/qt-colors.conf'
+input_path = '~/.config/matugen/templates/qt-colors.conf'
 output_path = '~/.config/qt5ct/colors/matugen.conf'
 
 [templates.qt6ct]
-input_path = './templates/qt-colors.conf'
+input_path = '~/.config/matugen/templates/qt-colors.conf'
 output_path = '~/.config/qt6ct/colors/matugen.conf'
 
 [templates.btop]
-input_path = './templates/btop.theme'
+input_path = '~/.config/matugen/templates/btop.theme'
 output_path = '~/.config/btop/themes/matugen.theme'
 
 [templates.polychromatic]
-input_path = './templates/polychromatic.json'
+input_path = '~/.config/matugen/templates/polychromatic.json'
 output_path = '~/.config/polychromatic/colours.json'
 
 [templates.sudo_prompt]
-input_path = './templates/sudo_prompt.fish'
+input_path = '~/.config/matugen/templates/sudo_prompt.fish'
 output_path = '~/.config/fish/conf.d/sudo_prompt.fish'
 
 [templates.openrazer]
-input_path = './templates/openrazer.txt'
+input_path = '~/.config/matugen/templates/openrazer.txt'
 output_path = '~/.config/openrazer/matugen.txt'
 post_hook = 'maturazer reactive fastest'
 
 [templates.env]
-input_path = './templates/env.fish'
+input_path = '~/.config/matugen/templates/env.fish'
 output_path = '~/.config/fish/conf.d/matugen.fish'
 
 [templates.matugen]
-input_path = './templates/vimium.css'
+input_path = '~/.config/matugen/templates/vimium.css'
 output_path = '~/.config/matugen/outputs/vimium.css'
 
 [templates.tmux]
-input_path = './templates/tmux.conf'
+input_path = '~/.config/matugen/templates/tmux.conf'
 output_path = '~/.config/tmux/colors.conf'
 
 [templates.cava]
-input_path = './templates/cava.ini'
+input_path = '~/.config/matugen/templates/cava.ini'
 output_path = '~/.config/cava/config'
 
 [templates.lazygit]
-input_path = './templates/lazygit.yml'
+input_path = '~/.config/matugen/templates/lazygit.yml'
 output_path = '~/.config/lazygit/theme.yml'
 
 [templates.pyradio]
-input_path = './templates/matugen.pyradio-theme'
+input_path = '~/.config/matugen/templates/matugen.pyradio-theme'
 output_path = '~/.config/pyradio/themes/matugen.pyradio-theme'
 
 [templates.tabiew]
-input_path = './templates/tabiew.toml'
+input_path = '~/.config/matugen/templates/tabiew.toml'
 output_path = '~/.config/tabiew/theme.toml'
 
 [templates.clipse]
-input_path = './templates/clipse.json'
+input_path = '~/.config/matugen/templates/clipse.json'
 output_path = '~/.config/clipse/custom_theme.json'
 
 [templates.issue]
-input_path = './templates/issue_template'
+input_path = '~/.config/matugen/templates/issue_template'
 output_path = './references/issue'
 
 [templates.uosc]
-input_path = './templates/uosc.conf'
+input_path = '~/.config/matugen/templates/uosc.conf'
 output_path = '~/.config/mpv/script-opts/uosc.conf'
 
 [templates.avizo]
-input_path = './templates/avizo.ini'
+input_path = '~/.config/matugen/templates/avizo.ini'
 output_path = '~/.config/avizo/config.ini'
 
 [templates.glow]
-input_path = './templates/glow.json'
+input_path = '~/.config/matugen/templates/glow.json'
 output_path = '~/.config/glow/matugen.json'
 
 [templates.skshell]
-input_path = './templates/colors.css'
-output_path = '~/code/git/skshell/src/colors.css'
+input_path = '~/.config/matugen/templates/colors.css'
+output_path = '~/.code/git/skshell/src/colors.css'
 
 [templates.tuxedo]
-input_path = './templates/tuxedo.toml'
+input_path = '~/.config/matugen/templates/tuxedo.toml'
 output_path = '~/.config/tuxedo/themes/matugen.toml'
 
 [templates.rmpc]
-input_path = './templates/rmpc.ron'
+input_path = '~/.config/matugen/templates/rmpc.ron'
 output_path = '~/.config/rmpc/themes/matugen.ron'
