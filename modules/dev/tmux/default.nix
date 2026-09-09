@@ -14,4 +14,5 @@
   };
 
   xdg.configFile."tmuxp".source = ./sessions;
+  xdg.configFile."tmux/colors.conf".source = ./colors.conf;
 }
