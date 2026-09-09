@@ -1,0 +1,30 @@
+gui:
+  theme:
+    activeBorderColor:
+      - "{{colors.on_surface.dark.hex}}"
+      - bold
+    inactiveBorderColor:
+      - "{{colors.outline_variant.dark.hex}}"
+    searchingActiveBorderColor:
+      - "{{colors.outline.dark.hex}}"
+    optionsTextColor:
+      - "{{colors.secondary.dark.hex}}"
+    selectedLineBgColor:
+      - "{{colors.primary_container.dark.hex}}"
+    cherryPickedCommitBgColor:
+      - "{{colors.secondary_container.dark.hex}}"
+    cherryPickedCommitFgColor:
+      - "{{colors.secondary.dark.hex}}"
+    unstagedChangesColor:
+      - "{{colors.error.dark.hex}}"
+    defaultFgColor:
+      - "{{colors.primary.dark.hex}}"
+  spinner:
+    frames:
+      - ".  "
+      - ".. "
+      - "..."
+      - " .."
+      - "  ."
+      - "   "
+    rate: 50

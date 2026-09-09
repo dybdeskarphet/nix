@@ -1,0 +1,113 @@
+[table_header]
+fg = "{{colors.primary.dark.hex}}"
+bg = "{{colors.surface_container_high.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""
+
+[[table_headers]]
+fg = "{{colors.primary.dark.hex}}"
+bg = "{{colors.surface_container_low.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""
+
+[[table_headers]]
+fg = "{{colors.secondary.dark.hex}}"
+bg = "{{colors.surface_container_low.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""
+
+[[table_headers]]
+fg = "{{colors.tertiary.dark.hex}}"
+bg = "{{colors.surface_container_low.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""
+
+[[rows]]
+fg = "{{colors.on_surface.dark.hex}}"
+bg = "{{colors.surface_container_lowest.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""
+
+[[rows]]
+fg = "{{colors.on_surface.dark.hex}}"
+bg = "{{colors.surface_container_low.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""
+
+[row_highlight]
+fg = "{{colors.on_primary_container.dark.hex}}"
+bg = "{{colors.primary_container.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""
+
+[[table_tags]]
+fg = "{{colors.on_secondary_container.dark.hex}}"
+bg = "{{colors.secondary_container.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""
+
+[[table_tags]]
+fg = "{{colors.on_tertiary_container.dark.hex}}"
+bg = "{{colors.tertiary_container.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""
+
+[block]
+fg = "{{colors.outline.dark.hex}}"
+bg = "{{colors.surface.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""
+
+[block_tag]
+fg = "{{colors.on_primary_fixed.dark.hex}}"
+bg = "{{colors.primary_fixed.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""
+
+[text]
+fg = "{{colors.on_surface.dark.hex}}"
+bg = "{{colors.surface.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""
+
+[text_highlighted]
+fg = "{{colors.primary.dark.hex}}"
+bg = "{{colors.surface_container.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""
+
+[subtext]
+fg = "{{colors.on_surface_variant.dark.hex}}"
+bg = "{{colors.surface.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""
+
+[error]
+fg = "{{colors.on_error.dark.hex}}"
+bg = "{{colors.error.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""
+
+[gutter]
+fg = "{{colors.surface_variant.dark.hex}}"
+bg = "{{colors.surface.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""
+
+[[chart]]
+fg = "{{colors.primary.dark.hex}}"
+bg = "{{colors.surface.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""
+
+[[chart]]
+fg = "{{colors.secondary.dark.hex}}"
+bg = "{{colors.surface.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""
+
+[[chart]]
+fg = "{{colors.tertiary.dark.hex}}"
+bg = "{{colors.surface.dark.hex}}"
+add_modifier = ""
+sub_modifier = ""

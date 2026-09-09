@@ -1,0 +1,132 @@
+# -----------------------------------------------------------------------------
+# Zathura settings
+# -----------------------------------------------------------------------------
+
+# Colors (Dynamic with theme)
+set default-bg                  "{{colors.surface.default.hex}}"
+set default-fg                  "{{colors.on_surface.default.hex}}"
+
+set statusbar-bg                "{{colors.surface_container_low.default.hex}}"
+set statusbar-fg                "{{colors.primary.default.hex}}"
+
+set inputbar-bg                 "{{colors.surface_container_low.default.hex}}"
+set inputbar-fg                 "{{colors.primary.default.hex}}"
+
+set notification-error-bg       "{{colors.on_error.default.hex}}"
+set notification-error-fg       "{{colors.error.default.hex}}"
+
+set notification-warning-bg     "{{colors.primary_fixed.default.hex}}"
+set notification-warning-fg     "{{colors.error_container.default.hex}}"
+
+set notification-bg             "{{colors.surface_container_low.default.hex}}"
+set notification-fg             "{{colors.primary.default.hex}}"
+
+set completion-bg               "{{colors.surface_container_low.default.hex}}"
+set completion-fg               "{{colors.primary.default.hex}}"
+set completion-group-bg         "{{colors.surface_container_high.default.hex}}"
+set completion-group-fg         "{{colors.outline.default.hex}}"
+set completion-highlight-bg     "{{colors.primary.default.hex}}"
+set completion-highlight-fg     "{{colors.surface_container_low.default.hex}}"
+
+# Index Mode Colors
+set index-bg                    "{{colors.surface_container_low.default.hex}}"
+set index-fg                    "{{colors.on_surface.default.hex}}"
+set index-active-bg             "{{colors.primary.default.hex}}"
+set index-active-fg             "{{colors.on_primary.default.hex}}"
+
+# Highlight Colors
+set highlight-color             "{{colors.primary_fixed.default.hex}}"
+set highlight-active-color      "{{colors.primary_fixed_dim.default.hex}}"
+
+# Loading Indicator
+set render-loading              true
+set render-loading-bg           "{{colors.surface.default.hex}}"
+set render-loading-fg           "{{colors.on_surface.default.hex}}"
+
+# Recolor (Fixed Gruvbox Dark for reading, independent of theme changes)
+set recolor                     "true"
+set recolor-keephue             "true"
+set recolor-lightcolor          "rgba(29,32,33,1)"     # Gruvbox dark bg (#1d2021)
+set recolor-darkcolor           "rgba(235,219,178,1)"  # Gruvbox dark fg (#ebdbb2)
+
+# General Settings
+set selection-clipboard         clipboard
+set incremental-search          true
+set search-hadjust              true
+set adjust-open                 width
+set font                        "JetBrainsMono Nerd Font Mono 10"
+
+# -----------------------------------------------------------------------------
+# Keybindings
+# -----------------------------------------------------------------------------
+
+# Fullscreen Toggle
+unmap f
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+
+# Zoom Controls (+ and -)
+map + zoom in
+map - zoom out
+map = zoom in
+map <KPAdd> zoom in
+map <KPSubtract> zoom out
+map [fullscreen] + zoom in
+map [fullscreen] - zoom out
+map [fullscreen] = zoom in
+map [fullscreen] <KPAdd> zoom in
+map [fullscreen] <KPSubtract> zoom out
+
+# Vim Movement & View Scrolling
+# Directional scrolling
+map h scroll left
+map j scroll down
+map k scroll up
+map l scroll right
+map [fullscreen] h scroll left
+map [fullscreen] j scroll down
+map [fullscreen] k scroll up
+map [fullscreen] l scroll right
+
+# Half-page scrolling (Ctrl+d / Ctrl+u and d / u)
+unmap d
+map <C-d> scroll half-down
+map <C-u> scroll half-up
+map d scroll half-down
+map u scroll half-up
+map [fullscreen] <C-d> scroll half-down
+map [fullscreen] <C-u> scroll half-up
+map [fullscreen] d scroll half-down
+map [fullscreen] u scroll half-up
+
+# Full-page scrolling (Ctrl+f / Ctrl+b and Space / Shift+Space)
+map <C-f> scroll full-down
+map <C-b> scroll full-up
+map <Space> scroll full-down
+map <S-Space> scroll full-up
+map [fullscreen] <C-f> scroll full-down
+map [fullscreen] <C-b> scroll full-up
+map [fullscreen] <Space> scroll full-down
+map [fullscreen] <S-Space> scroll full-up
+
+# Page navigation (J / K)
+map J navigate next
+map K navigate previous
+map [fullscreen] J navigate next
+map [fullscreen] K navigate previous
+
+# Document jumps (gg / G)
+map gg goto top
+map G goto bottom
+map [fullscreen] gg goto top
+map [fullscreen] G goto bottom
+
+# View positioning on page (H / L)
+map H scroll page-top
+map L scroll page-bottom
+map [fullscreen] H scroll page-top
+map [fullscreen] L scroll page-bottom
+
+# Jumplist navigation (Ctrl+o / Ctrl+i)
+map <C-o> jumplist backward
+map <C-i> jumplist forward

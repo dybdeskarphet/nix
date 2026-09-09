@@ -1,0 +1,7 @@
+\e]P0{{colors.surface_container.dark.hex_stripped}}\e]P1{{colors.error.dark.hex_stripped}}\e]P2{{colors.primary.dark.hex_stripped}}\e]P3{{colors.inverse_primary.dark.hex_stripped}}\e]P4{{colors.primary.dark.hex_stripped}}\e]P5{{colors.tertiary.dark.hex_stripped}}\e]P6{{colors.secondary.dark.hex_stripped}}\e]P7ffffff\e]P8{{colors.surface_container.dark.hex_stripped}}\e]P9{{colors.error.dark.hex_stripped}}\e]PA{{colors.primary.dark.hex_stripped}}\e]PB{{colors.inverse_primary.dark.hex_stripped}}\e]PC{{colors.primary.dark.hex_stripped}}\e]PD{{colors.tertiary.dark.hex_stripped}}\e]PE{{colors.secondary.dark.hex_stripped}}\e]PFffffff\e[2J\e[H
+\e[1;35m                    ▄█        \e[1;32m▄▄█  ▄
+\e[1;35m                    ██        \e[1;32m ██ █▀
+\e[1;35m ▄█▀██  ▄█▄██  ▄▀▀█ ██▄▀█▄    \e[1;32m ██ ▄█  ▄█▄▀█▄ ▄█  ▄█  ▀█▄ █
+\e[1;35m██  ██  ██    ██    ██  ██    \e[1;32m ██ ██  ██  ██ ██  ██   ▀██
+\e[1;35m▀█▄▄▀█▄ █▀    ▀█▄▄▀ ██  █▀    \e[1;32m ▀█▄▀█▄ █▀  █▀ ▀█▄▄▀█▄ ▄█▀██
+\e[1;35m                       ▀      \e[1;32m           ▀\e[1;37m

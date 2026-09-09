@@ -14,6 +14,7 @@ in
     ../dev/tmux
     ../utility/bat.nix
     ../desktop/niri/home.nix
+    ../desktop/matugen
     ../hardware/opentabletdriver/home.nix
   ];
   # Install packages {{{
