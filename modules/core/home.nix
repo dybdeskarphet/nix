@@ -10,6 +10,7 @@ in
     ../desktop/clipboard.nix
     ../desktop/matugen
     ../desktop/niri/home.nix
+    ../desktop/chromium.nix
     ../dev/fish
     ../dev/neovim/home.nix
     ../dev/tmux
