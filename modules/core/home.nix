@@ -1,9 +1,8 @@
 { pkgs, ... }:
 let
-  utilityPackages = with pkgs; [
+  packagesWithoutConfig = with pkgs; [
     fzf
     lsd
-    wl-clipboard
   ];
 in
 {
@@ -15,24 +14,11 @@ in
     ../utility/bat.nix
     ../desktop/niri/home.nix
     ../desktop/matugen
+    ../desktop/clipboard.nix
     ../hardware/opentabletdriver/home.nix
   ];
   # Install packages {{{
-  home.packages = utilityPackages;
-  # }}}
-
-  # Clipboard {{{
-  services.clipse = {
-    enable = true;
-    settings = {
-      allowDuplicates = true;
-      historySize = 100;
-    };
-  };
-
-  programs.fish.shellAbbrs = {
-    toclipboard = "wl-copy";
-  };
+  home.packages = packagesWithoutConfig;
   # }}}
 }
 
