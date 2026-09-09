@@ -12,6 +12,7 @@ in
     ../dev/fish
     ../dev/neovim/home.nix
     ../dev/tmux
+    ../utility/bat.nix
     ../desktop/niri/home.nix
     ../hardware/opentabletdriver/home.nix
   ];
