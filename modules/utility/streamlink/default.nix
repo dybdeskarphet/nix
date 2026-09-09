@@ -18,7 +18,12 @@
       twitch-low-latency = true;
     };
     plugins = {
-      kick = ./plugins/kick.py;
+      kick = {
+        src = ./plugins/kick.py;
+        settings = {
+          quiet = true;
+        };
+      };
     };
   };
 }
