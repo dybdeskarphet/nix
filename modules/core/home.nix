@@ -2,9 +2,10 @@
 {
   imports = [
     ./env.nix
-    ./fish/fish.nix
-    ./neovim/neovim.nix
-    ./niri/niri.nix
+    ../dev/fish
+    ../dev/neovim/home.nix
+    ../desktop/niri/home.nix
+    ../hardware/opentabletdriver/home.nix
   ];
   # Clipboard {{{
   services.clipse = {

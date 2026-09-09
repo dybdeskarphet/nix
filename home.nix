@@ -9,6 +9,6 @@
   ];
 
   imports = [
-    ./modules/home/core.nix
+    ./modules/core/home.nix
   ];
 }

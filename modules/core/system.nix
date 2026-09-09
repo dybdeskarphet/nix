@@ -1,10 +1,10 @@
 { pkgs, lib, ... }:
 {
   imports = [
-    ./niri.nix
-    ./neovim.nix
-    ./tlp.nix
-    ./opentabletdriver.nix
+    ../desktop/niri/system.nix
+    ../dev/neovim/system.nix
+    ../hardware/tlp.nix
+    ../hardware/opentabletdriver/system.nix
   ];
   # Essential Packages {{{
   environment.systemPackages = with pkgs; [
