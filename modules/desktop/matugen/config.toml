@@ -134,7 +134,7 @@ output_path = '~/.config/clipse/custom_theme.json'
 
 [templates.issue]
 input_path = '~/.config/matugen/templates/issue_template'
-output_path = './references/issue'
+output_path = '~/.config/matugen/references/issue'
 
 [templates.uosc]
 input_path = '~/.config/matugen/templates/uosc.conf'
