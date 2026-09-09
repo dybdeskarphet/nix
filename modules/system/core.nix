@@ -4,6 +4,7 @@
     ./niri.nix
     ./neovim.nix
     ./tlp.nix
+    ./opentabletdriver.nix
   ];
   # Essential Packages {{{
   environment.systemPackages = with pkgs; [

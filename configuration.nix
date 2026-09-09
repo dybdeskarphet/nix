@@ -7,7 +7,7 @@
   ];
 
   imports = [
-    ./modules/core.nix
+    ./modules/system/core.nix
   ];
 
   system.stateVersion = "25.11";
