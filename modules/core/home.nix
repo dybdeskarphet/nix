@@ -1,9 +1,9 @@
 { pkgs, ... }:
 let
   utilityPackages = with pkgs; [
-    "fzf"
-    "lsd"
-    "wl-clipboard"
+    fzf
+    lsd
+    wl-clipboard
   ];
 in
 {
