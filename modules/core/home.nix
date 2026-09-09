@@ -11,6 +11,7 @@ in
     ./env.nix
     ../dev/fish
     ../dev/neovim/home.nix
+    ../dev/tmux
     ../desktop/niri/home.nix
     ../hardware/opentabletdriver/home.nix
   ];

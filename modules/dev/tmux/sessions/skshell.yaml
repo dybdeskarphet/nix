@@ -1,0 +1,15 @@
+session_name: skshell
+start_directory: ~/code/git/skshell/
+windows:
+  - window_name: nvim
+    panes:
+      - nvim
+  - window_name: lazygit
+    panes:
+      - lazygit
+  - window_name: shell
+    panes:
+      - clear
+  - window_name: runner
+    panes:
+      - bun run dev
