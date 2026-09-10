@@ -17,6 +17,7 @@ in
     ../hardware/opentabletdriver/home.nix
     ../utility/bat.nix
     ../utility/streamlink
+    ../utility/cava
     ./env.nix
   ];
   # Install packages {{{
