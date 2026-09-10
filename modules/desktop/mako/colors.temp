@@ -1,0 +1,11 @@
+### Global / Normal Colors
+background-color={{colors.surface_container.dark.hex}}99
+text-color={{colors.on_surface.dark.hex}}
+border-color={{colors.on_secondary.dark.hex}}b3
+progress-color=over {{colors.on_secondary_container.dark.hex}}
+
+### Critical Urgency Colors
+[urgency=critical]
+background-color={{colors.on_error.dark.hex}}b3
+text-color={{colors.on_error_container.dark.hex}}
+border-color={{colors.error_container.dark.hex}}b3

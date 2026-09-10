@@ -9,6 +9,7 @@ in
   imports = [
     ../desktop/clipboard.nix
     ../desktop/matugen
+    ../desktop/mako
     ../desktop/niri/home.nix
     ../desktop/chromium.nix
     ../dev/fish
