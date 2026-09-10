@@ -7,8 +7,7 @@ function fish_prompt
     else
         echo -n " \$"
     end
-    set_color -o "#d8c3ab"
+    set_color -o "{{colors.primary.dark.hex}}"
     echo -n "  "
     set_color normal
 end
-

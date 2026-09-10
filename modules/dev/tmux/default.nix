@@ -14,5 +14,5 @@
   };
 
   xdg.configFile."tmuxp".source = ./sessions;
-  xdg.configFile."tmux/colors.conf".source = ./colors.conf;
+  xdg.configFile."matugen/templates/tmux.conf".source = ./colors.temp.conf;
 }
