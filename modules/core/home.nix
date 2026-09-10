@@ -20,8 +20,13 @@ in
     ../utility/cava
     ./env.nix
   ];
-  # Install packages {{{
+
+  # Install packages without config {{{
   home.packages = packagesWithoutConfig;
+  # }}}
+
+  # Enable programs without config {{{
+  programs.dconf.enable = true;
   # }}}
 }
 
