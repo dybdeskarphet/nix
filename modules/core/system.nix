@@ -3,6 +3,7 @@
   imports = [
     ../desktop/niri/system.nix
     ../desktop/sunshine
+    ../desktop/fonts
     ../dev/neovim/system.nix
     ../hardware/tlp.nix
     ../hardware/opentabletdriver/system.nix
