@@ -4,6 +4,7 @@
     ../desktop/niri/system.nix
     ../desktop/sunshine
     ../desktop/fonts
+    ../desktop/hyprlock/system.nix
     ../dev/neovim/system.nix
     ../hardware/tlp.nix
     ../hardware/opentabletdriver/system.nix
