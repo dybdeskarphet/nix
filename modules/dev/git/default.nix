@@ -2,14 +2,27 @@
 {
   programs.git = {
     enable = true;
-    userName = "Ahmet Arda Kavakci";
-    userEmail = "ahmetardakavakci@gmail.com";
+
+    # 1. First-Class Signing Submodule
     signing = {
       key = "80860C9FC6584220";
+      format = "openpgp";
       signByDefault = true;
     };
 
+    ignores = [
+      ".DS_Store"
+      "*.swp"
+      "*~"
+      ".direnv/"
+    ];
+
     settings = {
+      user = {
+        name = "Ahmet Arda Kavakci";
+        email = "ahmetardakavakci@gmail.com";
+      };
+
       init.defaultBranch = "main";
       core.autocrlf = "input";
       safe.directory = "/opt/flutter";
@@ -45,7 +58,6 @@
     };
   };
 
-  # Co-locate your Git shell abbreviations here:
   programs.fish.shellAbbrs = {
     gita = "git add .";
     gitc = "git commit -S";
