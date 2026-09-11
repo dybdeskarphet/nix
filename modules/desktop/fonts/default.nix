@@ -2,7 +2,7 @@
 let
   myFonts = pkgs.runCommand "my-fonts" { } ''
     mkdir -p $out/share/fonts/truetype
-    cp ${./files}/*.ttf $out/share/fonts/truetype/
+    cp ${./fonts}/*.ttf $out/share/fonts/truetype/
   '';
 in
 {
