@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   gtk = {
     enable = true;
@@ -31,6 +31,7 @@
 
     gtk4 = {
       extraCss = "@import 'colors.css';";
+      theme = null;
     };
   };
 
