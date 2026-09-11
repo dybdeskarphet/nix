@@ -11,5 +11,13 @@
     "color": "{{colors.primary.dark.hex}}",
     "brightColor": true,
   },
-  "modules": ["title", "os", "kernel", "uptime", "packages", "shell", "wm"],
+  "modules": [
+    "title",
+    "os",
+    "kernel",
+    "uptime",
+    "packages",
+    "shell",
+    "wm"
+  ],
 }
