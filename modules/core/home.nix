@@ -6,21 +6,22 @@ let
 in
 {
   imports = [
-    ../desktop/clipboard.nix
-    ../desktop/matugen
-    ../desktop/mako
-    ../desktop/niri/home.nix
     ../desktop/chromium.nix
+    ../desktop/clipboard.nix
+    ../desktop/mako
+    ../desktop/matugen
+    ../desktop/niri/home.nix
     ../dev/fish
+    ../dev/foot
     ../dev/neovim/home.nix
     ../dev/tmux
     ../hardware/opentabletdriver/home.nix
     ../utility/bat.nix
-    ../utility/streamlink
     ../utility/cava
     ../utility/easyclone
     ../utility/fastfetch
     ../utility/lsd.nix
+    ../utility/streamlink
     ./env.nix
   ];
 
