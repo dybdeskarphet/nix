@@ -15,3 +15,6 @@ result-*
 *.age
 *.secret
 .env
+
+# todo
+todo.md

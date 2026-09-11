@@ -44,5 +44,6 @@ in
 
   xdg.configFile."matugen/templates/fish_prompt.fish".source = ./templates/fish_prompt.temp.fish;
   xdg.configFile."matugen/templates/sudo_prompt.fish".source = ./templates/sudo_prompt.temp.fish;
-  xdg.configFile."fish/functions/fish_right_prompt.fish".source = ./right_prompt.fish;
+  xdg.configFile."fish/conf.d/yazi.fish".source = ./config/yazi.fish;
+  xdg.configFile."fish/functions/fish_right_prompt.fish".source = ./config/right_prompt.fish;
 }
