@@ -13,6 +13,7 @@ in
     ../desktop/niri/home.nix
     ../dev/fish
     ../dev/foot
+    ../dev/git
     ../dev/neovim/home.nix
     ../dev/tmux
     ../hardware/opentabletdriver/home.nix
