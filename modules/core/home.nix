@@ -9,6 +9,7 @@ in
     ../desktop/chromium.nix
     ../desktop/clipboard.nix
     ../desktop/mako
+    ../desktop/gtk
     ../desktop/matugen
     ../desktop/niri/home.nix
     ../dev/fish
