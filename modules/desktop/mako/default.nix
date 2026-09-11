@@ -31,7 +31,7 @@
 
       on-button-left = "invoke-default-action";
       on-button-right = "dismiss-all";
-      on-button-middle = "exec ${pkgs.mako}/bin/makoctl menu -n \"$id\" -- ${pkgs.rofi-wayland}/bin/rofi -dmenu -p 'Select action:'";
+      on-button-middle = "exec ${pkgs.mako}/bin/makoctl menu -n \"$id\" -- ${pkgs.rofi}/bin/rofi -dmenu -p 'Select action:'";
 
       "app-name=niri" = {
         invisible = 1;
