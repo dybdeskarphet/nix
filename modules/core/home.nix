@@ -21,6 +21,7 @@ in
     ../hardware/opentabletdriver/home.nix
     ../utility/bat.nix
     ../utility/cava
+    ../utility/htop.nix
     ../utility/easyclone
     ../utility/fastfetch
     ../utility/lsd.nix
