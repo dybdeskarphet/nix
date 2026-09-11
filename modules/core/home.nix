@@ -19,6 +19,8 @@ in
     ../utility/bat.nix
     ../utility/streamlink
     ../utility/cava
+    ../utility/easyclone
+    ../utility/fastfetch
     ./env.nix
   ];
 
@@ -27,7 +29,7 @@ in
   # }}}
 
   # Enable programs without config {{{
-  programs.dconf.enable = true;
+  dconf.enable = true;
   # }}}
 }
 
