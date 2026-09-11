@@ -14,6 +14,7 @@ in
     ../dev/fish
     ../dev/foot
     ../dev/git
+    ../dev/gpg
     ../dev/neovim/home.nix
     ../dev/tmux
     ../hardware/opentabletdriver/home.nix
