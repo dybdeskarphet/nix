@@ -2,7 +2,6 @@
 let
   packagesWithoutConfig = with pkgs; [
     fzf
-    lsd
   ];
 in
 {
@@ -21,6 +20,7 @@ in
     ../utility/cava
     ../utility/easyclone
     ../utility/fastfetch
+    ../utility/lsd.nix
     ./env.nix
   ];
 
