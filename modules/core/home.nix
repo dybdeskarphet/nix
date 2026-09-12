@@ -17,6 +17,7 @@ in
     ../dev/fish
     ../dev/foot
     ../dev/git
+    ../dev/lazygit
     ../dev/gpg
     ../dev/neovim/home.nix
     ../dev/tmux
