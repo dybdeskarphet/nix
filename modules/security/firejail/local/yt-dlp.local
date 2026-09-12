@@ -1,0 +1,11 @@
+# Firejail override for yt-dlp to allow reading browser cookies
+noblacklist ${HOME}/.config/chromium
+read-only ${HOME}/.config/chromium
+
+noblacklist ${HOME}/.config/google-chrome
+read-only ${HOME}/.config/google-chrome
+
+noblacklist ${HOME}/.mozilla
+read-only ${HOME}/.mozilla
+noblacklist ${HOME}/.config/mozilla
+read-only ${HOME}/.config/mozilla

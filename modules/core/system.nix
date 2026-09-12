@@ -5,6 +5,7 @@
     ../desktop/sunshine
     ../desktop/fonts
     ../security/hyprlock/system.nix
+    ../security/firejail/system.nix
     ../dev/neovim/system.nix
     ../hardware/tlp.nix
     ../hardware/opentabletdriver/system.nix

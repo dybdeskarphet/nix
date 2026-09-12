@@ -11,6 +11,7 @@ in
     ../desktop/mako
     ../security/hyprlock/home.nix
     ../desktop/hypridle
+    ../security/firejail/home.nix
     ../desktop/gtk
     ../desktop/matugen
     ../desktop/niri/home.nix

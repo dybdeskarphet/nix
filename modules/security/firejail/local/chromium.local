@@ -1,0 +1,19 @@
+noblacklist ${RUNUSER}/app
+whitelist ${RUNUSER}/app/org.keepassxc.KeePassXC
+whitelist ${RUNUSER}/kpxc_server
+whitelist ${RUNUSER}/org.keepassxc.KeePassXC.BrowserServer
+whitelist ${DESKTOP}
+
+dbus-user filter
+dbus-user.talk org.freedesktop.portal.Desktop
+dbus-user.talk org.freedesktop.portal.FileChooser
+dbus-user.talk org.freedesktop.Notifications
+dbus-user.talk org.freedesktop.ScreenSaver
+dbus-user.talk org.kde.StatusNotifierWatcher
+dbus-user.own org.mpris.MediaPlayer2.chromium.*
+dbus-user.talk org.mpris.MediaPlayer2.*
+dbus-user.talk org.gnome.Mutter.IdleMonitor
+
+dbus-system filter
+
+ignore apparmor

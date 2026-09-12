@@ -1,0 +1,11 @@
+# ==============================================================================
+# Axel Firejail Local Override Configuration (~/.config/firejail/axel.local)
+# ==============================================================================
+
+# --- Fix Abstract X11 Socket Error on Wayland/XWayland ---
+# By default, axel.profile specifies "x11 none". On Wayland/XWayland systems where
+# abstract X11 sockets exist in the network namespace (@/tmp/.X11-unix/X0), Firejail
+# throws a fatal error refusing to run.
+# Ignoring the x11 rule stops Firejail from checking abstract X11 sockets, allowing
+# axel to run smoothly while keeping filesystem isolation (protecting your SSH keys and vaults).
+ignore x11

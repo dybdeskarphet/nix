@@ -1,0 +1,6 @@
+whitelist ${MUSIC}
+whitelist ${VIDEOS}
+whitelist ${PICTURES}
+whitelist ${DOWNLOADS}
+
+ignore dbus-user
