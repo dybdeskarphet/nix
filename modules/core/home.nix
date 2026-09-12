@@ -9,7 +9,7 @@ in
     ../desktop/chromium.nix
     ../desktop/clipboard.nix
     ../desktop/mako
-    ../desktop/hyprlock/home.nix
+    ../security/hyprlock/home.nix
     ../desktop/hypridle
     ../desktop/gtk
     ../desktop/matugen
