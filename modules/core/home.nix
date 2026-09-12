@@ -10,7 +10,7 @@ in
     ../desktop/clipboard.nix
     ../desktop/mako
     ../security/hyprlock/home.nix
-    ../desktop/hypridle
+    ../desktop/hypridle.nix
     ../security/firejail/home.nix
     ../desktop/gtk
     ../desktop/matugen
