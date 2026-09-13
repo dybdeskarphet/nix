@@ -31,6 +31,7 @@ in
     ../utility/fastfetch
     ../utility/lsd.nix
     ../utility/streamlink
+    ../utility/qalc.nix
     ./env.nix
   ];
 
