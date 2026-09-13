@@ -21,6 +21,7 @@ in
     ../dev/foot
     ../dev/git
     ../dev/lazygit
+    ../dev/sqlite.nix
     ../dev/gpg
     ../dev/neovim/home.nix
     ../dev/tmux
