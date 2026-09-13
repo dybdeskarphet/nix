@@ -8,6 +8,7 @@
     ../security/firejail/system.nix
     ../dev/neovim/system.nix
     ../hardware/tlp.nix
+    ../hardware/openrazer/system.nix
     ../hardware/opentabletdriver/system.nix
   ];
   # Essential Packages {{{
