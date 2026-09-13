@@ -10,6 +10,7 @@
     ../hardware/tlp.nix
     ../hardware/openrazer/system.nix
     ../hardware/opentabletdriver/system.nix
+    ../utility/rclone/system.nix
   ];
   # Essential Packages {{{
   environment.systemPackages = with pkgs; [

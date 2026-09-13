@@ -29,6 +29,7 @@ in
     ../utility/htop.nix
     ../utility/mpv.nix
     ../utility/fastfetch
+    ../utility/rclone/home.nix
     ../utility/lsd.nix
     ../utility/streamlink
     ../utility/qalc.nix
