@@ -15,6 +15,7 @@ in
     ../desktop/gtk
     ../desktop/qt
     ../desktop/matugen
+    ../desktop/rofi
     ../desktop/niri/home.nix
     ../dev/fish
     ../dev/foot
