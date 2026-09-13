@@ -1,5 +1,5 @@
 [config.wallpaper]
-command = "awww img --transition-fps 100 --transition-type center {{image}}"
+command = "awww img -n bg --transition-fps 100 --transition-type center {{image}}"
 
 [templates.niri]
 input_path = '~/.config/matugen/templates/niri.kdl'

@@ -8,6 +8,7 @@ in
   imports = [
     ../desktop/chromium.nix
     ../desktop/clipboard.nix
+    ../desktop/awww
     ../desktop/mako
     ../security/hyprlock/home.nix
     ../desktop/hypridle.nix
