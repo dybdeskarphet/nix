@@ -1,0 +1,17 @@
+layout {
+    border {
+        active-color "{{colors.primary.dark.hex}}"
+        inactive-color "{{colors.on_secondary_fixed_variant.dark.hex}}"
+        urgent-color "{{colors.error_container.dark.hex}}"
+    }
+    insert-hint {
+        color "#{{colors.primary.dark.hex_stripped}}aa"
+    }
+}
+
+recent-windows {
+    highlight {
+        active-color "{{colors.primary.dark.hex}}"
+        urgent-color "{{colors.error_container.dark.hex}}"
+    }
+}

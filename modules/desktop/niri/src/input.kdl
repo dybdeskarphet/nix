@@ -1,0 +1,31 @@
+input {
+    keyboard {
+        xkb {
+            layout "tr"
+            options "caps:swapescape,altwin:swap_lalt_lwin,grp:ctrls_toggle"
+        }
+        numlock
+    }
+    touchpad {
+        tap
+        accel-profile "adaptive"
+        scroll-method "two-finger"
+    }
+    mouse {
+        accel-profile "adaptive"
+    }
+
+    tablet {
+        map-to-output "Virtual-1"
+        calibration-matrix 1.0 0.0 0.0 0.0 1.0 0.0
+    }
+
+    touch {
+        map-to-output "Virtual-1"
+    }
+
+    focus-follows-mouse
+    warp-mouse-to-focus
+    disable-power-key-handling
+
+}

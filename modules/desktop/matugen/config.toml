@@ -1,15 +1,10 @@
 [config.wallpaper]
 command = "awww img --transition-fps 100 --transition-type center {{image}}"
 
-[templates.niri_layout]
-input_path = '~/.config/matugen/templates/niri_layout.kdl'
-output_path = '~/.config/niri/src/modules/layout/normal.kdl'
-post_hook = 'niri-genconfig generate -u'
-
-[templates.niri_recents]
-input_path = '~/.config/matugen/templates/niri_recents.kdl'
-output_path = '~/.config/niri/src/modules/recents.kdl'
-post_hook = 'niri-genconfig generate -u'
+[templates.niri]
+input_path = '~/.config/matugen/templates/niri.kdl'
+output_path = '~/.config/niri/matugen.kdl'
+post_hook = 'niri msg action load-config-file'
 
 [templates.foot]
 input_path = '~/.config/matugen/templates/foot.ini'

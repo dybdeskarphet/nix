@@ -1,0 +1,13 @@
+include "~/.config/niri/config.kdl"
+
+window-rule {
+  geometry-corner-radius 0
+  clip-to-geometry true
+}
+
+layout {
+    gaps 0
+    border {
+        width 0
+    }
+}

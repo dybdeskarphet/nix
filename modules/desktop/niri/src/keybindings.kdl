@@ -1,0 +1,129 @@
+binds {
+    Mod+Return hotkey-overlay-title="Open the terminal" { spawn-sh "footclient"; }
+    Mod+Shift+Return hotkey-overlay-title="Open the terminal" { spawn-sh "foot"; }
+    Mod+P hotkey-overlay-title="Open application launcher" { spawn "rofi" "-show" "run" "-show-icons" "-display-run" "   run"; }
+    Mod+W hotkey-overlay-title="Open browser" { spawn "chromium"; }
+    Mod+Escape hotkey-overlay-title="Open quick menu" { spawn "quickmenu"; }
+    Mod+Shift+V hotkey-overlay-title="Open clipboard manager" { spawn "footclient" "-a" "clipse" "-T" "clipse" "clipse"; }
+
+    Mod+O repeat=false { toggle-overview; }
+    Mod+Shift+Escape repeat=false { show-hotkey-overlay; }
+    Mod+Q { close-window; }
+    // Below command kills, not closes, directly kills
+    Mod+Shift+Q { spawn-sh "pid=$(niri msg -j focused-window | jq -r '.pid'); [ -n \"$pid\" ] && [ \"$pid\" != \"null\" ] && kill -9 \"$pid\""; }
+
+    Mod+H     { focus-column-left; }
+    Mod+U     { focus-window-down; }
+    Mod+I     { focus-window-up; }
+    Mod+L     { focus-column-right; }
+
+    MouseForward     { focus-column-right; }
+    MouseBack    { focus-column-left; }
+
+    Mod+Shift+H     { move-column-left-or-to-monitor-left; }
+    Mod+Shift+L     { move-column-right-or-to-monitor-right; }
+
+    Mod+Alt+H { set-column-width "-10%"; }
+    Mod+Alt+L { set-column-width "+10%"; }
+
+    Mod+J              { focus-workspace-down; }
+    Mod+K              { focus-workspace-up; }
+    Mod+Shift+J         { move-column-to-workspace-down; }
+    Mod+Shift+K         { move-column-to-workspace-up; }
+    Mod+Shift+U         { move-workspace-down; }
+    Mod+Shift+I         { move-workspace-up; }
+
+    Mod+X { spawn-sh "nirius toggle-follow-mode";}
+
+    Mod+N  { focus-monitor-left; }
+    Mod+M { focus-monitor-right; }
+    Mod+Shift+N     { move-column-to-monitor-left; }
+    Mod+Shift+M     { move-column-to-monitor-right; }
+
+    Mod+S       { toggle-window-floating; }
+
+    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    Mod+Shift+WheelScrollDown      { focus-column-right; }
+    Mod+Shift+WheelScrollUp        { focus-column-left; }
+
+    Mod+TouchpadScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }
+    Mod+TouchpadScrollUp   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+
+    // WARN: This works but somehow config validator gives an error
+    // Alt+Tab { focus-column-previous; }
+    // Alt+Tab { focus-workspace-previous; }
+
+    Mod+Comma  { consume-window-into-column; }
+    Mod+Period { expel-window-from-column; }
+
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R { reset-window-height; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+Alt+F { toggle-windowed-fullscreen; }
+    Mod+Ctrl+F { expand-column-to-available-width; }
+    Mod+Shift+C { center-column; }
+    Mod+Ctrl+Shift+C { center-visible-columns; }
+
+    Alt+Shift+S hotkey-overlay-title="Take a screenshot by selection" { spawn "screenshot" "select"; }
+    Mod+Shift+S hotkey-overlay-title="Take a full screenshot" { spawn "screenshot" "full"; }
+    Mod+Alt+Shift+S hotkey-overlay-title="Take a screenshot of the window" { spawn "screenshot" "window"; }
+    Mod+Shift+O hotkey-overlay-title="Use OCR by selection" { spawn "screenshot" "ocr"; }
+
+    Mod+V hotkey-overlay-title="Show the island" { spawn "ags" "request" "open"; }
+
+    // FN Keys
+    XF86AudioLowerVolume hotkey-overlay-title="Volume down" { spawn "mediacontrol" "volume" "down"; }
+    XF86AudioRaiseVolume hotkey-overlay-title="Volume up" { spawn "mediacontrol" "volume" "up"; }
+    XF86AudioMute { spawn "mediacontrol" "volume" "toggle"; }
+    XF86AudioPlay { spawn "playerctl" "play-pause"; }
+    Ctrl+XF86AudioPlay { spawn "playerctl" "previous"; }
+    Alt+XF86AudioPlay { spawn "playerctl" "next"; }
+    XF86AudioStop { spawn "playerctl" "stop"; }
+    XF86AudioNext { spawn "playerctl" "next"; }
+    XF86AudioPrev { spawn "playerctl" "previous"; }
+    XF86MonBrightnessUp hotkey-overlay-title="Brightness up" { spawn "mediacontrol" "backlight" "up"; }
+    XF86MonBrightnessDown hotkey-overlay-title="Brightness down" { spawn "mediacontrol" "backlight" "down"; }
+    Mod+XF86MonBrightnessUp hotkey-overlay-title=null  { spawn "mediacontrol" "backlight" "full"; }
+    Mod+XF86MonBrightnessDown hotkey-overlay-title=null { spawn "mediacontrol" "backlight" "off"; }
+    XF86AudioMicMute { spawn "mediacontrol" "mic" "toggle"; }
+    XF86HomePage { spawn "mediacontrol" "togglemic"; }
+    XF86Calculator { spawn "footclient" "-T" "qalc" "-a" "qalc" "qalc"; }
+    XF86Launch4 { spawn "shortcuts" "-t"; }
+    XF86Macro27 { spawn "notify-send" "-r" "134897" "-a" "Razer" "-i" "keyboard" "brightness increased"; }
+    XF86Macro28 { spawn "notify-send" "-r" "134897" "-a" "Razer" "-i" "keyboard" "brightness decreased"; }
+    XF86Favorites hotkey-overlay-title="Open quick menu" { spawn "quickmenu"; }
+
+    // TKL Extras
+    Mod+C hotkey-overlay-title="Open the calculator" { spawn "footclient" "-T" "qalc" "-a" "qalc" "qalc"; }
+    ISO_Level3_Shift+K { spawn "mediacontrol" "mic" "toggle"; }
+    ISO_Level3_Shift+L { spawn "mediacontrol" "mic" "up"; }
+    ISO_Level3_Shift+J { spawn "mediacontrol" "mic" "down"; }
+
+    Mod+Space hotkey-overlay-title="Close the latest notification" { spawn "makoctl" "dismiss"; }
+    Mod+b hotkey-overlay-title="Show notification history" { spawn "shortcuts" "-n"; }
+    Mod+t hotkey-overlay-title="Show todo" { spawn "shortcuts" "-o"; }
+    Mod+shift+b hotkey-overlay-title="Toggle do-not-disturb mode" { spawn "shortcuts" "-d"; }
+} 

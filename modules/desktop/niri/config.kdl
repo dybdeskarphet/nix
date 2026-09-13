@@ -1,0 +1,6 @@
+include "~/.config/niri/src/input.kdl"
+include "~/.config/niri/src/internal.kdl"
+include "~/.config/niri/src/keybindings.kdl"
+include "~/.config/niri/src/rules.kdl"
+include "~/.config/niri/src/visual.kdl"
+include optional=true "~/.config/niri/matugen.kdl"
