@@ -13,6 +13,7 @@ in
     ../desktop/hypridle.nix
     ../security/firejail/home.nix
     ../desktop/gtk
+    ../desktop/qt
     ../desktop/matugen
     ../desktop/niri/home.nix
     ../dev/fish
