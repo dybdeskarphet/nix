@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 let
   generalVars = {
     EDITOR = "nvim";
@@ -60,4 +60,19 @@ in
     // {
       PATH = "${lib.concatStringsSep ":" sessionPath}:$PATH";
     };
+
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = false;
+
+    desktop = "${config.home.homeDirectory}/desk";
+    documents = "${config.home.homeDirectory}/doc";
+    download = "${config.home.homeDirectory}/dl";
+    music = "${config.home.homeDirectory}/mp3";
+    pictures = "${config.home.homeDirectory}/img";
+    publicShare = "${config.home.homeDirectory}/pub";
+    templates = "${config.home.homeDirectory}";
+    videos = "${config.home.homeDirectory}";
+    projects = "${config.home.homeDirectory}";
+  };
 }
