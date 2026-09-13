@@ -36,6 +36,7 @@ in
     ../utility/streamlink
     ../utility/qalc.nix
     ../academic/rnote
+    ../academic/write
     ./env.nix
   ];
 
