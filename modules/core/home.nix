@@ -28,7 +28,6 @@ in
     ../utility/cava
     ../utility/htop.nix
     ../utility/mpv.nix
-    ../utility/easyclone
     ../utility/fastfetch
     ../utility/lsd.nix
     ../utility/streamlink
