@@ -33,6 +33,7 @@ in
     ../utility/lsd.nix
     ../utility/streamlink
     ../utility/qalc.nix
+    ../academic/rnote
     ./env.nix
   ];
 
