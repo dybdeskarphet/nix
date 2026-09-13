@@ -72,7 +72,7 @@ in
     pictures = "${config.home.homeDirectory}/img";
     publicShare = "${config.home.homeDirectory}/pub";
     templates = "${config.home.homeDirectory}";
-    videos = "${config.home.homeDirectory}";
+    videos = "${config.home.homeDirectory}/vid";
     projects = "${config.home.homeDirectory}";
   };
 }
