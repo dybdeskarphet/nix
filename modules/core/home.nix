@@ -14,6 +14,7 @@ in
     ../desktop/hypridle.nix
     ../security/firejail/home.nix
     ../desktop/gtk
+    ../desktop/waybar
     ../desktop/qt
     ../desktop/matugen
     ../desktop/rofi

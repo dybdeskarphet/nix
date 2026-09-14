@@ -9,7 +9,6 @@
   // Choose the order of the modules
   "group/cpuntemp": {
     "orientation": "horizontal",
-    "on-click": "alacritty",
     "modules": [
       "cpu",
       "temperature#cpu"
@@ -37,7 +36,6 @@
     "custom/gpu_usage",
     "memory",
     "disk",
-    "custom/updates",
     "privacy",
   ],
   "group/pulseaudionslider": {
@@ -141,12 +139,6 @@
     "tooltip-format": "Free: {free} ({percentage_free}%)\nTotal: {total}",
     "path": "/",
   },
-  "custom/updates": {
-    "exec": "waybar-scripts check_updates",
-    "on-click": "waybar-scripts open_update_screen",
-    "restart-interval": 900,
-    "tooltip": false,
-  },
   "custom/sync": {
     "exec": "waybar-scripts sync_icon",
     "format": "{icon} <span foreground=\"{{colors.on_background.dark.hex}}\">{text}%</span>",
@@ -159,14 +151,9 @@
     "on-click": "waybar-scripts sync_icon_click",
     "restart-interval": 5
   },
-  "custom/hiddenwindow": {
-    "exec": "waybar-scripts check_special_workspace",
-    "tooltip": true,
-    "signal": 3,
-  },
   "custom/dnd": {
     "exec": "waybar-scripts do_not_disturb",
-    "on-click": "dunstctl set-paused false && pkill -RTMIN+4 waybar",
+    "on-click": "makoctl mode -r dnd && pkill -RTMIN+4 waybar",
     "signal": 4,
   },
   "custom/mic": {
@@ -183,10 +170,9 @@
   },
   "niri/workspaces": {
     "format": "{icon}",
-    "move-to-montior": true,
+    "move-to-monitor": true,
   },
   "network#wireless": {
-    "on-click": "waybar-scripts wifi_click",
     "interface": "wlan0",
     "interval": 2,
     "format": "{ifname}",
@@ -198,7 +184,6 @@
     "max-length": 50,
   },
   "network#ethernet": {
-    "on-click": "waybar-scripts wifi_click",
     "interface": "enp1s0",
     "interval": 2,
     "format": "{ifname}",

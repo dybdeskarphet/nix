@@ -1,0 +1,139 @@
+#!/usr/bin/env fish
+
+set termwin "footclient fish -c"
+
+function sync_icon
+    if test (systemctl --user show -p SubState --value easyclone.service) = start
+        set total (easyclone get-status -t 2>/dev/null)
+        set current (easyclone get-status -f 2>/dev/null)
+        set empty_paths (easyclone get-status -e 2>/dev/null)
+
+        if test $total -eq 0
+            set percentage 0
+        else
+            set raw_percent (math "($current / $total) * 100")
+            set percentage (printf "%.1f" $raw_percent)
+        end
+
+        if test "$empty_paths" = "[]"
+            set backup_icon backup
+            set tooltip "Current operations:\r" (easyclone get-status -o | jq -r '.[].source + "\r"')
+        else
+            set backup_icon backup-empty-paths
+            set tooltip "Empty paths:\r" (echo "$empty_paths" | sed "s/'/\"/g" | jq --raw-output '. | join("\r")')
+        end
+
+        printf "{\"text\": \"%s\", \"alt\": \"%s\", \"tooltip\": \"%s\", \"class\": \"\", \"percentage\": \"%s\"}" \
+            "$percentage" "$backup_icon" "$tooltip" "$percentage"
+    else
+        echo ""
+    end
+end
+
+function mic_icon
+    if wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep MUTED >/dev/null 2>&1
+        echo "󰍭 muted"
+    else
+        echo ""
+    end
+end
+
+function do_not_disturb
+    if makoctl mode | grep -q dnd
+        printf "󰂛\nPress Mod+Shift+B\n"
+    else
+        echo ""
+    end
+end
+
+function copy_date
+    if date "+%F" | wl-copy -n
+        notify-send -a Waybar -r 9326 -i clipit-trayicon -t 5000 "date copied to clipboard!" "'"(date "+%F")"'"
+    else
+        notify-send -a Waybar -r 9326 -i clipit-trayicon -t 5000 "something happened while copying date to clipboard." "check the script file $argv[0]."
+    end
+end
+
+function gpu_usage
+    echo "󰹑 <span foreground=\"$matugen_on_surface\">"(cat /sys/class/hwmon/hwmon3/device/gpu_busy_percent)"%</span>"
+end
+
+function bt_toggle
+    if test (bluetoothctl show | grep "Powered: yes" | wc -c) -eq 0
+        bluetoothctl power on
+    else
+        bluetoothctl power off
+    end
+end
+
+function switch_audio_sink
+    set current_name (wpctl inspect @DEFAULT_SINK@ | grep "node.name" | awk -F '"' '{print $2}')
+    if test -z "$current_name"
+        set current_name (wpctl status | grep -A 5 "Default Configured Devices" | grep "Audio/Sink" | awk '{print $NF}')
+    end
+
+    set nodes_data (pw-dump Node | jq -r '.[] | select(.info.props."media.class" == "Audio/Sink") | "\(.info.props."node.name")\t\(.info.props."node.description")\t\(.id)"')
+
+    set eligible_names
+    set eligible_descs
+    set eligible_ids
+
+    for line in $nodes_data
+        set parts (string split \t $line)
+        set name $parts[1]
+        set desc $parts[2]
+        set id $parts[3]
+
+        test -z "$name"; and continue
+
+        set -a eligible_names "$name"
+        set -a eligible_descs "$desc"
+        set -a eligible_ids "$id"
+    end
+
+    set count (count $eligible_names)
+    if test $count -le 1
+        exit 0
+    end
+
+    set next_index 1
+    for i in (seq $count)
+        if test "$eligible_names[$i]" = "$current_name"
+            set next_index (math "($i % $count) + 1")
+            break
+        end
+    end
+
+    set next_id $eligible_ids[$next_index]
+    set next_desc $eligible_descs[$next_index]
+
+    wpctl set-default $next_id
+    notify-send -a Pipewire -r 9830 -i soundcard "audio output" "switched to: $next_desc"
+end
+
+switch $argv[1]
+    case sync_icon
+        sync_icon
+    case mic_icon
+        mic_icon
+    case do_not_disturb
+        do_not_disturb
+    case switch_audio_sink
+        switch_audio_sink
+    case sync_icon_click
+        eval "$termwin 'watch -c -n 0.5 easyclone get-status'"
+    case gpu_click
+        eval "$termwin 'radeontop'"
+    case copy_date
+        copy_date
+    case gpu_usage
+        gpu_usage
+    case htop_cpu
+        eval "$termwin 'htop -t --sort-key PERCENT_CPU'"
+    case htop_mem
+        eval "$termwin 'htop -t --sort-key PERCENT_MEM'"
+    case bt_toggle
+        bt_toggle
+    case '*'
+        echo "Don't use this script from your terminal."
+end
