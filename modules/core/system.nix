@@ -194,7 +194,13 @@
     initialPassword = "nixos";
   };
   users.users.root.initialPassword = "nixos";
-  services.getty.autologinUser = "skarphet";
+  services.getty = {
+    loginOptions = "-p -- skarphet";
+    extraArgs = [
+      "--skip-login"
+      "--noclear"
+    ];
+  };
   # }}}
 
   # Localization / Time {{{
