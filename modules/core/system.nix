@@ -102,6 +102,12 @@
   };
   # }}}
 
+  # Wi-fi disable powersave {{{
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="net", KERNEL=="wlan*", RUN+="${pkgs.iw}/bin/iw dev %k set power_save off"
+  '';
+  # }}}
+
   # systemd-resolved {{{2
   services.resolved = {
     enable = true;
