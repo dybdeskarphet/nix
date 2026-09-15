@@ -41,6 +41,14 @@
       efi.canTouchEfiVariables = true;
       timeout = 0;
     };
+    extraModprobeConfig = ''
+      # security
+      install algif_aead /bin/false
+
+      # realtek wi-fi stability
+      options rtw88_pci disable_aspm=y
+      options rtw88_core disable_lps_deep=y
+    '';
   };
   # }}}
 
