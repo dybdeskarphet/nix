@@ -40,6 +40,7 @@ in
     ../utility/streamlink
     ../utility/qalc.nix
     ../academic/rnote
+    ../academic/zathura
     ../academic/write
     ./env.nix
   ];

@@ -42,8 +42,9 @@ input_path = '~/.config/matugen/templates/colors.lua'
 output_path = '~/.config/yazi/plugins/matugen.yazi/main.lua'
 
 [templates.zathura]
-input_path = '~/.config/matugen/templates/zathurarc'
-output_path = '~/.config/zathura/zathurarc'
+pre_hook = 'mkdir -p ~/.config/zathura'
+input_path = '~/.config/matugen/templates/zathura-colors'
+output_path = '~/.config/zathura/colors'
 
 [templates.syshud]
 input_path = '~/.config/matugen/templates/colors.css'
