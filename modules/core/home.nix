@@ -31,6 +31,7 @@ in
     ../utility/bat.nix
     ../utility/yazi
     ../utility/cava
+    ../utility/btop
     ../utility/htop.nix
     ../utility/mpv.nix
     ../utility/fastfetch
