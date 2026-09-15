@@ -141,6 +141,17 @@
   };
   # }}}
 
+  # logind {{{
+  services.logind.settings = {
+    Login = {
+      HandlePowerKey = "poweroff";
+      HandlePowerKeyLongPress = "halt";
+      HandleLidSwitch = "suspend";
+      HandleLidSwitchExternalPower = "suspend";
+    };
+  };
+  # }}}
+
   # User definitions and configurations {{{1
   programs.fish.enable = true;
   users.users.skarphet = {
