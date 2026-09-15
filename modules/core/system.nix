@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  env,
+  ...
+}:
 {
   imports = [
     ../desktop/niri/system.nix
@@ -65,16 +70,36 @@
   # }}}
 
   # Networking {{{1
-  # rfkill unblock {{{2
-  # NOTE: TLP is already handling this
-  # system.activationScripts = {
-  #   rfkillUnblockWlan = {
-  #     text = ''
-  #       rfkill unblock all
-  #     '';
-  #     deps = [ ];
-  #   };
-  # };
+  systemd.network.networks = {
+    "10-home" = lib.mkIf (env.homeSSID != null) {
+      matchConfig = {
+        Name = "wlan0";
+        SSID = env.homeSSID;
+      };
+      networkConfig.DHCP = "yes";
+      dhcpV4Config = {
+        SendHostname = true;
+        Anonymize = false;
+      };
+    };
+
+    "20-wired" = {
+      matchConfig.Name = "en*";
+      networkConfig.DHCP = "yes";
+    };
+
+    "25-wireless" = {
+      matchConfig.Name = "wlan0";
+      networkConfig = {
+        DHCP = "yes";
+        IgnoreCarrierLoss = "3s";
+      };
+      dhcpV4Config = {
+        Anonymize = true;
+        SendHostname = false;
+      };
+    };
+  };
   # }}}
 
   # systemd-resolved {{{2
@@ -85,6 +110,7 @@
         # TODO: Enable this after vm testing
         DNSOverTLS = false;
         DNSSEC = true;
+        DNS = [ "9.9.9.9" ];
         FallbackDNS = [
           "1.0.0.1"
           "8.8.4.4"

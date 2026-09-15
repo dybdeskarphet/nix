@@ -19,9 +19,13 @@
       home-manager,
       ...
     }:
+    let
+      env =
+        if builtins.pathExists /etc/nixos/env.nix then import /etc/nixos/env.nix else { homeSSID = null; };
+    in
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs env; };
         modules = [
           ./configuration.nix
           ./hardware-vm.nix
@@ -29,7 +33,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.extraSpecialArgs = { inherit inputs env; };
             home-manager.users.skarphet = ./home.nix;
           }
         ];
