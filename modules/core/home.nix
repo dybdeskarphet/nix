@@ -2,6 +2,7 @@
 let
   packagesWithoutConfig = with pkgs; [
     fzf
+    keepassxc
   ];
 in
 {
