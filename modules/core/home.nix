@@ -29,6 +29,7 @@ in
     ../dev/tmux
     ../hardware/opentabletdriver/home.nix
     ../utility/bat.nix
+    ../utility/yazi
     ../utility/cava
     ../utility/htop.nix
     ../utility/mpv.nix
