@@ -23,7 +23,14 @@
 
   # Boot {{{
   boot = {
-    initrd.systemd.enable = true;
+    initrd = {
+      systemd.enable = true;
+      kernelModules = [
+        "amdgpu"
+        "vkms"
+        "v4l2loopback"
+      ];
+    };
     loader = {
       systemd-boot = {
         enable = true;
