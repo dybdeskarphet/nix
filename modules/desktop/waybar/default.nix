@@ -6,10 +6,11 @@ in
   home.packages = with pkgs; [
     waybar
     waybar-scripts
+    pipewire
+    wireplumber
     jq
     libnotify
     wl-clipboard
-    wireplumber
     bluez
     radeontop
     impala
