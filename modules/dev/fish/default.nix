@@ -42,8 +42,12 @@ in
     shellAbbrs = generalAbbrs;
   };
 
-  xdg.configFile."matugen/templates/fish_prompt.fish".source = ./templates/fish_prompt.temp.fish;
-  xdg.configFile."matugen/templates/sudo_prompt.fish".source = ./templates/sudo_prompt.temp.fish;
-  xdg.configFile."fish/conf.d/yazi.fish".source = ./config/yazi.fish;
-  xdg.configFile."fish/functions/fish_right_prompt.fish".source = ./config/right_prompt.fish;
+  xdg.configFile = {
+    "matugen/templates/fish_prompt.fish".source = ./templates/fish_prompt.temp.fish;
+    "matugen/templates/sudo_prompt.fish".source = ./templates/sudo_prompt.temp.fish;
+    "fish/functions/fish_right_prompt.fish".source = ./config/functions/fish_right_prompt.fish;
+    "fish/functions/ipynb2py.fish".source = ./config/functions/ipynb2py.fish;
+    "fish/functions/pdf2darkpdf".source = ./config/functions/pdf2darkpdf.fish;
+    "fish/functions/py2ipynb".source = ./config/functions/py2ipynb.fish;
+  };
 }
