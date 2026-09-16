@@ -29,6 +29,7 @@ in
     ../dev/neovim/home.nix
     ../dev/tmux
     ../hardware/opentabletdriver/home.nix
+    ../hardware/openrazer/home.nix
     ../utility/bat.nix
     ../utility/yazi
     ../utility/cava
