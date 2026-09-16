@@ -1,5 +1,15 @@
-{ ... }:
+{ pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    qrencode
+    nmap
+    (tesseract.override {
+      enableLanguages = [
+        "eng"
+        "tur"
+      ];
+    })
+  ];
   home.file = {
     ".local/bin/screenshot" = {
       source = ./screenshot;
