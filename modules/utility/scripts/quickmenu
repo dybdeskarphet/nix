@@ -1,0 +1,133 @@
+#!/usr/bin/env python3
+
+import subprocess
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+
+
+@dataclass(frozen=True)
+class MenuItem:
+    cmd: str
+    icon: str
+    message: str
+    rofi_icon: str
+
+
+THEME = Path(
+    "~/.local/share/rofi/themes/basic_launcher/rounded_with_listview.rasi"
+).expanduser()
+
+MENU: dict[str, MenuItem] = {
+    "reload: waybar": MenuItem(
+        rofi_icon="󰑓",
+        cmd="systemctl --user restart waybar.service",
+        icon="reload",
+        message="waybar is reloaded!",
+    ),
+    "reload: dunst": MenuItem(
+        rofi_icon="󰑓",
+        cmd="systemctl --user restart dunst.service",
+        icon="reload",
+        message="dunst is reloaded!",
+    ),
+    "reload: awww": MenuItem(
+        rofi_icon="󰑓",
+        cmd="systemctl --user restart awww.service awww-overlay.service",
+        icon="reload",
+        message="awww is reloaded!",
+    ),
+    "reload: foot server": MenuItem(
+        rofi_icon="󰑓",
+        cmd="systemctl --user restart foot-server.service",
+        icon="reload",
+        message="foot server is reloaded!",
+    ),
+    "tablet: artist mode": MenuItem(
+        rofi_icon="󰓶",
+        cmd="otd applypreset artist_mode",
+        icon="tablet",
+        message="artist mode toggled!",
+    ),
+    "tablet: absolute mode": MenuItem(
+        rofi_icon="󰓶",
+        cmd="otd applypreset absolute_mode",
+        icon="tablet",
+        message="absolute mode toggled!",
+    ),
+    "tablet: restart otd": MenuItem(
+        rofi_icon="󰓶",
+        cmd="systemctl --user restart opentabletdriver.service",
+        icon="tablet",
+        message="otd restarted!",
+    ),
+    "niri: immersive": MenuItem(
+        rofi_icon="",
+        cmd="niri msg action load-config-file --path ~/.config/niri/src/modes/immersive.kdl",
+        icon="view-fullscreen",
+        message="immersive mode on!",
+    ),
+    "niri: normal": MenuItem(
+        rofi_icon="",
+        cmd="niri msg action load-config-file --path ~/.config/niri/config.kdl",
+        icon="reply",
+        message="default niri config restored!",
+    ),
+}
+
+
+def notify(icon: str, message: str) -> None:
+    subprocess.run(
+        [
+            "notify-send",
+            "-a",
+            "Quickmenu",
+            "-i",
+            icon,
+            "--urgency=low",
+            "--replace-id=867",
+            message,
+        ],
+        check=False,
+    )
+
+def main() -> None:
+    # Build a lookup map: "󰑓   reload: waybar" -> MenuItem
+    display_map = {
+        f"{item.rofi_icon}   {name}" if item.rofi_icon else name: item
+        for name, item in MENU.items()
+    }
+
+    rofi = subprocess.run(
+        [
+            "rofi",
+            "-dmenu",
+            "-theme",
+            str(THEME),
+            "-p",
+            "   quick settings",
+        ],
+        input="\n".join(display_map.keys()),
+        text=True,
+        capture_output=True,
+    )
+
+    selection = rofi.stdout.strip()
+    if not selection or rofi.returncode != 0:
+        sys.exit(0)
+
+    # Direct O(1) lookup with the full selected string
+    item = display_map.get(selection)
+    if not item:
+        sys.exit(0)
+
+    # Run target command and notify on success/failure
+    proc = subprocess.run(item.cmd, shell=True)
+    if proc.returncode == 0:
+        notify(item.icon, item.message)
+    else:
+        notify("dialog-error", f"Failed to execute: {selection}")
+
+
+if __name__ == "__main__":
+    main()

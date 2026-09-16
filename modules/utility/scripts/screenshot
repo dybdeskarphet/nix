@@ -1,0 +1,141 @@
+#!/usr/bin/env python3
+
+import mimetypes
+import os
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+APP_NAME = "Screenshot"
+
+
+class Screenshot:
+    def __init__(
+        self, ntfy_title: str, ntfy_message: str = "screenshot captured. (default)"
+    ) -> None:
+        home = os.environ.get("HOME")
+        if home:
+            self.path: Path = Path(home) / "img" / "ss" / "null"
+            self.path.mkdir(parents=True, exist_ok=True)
+            self.dir_last_state: dict[str, float] = self._snapshot_dir()
+        self.ntfy_title: str = ntfy_title
+        self.ntfy_message: str = ntfy_message
+        self.ocr_text: str = ""
+
+    def _snapshot_dir(self):
+        return {
+            f: os.path.getmtime(os.path.join(self.path, f))
+            for f in os.listdir(self.path)
+        }
+
+    def _wait_for_file(self):
+        for i in range(60):
+            time.sleep(0.5)
+            current_state = self._snapshot_dir()
+
+            if current_state != self.dir_last_state:
+                latest_file = max(current_state, key=lambda f: current_state[f])
+                print("Latest added file:", latest_file)
+                self.path = self.path / latest_file
+                break
+
+    def _process_ocr(self):
+        result = subprocess.run(
+            ["tesseract", "-l", "tur+eng", str(self.path), "stdout"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+            text=True,
+        )
+
+        self.ocr_text = result.stdout.strip()
+
+        if self.ocr_text != "":
+            _ = subprocess.run(["wl-copy"], input=self.ocr_text, text=True)
+            self.ntfy_message = self.ocr_text
+            return True
+        else:
+            self.ntfy_message = "Couldn't find any text."
+            return False
+
+    def _notify(self):
+        base_cmd = [
+            "notify-send",
+            "-a",
+            APP_NAME,
+            "--urgency=LOW",
+            self.ntfy_title,
+            self.ntfy_message,
+        ]
+
+        mime, _ = mimetypes.guess_type(self.path)
+        if mime is not None and mime.startswith("image/"):
+            base_cmd.extend(["-I", str(self.path)])
+        else:
+            base_cmd.extend(["-i", "view-preview"])
+
+        _ = subprocess.run(base_cmd)
+
+    def _copy(self):
+        if self.ocr_text != "":
+            _ = subprocess.run(["wl-copy"], input=self.ocr_text, text=True)
+        else:
+            with self.path.open("rb") as img_file:
+                _ = subprocess.run(["wl-copy"], stdin=img_file)
+
+    def selection(self):
+        _ = subprocess.run(
+            ["niri", "msg", "action", "screenshot", "-p", "false"], check=True
+        )
+        self._wait_for_file()
+        self._copy()
+        self._notify()
+
+    def full(self):
+        _ = subprocess.run(
+            ["niri", "msg", "action", "screenshot-screen", "-p", "false"], check=True
+        )
+        self._wait_for_file()
+        self._copy()
+        self._notify()
+
+    def window(self):
+        _ = subprocess.run(["niri", "msg", "action", "screenshot-window"], check=True)
+        self._wait_for_file()
+        self._copy()
+        self._notify()
+
+    def ocr(self):
+        _ = subprocess.run(
+            ["niri", "msg", "action", "screenshot", "-p", "false"], check=True
+        )
+        self._wait_for_file()
+        if not self._process_ocr():
+            self._copy()
+        self._notify()
+
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: screenshot [select|full|window|ocr]")
+        return
+    mode = sys.argv[1]
+
+    if mode == "select":
+        screenshot = Screenshot("screenshot", "selection captured successfully.")
+        screenshot.selection()
+    elif mode == "full":
+        screenshot = Screenshot("screenshot", "screen captured successfully.")
+        screenshot.full()
+    elif mode == "window":
+        screenshot = Screenshot("screenshot", "window captured successfully.")
+        screenshot.window()
+    elif mode == "ocr":
+        screenshot = Screenshot("ocr")
+        result = screenshot.ocr()
+    else:
+        print("Unknown mode:", mode)
+
+
+if __name__ == "__main__":
+    main()
