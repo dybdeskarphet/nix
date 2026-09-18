@@ -19,6 +19,7 @@ in
     ../desktop/qt
     ../desktop/matugen
     ../desktop/rofi
+    ../desktop/avizo
     ../desktop/niri/home.nix
     ../dev/fish
     ../dev/foot
