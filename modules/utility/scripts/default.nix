@@ -1,20 +1,23 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    qrencode
+    jq
     nmap
+    qrencode
+    rofi
     (tesseract.override {
       enableLanguages = [
         "eng"
         "tur"
       ];
     })
-    qrencode
-    nmap
-    rofi
-    skate
   ];
+
   home.file = {
+    ".local/bin/borg_backup" = {
+      source = ./borg_backup;
+      executable = true;
+    };
     ".local/bin/screenshot" = {
       source = ./screenshot;
       executable = true;

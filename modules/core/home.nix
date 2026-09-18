@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, env, ... }:
 let
   packagesWithoutConfig = with pkgs; [
     fzf
@@ -56,6 +56,10 @@ in
 
   # Enable programs without config {{{
   dconf.enable = true;
+  # }}}
+
+  # Dump env.nix to .config {{{
+  xdg.configFile."user-env.json".text = builtins.toJSON env;
   # }}}
 }
 

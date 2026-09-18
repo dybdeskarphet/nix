@@ -1,50 +1,33 @@
 #!/usr/bin/env fish
 
-if not type -q skate
-    echo (set_color red)"Error: 'skate' is not installed."(set_color normal) >&2
-    echo "Please install skate or rebuild your Nix configuration." >&2
+set -l ENV_FILE "$HOME/.config/user-env.json"
+set -l STATE_DIR (or $XDG_STATE_HOME "$HOME/.local/state")/borg
+mkdir -p "$STATE_DIR"
+
+set -l BACKUP_ITEMS
+set -l BORG_REPO
+
+if test -f "$ENV_FILE"
+    set BACKUP_ITEMS (jq -r '.borg.items[]? // empty' "$ENV_FILE")
+    set BORG_REPO (jq -r '.borg.repo // empty' "$ENV_FILE")
+end
+
+if test (count $BACKUP_ITEMS) -eq 0
+    echo (set_color red)"No backup items found in $ENV_FILE."(set_color normal) >&2
+    echo "Please configure 'borg.items' in your /etc/nixos/env.nix (or ~/.config/user-env.json)." >&2
     exit 1
 end
 
-set -l BACKUP_ITEMS (skate get items@borg 2>/dev/null)
-
-if test (count $BACKUP_ITEMS) -eq 0
-    set -l editor $EDITOR
-    if test -z "$editor"
-        if type -q nvim
-            set editor nvim
-        else if type -q nano
-            set editor nano
-        else
-            set editor vi
-        end
-    end
-
-    echo (set_color yellow)"No backup items found in skate (items@borg)."(set_color normal)
-    echo -n "Press Enter to open "(set_color cyan)$editor(set_color normal)" and define your backup paths: "
-    read -l _
-
-    set -l tmpfile (mktemp)
-    $editor $tmpfile
-    # Filter out empty lines or whitespace
-    set BACKUP_ITEMS (cat $tmpfile | string match -r '\S+')
-    rm -f $tmpfile
-
-    if test (count $BACKUP_ITEMS) -eq 0
-        echo (set_color red)"No backup items provided. Aborting."(set_color normal)
-        exit 1
-    end
-
-    # Save to skate permanently
-    skate set items@borg (string join \n $BACKUP_ITEMS)
-    echo (set_color green)"Items saved to skate (@borg) successfully!"(set_color normal)
-    echo ---------------------------------------------------
+if test -z "$BORG_REPO"
+    echo (set_color red)"No Borg repository path configured in $ENV_FILE."(set_color normal) >&2
+    echo "Please configure 'borg.repo' in your /etc/nixos/env.nix (or ~/.config/user-env.json)." >&2
+    exit 1
 end
 
-# 3. Show backup info
-set -l LAST_BACKUP (skate get last_backup@borg 2>/dev/null)
-if test -n "$LAST_BACKUP"
-    echo "Last backup: "(set_color yellow)$LAST_BACKUP(set_color normal)
+# 1. Show backup info
+set -l LAST_BACKUP_FILE "$STATE_DIR/last_backup"
+if test -f "$LAST_BACKUP_FILE"
+    echo "Last backup: "(set_color yellow)(cat "$LAST_BACKUP_FILE")(set_color normal)
 end
 
 echo "Backing up items:"
@@ -52,33 +35,6 @@ for item in $BACKUP_ITEMS
     echo "  - "(set_color cyan)$item(set_color normal)
 end
 echo ---------------------------------------------------
-
-# 4. Get repo from skate or prompt
-set -l BORG_REPO (skate get repo@borg 2>/dev/null)
-
-if test -z "$BORG_REPO"
-    echo (set_color yellow)"No Borg repository configured in skate (@borg)."(set_color normal)
-    echo -n "Enter Borg Repo path: "
-    read -l input_repo
-
-    if test -z "$input_repo"
-        echo (set_color red)"No Borg repository provided. Aborting."(set_color normal)
-        exit 1
-    end
-
-    set BORG_REPO "$input_repo"
-    skate set repo@borg "$BORG_REPO"
-    echo (set_color green)"Repository saved to skate (@borg) successfully!"(set_color normal)
-    echo ---------------------------------------------------
-else
-    echo -n "Enter Borg Repo (default: "(set_color cyan)$BORG_REPO(set_color normal)"): "
-    read -l input_repo
-
-    if test -n "$input_repo"
-        set BORG_REPO "$input_repo"
-        skate set repo@borg "$BORG_REPO"
-    end
-end
 
 set ARCHIVE_NAME (hostname)-(date +%Y-%m-%d-%H%M%S)
 
@@ -106,14 +62,14 @@ set backup_status $status
 echo ---------------------------------------------------
 if test $backup_status -eq 0
     echo "Backup completed "(set_color green)"successfully!"(set_color normal)
-    skate set last_backup@borg (date "+%Y-%m-%d %H:%M:%S")
-    skate set last_status@borg success
+    date "+%Y-%m-%d %H:%M:%S" > "$LAST_BACKUP_FILE"
+    echo "success" > "$STATE_DIR/last_status"
 else if test $backup_status -eq 1
     echo "Backup completed with "(set_color yellow)"warnings."(set_color normal)
-    skate set last_status@borg warning
+    echo "warning" > "$STATE_DIR/last_status"
 else
     echo "Backup failed with an "(set_color red)"error."(set_color normal)
-    skate set last_status@borg failed
+    echo "failed" > "$STATE_DIR/last_status"
 end
 
 exit $backup_status

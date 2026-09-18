@@ -20,8 +20,9 @@
       ...
     }:
     let
-      env =
-        if builtins.pathExists /etc/nixos/env.nix then import /etc/nixos/env.nix else { homeSSID = null; };
+      defaultEnv = import ./env.nix;
+      localEnv = if builtins.pathExists /etc/nixos/env.nix then import /etc/nixos/env.nix else { };
+      env = nixpkgs.lib.recursiveUpdate defaultEnv localEnv;
     in
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
