@@ -95,11 +95,6 @@ output_path = '~/.config/polychromatic/colours.json'
 input_path = '~/.config/matugen/templates/sudo_prompt.fish'
 output_path = '~/.config/fish/conf.d/sudo_prompt.fish'
 
-[templates.openrazer]
-input_path = '~/.config/matugen/templates/openrazer.txt'
-output_path = '~/.config/openrazer/matugen.txt'
-post_hook = 'razer-matugen reactive'
-
 [templates.env]
 input_path = '~/.config/matugen/templates/env.fish'
 output_path = '~/.config/fish/conf.d/matugen.fish'
