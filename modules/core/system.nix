@@ -82,7 +82,6 @@
   networking = {
     hostName = "nixos";
     useNetworkd = true;
-    useDHCP = true;
     wireless = {
       iwd = {
         enable = true;
