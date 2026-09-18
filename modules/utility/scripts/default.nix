@@ -9,6 +9,8 @@
         "tur"
       ];
     })
+    qrencode
+    nmap
   ];
   home.file = {
     ".local/bin/screenshot" = {
