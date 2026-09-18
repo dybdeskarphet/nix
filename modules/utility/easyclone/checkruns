@@ -1,0 +1,215 @@
+#!/usr/bin/env python3
+"""
+check_easyclone_runs.py
+
+Parses systemd journal logs for easyclone.service (or any specified service)
+and reports the execution time and exit status of every run instance.
+Supports real-time streaming output and date/time filtering.
+"""
+
+import argparse
+import datetime
+import json
+import subprocess
+import sys
+
+# ANSI Color Codes
+GREEN = "\033[92m"
+YELLOW = "\033[93m"
+RED = "\033[91m"
+CYAN = "\033[96m"
+BOLD = "\033[1m"
+RESET = "\033[0m"
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Check execution times and statuses of service run instances."
+    )
+    parser.add_argument(
+        "-u",
+        "--unit",
+        default="easyclone.service",
+        help="Systemd unit to check (default: easyclone.service)",
+    )
+    parser.add_argument(
+        "-S",
+        "--since",
+        default=None,
+        help='Show entries not older than the specified date (e.g. "7 days ago", "2026-07-01", "yesterday")',
+    )
+    parser.add_argument(
+        "-s",
+        "--success-only",
+        action="store_true",
+        help="Only display runs that completed successfully without interruption",
+    )
+    parser.add_argument(
+        "-U",
+        "--user",
+        action="store_true",
+        default=True,
+        help="Check user systemd journal (--user, default for non-root)",
+    )
+    parser.add_argument(
+        "--system",
+        action="store_true",
+        help="Check system systemd journal (--system)",
+    )
+    parser.add_argument(
+        "--no-color",
+        action="store_true",
+        help="Disable ANSI color formatting",
+    )
+    return parser.parse_args()
+
+
+def format_duration(seconds: float) -> str:
+    mins, secs = divmod(seconds, 60)
+    hours, mins = divmod(mins, 60)
+    if hours > 0:
+        return f"{int(hours)}h {int(mins)}m {secs:.1f}s"
+    elif mins > 0:
+        return f"{int(mins)}m {secs:.1f}s"
+    return f"{secs:.2f}s"
+
+
+def main():
+    args = parse_args()
+
+    use_color = not args.no_color and sys.stdout.isatty()
+    c_green = GREEN if use_color else ""
+    c_yellow = YELLOW if use_color else ""
+    c_red = RED if use_color else ""
+    c_cyan = CYAN if use_color else ""
+    c_bold = BOLD if use_color else ""
+    c_reset = RESET if use_color else ""
+
+    cmd = ["journalctl", "--no-pager", "-u", args.unit, "-o", "json"]
+    if args.user and not args.system:
+        cmd.insert(1, "--user")
+    if args.since:
+        cmd.extend(["--since", args.since])
+
+    print(f"{c_bold}=== Service Run History: {args.unit} ==={c_reset}\n")
+
+    header = f"{'START TIME':<20} {'END TIME':<10} {'DURATION':<12} {'STATUS':<10} {'REASON'}"
+    print(c_bold + header + c_reset)
+    print("-" * 80)
+    sys.stdout.flush()
+
+    try:
+        proc = subprocess.Popen(
+            cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+        )
+    except Exception as e:
+        print(f"Error executing journalctl: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    start_ts = None
+    start_dt = None
+
+    total_count = 0
+    success_durs = []
+    stopped_count = 0
+    failed_count = 0
+
+    for line in proc.stdout:
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            entry = json.loads(line)
+        except Exception:
+            continue
+
+        msg = entry.get("MESSAGE", "")
+        if not isinstance(msg, str):
+            continue
+
+        ts_raw = entry.get("__REALTIME_TIMESTAMP")
+        if not ts_raw:
+            continue
+        ts = int(ts_raw) / 1e6
+
+        # Check for service start
+        if ("Starting " in msg or "Started " in msg) and start_ts is None:
+            start_ts = ts
+            start_dt = datetime.datetime.fromtimestamp(ts)
+
+        elif start_ts is not None:
+            status = None
+            reason = msg
+
+            # Successful completion
+            if any(
+                k in msg
+                for k in (
+                    "Finished ",
+                    "Deactivated successfully",
+                    "Succeeded",
+                    "status=0/SUCCESS",
+                )
+            ):
+                status = "SUCCESS"
+                reason = "Finished normally"
+            # Stopped manually or interrupted
+            elif any(k in msg for k in ("Stopped ", "Stopping ")):
+                status = "STOPPED"
+                reason = "Interrupted / stop command"
+            # Failed
+            elif any(k in msg for k in ("Failed ", "status=")):
+                status = "FAILED"
+
+            if status:
+                dur = ts - start_ts
+                end_dt = datetime.datetime.fromtimestamp(ts)
+
+                # Skip non-success if success-only requested
+                if args.success_only and status != "SUCCESS":
+                    start_ts = None
+                    continue
+
+                total_count += 1
+                status_color = c_reset
+                if status == "SUCCESS":
+                    status_color = c_green
+                    success_durs.append(dur)
+                elif status == "STOPPED":
+                    status_color = c_yellow
+                    stopped_count += 1
+                elif status == "FAILED":
+                    status_color = c_red
+                    failed_count += 1
+
+                st_str = start_dt.strftime("%Y-%m-%d %H:%M:%S")
+                et_str = end_dt.strftime("%H:%M:%S")
+                dur_str = format_duration(dur)
+
+                print(
+                    f"{st_str:<20} {et_str:<10} {dur_str:<12} {status_color}{status:<10}{c_reset} {reason}"
+                )
+                sys.stdout.flush()
+
+                start_ts = None
+
+    print("-" * 80)
+    if total_count == 0:
+        print("No matching runs found.")
+        return
+
+    print(f"{c_bold}Summary Statistics:{c_reset}")
+    print(f"  Total runs recorded  : {total_count}")
+    print(f"  Successful (Finished): {c_green}{len(success_durs)}{c_reset}")
+    print(f"  Stopped (Interrupted): {c_yellow}{stopped_count}{c_reset}")
+    print(f"  Failed               : {c_red}{failed_count}{c_reset}")
+
+    if success_durs:
+        avg_dur = sum(success_durs) / len(success_durs)
+        print(
+            f"  Avg success duration : {c_cyan}{format_duration(avg_dur)}{c_reset} (Min: {format_duration(min(success_durs))}, Max: {format_duration(max(success_durs))})"
+        )
+
+
+if __name__ == "__main__":
+    main()
