@@ -78,6 +78,27 @@
   # }}}
 
   # Networking {{{1
+  # Main initialization {{{2
+  networking = {
+    hostName = "nixos";
+    useNetworkd = true;
+    useDHCP = true;
+    wireless = {
+      iwd = {
+        enable = true;
+        settings = {
+          Network = {
+            EnableIPv6 = false;
+          };
+          Settings = {
+            AutoConnect = true;
+          };
+        };
+      };
+    };
+  };
+  # }}}
+  # Network settings {{{2
   systemd.network.networks = {
     "10-home" = lib.mkIf (env.homeSSID != null) {
       matchConfig = {
@@ -109,13 +130,11 @@
     };
   };
   # }}}
-
-  # Wi-fi disable powersave {{{
+  # Wi-fi disable powersave {{{2
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="net", KERNEL=="wlan*", RUN+="${pkgs.iw}/bin/iw dev %k set power_save off"
   '';
   # }}}
-
   # systemd-resolved {{{2
   services.resolved = {
     enable = true;
@@ -129,27 +148,6 @@
           "1.0.0.1"
           "8.8.4.4"
         ];
-      };
-    };
-  };
-  # }}}
-
-  # Main initialization {{{2
-  networking = {
-    hostName = "nixos";
-    useNetworkd = true;
-    useDHCP = true;
-    wireless = {
-      iwd = {
-        enable = true;
-        settings = {
-          Network = {
-            EnableIPv6 = false;
-          };
-          Settings = {
-            AutoConnect = true;
-          };
-        };
       };
     };
   };
