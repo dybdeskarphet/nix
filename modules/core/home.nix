@@ -7,44 +7,45 @@ let
 in
 {
   imports = [
+    ../academic/rnote
+    ../academic/write
+    ../academic/zathura
+    ../desktop/avizo
+    ../desktop/awww
     ../desktop/chromium.nix
     ../desktop/clipboard.nix
-    ../desktop/awww
-    ../desktop/mako
-    ../security/hyprlock/home.nix
-    ../desktop/hypridle.nix
-    ../security/firejail/home.nix
     ../desktop/gtk
-    ../desktop/waybar
-    ../desktop/qt
+    ../desktop/hypridle.nix
+    ../desktop/mako
     ../desktop/matugen
-    ../desktop/rofi
-    ../desktop/avizo
     ../desktop/niri/home.nix
+    ../desktop/qt
+    ../desktop/rofi
+    ../desktop/waybar
     ../dev/fish
     ../dev/foot
     ../dev/git
-    ../dev/lazygit
-    ../dev/sqlite.nix
     ../dev/gpg
+    ../dev/lazygit
     ../dev/neovim/home.nix
+    ../dev/sqlite.nix
     ../dev/tmux
-    ../hardware/opentabletdriver/home.nix
     ../hardware/openrazer/home.nix
+    ../hardware/opentabletdriver/home.nix
+    ../security/firejail/home.nix
+    ../security/hyprlock/home.nix
     ../utility/bat.nix
-    ../utility/yazi
-    ../utility/cava
     ../utility/btop
-    ../utility/htop.nix
-    ../utility/mpv.nix
+    ../utility/cava
     ../utility/fastfetch
-    ../utility/rclone/home.nix
+    ../utility/htop.nix
     ../utility/lsd.nix
-    ../utility/streamlink
+    ../utility/mpv.nix
     ../utility/qalc.nix
-    ../academic/rnote
-    ../academic/zathura
-    ../academic/write
+    ../utility/rclone/home.nix
+    ../utility/scripts
+    ../utility/streamlink
+    ../utility/yazi
     ./env.nix
   ];
 
