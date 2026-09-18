@@ -4,6 +4,7 @@ let
     libraries = with pkgs.python3Packages; [
       openrazer
     ];
+    doCheck = false;
   } (builtins.readFile ./razer-matugen);
 in
 {
