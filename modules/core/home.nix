@@ -39,6 +39,7 @@ in
     ../utility/cava
     ../utility/fastfetch
     ../utility/htop.nix
+    ../utility/battery/home.nix
     ../utility/lsd.nix
     ../utility/mpv.nix
     ../utility/swayimg

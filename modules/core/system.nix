@@ -17,6 +17,7 @@
     ../hardware/openrazer/system.nix
     ../hardware/opentabletdriver/system.nix
     ../utility/rclone/system.nix
+    ../utility/battery/system.nix
   ];
   # Essential Packages {{{
   environment.systemPackages = with pkgs; [
