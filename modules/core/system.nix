@@ -37,6 +37,10 @@
         "v4l2loopback"
       ];
     };
+    kernelModules = [
+      "vkms"
+      "v4l2loopback"
+    ];
     loader = {
       systemd-boot = {
         enable = true;
@@ -55,6 +59,9 @@
       options rtw88_pci disable_aspm=y
       options rtw88_core disable_lps_deep=y
     '';
+    extraModulePackages = with config.boot.kernelPackages; [
+      v4l2loopback
+    ];
   };
   # }}}
 
