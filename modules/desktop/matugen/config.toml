@@ -155,11 +155,10 @@ output_path = '~/.config/tuxedo/themes/matugen.toml'
 input_path = '~/.config/matugen/templates/rmpc.ron'
 output_path = '~/.config/rmpc/themes/matugen.ron'
 
-[templates.skate]
-pre_hook = "mkdir -p ~/.local/state/matugen"
-input_path = '~/.config/matugen/templates/skate.sh'
-output_path = "~/.local/state/matugen/skate.sh"
-post_hook = "sh ~/.local/state/matugen/skate.sh"
+[templates.razer]
+input_path = "~/.config/matugen/templates/razer-colors.json"
+output_path = '~/.config/openrazer/razer-colors.json'
+post_hook = "razer-matugen"
 
 [templates.swayimg]
 input_path = '~/.config/matugen/templates/swayimg.lua'
