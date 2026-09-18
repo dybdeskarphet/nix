@@ -47,7 +47,8 @@ in
     "matugen/templates/sudo_prompt.fish".source = ./templates/sudo_prompt.temp.fish;
     "fish/functions/fish_right_prompt.fish".source = ./config/functions/fish_right_prompt.fish;
     "fish/functions/ipynb2py.fish".source = ./config/functions/ipynb2py.fish;
-    "fish/functions/pdf2darkpdf".source = ./config/functions/pdf2darkpdf.fish;
-    "fish/functions/py2ipynb".source = ./config/functions/py2ipynb.fish;
+    "fish/functions/pdf2darkpdf.fish".source = ./config/functions/pdf2darkpdf.fish;
+    "fish/functions/py2ipynb.fish".source = ./config/functions/py2ipynb.fish;
+    "fish/functions/pasters.fish".source = ./config/functions/pasters.fish;
   };
 }
