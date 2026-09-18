@@ -8,5 +8,4 @@ let
 in
 {
   home.packages = [ razer-matugen ];
-  xdg.configFile."matugen/templates/openrazer.txt".source = ./openrazer.temp.txt;
 }
