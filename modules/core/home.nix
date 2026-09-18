@@ -44,6 +44,7 @@ in
     ../utility/mpv.nix
     ../utility/swayimg
     ../utility/qalc.nix
+    ../utility/syncthing
     ../utility/rclone/home.nix
     ../utility/scripts
     ../utility/streamlink
