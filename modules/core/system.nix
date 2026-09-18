@@ -2,6 +2,7 @@
   pkgs,
   lib,
   env,
+  config,
   ...
 }:
 {
@@ -217,6 +218,8 @@
     extraArgs = [
       "--skip-login"
       "--noclear"
+      "--issue-file"
+      "${config.users.users.skarphet.home}/.config/matugen/references/issue:/etc/issue"
     ];
   };
   # }}}
