@@ -11,6 +11,8 @@
     })
     qrencode
     nmap
+    rofi
+    skate
   ];
   home.file = {
     ".local/bin/screenshot" = {
