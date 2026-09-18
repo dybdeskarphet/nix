@@ -41,6 +41,7 @@ in
     ../utility/htop.nix
     ../utility/lsd.nix
     ../utility/mpv.nix
+    ../utility/swayimg
     ../utility/qalc.nix
     ../utility/rclone/home.nix
     ../utility/scripts

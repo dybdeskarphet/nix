@@ -160,3 +160,7 @@ pre_hook = "mkdir -p ~/.local/state/matugen"
 input_path = '~/.config/matugen/templates/skate.sh'
 output_path = "~/.local/state/matugen/skate.sh"
 post_hook = "sh ~/.local/state/matugen/skate.sh"
+
+[templates.swayimg]
+input_path = '~/.config/matugen/templates/swayimg.lua'
+output_path = '~/.config/swayimg/colors.lua'
