@@ -158,7 +158,7 @@
   },
   "custom/mic": {
     "exec": "waybar-scripts mic_icon",
-    "on-click": "mediacontrol togglemic",
+    "on-click": "volumectl -m toggle-mute && pkill -RTMIN+5 waybar",
     "tooltip": false,
     "signal": 5,
   },

@@ -95,21 +95,21 @@ binds {
     Mod+V hotkey-overlay-title="Show the island" { spawn "ags" "request" "open"; }
 
     // FN Keys
-    XF86AudioLowerVolume hotkey-overlay-title="Volume down" { spawn "mediacontrol" "volume" "down"; }
-    XF86AudioRaiseVolume hotkey-overlay-title="Volume up" { spawn "mediacontrol" "volume" "up"; }
-    XF86AudioMute { spawn "mediacontrol" "volume" "toggle"; }
+    XF86AudioLowerVolume hotkey-overlay-title="Volume down" { spawn "volumectl" "-u" "down";}
+    XF86AudioRaiseVolume hotkey-overlay-title="Volume up" { spawn "volumectl" "-u" "up"; }
+    XF86AudioMute { spawn "volumectl" "toggle-mute"; }
     XF86AudioPlay { spawn "playerctl" "play-pause"; }
     Ctrl+XF86AudioPlay { spawn "playerctl" "previous"; }
     Alt+XF86AudioPlay { spawn "playerctl" "next"; }
     XF86AudioStop { spawn "playerctl" "stop"; }
     XF86AudioNext { spawn "playerctl" "next"; }
     XF86AudioPrev { spawn "playerctl" "previous"; }
-    XF86MonBrightnessUp hotkey-overlay-title="Brightness up" { spawn "mediacontrol" "backlight" "up"; }
-    XF86MonBrightnessDown hotkey-overlay-title="Brightness down" { spawn "mediacontrol" "backlight" "down"; }
-    Mod+XF86MonBrightnessUp hotkey-overlay-title=null  { spawn "mediacontrol" "backlight" "full"; }
-    Mod+XF86MonBrightnessDown hotkey-overlay-title=null { spawn "mediacontrol" "backlight" "off"; }
-    XF86AudioMicMute { spawn "mediacontrol" "mic" "toggle"; }
-    XF86HomePage { spawn "mediacontrol" "togglemic"; }
+    XF86MonBrightnessUp hotkey-overlay-title="Brightness up" { spawn "lightctl" "up"; }
+    XF86MonBrightnessDown hotkey-overlay-title="Brightness down" { spawn "lightctl" "down"; }
+    Mod+XF86MonBrightnessUp hotkey-overlay-title=null  { spawn "lightctl" "set" "100"; }
+    Mod+XF86MonBrightnessDown hotkey-overlay-title=null { spawn "lightctl" "set" "0"; }
+    XF86AudioMicMute { spawn-sh "volumectl -m toggle-mute && pkill -RTMIN+5 waybar"; }
+    XF86HomePage { spawn-sh "volumectl -m toggle-mute && pkill -RTMIN+5 waybar"; }
     XF86Calculator { spawn "footclient" "-T" "qalc" "-a" "qalc" "qalc"; }
     XF86Launch4 { spawn "shortcuts" "-t"; }
     XF86Macro27 { spawn "notify-send" "-r" "134897" "-a" "Razer" "-i" "keyboard" "brightness increased"; }
@@ -118,9 +118,9 @@ binds {
 
     // TKL Extras
     Mod+C hotkey-overlay-title="Open the calculator" { spawn "footclient" "-T" "qalc" "-a" "qalc" "qalc"; }
-    ISO_Level3_Shift+K { spawn "mediacontrol" "mic" "toggle"; }
-    ISO_Level3_Shift+L { spawn "mediacontrol" "mic" "up"; }
-    ISO_Level3_Shift+J { spawn "mediacontrol" "mic" "down"; }
+    ISO_Level3_Shift+K { spawn-sh "volumectl -m toggle-mute && pkill -RTMIN+5 waybar"; }
+    ISO_Level3_Shift+L { spawn "volumectl" "-m" "up"; }
+    ISO_Level3_Shift+J { spawn "volumectl" "-m" "down"; }
 
     Mod+Space hotkey-overlay-title="Close the latest notification" { spawn "makoctl" "dismiss"; }
     Mod+b hotkey-overlay-title="Show notification history" { spawn "shortcuts" "-n"; }
