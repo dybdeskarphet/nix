@@ -1,7 +1,6 @@
 { lib, pkgs, ... }:
 let
   firejailedApps = [
-    "keepassxc"
     "chromium"
     "mpv"
     "zathura"
