@@ -3,10 +3,9 @@
   programs.git = {
     enable = true;
 
-    # 1. First-Class Signing Submodule
     signing = {
-      key = "80860C9FC6584220";
-      format = "openpgp";
+      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDk59PDcSg4QstyRROvKn1zKvN5wrEWkXmBlDKEAprfN ahmetardakavakci@gmail.com";
+      format = "ssh";
       signByDefault = true;
     };
 
@@ -27,6 +26,11 @@
       core.autocrlf = "input";
       safe.directory = "/opt/flutter";
       pull.rebase = true;
+
+      gpg.ssh = {
+        program = "${pkgs.openssh}/bin/ssh-keygen";
+        allowedSignersFile = "~/.config/git/allowed_signers";
+      };
 
       http = {
         postBuffer = 104857600;
@@ -57,6 +61,11 @@
       };
     };
   };
+
+  xdg.configFile."git/allowed_signers".text = ''
+    ahmetardakavakci@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDk59PDcSg4QstyRROvKn1zKvN5wrEWkXmBlDKEAprfN ahmetardakavakci@gmail.com
+    ahmetardakavakci@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB+AJiAS28yo0PB5wc1eiBDplv2AGolgq+cPu6R4WDm/ skarphet@arch
+  '';
 
   programs.fish.shellAbbrs = {
     gita = "git add .";
