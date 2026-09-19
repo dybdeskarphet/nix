@@ -10,12 +10,14 @@ in
     ../academic/rnote
     ../academic/write
     ../academic/zathura
+    ../academic/zotero.nix
     ../desktop/avizo
     ../desktop/awww
     ../desktop/chromium.nix
     ../desktop/clipboard.nix
     ../desktop/gtk
     ../desktop/hypridle.nix
+    ../desktop/kanshi.nix
     ../desktop/mako
     ../desktop/matugen
     ../desktop/niri/home.nix
@@ -35,19 +37,19 @@ in
     ../security/firejail/home.nix
     ../security/hyprlock/home.nix
     ../utility/bat.nix
+    ../utility/battery/home.nix
     ../utility/btop
     ../utility/cava
     ../utility/fastfetch
     ../utility/htop.nix
-    ../utility/battery/home.nix
     ../utility/lsd.nix
     ../utility/mpv.nix
-    ../utility/swayimg
     ../utility/qalc.nix
-    ../utility/syncthing
     ../utility/rclone/home.nix
     ../utility/scripts
     ../utility/streamlink
+    ../utility/swayimg
+    ../utility/syncthing
     ../utility/yazi
     ./env.nix
   ];
