@@ -7,7 +7,7 @@
   };
 
   screenshot = {
-    dir = "~/img/ss";
+    dir = "~/Pictures/Screenshots";
     ocr_lang = "tur+eng";
   };
   syncthing = {
