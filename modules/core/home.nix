@@ -3,6 +3,11 @@ let
   packagesWithoutConfig = with pkgs; [
     fzf
     keepassxc
+    bun
+    xcp
+    fd
+    hyprpicker
+    ripgrep
   ];
 in
 {
@@ -64,6 +69,15 @@ in
 
   # Dump env.nix to .config {{{
   xdg.configFile."user-env.json".text = builtins.toJSON env;
+  # }}}
+
+  # Abbrs for packages without config {{{
+  programs.fish.shellAbbrs = {
+    cp = "xcp";
+    find = "fd";
+    hyprpicker = "hyprpicker -a";
+    grep = "rg";
+  };
   # }}}
 }
 
