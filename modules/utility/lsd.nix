@@ -44,4 +44,8 @@
       header = false;
     };
   };
+
+  programs.fish.shellAbbrs = {
+    ls = "lsd";
+  };
 }
