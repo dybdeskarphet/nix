@@ -7,17 +7,18 @@
 }:
 {
   imports = [
+    ../desktop/fonts
     ../desktop/niri/system.nix
     ../desktop/sunshine
-    ../desktop/fonts
-    ../security/hyprlock/system.nix
-    ../security/firejail/system.nix
+    ../dev/fish/system.nix
     ../dev/neovim/system.nix
-    ../hardware/tlp.nix
     ../hardware/openrazer/system.nix
     ../hardware/opentabletdriver/system.nix
-    ../utility/rclone/system.nix
+    ../hardware/tlp.nix
+    ../security/firejail/system.nix
+    ../security/hyprlock/system.nix
     ../utility/battery/system.nix
+    ../utility/rclone/system.nix
   ];
   # Essential Packages {{{
   environment.systemPackages = with pkgs; [

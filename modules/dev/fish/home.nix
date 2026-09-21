@@ -50,5 +50,13 @@ in
     "fish/functions/pdf2darkpdf.fish".source = ./config/functions/pdf2darkpdf.fish;
     "fish/functions/py2ipynb.fish".source = ./config/functions/py2ipynb.fish;
     "fish/functions/pasters.fish".source = ./config/functions/pasters.fish;
+    "fish/functions/esupport.fish".source = ./config/functions/esupport.fish;
+    "fish/functions/ytgetplaylist.fish".source = ./config/functions/ytgetplaylist.fish;
+    "fish/functions/sudo.fish".source = ./config/functions/sudo.fish;
   };
+
+  home.packages = with pkgs; [
+    wl-clipboard
+    yt-dlp
+  ];
 }

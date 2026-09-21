@@ -29,7 +29,7 @@ in
     ../desktop/qt
     ../desktop/rofi
     ../desktop/waybar
-    ../dev/fish
+    ../dev/fish/home.nix
     ../dev/foot
     ../dev/git
     ../dev/gpg
