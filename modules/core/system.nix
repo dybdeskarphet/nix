@@ -65,6 +65,19 @@
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback
     ];
+    tmp.useTmpfs = true;
+    tmp.cleanOnBoot = true;
+  };
+  # }}}
+
+  # SSD {{{
+  services.fstrim.enable = true;
+  # }}}
+
+  # ZRAM {{{
+  zramSwap = {
+    enable = true;
+    memoryPercent = 50;
   };
   # }}}
 
