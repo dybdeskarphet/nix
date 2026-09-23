@@ -37,8 +37,8 @@
         invisible = 1;
       };
 
-      "app-name=chromium" = {
-        default-timeout = 3000;
+      "app-name=elecwhat" = {
+        max-icon-size = 64;
       };
 
       "urgency=critical" = {
