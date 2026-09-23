@@ -17,7 +17,6 @@ in
     ../academic/write
     ../academic/zathura
     ../academic/zotero.nix
-    ../utility/scrcpy.nix
     ../desktop/avizo
     ../desktop/awww
     ../desktop/chromium.nix
@@ -53,11 +52,13 @@ in
     ../utility/mpv.nix
     ../utility/qalc.nix
     ../utility/rclone/home.nix
+    ../utility/scrcpy.nix
     ../utility/scripts
     ../utility/streamlink
     ../utility/swayimg
     ../utility/syncthing
     ../utility/yazi
+    ../utility/yt-dlp.nix
     ./env.nix
   ];
 
