@@ -9,6 +9,8 @@ let
     hyprpicker
     ripgrep
     android-tools
+    uv
+    python
   ];
 in
 {
