@@ -8,6 +8,7 @@ let
     fd
     hyprpicker
     ripgrep
+    android-tools
   ];
 in
 {
@@ -16,6 +17,7 @@ in
     ../academic/write
     ../academic/zathura
     ../academic/zotero.nix
+    ../utility/scrcpy.nix
     ../desktop/avizo
     ../desktop/awww
     ../desktop/chromium.nix
