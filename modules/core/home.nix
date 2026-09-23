@@ -45,6 +45,7 @@ in
     ../security/firejail/home.nix
     ../security/hyprlock/home.nix
     ../utility/bat.nix
+    ../utility/zoxide.nix
     ../utility/battery/home.nix
     ../utility/btop
     ../utility/cava
