@@ -67,11 +67,25 @@
     ];
     tmp.useTmpfs = true;
     tmp.cleanOnBoot = true;
-  };
-  # }}}
+    resumeDevice = "/dev/nvme0n1p2";
+    kernelParams = [
+      "quiet"
+      "loglevel=3"
+      "systemd.show_status=auto"
+      "rd.udev.log_level=3"
 
-  # SSD {{{
-  services.fstrim.enable = true;
+      "video=1920x1080"
+      "acpi_backlight=amdgpu_bl1"
+
+      "nowatchdog"
+      "zswap.enabled=1"
+
+      "btusb.enable_autosuspend=0"
+      "rfkill.default_state=1"
+
+      "dyndbg=\"func fw_log_firmware_info +p\""
+    ];
+  };
   # }}}
 
   # ZRAM {{{
@@ -79,6 +93,10 @@
     enable = true;
     memoryPercent = 50;
   };
+  # }}}
+
+  # fwupd {{{
+  services.fwupd.enable = true;
   # }}}
 
   # Hardware {{{
@@ -91,6 +109,13 @@
     };
     enableRedistributableFirmware = true;
   };
+  # SSD {{{2
+  services.fstrim.enable = true;
+  services.smartd = {
+    enable = true;
+    notifications.wall.enable = true;
+  };
+  # }}}
   # }}}
 
   # Networking {{{1
@@ -195,6 +220,16 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     wireplumber.enable = true;
+  };
+  # }}}
+
+  # Upower {{{
+  services.upower = {
+    enable = true;
+    percentageLow = 15;
+    percentageCritical = 5;
+    percentageAction = 3;
+    criticalPowerAction = "Hibernate"; # or "PowerOff" / "Suspend"
   };
   # }}}
 
