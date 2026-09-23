@@ -59,6 +59,7 @@ in
     ../utility/scripts
     ../utility/streamlink
     ../utility/swayimg
+    ../utility/localsend.nix
     ../utility/yazi
     ../utility/yt-dlp.nix
     ./env.nix
