@@ -1,9 +1,9 @@
 { pkgs, lib, ... }:
 let
   dragon = lib.getExe pkgs.dragon-drop;
-  qrcp = lib.getExe pkgs.qrcp;
   ouch = lib.getExe pkgs.ouch;
   zip = lib.getExe pkgs.zip;
+  localsend = lib.getExe pkgs.localsend-cli;
 in
 {
   manager = {
@@ -133,14 +133,15 @@ in
         run = ''shell --orphan -- cp -r "$(${dragon} -t -p -x)" .'';
         desc = "Open current directory with dragon as target (drag-and-drop)";
       }
-      # qrcp
+      # localsend
       {
         on = [
           "c"
           "p"
         ];
-        run = "shell --block -- ${qrcp} --interface wlan0 %s";
-        desc = "Send with qrcp";
+        run = "shell --block -- sh -c 'for f in \"$@\"; do [ -f \"$f\" ] && set -- \"$@\" --file \"$f\"; shift;
+  done; if [ $# -gt 0 ]; then ${localsend} \"$@\"; fi' _ %s";
+        desc = "Send with localsend";
       }
       # compression
       {
@@ -148,7 +149,8 @@ in
           "C"
           "z"
         ];
-        run = "shell --interactive --cursor=76 -- sh -c 'for f; do set -- \"$@\" \"\${f#\"$PWD/\"}\"; shift; done; ${zip} -r \"$0\" \"$@\"' .zip %s";
+        run = "shell --interactive --cursor=76 -- sh -c 'for f; do set -- \"$@\" \"\${f#\"$PWD/\"}\"; shift;   
+  done; ${zip} -r \"$0\" \"$@\"' .zip %s";
         desc = "Compress to .zip";
       }
       {
