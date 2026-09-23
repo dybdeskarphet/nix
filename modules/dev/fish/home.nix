@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   generalAbbrs = {
     ".." = "cd ..";
@@ -15,6 +20,13 @@ let
     "suspend" = "systemctl suspend";
     "svim" = "sudo nvim";
     "uefi" = "systemctl reboot --firmware-setup";
+  };
+  nixAbbrs = {
+    "ned" = "${lib.getExe pkgs.neovim} ${config.home.homeDirectory}/code/nix";
+    "nev" = "sudo ${lib.getExe pkgs.neovim} /etc/nixos/env.nix";
+    "nbu" = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/code/nix";
+    "ncl" = "sudo nix-collect-garbage --delete-older-than 7d && nix-store --optimise";
+    "npr" = "sudo nix-collect-garbage -d && nix-store --optimise";
   };
 in
 {
@@ -38,8 +50,12 @@ in
         name = "done";
         src = pkgs.fishPlugins.done.src;
       }
+      {
+        name = "you-should-use";
+        src = pkgs.fishPlugins.fish-you-should-use;
+      }
     ];
-    shellAbbrs = generalAbbrs;
+    shellAbbrs = generalAbbrs // nixAbbrs;
   };
 
   xdg.configFile = {
