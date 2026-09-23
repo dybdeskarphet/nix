@@ -56,7 +56,6 @@ in
     ../utility/scripts
     ../utility/streamlink
     ../utility/swayimg
-    ../utility/syncthing
     ../utility/yazi
     ../utility/yt-dlp.nix
     ./env.nix

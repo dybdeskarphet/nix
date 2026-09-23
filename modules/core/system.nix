@@ -18,6 +18,7 @@
     ../security/firejail/system.nix
     ../security/hyprlock/system.nix
     ../utility/battery/system.nix
+    ../utility/syncthing
     ../utility/rclone/system.nix
   ];
   # Essential Packages {{{
