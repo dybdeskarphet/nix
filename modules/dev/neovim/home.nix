@@ -12,7 +12,7 @@
     gcc
     gnumake
     nodejs
-    python
+    python3
     dotnet-runtime
     tree-sitter
 
