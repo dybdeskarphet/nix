@@ -29,7 +29,12 @@
         specialArgs = { inherit inputs env; };
         modules = [
           ./configuration.nix
-          ./hardware-vm.nix
+          (
+            if builtins.pathExists ./hardware-configuration.nix then
+              ./hardware-configuration.nix
+            else
+              ./hardware-vm.nix
+          )
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
