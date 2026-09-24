@@ -9,6 +9,7 @@
   imports = [
     ../desktop/fonts
     ../desktop/niri/system.nix
+    ../security/firewall
     ../desktop/sunshine
     ../dev/fish/system.nix
     ../utility/localsend.nix
