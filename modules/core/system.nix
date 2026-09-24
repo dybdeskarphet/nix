@@ -11,6 +11,7 @@
     ../desktop/niri/system.nix
     ../desktop/sunshine
     ../dev/fish/system.nix
+    ../utility/localsend.nix
     ../dev/neovim/system.nix
     ../hardware/openrazer/system.nix
     ../hardware/opentabletdriver/system.nix
