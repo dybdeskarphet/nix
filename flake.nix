@@ -31,9 +31,9 @@
           ./configuration.nix
           (
             if builtins.pathExists /etc/nixos/hardware-configuration.nix then
-              /etc/nixos/hardware-configuration.nix
+              builtins.trace ">> EVALUATING: hardware-configuration.nix" /etc/nixos/hardware-configuration.nix
             else
-              ./hardware-vm.nix
+              builtins.trace ">> EVALUATING: hardware-vm.nix" ./hardware-vm.nix
           )
           home-manager.nixosModules.home-manager
           {
