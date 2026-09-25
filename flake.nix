@@ -30,8 +30,8 @@
         modules = [
           ./configuration.nix
           (
-            if builtins.pathExists ./hardware-configuration.nix then
-              ./hardware-configuration.nix
+            if builtins.pathExists /etc/nixos/hardware-configuration.nix then
+              /etc/nixos/hardware-configuration.nix
             else
               ./hardware-vm.nix
           )
