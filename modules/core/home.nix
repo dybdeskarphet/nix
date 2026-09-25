@@ -10,7 +10,7 @@ let
     ripgrep
     android-tools
     uv
-    python
+    python3
   ];
 in
 {
