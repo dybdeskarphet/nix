@@ -19,11 +19,6 @@ input_path = '~/.config/matugen/templates/waybar.jsonc'
 output_path = '~/.config/waybar/config.jsonc'
 post_hook = 'systemctl --user reload waybar.service'
 
-[templates.dunst]
-input_path = '~/.config/matugen/templates/dunstrc.ini'
-output_path = '~/.config/dunst/dunstrc'
-post_hook = 'dunstctl reload'
-
 [templates.rofi]
 input_path = '~/.config/matugen/templates/rofi.rasi'
 output_path = '~/.local/share/rofi/themes/basic_launcher/colors.rasi'
@@ -66,7 +61,6 @@ output_path = '~/.config/fastfetch/config.jsonc'
 [templates.gtk3]
 input_path = '~/.config/matugen/templates/gtk-colors.css'
 output_path = '~/.config/gtk-3.0/colors.css'
-post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-dark'
 
 [templates.gtk4]
 input_path = '~/.config/matugen/templates/gtk-colors.css'
@@ -87,17 +81,9 @@ pre_hook = 'mkdir -p ~/.config/btop/themes'
 input_path = '~/.config/matugen/templates/btop.theme'
 output_path = '~/.config/btop/themes/matugen.theme'
 
-[templates.polychromatic]
-input_path = '~/.config/matugen/templates/polychromatic.json'
-output_path = '~/.config/polychromatic/colours.json'
-
 [templates.sudo_prompt]
 input_path = '~/.config/matugen/templates/sudo_prompt.fish'
 output_path = '~/.config/fish/conf.d/sudo_prompt.fish'
-
-[templates.env]
-input_path = '~/.config/matugen/templates/env.fish'
-output_path = '~/.config/fish/conf.d/matugen.fish'
 
 [templates.matugen]
 input_path = '~/.config/matugen/templates/vimium.css'
@@ -114,10 +100,6 @@ output_path = '~/.config/cava/config'
 [templates.lazygit]
 input_path = '~/.config/matugen/templates/lazygit.yml'
 output_path = '~/.config/lazygit/theme.yml'
-
-[templates.pyradio]
-input_path = '~/.config/matugen/templates/matugen.pyradio-theme'
-output_path = '~/.config/pyradio/themes/matugen.pyradio-theme'
 
 [templates.tabiew]
 input_path = '~/.config/matugen/templates/tabiew.toml'
@@ -139,21 +121,9 @@ output_path = '~/.config/mpv/script-opts/uosc.conf'
 input_path = '~/.config/matugen/templates/avizo.ini'
 output_path = '~/.config/avizo/config.ini'
 
-[templates.glow]
-input_path = '~/.config/matugen/templates/glow.json'
-output_path = '~/.config/glow/matugen.json'
-
 [templates.skshell]
 input_path = '~/.config/matugen/templates/colors.css'
 output_path = '~/.code/git/skshell/src/colors.css'
-
-[templates.tuxedo]
-input_path = '~/.config/matugen/templates/tuxedo.toml'
-output_path = '~/.config/tuxedo/themes/matugen.toml'
-
-[templates.rmpc]
-input_path = '~/.config/matugen/templates/rmpc.ron'
-output_path = '~/.config/rmpc/themes/matugen.ron'
 
 [templates.razer]
 input_path = "~/.config/matugen/templates/razer-colors.json"
