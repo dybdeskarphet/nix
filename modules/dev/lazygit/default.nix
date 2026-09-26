@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   programs.lazygit = {
     enable = true;
@@ -17,7 +22,7 @@
   xdg.configFile."matugen/templates/lazygit.yml".source = ./theme.temp.yml;
 
   systemd.user.sessionVariables = {
-    LG_CONFIG_FILE = "$XDG_CONFIG_HOME/lazygit/config.yml,$XDG_CONFIG_HOME/lazygit/theme.yml";
+    LG_CONFIG_FILE = "${config.xdg.configHome}/lazygit/config.yml,${config.xdg.configHome}/lazygit/theme.yml";
   };
 
   programs.fish.shellAbbrs = {
