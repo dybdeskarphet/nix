@@ -79,4 +79,6 @@
   home.packages = with pkgs; [
     yt-dlp
   ];
+
+  xdg.configFile."matugen/templates/uosc.conf".source = ./uosc.temp.conf;
 }
