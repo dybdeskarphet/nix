@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   services.mako = {
     enable = true;
@@ -14,7 +14,7 @@
       margin = "0,0,8,0";
 
       markup = true;
-      format = ''<b>%s</b> <span rise="2pt" size="small" fgalpha="60%" text_transform="uppercase">| %a</span>\n%b'';
+      format = "<b>%s</b> <span rise='2pt' size='small' fgalpha='60%%' text_transform='uppercase'>| %a</span>\\n%b";
       text-alignment = "left";
 
       icons = true;
@@ -51,7 +51,7 @@
       };
     };
     extraConfig = ''
-      include=~/.config/mako/colors
+      include=${config.home.homeDirectory}/.config/mako/colors
     '';
   };
 
