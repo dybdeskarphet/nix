@@ -24,7 +24,7 @@ let
   nixAbbrs = {
     "ned" = "${lib.getExe pkgs.neovim} ${config.home.homeDirectory}/code/nix";
     "nev" = "sudo ${lib.getExe pkgs.neovim} /etc/nixos/env.nix";
-    "nbu" = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/code/nix";
+    "nbu" = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/code/nix --impure";
     "ncl" = "sudo nix-collect-garbage --delete-older-than 7d && nix-store --optimise";
     "npr" = "sudo nix-collect-garbage -d && nix-store --optimise";
   };
