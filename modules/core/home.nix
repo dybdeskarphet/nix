@@ -10,6 +10,8 @@ let
     ripgrep
     android-tools
     uv
+    glib
+    gsettings-desktop-schemas
     python3
   ];
 in
@@ -22,7 +24,7 @@ in
     ../desktop/avizo
     ../desktop/awww
     ../desktop/chromium.nix
-    ../desktop/clipboard.nix
+    ../desktop/clipboard
     ../desktop/gtk
     ../desktop/hypridle.nix
     ../desktop/kanshi.nix
@@ -47,12 +49,13 @@ in
     ../utility/bat.nix
     ../utility/zoxide.nix
     ../utility/battery/home.nix
+    ../utility/tabiew
     ../utility/btop
     ../utility/cava
     ../utility/fastfetch
     ../utility/htop.nix
     ../utility/lsd.nix
-    ../utility/mpv.nix
+    ../utility/mpv
     ../utility/qalc.nix
     ../utility/rclone/home.nix
     ../utility/scrcpy.nix
