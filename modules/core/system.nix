@@ -305,7 +305,6 @@
 
   # Localization / Time {{{
   time.timeZone = "Europe/Istanbul";
-  i18n.defaultLocale = "en_US.UTF-8";
   console.keyMap = "trq";
   services.timesyncd.enable = lib.mkDefault true;
   # }}}
