@@ -30,7 +30,7 @@ in
         desc = "Enter the child directory or open the file";
       }
       {
-        on = "<backspace>";
+        on = "<Backspace>";
         run = "hidden toggle";
         desc = "Toggle the visibility of hidden files";
       }
