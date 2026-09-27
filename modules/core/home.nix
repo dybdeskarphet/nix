@@ -1,4 +1,9 @@
-{ pkgs, env, ... }:
+{
+  pkgs,
+  env,
+  inputs,
+  ...
+}:
 let
   packagesWithoutConfig = with pkgs; [
     fzf
@@ -13,6 +18,7 @@ let
     glib
     gsettings-desktop-schemas
     python3
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.antigravity-cli
   ];
 in
 {
