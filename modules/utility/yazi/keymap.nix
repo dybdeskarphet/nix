@@ -6,7 +6,7 @@ let
   # localsend = lib.getExe pkgs.localsend-cli;
 in
 {
-  manager = {
+  mgr = {
     prepend_keymap = [
       # navigation
       {
