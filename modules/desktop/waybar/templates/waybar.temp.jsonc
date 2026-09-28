@@ -125,7 +125,8 @@
     // for i in /sys/class/hwmon/hwmon*/temp*_input; do                                                3:11:15
     // echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $i";
     // done
-    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+    "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+    "input-filename": "temp1_input",
     "critical-threshold": 90,
     "interval": 2,
     "format-critical": " {temperatureC}°C",
