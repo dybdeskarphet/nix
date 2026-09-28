@@ -13,6 +13,8 @@
     ../desktop/sunshine
     ../dev/fish/system.nix
     ../utility/localsend.nix
+    ../hardware/bluetooth.nix
+    ../hardware/network.nix
     ../dev/neovim/system.nix
     ../hardware/openrazer/system.nix
     ../hardware/opentabletdriver/system.nix
@@ -140,99 +142,6 @@
     notifications.wall.enable = true;
   };
   # }}}
-  # }}}
-
-  # Networking {{{1
-  # Main initialization {{{2
-  networking = {
-    hostName = "nixos";
-    useNetworkd = true;
-    wireless = {
-      iwd = {
-        enable = true;
-        settings = {
-          Network = {
-            EnableIPv6 = false;
-          };
-          Settings = {
-            AutoConnect = true;
-          };
-        };
-      };
-    };
-  };
-  # }}}
-  # Network settings {{{2
-  systemd.network.networks = {
-    "10-home" = lib.mkIf (env.homeSSID != null) {
-      matchConfig = {
-        Name = "wlan0";
-        SSID = env.homeSSID;
-      };
-      networkConfig.DHCP = "yes";
-      dhcpV4Config = {
-        SendHostname = true;
-        Anonymize = false;
-      };
-    };
-
-    "20-wired" = {
-      matchConfig.Name = "en*";
-      networkConfig.DHCP = "yes";
-    };
-
-    "25-wireless" = {
-      matchConfig.Name = "wlan0";
-      networkConfig = {
-        DHCP = "yes";
-        IgnoreCarrierLoss = "3s";
-      };
-      dhcpV4Config = {
-        Anonymize = true;
-        SendHostname = false;
-      };
-    };
-  };
-  # }}}
-  # Wi-fi disable powersave {{{2
-  services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="net", KERNEL=="wlan*", RUN+="${pkgs.iw}/bin/iw dev %k set power_save off"
-  '';
-  # }}}
-  # systemd-resolved {{{2
-  services.resolved = {
-    enable = true;
-    settings = {
-      Resolve = {
-        # TODO: Enable this after vm testing
-        DNSOverTLS = false;
-        DNSSEC = true;
-        DNS = [ "9.9.9.9" ];
-        FallbackDNS = [
-          "1.0.0.1"
-          "8.8.4.4"
-        ];
-      };
-    };
-  };
-  # }}}
-  # }}}
-
-  # Bluetooth {{{
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        Experimental = true;
-        FastConnectable = true;
-        ControllerMode = "dual";
-      };
-      Policy = {
-        AutoEnable = true;
-      };
-    };
-  };
   # }}}
 
   # Audio {{{
