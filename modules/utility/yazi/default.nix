@@ -30,7 +30,6 @@ in
       toggle-pane = pkgs.yaziPlugins.toggle-pane;
       piper = pkgs.yaziPlugins.piper;
       vcs-files = pkgs.yaziPlugins.vcs-files;
-      relative-motions = pkgs.yaziPlugins.relative-motions;
       git = {
         package = pkgs.yaziPlugins.git;
         setup = true;
