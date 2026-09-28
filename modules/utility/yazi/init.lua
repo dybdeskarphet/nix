@@ -2,17 +2,6 @@
 local colors = require("matugen").palette
 -- }}}
 
--- relative-motions {{{
-require("relative-motions"):setup({
-	show_numbers = "relative_absolute",
-	show_motion = false,
-	line_numbers_styles = {
-		hovered = ui.Style():bold():fg(colors.primary):reverse(true),
-		normal = ui.Style():fg(colors.source_color),
-	},
-})
--- }}}
-
 -- Folder-specific rules {{{
 ps.sub("ind-sort", function(opt)
 	local cwd = cx.active.current.cwd
