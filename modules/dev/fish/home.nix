@@ -34,6 +34,9 @@ in
   programs.fish = {
     enable = true;
     loginShellInit = builtins.readFile ./init.fish;
+    functions = {
+      fish_greeting = "";
+    };
     plugins = [
       {
         name = "fzf";
