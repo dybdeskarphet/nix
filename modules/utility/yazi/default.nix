@@ -23,6 +23,7 @@ in
       smart-enter = pkgs.yaziPlugins.smart-enter;
       recycle-bin = pkgs.yaziPlugins.recycle-bin;
       toggle-pane = pkgs.yaziPlugins.toggle-pane;
+      piper = pkgs.yaziPlugins.piper;
       vcs-files = pkgs.yaziPlugins.vcs-files;
       relative-motions = pkgs.yaziPlugins.relative-motions;
       git = {
