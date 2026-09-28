@@ -50,7 +50,6 @@ in
     ../dev/tmux
     ../hardware/openrazer/home.nix
     ../hardware/opentabletdriver/home.nix
-    ../security/firejail/home.nix
     ../security/hyprlock/home.nix
     ../utility/bat.nix
     ../utility/zoxide.nix
