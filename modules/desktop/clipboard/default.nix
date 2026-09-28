@@ -17,4 +17,5 @@
   };
 
   xdg.configFile."matugen/templates/clipse.json".source = ./clipse.temp.json;
+  xdg.configFile."clipse/custom_theme.json".enable = false;
 }
