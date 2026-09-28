@@ -206,7 +206,7 @@
       "--skip-login"
       "--noclear"
       "--issue-file"
-      "${config.users.users.skarphet.home}/.config/matugen/references/issue:/etc/issue"
+      "${config.users.users.skarphet.home}/.config/matugen/references/issue"
     ];
   };
   # }}}
