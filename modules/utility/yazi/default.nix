@@ -15,7 +15,12 @@ in
     initLua = ./init.lua;
     keymap = import ./keymap.nix { inherit pkgs lib; };
     settings = import ./settings.nix { inherit pkgs lib; };
-
+    theme = {
+      flavor = {
+        dark = "matugen";
+        light = "matugen";
+      };
+    };
     plugins = {
       rnote = "${myPlugins}/rnote.yazi";
       svgz = "${myPlugins}/svgz.yazi";
