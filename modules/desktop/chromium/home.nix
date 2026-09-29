@@ -7,6 +7,12 @@ let
       icon = "google-meet";
     };
   };
+  chromiumWebStore = pkgs.fetchFromGitHub {
+    owner = "NeverDecaf";
+    repo = "chromium-web-store";
+    rev = "v1.5.5.4";
+    hash = "sha256-Hsk3bh4AYWCYyK8JJjWV1gcdQTrdzTODQithRHeCzu8=";
+  };
 in
 {
   programs.chromium = {
@@ -21,17 +27,7 @@ in
       "--enable-gpu-rasterization"
       "--enable-zero-copy"
       "--extension-mime-request-handling=always-prompt-for-install"
-    ];
-
-    extensions = [
-      {
-        id = "ocaahhhbfnlfpeeiejnhhibimdbmnfdh";
-        version = "1.5.5.4";
-        crxPath = pkgs.fetchurl {
-          url = "https://github.com/NeverDecaf/chromium-web-store/releases/download/v1.5.5.4/Chromium.Web.Store.crx";
-          hash = "sha256-Y8B1tKJbEa8sU22tGRlG6NlUf5LVtsJXss5BONKZbzI=";
-        };
-      }
+      "--load-extension=${chromiumWebStore}/src"
     ];
   };
 
