@@ -1,28 +1,28 @@
 {
   pkgs,
   lib,
-  env,
   config,
   ...
 }:
 {
   imports = [
+    ../desktop/chromium/system.nix
     ../desktop/fonts
     ../desktop/niri/system.nix
-    ../security/firewall
     ../desktop/sunshine
     ../dev/fish/system.nix
-    ../utility/localsend.nix
+    ../dev/neovim/system.nix
     ../hardware/bluetooth.nix
     ../hardware/network.nix
-    ../dev/neovim/system.nix
     ../hardware/openrazer/system.nix
     ../hardware/opentabletdriver/system.nix
     ../hardware/tlp.nix
+    ../security/firewall
     ../security/hyprlock/system.nix
     ../utility/battery/system.nix
-    ../utility/syncthing
+    ../utility/localsend.nix
     ../utility/rclone/system.nix
+    ../utility/syncthing
   ];
   # Essential Packages {{{
   environment.systemPackages = with pkgs; [

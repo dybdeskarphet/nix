@@ -33,7 +33,7 @@ in
     ../academic/zotero.nix
     ../desktop/avizo
     ../desktop/awww
-    ../desktop/chromium.nix
+    ../desktop/chromium/home.nix
     ../desktop/clipboard
     ../desktop/gtk
     ../desktop/hypridle.nix
@@ -56,9 +56,7 @@ in
     ../hardware/opentabletdriver/home.nix
     ../security/hyprlock/home.nix
     ../utility/bat.nix
-    ../utility/zoxide.nix
     ../utility/battery/home.nix
-    ../utility/tabiew
     ../utility/btop
     ../utility/cava
     ../utility/fastfetch
@@ -71,8 +69,10 @@ in
     ../utility/scripts
     ../utility/streamlink
     ../utility/swayimg
+    ../utility/tabiew
     ../utility/yazi
     ../utility/yt-dlp.nix
+    ../utility/zoxide.nix
     ./env.nix
   ];
 

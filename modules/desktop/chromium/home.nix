@@ -11,15 +11,28 @@ in
 {
   programs.chromium = {
     enable = true;
+    package = pkgs.ungoogled-chromium.override {
+      enableWideVine = true;
+    };
+
     commandLineArgs = [
       "--enable-features=UseOzonePlatform"
       "--ozone-platform=wayland"
       "--enable-gpu-rasterization"
       "--enable-zero-copy"
+      "--extension-mime-request-handling=always-prompt-for-install"
     ];
-    package = pkgs.ungoogled-chromium.override {
-      enableWideVine = true;
-    };
+
+    extensions = [
+      {
+        id = "ocaahhhbfnlfpeeiejnhhibimdbmnfdh";
+        version = "1.5.5.4";
+        crxPath = pkgs.fetchurl {
+          url = "https://github.com/NeverDecaf/chromium-web-store/releases/download/v1.5.5.4/Chromium.Web.Store.crx";
+          hash = "sha256-Y8B1tKJbEa8sU22tGRlG6NlUf5LVtsJXss5BONKZbzI=";
+        };
+      }
+    ];
   };
 
   home.packages = lib.mapAttrsToList (
