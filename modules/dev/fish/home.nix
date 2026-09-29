@@ -10,6 +10,7 @@ let
     "..." = "cd ../..";
     "...." = "cd ../../..";
     ":q" = "exit";
+    "qq" = "exit";
     "q" = "exit";
     "Q" = "exit";
     "b" = "tput bel";
