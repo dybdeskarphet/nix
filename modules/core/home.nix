@@ -23,7 +23,6 @@ let
     libreoffice
     ffmpeg
     obs-studio
-    zapzap
   ];
 in
 {
@@ -35,6 +34,7 @@ in
     ../desktop/avizo
     ../desktop/awww
     ../desktop/chromium/home.nix
+    ../desktop/whatsapp.nix
     ../desktop/clipboard
     ../desktop/gtk
     ../desktop/hypridle.nix
