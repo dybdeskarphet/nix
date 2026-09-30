@@ -19,7 +19,7 @@ in
   ];
 
   home.activation.setupPhotoGIMP = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    GIMP_DIR="${config.xdg.configHome}/GIMP/3.0"
+    GIMP_DIR="${config.xdg.configHome}/GIMP/3.2"
     if [ ! -d "$GIMP_DIR" ]; then
       $DRY_RUN_CMD mkdir -p "$GIMP_DIR"
       $DRY_RUN_CMD cp -rn ${photogimpSrc}/.config/GIMP/3.0/* "$GIMP_DIR/"
