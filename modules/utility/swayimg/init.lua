@@ -50,26 +50,7 @@ swayimg.exif_orientation = true
 swayimg.dnd_button = "MouseRight"
 
 -- Format specific settings
-swayimg.format_conf = {
-	raw = {
-		enable = true,
-		camera_wb = true,
-	},
-	ttf = {
-		enable = true,
-		text = "The quick brown fox jumps over the lazy dog 0123456789",
-		color = c_on_surface,
-		background = c_bg,
-	},
-	video = {
-		enable = true,
-		size = 300,
-		columns = 3,
-		rows = 3,
-		padding = 5,
-		label = c_primary,
-	},
-}
+swayimg.set_format_params("raw", { camera_wb = true })
 
 --------------------------------------------------------------------------------
 -- Image List Configuration (nsxiv-like directory scanning)
