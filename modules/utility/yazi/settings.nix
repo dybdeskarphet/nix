@@ -11,6 +11,7 @@ let
   sqlitebrowser = lib.getExe pkgs.sqlitebrowser;
   adb = lib.getExe' pkgs.android-tools "adb";
   rich = lib.getExe pkgs.rich-cli;
+  swayimg = lib.getExe pkgs.swayimg;
 in
 {
   mgr = {
@@ -56,7 +57,7 @@ in
     ];
     open_img = [
       {
-        run = "nsxiv-rifle %s";
+        run = "${swayimg} %s";
         desc = "Open image";
         orphan = true;
       }
