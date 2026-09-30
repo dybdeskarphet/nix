@@ -22,6 +22,7 @@ let
     "suspend" = "systemctl suspend";
     "svim" = "sudo nvim";
     "uefi" = "systemctl reboot --firmware-setup";
+    "t" = "nvim ${config.home.homeDirectory}/doc/todo.txt";
   };
   nixAbbrs = {
     "ned" = "${lib.getExe pkgs.neovim} ${config.home.homeDirectory}/code/nix";
