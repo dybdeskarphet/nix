@@ -1,4 +1,24 @@
 { pkgs, ... }:
+let
+  userScripts = pkgs.stdenv.mkDerivation {
+    name = "user-scripts";
+    src = ./.;
+
+    nativeBuildInputs = with pkgs; [
+      python3
+      fish
+    ];
+
+    installPhase = ''
+      mkdir -p $out/bin
+      for f in *; do
+        if [ -f "$f" ] && [ "$f" != "default.nix" ]; then
+          install -Dm755 "$f" "$out/bin/$f"
+        fi
+      done
+    '';
+  };
+in
 {
   home.packages = with pkgs; [
     jq
@@ -11,28 +31,6 @@
         "tur"
       ];
     })
+    userScripts
   ];
-
-  home.file = {
-    ".local/bin/borg_backup" = {
-      source = ./borg_backup;
-      executable = true;
-    };
-    ".local/bin/screenshot" = {
-      source = ./screenshot;
-      executable = true;
-    };
-    ".local/bin/colors" = {
-      source = ./colors;
-      executable = true;
-    };
-    ".local/bin/network" = {
-      source = ./network;
-      executable = true;
-    };
-    ".local/bin/quickmenu" = {
-      source = ./quickmenu;
-      executable = true;
-    };
-  };
 }
