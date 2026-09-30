@@ -121,6 +121,22 @@
         "type": "github"
       }
     },
+    "neovim-config": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790806666,
+        "narHash": "sha256-hziZcgOIWdh67TquW+aK5bbMUQcXxgsvKWRkWduqhAA=",
+        "owner": "dybdeskarphet",
+        "repo": "neovim-config",
+        "rev": "6aeca8fad45784ff3890593edd6335c04444bc2a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dybdeskarphet",
+        "repo": "neovim-config",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1790448801,
@@ -230,6 +246,7 @@
         "easyclone": "easyclone",
         "home-manager": "home-manager",
         "llm-agents": "llm-agents",
+        "neovim-config": "neovim-config",
         "nixpkgs": "nixpkgs_2"
       }
     },
