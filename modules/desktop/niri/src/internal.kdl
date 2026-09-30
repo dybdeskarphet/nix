@@ -16,4 +16,4 @@ environment {
   XDG_SESSION_TYPE "wayland"
 }
 
-screenshot-path "~/img/ss/null/%Y-%m-%d_%H.%M.%S.png"
+screenshot-path "~/img/ss/%Y-%m-%d_%H.%M.%S.png"
