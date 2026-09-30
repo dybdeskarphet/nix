@@ -84,22 +84,23 @@ class Screenshot:
             return False
 
     def _notify(self):
-        base_cmd = [
+        icon = "view-preview"
+        mime, _ = mimetypes.guess_type(self.path)
+        if mime is not None and mime.startswith("image/"):
+            icon = str(self.path)
+
+        cmd = [
             "notify-send",
             "-a",
             APP_NAME,
-            "--urgency=LOW",
+            "-i",
+            icon,
+            "--urgency=low",
             self.ntfy_title,
             self.ntfy_message,
         ]
 
-        mime, _ = mimetypes.guess_type(self.path)
-        if mime is not None and mime.startswith("image/"):
-            base_cmd.extend(["-I", str(self.path)])
-        else:
-            base_cmd.extend(["-i", "view-preview"])
-
-        _ = subprocess.run(base_cmd)
+        _ = subprocess.run(cmd)
 
     def _copy(self):
         if self.ocr_text != "":
