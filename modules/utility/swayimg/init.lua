@@ -110,6 +110,23 @@ swayimg.viewer.set_text("bottomleft", {
 swayimg.viewer.set_window_background(c_bg)
 swayimg.viewer.set_image_chessboard(20, c_surface, c_surface_container)
 
+-- Compatibility wrapper for swayimg 5.5: allow passing table of keys to on_key
+local function enable_key_tables(target)
+	local raw_on_key = target.on_key
+	target.on_key = function(keys, fn)
+		if type(keys) == "table" then
+			for _, k in ipairs(keys) do
+				raw_on_key(k, fn)
+			end
+		else
+			raw_on_key(keys, fn)
+		end
+	end
+end
+enable_key_tables(swayimg.viewer)
+enable_key_tables(swayimg.gallery)
+enable_key_tables(swayimg.slideshow)
+
 -- Helper for panning
 local pan_step = 20 -- Smaller step for slow, precise panning
 local function pan(dx, dy)
@@ -319,15 +336,13 @@ swayimg.gallery.selected_color = c_surface_container_high
 swayimg.gallery.border_color = c_primary
 swayimg.gallery.mark_color = c_tertiary
 
-swayimg.gallery.text = {
-	topleft = {
-		"File:\t{name}",
-		"Size:\t{sizehr}",
-	},
-	topright = {
-		"{list.index} / {list.total}",
-	},
-}
+swayimg.gallery.set_text("topleft", {
+	"File:\t{name}",
+	"Size:\t{sizehr}",
+})
+swayimg.gallery.set_text("topright", {
+	"{list.index} / {list.total}",
+})
 
 -- Keybindings (Gallery Mode)
 -- Vim Navigation
@@ -446,7 +461,10 @@ end)
 swayimg.slideshow.timeout = 5
 swayimg.slideshow.default_scale = "optimal"
 swayimg.slideshow.history = 0
-swayimg.slideshow.text = { topleft = { "{name}", "{list.index} / {list.total}" } }
+swayimg.slideshow.set_text("topleft", {
+	"{name}",
+	"{list.index} / {list.total}",
+})
 swayimg.slideshow.set_window_background(c_bg)
 
 swayimg.slideshow.on_key({ "s", "q", "Escape" }, function()
