@@ -29,7 +29,7 @@ let
 
   waylandVars = {
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
-    GDK_BACKEND = "wayland,x11";
+    GDK_BACKEND = "wayland";
     QT_QPA_PLATFORM = "wayland;xcb";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     SDL_VIDEODRIVER = "wayland";
