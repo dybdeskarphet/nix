@@ -28,7 +28,7 @@ let
       blur_img="$cache_dir/backdrop.png"
 
       ffmpeg -y -i "$image" \
-        -vf "scale=iw/4:-1,gblur=sigma=20:steps=2,scale=4*iw:-1" \
+        -vf "scale=iw/4:-1,gblur=sigma=20:steps=2,eq=brightness=-0.05,scale=4*iw:-1" \
         -update 1 -frames:v 1 "$blur_img" -loglevel error
 
       awww img -n backdrop --transition-fps 100 --transition-type center "$blur_img"
