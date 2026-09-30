@@ -182,7 +182,6 @@ later(function()
 			"texlab",
 			"hyprls",
 			"yamlls",
-			"csharp_ls",
 			"taplo",
 			"tinymist",
 			"svelte",
