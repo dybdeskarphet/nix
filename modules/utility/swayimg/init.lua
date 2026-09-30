@@ -51,7 +51,6 @@ swayimg.dnd_button = "MouseRight"
 
 -- Format specific settings
 swayimg.set_format_params("raw", { camera_wb = true })
-
 --------------------------------------------------------------------------------
 -- Image List Configuration (nsxiv-like directory scanning)
 --------------------------------------------------------------------------------
@@ -89,25 +88,24 @@ swayimg.viewer.mark_color = c_primary
 swayimg.viewer.pinch_factor = 1.0
 
 -- Detailed text info scheme (shown when toggled with 'i' or 't')
-swayimg.viewer.text = {
-	topleft = {
-		"File:\t{name}",
-		"Format:\t{format}",
-		"Size:\t{sizehr}",
-		"Modified:\t{time}",
-		"Path:\t{path}",
-		"EXIF Date:\t{meta.Exif.Photo.DateTimeOriginal}",
-		"Camera:\t{meta.Exif.Image.Model}",
-	},
-	topright = {
-		"Image:\t{list.index} / {list.total}",
-		"Frame:\t{frame.index} / {frame.total}",
-		"Dimensions:\t{frame.width}x{frame.height}",
-	},
-	bottomleft = {
-		"Scale:\t{scale}",
-	},
-}
+swayimg.viewer.set_text("topleft", {
+	"File:\t{name}",
+	"Format:\t{format}",
+	"Size:\t{sizehr}",
+	"Modified:\t{time}",
+	"Path:\t{path}",
+	"EXIF Date:\t{meta.Exif.Photo.DateTimeOriginal}",
+	"Camera:\t{meta.Exif.Image.Model}",
+})
+
+swayimg.viewer.set_text("topright", {
+	"Image:\t{list.index} / {list.total}",
+	"Frame:\t{frame.index} / {frame.total}",
+	"Dimensions:\t{frame.width}x{frame.height}",
+})
+swayimg.viewer.set_text("bottomleft", {
+	"Scale:\t{scale}",
+})
 
 swayimg.viewer.set_window_background(c_bg)
 swayimg.viewer.set_image_chessboard(20, c_surface, c_surface_container)
