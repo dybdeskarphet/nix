@@ -12,6 +12,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     llm-agents.url = "github:numtide/llm-agents.nix";
+    neovim-config = {
+      url = "github:dybdeskarphet/neovim-config";
+      flake = false;
+    };
   };
 
   outputs =
