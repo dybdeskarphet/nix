@@ -67,6 +67,7 @@ in
     ../utility/mpv
     ../utility/qalc.nix
     ../utility/rclone/home.nix
+    ../utility/gimp
     ../utility/scrcpy.nix
     ../utility/scripts
     ../utility/streamlink
