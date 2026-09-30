@@ -40,8 +40,12 @@ let
       invisible = 1;
     };
 
-    "app-name=elecwhat" = {
+    "app-name=ZapZap" = {
       max-icon-size = 64;
+    };
+
+    "app-name=Screenshot" = {
+      max-icon-size = 128;
     };
 
     "urgency=critical" = {
