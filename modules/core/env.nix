@@ -34,20 +34,15 @@ let
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     SDL_VIDEODRIVER = "wayland";
   };
-
-  sessionPath = [
+in
+{
+  home.sessionPath = [
     "${config.home.homeDirectory}/.local/bin"
     "${config.home.homeDirectory}/code/system"
   ];
-in
-{
-  systemd.user.sessionVariables =
-    xdgVars
-    // waylandVars
-    // generalVars
-    // {
-      PATH = "${lib.concatStringsSep ":" sessionPath}:$PATH";
-    };
+
+  home.sessionVariables = xdgVars // waylandVars // generalVars;
+  systemd.user.sessionVariables = xdgVars // waylandVars // generalVars;
 
   xdg.userDirs = {
     enable = true;
