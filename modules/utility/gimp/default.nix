@@ -9,8 +9,8 @@ let
   photogimpSrc = pkgs.fetchFromGitHub {
     owner = "Diolinux";
     repo = "PhotoGIMP";
-    rev = "master";
-    hash = lib.fakeHash;
+    rev = "eca3a8f57b9944c063d043ce7c07524107b5292d";
+    hash = "sha256-LNopObpXTkYbjqZMkwu0DhdLROuTkE+LYsnwdaICTd0=";
   };
 in
 {
