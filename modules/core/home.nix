@@ -23,6 +23,7 @@ let
     libreoffice
     ffmpeg
     obs-studio
+    spotify
   ];
 in
 {
