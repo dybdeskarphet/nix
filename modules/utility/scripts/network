@@ -19,12 +19,16 @@ list_passwords() {
   echo -e "${CYAN}Remembered Wi-Fi Networks:${RESET}"
   echo -e "${CYAN}---------------------------${RESET}"
 
-  if ! compgen -G "$CONFIG_DIR"/*.psk >/dev/null; then
+  shopt -s nullglob
+  files=("$CONFIG_DIR"/*.psk)
+  shopt -u nullglob
+
+  if [ ${#files[@]} -eq 0 ]; then
     echo -e "${RED}No saved networks found in $CONFIG_DIR${RESET}"
     exit 1
   fi
 
-  for file in "$CONFIG_DIR"/*.psk; do
+  for file in "${files[@]}"; do
     ssid=$(basename "$file" .psk)
     pass=$(grep -Po '(?<=^Passphrase=).*' "$file")
 
