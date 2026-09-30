@@ -43,7 +43,7 @@ window-rule {
 
 
 layer-rule {
-    match namespace="^awww-daemonoverlay$"
+    match namespace="^awww-daemonbackdrop$"
     place-within-backdrop true
 }
 
