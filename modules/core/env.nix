@@ -5,30 +5,29 @@ let
     VISUAL = "nvim";
   };
   xdgVars = {
-    ADB_KEYS_PATH = "$XDG_DATA_HOME/android";
-    GNUPGHOME = "$XDG_CONFIG_HOME/gnupg";
-    GRADLE_USER_HOME = "$XDG_DATA_HOME/gradle";
-    GTK2_RC_FILES = "$XDG_CONFIG_HOME/gtk-2.0/gtkrc";
-    LESSHISTFILE = "$XDG_CONFIG_HOME/less/history";
-    NPM_CONFIG_USERCONFIG = "$XDG_CONFIG_HOME/npm/npmrc";
-    PASSWORD_STORE_DIR = "$XDG_DATA_HOME/password-store";
-    RXVT_SOCKET = "$XDG_RUNTIME_DIR/urxvtd";
-    W3M_DIR = "$XDG_STATE_HOME/w3m";
-    WGETRC = "$XDG_CONFIG_HOME/wgetrc";
-    WINEPREFIX = "$XDG_DATA_HOME/wineprefixes/default";
+    ADB_KEYS_PATH = "${config.xdg.dataHome}/android";
+    GNUPGHOME = "${config.xdg.configHome}/gnupg";
+    GRADLE_USER_HOME = "${config.xdg.dataHome}/gradle";
+    GTK2_RC_FILES = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+    LESSHISTFILE = "${config.xdg.configHome}/less/history";
+    NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
+    PASSWORD_STORE_DIR = "${config.xdg.dataHome}/password-store";
+    W3M_DIR = "${config.xdg.stateHome}/w3m";
+    WGETRC = "${config.xdg.configHome}/wgetrc";
+    WINEPREFIX = "${config.xdg.dataHome}/wineprefixes/default";
     XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority";
-    PYTHONPYCACHEPREFIX = "$XDG_CACHE_HOME/python";
-    PYTHONUSERBASE = "$XDG_DATA_HOME/python";
-    CARGO_HOME = "$XDG_DATA_HOME/cargo";
-    RUSTUP_HOME = "$XDG_DATA_HOME/rustup";
-    NODE_REPL_HISTORY = "$XDG_DATA_HOME/node_repl_history";
-    GOPATH = "$XDG_DATA_HOME/go";
-    GOMODCACHE = "$XDG_CACHE_HOME/go/mod";
-    NUGET_PACKAGES = "$XDG_CACHE_HOME/NuGetPackages";
-    PNPM_HOME = "$XDG_DATA_HOME/pnpm";
-    ANDROID_SDK_HOME = "$HOME/.android";
-    ANDROID_AVD_HOME = "$HOME/.android";
-    WEGORC = "$XDG_CONFIG_HOME/wego/wegorc";
+    PYTHONPYCACHEPREFIX = "${config.xdg.cacheHome}/python";
+    PYTHONUSERBASE = "${config.xdg.dataHome}/python";
+    CARGO_HOME = "${config.xdg.dataHome}/cargo";
+    RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
+    NODE_REPL_HISTORY = "${config.xdg.dataHome}/node_repl_history";
+    GOPATH = "${config.xdg.dataHome}/go";
+    GOMODCACHE = "${config.xdg.cacheHome}/go/mod";
+    NUGET_PACKAGES = "${config.xdg.cacheHome}/NuGetPackages";
+    PNPM_HOME = "${config.xdg.dataHome}/pnpm";
+    ANDROID_SDK_HOME = "${config.home.homeDirectory}/.android";
+    ANDROID_AVD_HOME = "${config.home.homeDirectory}/.android";
+    WEGORC = "${config.xdg.configHome}/wego/wegorc";
   };
 
   waylandVars = {
@@ -48,8 +47,8 @@ let
   };
 
   sessionPath = [
-    "$HOME/.local/bin"
-    "$HOME/code/system"
+    "${config.home.homeDirectory}/.local/bin"
+    "${config.home.homeDirectory}/code/system"
   ];
 in
 {
