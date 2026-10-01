@@ -63,13 +63,13 @@ MENU: dict[str, MenuItem] = {
     ),
     "niri: immersive": MenuItem(
         rofi_icon="",
-        cmd="niri msg action load-config-file --path ~/.config/niri/src/modes/immersive.kdl",
+        cmd="niri msg action load-config-file --path ~/.config/niri/src/modes/immersive.kdl && pkill -SIGUSR1 waybar",
         icon="view-fullscreen",
         message="immersive mode on!",
     ),
     "niri: normal": MenuItem(
         rofi_icon="",
-        cmd="niri msg action load-config-file --path ~/.config/niri/config.kdl",
+        cmd="niri msg action load-config-file --path ~/.config/niri/config.kdl && pkill -SIGUSR1 waybar",
         icon="reply",
         message="default niri config restored!",
     ),
