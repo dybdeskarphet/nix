@@ -92,7 +92,6 @@
     ];
     tmp.useTmpfs = true;
     tmp.cleanOnBoot = true;
-    resumeDevice = "/dev/nvme0n1p2";
     kernelParams = [
       "quiet"
       "loglevel=3"
