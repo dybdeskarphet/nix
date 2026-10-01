@@ -1,0 +1,15 @@
+session_name: nix
+start_directory: ~/code/nix/
+windows:
+  - window_name: nvim
+    panes:
+      - nvim
+  - window_name: agy
+    panes:
+      - agy
+  - window_name: lazygit
+    panes:
+      - lazygit
+  - window_name: shell
+    panes:
+      - clear
