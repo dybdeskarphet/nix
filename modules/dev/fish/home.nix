@@ -25,7 +25,7 @@ let
     "t" = "nvim ${config.home.homeDirectory}/doc/todo.txt";
   };
   nixAbbrs = {
-    "ned" = "${lib.getExe pkgs.neovim} ${config.home.homeDirectory}/code/nix";
+    "ned" = "tmuxp load nix";
     "nev" = "sudo ${lib.getExe pkgs.neovim} /etc/nixos/env.nix";
     "nbu" = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/code/nix --impure";
     "ncl" = "sudo nix-collect-garbage --delete-older-than 7d && nix-store --optimise";
