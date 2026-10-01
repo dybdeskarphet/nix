@@ -13,7 +13,7 @@
     gnumake
     nodejs
     python3
-    dotnet-runtime
+    dotnet-sdk
     tree-sitter
 
     # nix lsp
