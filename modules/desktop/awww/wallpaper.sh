@@ -1,4 +1,4 @@
-image="''${1:-}"
+image="${1:-}"
 
 if [ -z "$image" ] || [ ! -f "$image" ]; then
   echo "Usage: wallpaper <path-to-image>" >&2
@@ -7,9 +7,9 @@ fi
 
 awww img -n bg --transition-fps 100 --transition-type center "$image"
 
-cache_dir="''${XDG_CACHE_HOME:-$HOME/.cache}/awww"
+cache_dir="${HOME}/img"
 mkdir -p "$cache_dir"
-blur_img="$cache_dir/backdrop.png"
+blur_img="$cache_dir/.wallpaper_blur.png"
 
 ffmpeg -y -i "$image" \
   -vf "scale=iw/4:-1,gblur=sigma=20:steps=2,eq=brightness=-0.05,scale=4*iw:-1" \
