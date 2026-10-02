@@ -15,7 +15,6 @@
     ],
   },
   "modules-right": [
-    "custom/sync",
     "tray",
     "custom/dnd",
     "custom/mic",
@@ -139,18 +138,6 @@
     "tooltip": true,
     "tooltip-format": "Free: {free} ({percentage_free}%)\nTotal: {total}",
     "path": "/",
-  },
-  "custom/sync": {
-    "exec": "waybar-scripts sync_icon",
-    "format": "{icon} <span foreground=\"{{colors.on_background.dark.hex}}\">{text}%</span>",
-    "return-type": "json",
-    "tooltip": true,
-    "format-icons": {
-      "backup": "󰘿",
-      "backup-empty-paths": "<span foreground=\"{{colors.error.dark.hex}}\">󰨹</span> "
-    },
-    "on-click": "waybar-scripts sync_icon_click",
-    "restart-interval": 5
   },
   "custom/dnd": {
     "exec": "waybar-scripts do_not_disturb",
