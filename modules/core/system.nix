@@ -71,6 +71,10 @@
       "vkms"
       "v4l2loopback"
     ];
+    kernel.sysctl = {
+      "net.core.default_qdisc" = "fq";
+      "net.ipv4.tcp_congestion_control" = "bbr";
+    };
     loader = {
       systemd-boot = {
         enable = true;
