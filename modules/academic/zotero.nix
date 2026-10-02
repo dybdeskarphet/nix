@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs-stable, ... }:
 {
-  home.packages = [ pkgs.zotero ];
+  home.packages = [ pkgs-stable.zotero ];
 }
