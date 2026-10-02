@@ -1,8 +1,9 @@
 {
-  description = "Dybdeskarphet NixOS";
+  dess-stabcription = "Dybdeskarphet NixOS";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,10 +29,14 @@
       defaultEnv = import ./env.nix;
       localEnv = if builtins.pathExists /etc/nixos/env.nix then import /etc/nixos/env.nix else { };
       env = nixpkgs.lib.recursiveUpdate defaultEnv localEnv;
+      pkgs-stable = import inputs.nixpkgs-stable {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
     in
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs env; };
+        specialArgs = { inherit inputs env pkgs-stable; };
         modules = [
           ./configuration.nix
           (
@@ -44,7 +49,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs env; };
+            home-manager.extraSpecialArgs = { inherit inputs env pkgs-stable; };
             home-manager.users.skarphet = ./home.nix;
           }
         ];
