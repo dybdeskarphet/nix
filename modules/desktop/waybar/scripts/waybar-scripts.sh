@@ -37,8 +37,7 @@ gpu_usage() {
       break
     fi
   done
-  usage="${usage:-0}"
-  printf '󰹑 <span foreground="%s">%s%%</span>\n' "$matugen_on_surface" "$usage"
+  echo "${usage:-0}"
 }
 
 bt_toggle() {

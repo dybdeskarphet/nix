@@ -151,10 +151,11 @@
     "signal": 5,
   },
   "custom/gpu_usage": {
+    "format": "󰹑 <span foreground=\"{{colors.on_surface.dark.hex}}\">{}%</span>",
     "exec": "waybar-scripts gpu_usage",
     "on-click": "waybar-scripts gpu_click",
     "restart-interval": 4,
-    "tooltip": false,
+    "tooltip": false
   },
   "niri/workspaces": {
     "format": "{icon}",
