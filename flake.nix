@@ -1,5 +1,5 @@
 {
-  dess-stabcription = "Dybdeskarphet NixOS";
+  description = "Dybdeskarphet NixOS";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
