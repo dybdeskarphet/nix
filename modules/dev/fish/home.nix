@@ -5,6 +5,12 @@
   ...
 }:
 let
+  nvim = lib.getExe pkgs.neovim;
+  nh = lib.getExe pkgs.nh;
+  tmuxp = lib.getExe pkgs.tmuxp;
+  tput = lib.getExe' pkgs.ncurses "tput";
+  cal = lib.getExe' pkgs.util-linux "cal";
+
   generalAbbrs = {
     ".." = "cd ..";
     "..." = "cd ../..";
@@ -13,23 +19,35 @@ let
     "qq" = "exit";
     "q" = "exit";
     "Q" = "exit";
-    "b" = "tput bel";
-    "bell" = "tput bel";
-    "cal" = "cal --monday";
+
+    "b" = "${tput} bel";
+    "bell" = "${tput} bel";
+    "cal" = "${cal} --monday";
     "date" = "LANG=tr_TR.UTF-8 date";
     "rm" = "rm -i";
+
     "sd" = "shutdown now";
     "suspend" = "systemctl suspend";
-    "svim" = "sudo nvim";
     "uefi" = "systemctl reboot --firmware-setup";
-    "t" = "nvim ${config.home.homeDirectory}/doc/todo.txt";
+
+    "svim" = "sudo ${nvim}";
+    "t" = "${nvim} ${config.home.homeDirectory}/doc/todo.txt";
   };
+
   nixAbbrs = {
-    "ned" = "tmuxp load nix";
-    "nev" = "sudo ${lib.getExe pkgs.neovim} /etc/nixos/env.nix";
-    "nbu" = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/code/nix --impure";
-    "ncl" = "sudo nix-collect-garbage --delete-older-than 7d && nix-store --optimise";
-    "npr" = "sudo nix-collect-garbage -d && nix-store --optimise";
+    # Navigation & Editing
+    "ned" = "${tmuxp} load nix";
+    "nev" = "sudo ${nvim} /etc/nixos/env.nix";
+
+    # nh commands
+    "nbu" = "${nh} os switch --impure";
+    "nts" = "${nh} os test --impure";
+    "nup" = "${nh} os switch -u --impure";
+
+    "ncl" = "${nh} clean all --keep 5";
+    "npr" = "${nh} clean all --keep 1";
+
+    "nsc" = "${nh} search";
   };
 in
 {
