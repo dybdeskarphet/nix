@@ -10,7 +10,7 @@
       };
     };
 
-    extraOptsRecommended = {
+    extraOpts = {
       "PasswordManagerEnabled" = false;
       "SpellcheckEnabled" = true;
       "RestoreOnStartup" = 1;
@@ -20,6 +20,15 @@
       "AutofillCreditCardEnabled" = false;
       "DoNotTrack" = true;
       "PromptForDownloadLocation" = false;
+
+      "BrowserSignin" = 0;
+      "SyncDisabled" = true;
+      "MetricsReportingEnabled" = false;
+      "TranslateEnabled" = false;
+      "NetworkPredictionOptions" = 1;
+
+      "WebRtcIPHandlingPolicy" = "disable_non_proxied_udp";
+      "HttpsOnlyMode" = "force_enabled";
 
       "DefaultSearchProviderEnabled" = true;
       "DefaultSearchProviderName" = "Google";
