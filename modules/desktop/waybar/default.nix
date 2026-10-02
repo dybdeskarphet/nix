@@ -1,6 +1,8 @@
 { pkgs, ... }:
 let
-  waybar-scripts = pkgs.writeScriptBin "waybar-scripts" (builtins.readFile ./scripts/waybar-scripts);
+  waybar-scripts = pkgs.writeScriptBin "waybar-scripts" (
+    builtins.readFile ./scripts/waybar-scripts.sh
+  );
 in
 {
   home.packages = with pkgs; [
