@@ -1,7 +1,4 @@
 { pkgs, lib, ... }:
-let
-  awwwExe = lib.getExe pkgs.awww;
-in
 {
   services.kanshi = {
     enable = true;
@@ -34,10 +31,6 @@ in
               transform = "normal";
             }
           ];
-          exec = [
-            "${awwwExe} restore -n bg"
-            "${awwwExe} restore -n backdrop"
-          ];
         };
       }
       {
@@ -58,10 +51,6 @@ in
               scale = 1.0;
               transform = "normal";
             }
-          ];
-          exec = [
-            "${awwwExe} restore -n bg"
-            "${awwwExe} restore -n backdrop"
           ];
         };
       }
@@ -84,7 +73,6 @@ in
               transform = "normal";
             }
           ];
-          exec = [ "${awwwExe} restore" ];
         };
       }
       {
@@ -106,7 +94,6 @@ in
               transform = "normal";
             }
           ];
-          exec = [ "${awwwExe} restore" ];
         };
       }
       {
@@ -120,10 +107,6 @@ in
               scale = 1.0;
               transform = "normal";
             }
-          ];
-          exec = [
-            "${awwwExe} restore -n bg"
-            "${awwwExe} restore -n backdrop"
           ];
         };
       }
