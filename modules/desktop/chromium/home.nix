@@ -56,6 +56,10 @@ let
       id = "mmioliijnhnoblpgimnlajmefafdfilb";
       name = "Shazam";
     }
+    {
+      id = "dbepggeogbaibhgnhhndojpepiihcmeb";
+      name = "Vimium";
+    }
   ];
 
   extensionsJson = pkgs.writeText "chromium-extensions.json" (builtins.toJSON extensions);
