@@ -17,6 +17,7 @@
     ../hardware/openrazer/system.nix
     ../hardware/opentabletdriver/system.nix
     ../hardware/tlp.nix
+    ../dev/docker.nix
     ../security/firewall
     ../security/hyprlock/system.nix
     ../utility/battery/system.nix
