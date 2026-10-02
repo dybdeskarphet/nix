@@ -67,7 +67,6 @@ in
   xdg.configFile = {
     "matugen/templates/fish_prompt.fish".source = ./templates/fish_prompt.temp.fish;
     "matugen/templates/sudo_prompt.fish".source = ./templates/sudo_prompt.temp.fish;
-    "matugen/templates/matugen.fish".source = ./templates/matugen.temp.fish;
     "fish/functions/fish_right_prompt.fish".source = ./config/functions/fish_right_prompt.fish;
     "fish/functions/ipynb2py.fish".source = ./config/functions/ipynb2py.fish;
     "fish/functions/pdf2darkpdf.fish".source = ./config/functions/pdf2darkpdf.fish;
