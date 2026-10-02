@@ -108,8 +108,8 @@ binds {
     XF86MonBrightnessDown hotkey-overlay-title="Brightness down" { spawn "lightctl" "down"; }
     Mod+XF86MonBrightnessUp hotkey-overlay-title=null  { spawn "lightctl" "set" "100"; }
     Mod+XF86MonBrightnessDown hotkey-overlay-title=null { spawn "lightctl" "set" "0"; }
-    XF86AudioMicMute { spawn-sh "volumectl -m toggle-mute && pkill -RTMIN+5 waybar"; }
-    XF86HomePage { spawn-sh "volumectl -m toggle-mute && pkill -RTMIN+5 waybar"; }
+    XF86AudioMicMute { spawn-sh "volumectl -m -a toggle-mute && pkill -RTMIN+5 waybar"; }
+    XF86HomePage { spawn-sh "volumectl -m -a toggle-mute && pkill -RTMIN+5 waybar"; }
     XF86Calculator { spawn "footclient" "-T" "qalc" "-a" "qalc" "qalc"; }
     XF86Launch4 { spawn "shortcuts" "-t"; }
     XF86Macro27 { spawn "notify-send" "-r" "134897" "-a" "Razer" "-i" "keyboard" "brightness increased"; }
@@ -118,7 +118,7 @@ binds {
 
     // TKL Extras
     Mod+C hotkey-overlay-title="Open the calculator" { spawn "footclient" "-T" "qalc" "-a" "qalc" "qalc"; }
-    ISO_Level3_Shift+K { spawn-sh "volumectl -m toggle-mute && pkill -RTMIN+5 waybar"; }
+    ISO_Level3_Shift+K { spawn-sh "volumectl -a -m toggle-mute && pkill -RTMIN+5 waybar"; }
     ISO_Level3_Shift+L { spawn "volumectl" "-m" "up"; }
     ISO_Level3_Shift+J { spawn "volumectl" "-m" "down"; }
 
