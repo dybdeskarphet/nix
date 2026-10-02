@@ -40,7 +40,7 @@ let
 
     "nbu" = "${nh} os switch --impure";
     "nts" = "${nh} os test --impure";
-    "nup" = "${nh} os switch -u --impure";
+    "nup" = "${nh} os boot -u --impure";
 
     "ncl" = "${nh} clean all --keep 5";
     "npr" = "${nh} clean all --keep 1";
