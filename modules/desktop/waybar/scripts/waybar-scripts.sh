@@ -4,33 +4,6 @@ termwin() {
   footclient fish -c "$1"
 }
 
-sync_icon() {
-  if [ "$(systemctl --user show -p SubState --value easyclone.service 2>/dev/null)" = "start" ]; then
-    total=$(easyclone get-status -t 2>/dev/null || echo 0)
-    current=$(easyclone get-status -f 2>/dev/null || echo 0)
-    empty_paths=$(easyclone get-status -e 2>/dev/null)
-
-    if [ -z "$total" ] || [ "$total" -eq 0 ] 2>/dev/null; then
-      percentage="0"
-    else
-      percentage=$(awk -v c="$current" -v t="$total" 'BEGIN { printf "%.1f", (c / t) * 100 }')
-    fi
-
-    if [ "$empty_paths" = "[]" ]; then
-      backup_icon="backup"
-      tooltip=$(printf "Current operations:\r%s" "$(easyclone get-status -o 2>/dev/null | jq -r '.[].source + "\r"')")
-    else
-      backup_icon="backup-empty-paths"
-      tooltip=$(printf "Empty paths:\r%s" "$(printf '%s' "$empty_paths" | sed "s/'/\"/g" | jq --raw-output '. | join("\r")')")
-    fi
-
-    printf '{"text": "%s", "alt": "%s", "tooltip": "%s", "class": "", "percentage": "%s"}\n' \
-      "$percentage" "$backup_icon" "$tooltip" "$percentage"
-  else
-    echo ""
-  fi
-}
-
 mic_icon() {
   if wpctl get-volume @DEFAULT_AUDIO_SOURCE@ 2>/dev/null | grep -q MUTED; then
     echo "󰍭 muted"
@@ -103,9 +76,6 @@ switch_audio_sink() {
 }
 
 case "$1" in
-sync_icon)
-  sync_icon
-  ;;
 mic_icon)
   mic_icon
   ;;
