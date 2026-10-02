@@ -35,11 +35,9 @@ let
   };
 
   nixAbbrs = {
-    # Navigation & Editing
     "ned" = "${tmuxp} load nix";
     "nev" = "sudo ${nvim} /etc/nixos/env.nix";
 
-    # nh commands
     "nbu" = "${nh} os switch --impure";
     "nts" = "${nh} os test --impure";
     "nup" = "${nh} os switch -u --impure";

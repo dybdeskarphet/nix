@@ -18,6 +18,7 @@
     ../hardware/opentabletdriver/system.nix
     ../hardware/tlp.nix
     ../dev/docker.nix
+    ../utility/nh
     ../security/firewall
     ../security/hyprlock/system.nix
     ../utility/battery/system.nix
