@@ -1,0 +1,17 @@
+output "eDP-1" {
+    mode "1920x1080@60.001"
+    scale 1.25
+    position x=0 y=0
+}
+
+output "HDMI-A-1" {
+    mode "1920x1080@120.000"
+    scale 1.0
+    position x=1536 y=0
+}
+
+output "Virtual-1" {
+    mode "1280x800@59.910"
+    scale 1.0
+    position x=3456 y=280
+}
