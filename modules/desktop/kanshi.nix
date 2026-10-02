@@ -34,7 +34,10 @@ in
               transform = "normal";
             }
           ];
-          exec = [ "${awwwExe} restore" ];
+          exec = [
+            "${awwwExe} restore -n bg"
+            "${awwwExe} restore -n backdrop"
+          ];
         };
       }
       {
@@ -56,7 +59,10 @@ in
               transform = "normal";
             }
           ];
-          exec = [ "${awwwExe} restore" ];
+          exec = [
+            "${awwwExe} restore -n bg"
+            "${awwwExe} restore -n backdrop"
+          ];
         };
       }
       {
@@ -115,7 +121,10 @@ in
               transform = "normal";
             }
           ];
-          exec = [ "${awwwExe} restore" ];
+          exec = [
+            "${awwwExe} restore -n bg"
+            "${awwwExe} restore -n backdrop"
+          ];
         };
       }
     ];
