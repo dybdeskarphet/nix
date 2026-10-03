@@ -24,6 +24,7 @@ let
     ffmpeg
     obs-studio
     spotify
+    borgbackup
   ];
 in
 {
