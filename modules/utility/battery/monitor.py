@@ -84,7 +84,7 @@ def handle_bt_battery(device_name: str, percentage: float) -> None:
         last_bt_tiers.pop(device_name, None)
 
 
-def on_properties_changed(sender, object_path, interface_name, signal_name, params):
+def on_properties_changed(connection, sender, object_path, interface_name, signal_name, params, *user_data):
     iface, changed_props, _ = params
 
     # 1. Handle UPower Devices (Laptop BAT0 and UPower-managed peripherals)
