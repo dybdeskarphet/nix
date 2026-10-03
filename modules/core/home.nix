@@ -25,6 +25,7 @@ let
     obs-studio
     spotify
     borgbackup
+    mermaid-cli
   ];
 in
 {
