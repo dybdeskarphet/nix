@@ -77,6 +77,21 @@
     };
   };
   # }}}
+  # rfkill unblock {{{
+
+  systemd.services.rfkill-unblock = {
+    description = "Unblock Wi-Fi on boot";
+    wantedBy = [ "network-pre.target" ];
+    before = [
+      "network-pre.target"
+      "iwd.service"
+    ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.util-linux}/bin/rfkill unblock all";
+    };
+  };
+  # }}}
 }
 
 # -- vim: fdm=marker fdl=0
