@@ -1,14 +1,13 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  env,
+  lib,
+  ...
+}:
 {
   programs.git = {
     enable = true;
-
-    signing = {
-      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDk59PDcSg4QstyRROvKn1zKvN5wrEWkXmBlDKEAprfN ahmetardakavakci@gmail.com";
-      format = "ssh";
-      signByDefault = true;
-    };
-
+    signing = env.git.signing;
     ignores = [
       ".DS_Store"
       "*.swp"
@@ -17,11 +16,7 @@
     ];
 
     settings = {
-      user = {
-        name = "Ahmet Arda Kavakci";
-        email = "ahmetardakavakci@gmail.com";
-      };
-
+      user = env.git.user;
       init.defaultBranch = "main";
       core.autocrlf = "input";
       safe.directory = "/opt/flutter";
@@ -62,10 +57,9 @@
     };
   };
 
-  xdg.configFile."git/allowed_signers".text = ''
-    ahmetardakavakci@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDk59PDcSg4QstyRROvKn1zKvN5wrEWkXmBlDKEAprfN ahmetardakavakci@gmail.com
-    ahmetardakavakci@gmail.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB+AJiAS28yo0PB5wc1eiBDplv2AGolgq+cPu6R4WDm/ skarphet@arch
-  '';
+  xdg.configFile."git/allowed_signers" = lib.mkIf (env.git.allowedSigners or [ ] != [ ]) {
+    text = (lib.concatStringsSep "\n" env.git.allowedSigners) + "\n";
+  };
 
   programs.fish.shellAbbrs = {
     gita = "git add .";
