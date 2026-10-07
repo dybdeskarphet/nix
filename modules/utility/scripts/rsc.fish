@@ -78,11 +78,11 @@ switch $cmd
         echo "  "(set_color green)"rsc check"(set_color normal)"       Verify repo integrity (fast 5% check)"
         echo "  "(set_color green)"rsc mount [dir]"(set_color normal)" Mount snapshots to browse via file manager"
         echo "  "(set_color green)"rsc unlock"(set_color normal)"      Clear stale locks"
-        echo "  "(set_color cyan)"rsc timers"(set_color normal)"      Check systemd timer countdown"
-        echo "  "(set_color cyan)"rsc status"(set_color normal)"      Check systemd backup service status"
-        echo "  "(set_color cyan)"rsc log"(set_color normal)"         View last 50 lines of backup logs"
-        echo "  "(set_color cyan)"rsc run"(set_color normal)"         Run backup now via systemd"
-        echo "  "(set_color cyan)"rsc actual"(set_color normal)"         See how much size it takes in rclone target"
+        echo "  "(set_color green)"rsc timers"(set_color normal)"      Check systemd timer countdown"
+        echo "  "(set_color green)"rsc status"(set_color normal)"      Check systemd backup service status"
+        echo "  "(set_color green)"rsc log"(set_color normal)"         View last 50 lines of backup logs"
+        echo "  "(set_color green)"rsc run"(set_color normal)"         Run backup now via systemd"
+        echo "  "(set_color green)"rsc actual"(set_color normal)"      See how much size it takes in rclone target"
 
     case '*'
         $_sudo restic-cloud-backup $cmd $argv
