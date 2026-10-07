@@ -55,7 +55,6 @@
     ];
     extraBackupArgs = [
       "-v"
-      "--stats"
     ];
     pruneOpts = [
       "--keep-daily 7"
