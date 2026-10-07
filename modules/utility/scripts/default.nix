@@ -1,36 +1,42 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
-  userScripts = pkgs.stdenv.mkDerivation {
-    name = "user-scripts";
-    src = ./.;
+  dirFiles = builtins.readDir ./.;
 
-    nativeBuildInputs = with pkgs; [
-      python3
-      fish
-    ];
+  toPackage =
+    filename:
+    let
+      name = lib.strings.removeSuffix ".${lib.lists.last (lib.strings.splitString "." filename)}" filename;
+      content = builtins.readFile (./. + "/${filename}");
+    in
+    if lib.hasSuffix ".py" filename then
+      pkgs.writers.writePython3Bin name { } content
+    else if lib.hasSuffix ".fish" filename then
+      pkgs.writers.writeFishBin name content
+    else if lib.hasSuffix ".sh" filename then
+      pkgs.writeShellScriptBin name content
+    else
+      pkgs.writeScriptBin name content;
 
-    installPhase = ''
-      mkdir -p $out/bin
-      for f in *; do
-        if [ -f "$f" ] && [ "$f" != "default.nix" ]; then
-          install -Dm755 "$f" "$out/bin/$f"
-        fi
-      done
-    '';
-  };
+  scriptNames = builtins.filter (f: f != "default.nix" && dirFiles.${f} == "regular") (
+    builtins.attrNames dirFiles
+  );
+
+  userScripts = map toPackage scriptNames;
 in
 {
-  home.packages = with pkgs; [
-    jq
-    nmap
-    qrencode
-    rofi
-    (tesseract.override {
-      enableLanguages = [
-        "eng"
-        "tur"
-      ];
-    })
-    userScripts
-  ];
+  home.packages =
+    with pkgs;
+    [
+      jq
+      nmap
+      qrencode
+      rofi
+      (tesseract.override {
+        enableLanguages = [
+          "eng"
+          "tur"
+        ];
+      })
+    ]
+    ++ userScripts;
 }
