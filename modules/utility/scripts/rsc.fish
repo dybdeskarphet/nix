@@ -63,6 +63,10 @@ switch $cmd
         echo (set_color yellow)"Triggering cloud-backup systemd service..."(set_color normal)
         $_sudo systemctl start restic-backups-cloud-backup.service
 
+    case rclone actual
+        echo (set_color cyan --bold)"=== Restic Repository Data Size ==="(set_color normal)
+        $_sudo restic-cloud-backup stats --mode raw-data
+
     case help ""
         echo (set_color cyan --bold)"Restic Quick Commands:"(set_color normal)
         echo "  "(set_color green)"rsc last"(set_color normal)"        Show 3 most recent snapshots"
@@ -78,6 +82,7 @@ switch $cmd
         echo "  "(set_color cyan)"rsc status"(set_color normal)"      Check systemd backup service status"
         echo "  "(set_color cyan)"rsc log"(set_color normal)"         View last 50 lines of backup logs"
         echo "  "(set_color cyan)"rsc run"(set_color normal)"         Run backup now via systemd"
+        echo "  "(set_color cyan)"rsc actual"(set_color normal)"         See how much size it takes in rclone target"
 
     case '*'
         $_sudo restic-cloud-backup $cmd $argv
