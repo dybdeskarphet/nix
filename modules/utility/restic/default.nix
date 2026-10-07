@@ -7,6 +7,7 @@
 
   services.restic.backups.cloud-backup = {
     initialize = true;
+    createWrapper = true;
     paths = env.restic.paths;
     repository = env.restic.repository;
     passwordFile = env.restic.passwordFile;
