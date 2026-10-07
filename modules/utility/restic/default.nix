@@ -1,4 +1,16 @@
-{ pkgs, env, ... }:
+{
+  pkgs,
+  env,
+  config,
+  lib,
+  ...
+}:
+let
+  cld = "${config.users.users.skarphet.home}/cld";
+  wrapperPkg = lib.findFirst (
+    p: p.name == "restic-cloud-backup"
+  ) null config.environment.systemPackages;
+in
 {
   environment.systemPackages = [
     pkgs.restic
@@ -66,6 +78,34 @@
     timerConfig = {
       OnCalendar = "daily";
       Persistent = true;
+    };
+  };
+
+  programs.fuse.userAllowOther = true;
+
+  systemd.services.restic-mount = {
+    description = "Restic Backup Read-Only Mount";
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
+    path = [
+      pkgs.fuse
+    ];
+    serviceConfig = {
+      Type = "simple";
+      User = "root";
+      Group = "root";
+      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p ${cld}";
+
+      ExecStart = ''
+        ${lib.getExe wrapperPkg} mount \
+          --allow-other \
+          ${cld}
+      '';
+
+      ExecStop = "${pkgs.fuse}/bin/fusermount -u ${cld}";
+      Restart = "on-failure";
+      RestartSec = "10s";
     };
   };
 }
