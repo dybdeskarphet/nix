@@ -19,6 +19,7 @@
     ../hardware/tlp.nix
     ../dev/docker.nix
     ../utility/nh
+    ../utility/restic
     ../security/firewall
     ../security/hyprlock/system.nix
     ../utility/battery/system.nix

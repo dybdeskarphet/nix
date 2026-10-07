@@ -24,6 +24,15 @@
       "..."
     ];
   };
+  restic = {
+    paths = [
+      "/home/john/Documents"
+    ];
+    repository = "";
+    passwordFile = "";
+    rcloneConfigFile = "";
+
+  };
   syncthing = {
     # Use the settings part of syncthing module for reference, you don't need to call settings = { } inside this though, it will directly be inside settings
   };
