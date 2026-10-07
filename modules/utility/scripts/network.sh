@@ -1,5 +1,3 @@
-#!/bin/bash
-
 script_name="$(basename "$0")"
 
 list_passwords() {

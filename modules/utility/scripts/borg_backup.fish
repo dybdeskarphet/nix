@@ -1,5 +1,3 @@
-#!/usr/bin/env fish
-
 set -l ENV_FILE "$HOME/.config/user-env.json"
 set -l STATE_DIR (or $XDG_STATE_HOME "$HOME/.local/state")/borg
 mkdir -p "$STATE_DIR"
