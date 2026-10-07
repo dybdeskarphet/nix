@@ -25,21 +25,21 @@ MENU: dict[str, MenuItem] = {
         icon="reload",
         message="waybar is reloaded!",
     ),
-    "reload: dunst": MenuItem(
+    "reload: mako": MenuItem(
         rofi_icon="󰑓",
-        cmd="systemctl --user restart dunst.service",
+        cmd="systemctl --user restart mako.service",
         icon="reload",
-        message="dunst is reloaded!",
+        message="mako is reloaded!",
     ),
     "reload: awww": MenuItem(
         rofi_icon="󰑓",
-        cmd="systemctl --user restart awww.service awww-overlay.service",
+        cmd="systemctl --user restart awww-backdrop.service awww-bg.service",
         icon="reload",
         message="awww is reloaded!",
     ),
     "reload: foot server": MenuItem(
         rofi_icon="󰑓",
-        cmd="systemctl --user restart foot-server.service",
+        cmd="systemctl --user restart foot.service",
         icon="reload",
         message="foot server is reloaded!",
     ),
