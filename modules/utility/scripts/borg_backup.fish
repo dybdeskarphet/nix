@@ -24,7 +24,6 @@ if test -z "$BORG_REPO"
     exit 1
 end
 
-# 1. Show backup info
 set -l LAST_BACKUP_FILE "$STATE_DIR/last_backup"
 if test -f "$LAST_BACKUP_FILE"
     echo "Last backup: "(set_color yellow)(cat "$LAST_BACKUP_FILE")(set_color normal)
@@ -62,14 +61,14 @@ set backup_status $status
 echo ---------------------------------------------------
 if test $backup_status -eq 0
     echo "Backup completed "(set_color green)"successfully!"(set_color normal)
-    date "+%Y-%m-%d %H:%M:%S" > "$LAST_BACKUP_FILE"
-    echo "success" > "$STATE_DIR/last_status"
+    date "+%Y-%m-%d %H:%M:%S" >"$LAST_BACKUP_FILE"
+    echo success >"$STATE_DIR/last_status"
 else if test $backup_status -eq 1
     echo "Backup completed with "(set_color yellow)"warnings."(set_color normal)
-    echo "warning" > "$STATE_DIR/last_status"
+    echo warning >"$STATE_DIR/last_status"
 else
     echo "Backup failed with an "(set_color red)"error."(set_color normal)
-    echo "failed" > "$STATE_DIR/last_status"
+    echo failed >"$STATE_DIR/last_status"
 end
 
 exit $backup_status
