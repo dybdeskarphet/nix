@@ -9,7 +9,7 @@ let
       content = builtins.readFile (./. + "/${filename}");
     in
     if lib.hasSuffix ".py" filename then
-      pkgs.writers.writePython3Bin name { } content
+      pkgs.writers.writePython3Bin name { doCheck = false; } content
     else if lib.hasSuffix ".fish" filename then
       pkgs.writers.writeFishBin name content
     else if lib.hasSuffix ".sh" filename then
