@@ -1,48 +1,54 @@
+set -l _sudo
+if not fish_is_root_user
+    set _sudo sudo
+end
+
 set -l cmd $argv[1]
 set -e argv[1]
 
 switch $cmd
+    # 1. Snapshots & Files
     case snap snapshots
-        restic-cloud-backup snapshots $argv
+        $_sudo restic-cloud-backup snapshots $argv
 
     case last latest
-        restic-cloud-backup snapshots --latest 3 $argv
+        $_sudo restic-cloud-backup snapshots --latest 3 $argv
 
     case ls
         set -l snap_id latest
         test (count $argv) -gt 0; and set snap_id $argv[1]
-        restic-cloud-backup ls $snap_id
+        $_sudo restic-cloud-backup ls $snap_id
 
     case find search
         if test (count $argv) -eq 0
             echo (set_color yellow)"Usage: rsc find <pattern>"(set_color normal)
             exit 1
         end
-        restic-cloud-backup find $argv
+        $_sudo restic-cloud-backup find $argv
 
     case diff
         if test (count $argv) -lt 2
             echo (set_color yellow)"Usage: rsc diff <snapshot-id-1> <snapshot-id-2>"(set_color normal)
             exit 1
         end
-        restic-cloud-backup diff $argv[1] $argv[2]
+        $_sudo restic-cloud-backup diff $argv[1] $argv[2]
 
     case stats
-        restic-cloud-backup stats --mode raw-data $argv
+        $_sudo restic-cloud-backup stats --mode raw-data $argv
 
     case check
         echo (set_color blue)"Checking repository (5% blob subset)..."(set_color normal)
-        restic-cloud-backup check --read-data-subset=5% $argv
+        $_sudo restic-cloud-backup check --read-data-subset=5% $argv
 
     case unlock
-        restic-cloud-backup unlock $argv
+        $_sudo restic-cloud-backup unlock $argv
 
     case mount
         set -l mnt_path /tmp/restic-mount
         test (count $argv) -gt 0; and set mnt_path $argv[1]
         mkdir -p $mnt_path
         echo (set_color green)"Mounting repo at $mnt_path (Ctrl+C or unmount to exit)..."(set_color normal)
-        restic-cloud-backup mount $mnt_path
+        $_sudo restic-cloud-backup mount $mnt_path
 
     case status
         systemctl status restic-backups-cloud-backup.service
@@ -55,7 +61,7 @@ switch $cmd
 
     case run now
         echo (set_color yellow)"Triggering cloud-backup systemd service..."(set_color normal)
-        sudo systemctl start restic-backups-cloud-backup.service
+        $_sudo systemctl start restic-backups-cloud-backup.service
 
     case help ""
         echo (set_color cyan --bold)"Restic Quick Commands:"(set_color normal)
@@ -74,5 +80,5 @@ switch $cmd
         echo "  "(set_color cyan)"rsc run"(set_color normal)"         Run backup now via systemd"
 
     case '*'
-        restic-cloud-backup $cmd $argv
+        $_sudo restic-cloud-backup $cmd $argv
 end
