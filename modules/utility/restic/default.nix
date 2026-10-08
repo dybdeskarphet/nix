@@ -99,6 +99,7 @@ in
 
       ExecStart = ''
         ${lib.getExe wrapperPkg} mount \
+          --no-lock \
           --allow-other \
           ${cld}
       '';
