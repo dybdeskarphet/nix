@@ -49,14 +49,18 @@ in
     ../desktop/rofi
     ../desktop/waybar
     ../desktop/whatsapp.nix
+    ../dev/bat.nix
     ../dev/fish/home.nix
     ../dev/foot
     ../dev/git
     ../dev/gpg
     ../dev/lazygit
+    ../dev/lsd.nix
     ../dev/neovim/home.nix
     ../dev/sqlite.nix
     ../dev/tmux
+    ../dev/yazi
+    ../dev/zoxide.nix
     ../hardware/openrazer/home.nix
     ../hardware/opentabletdriver/home.nix
     ../media/cava
@@ -66,18 +70,14 @@ in
     ../media/swayimg
     ../media/yt-dlp.nix
     ../security/hyprlock/home.nix
-    ../dev/bat.nix
     ../utility/battery/home.nix
     ../utility/btop
     ../utility/fastfetch
     ../utility/htop.nix
-    ../dev/lsd.nix
     ../utility/qalc.nix
     ../utility/scrcpy.nix
     ../utility/scripts
     ../utility/tabiew
-    ../dev/yazi
-    ../dev/zoxide.nix
     ./env.nix
   ];
 
