@@ -19,13 +19,13 @@
     ../hardware/tlp.nix
     ../dev/docker.nix
     ../utility/nh
-    ../utility/restic
+    ../backup/restic
     ../security/firewall
     ../security/hyprlock/system.nix
     ../utility/battery/system.nix
     ../utility/localsend.nix
-    ../utility/rclone/system.nix
-    ../utility/syncthing
+    ../backup/rclone/system.nix
+    ../backup/syncthing
   ];
   # Essential Packages {{{
   environment.systemPackages = with pkgs; [

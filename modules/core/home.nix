@@ -72,7 +72,7 @@ in
     ../utility/htop.nix
     ../utility/lsd.nix
     ../utility/qalc.nix
-    ../utility/rclone/home.nix
+    ../backup/rclone/home.nix
     ../utility/scrcpy.nix
     ../utility/scripts
     ../utility/tabiew
