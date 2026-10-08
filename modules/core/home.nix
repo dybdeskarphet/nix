@@ -66,18 +66,18 @@ in
     ../media/swayimg
     ../media/yt-dlp.nix
     ../security/hyprlock/home.nix
-    ../utility/bat.nix
+    ../dev/bat.nix
     ../utility/battery/home.nix
     ../utility/btop
     ../utility/fastfetch
     ../utility/htop.nix
-    ../utility/lsd.nix
+    ../dev/lsd.nix
     ../utility/qalc.nix
     ../utility/scrcpy.nix
     ../utility/scripts
     ../utility/tabiew
-    ../utility/yazi
-    ../utility/zoxide.nix
+    ../dev/yazi
+    ../dev/zoxide.nix
     ./env.nix
   ];
 
