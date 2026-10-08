@@ -6,10 +6,14 @@
 }:
 {
   imports = [
+    ../backup/rclone/system.nix
+    ../backup/restic
+    ../backup/syncthing
     ../desktop/chromium/system.nix
     ../desktop/fonts
     ../desktop/niri/system.nix
     ../desktop/sunshine
+    ../dev/docker.nix
     ../dev/fish/system.nix
     ../dev/neovim/system.nix
     ../hardware/bluetooth.nix
@@ -17,15 +21,11 @@
     ../hardware/openrazer/system.nix
     ../hardware/opentabletdriver/system.nix
     ../hardware/tlp.nix
-    ../dev/docker.nix
-    ../utility/nh
-    ../backup/restic
     ../security/firewall
     ../security/hyprlock/system.nix
     ../utility/battery/system.nix
     ../utility/localsend.nix
-    ../backup/rclone/system.nix
-    ../backup/syncthing
+    ../utility/nh
   ];
   # Essential Packages {{{
   environment.systemPackages = with pkgs; [

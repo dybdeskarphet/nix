@@ -34,6 +34,7 @@ in
     ../academic/write
     ../academic/zathura
     ../academic/zotero.nix
+    ../backup/rclone/home.nix
     ../desktop/avizo
     ../desktop/awww
     ../desktop/chromium/home.nix
@@ -72,7 +73,6 @@ in
     ../utility/htop.nix
     ../utility/lsd.nix
     ../utility/qalc.nix
-    ../backup/rclone/home.nix
     ../utility/scrcpy.nix
     ../utility/scripts
     ../utility/tabiew
