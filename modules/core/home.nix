@@ -37,7 +37,6 @@ in
     ../desktop/avizo
     ../desktop/awww
     ../desktop/chromium/home.nix
-    ../desktop/whatsapp.nix
     ../desktop/clipboard
     ../desktop/gtk
     ../desktop/hypridle.nix
@@ -48,6 +47,7 @@ in
     ../desktop/qt
     ../desktop/rofi
     ../desktop/waybar
+    ../desktop/whatsapp.nix
     ../dev/fish/home.nix
     ../dev/foot
     ../dev/git
@@ -58,25 +58,25 @@ in
     ../dev/tmux
     ../hardware/openrazer/home.nix
     ../hardware/opentabletdriver/home.nix
+    ../media/cava
+    ../media/gimp
+    ../media/mpv
+    ../media/streamlink
+    ../media/swayimg
+    ../media/yt-dlp.nix
     ../security/hyprlock/home.nix
     ../utility/bat.nix
     ../utility/battery/home.nix
     ../utility/btop
-    ../utility/cava
     ../utility/fastfetch
     ../utility/htop.nix
     ../utility/lsd.nix
-    ../utility/mpv
     ../utility/qalc.nix
     ../utility/rclone/home.nix
-    ../utility/gimp
     ../utility/scrcpy.nix
     ../utility/scripts
-    ../utility/streamlink
-    ../utility/swayimg
     ../utility/tabiew
     ../utility/yazi
-    ../utility/yt-dlp.nix
     ../utility/zoxide.nix
     ./env.nix
   ];
