@@ -6,8 +6,8 @@
 }:
 let
   rnote = lib.getExe' pkgs.rnote "rnote";
-  zathura = lib.getExe pkgs.zathura;
-  libreoffice = lib.getExe pkgs.libreoffice;
+  zathura = lib.getExe config.programs.zathura.package;
+  libreoffice = lib.getExe config.programs.libreoffice.package;
   tabiew = lib.getExe' pkgs.tabiew "tw";
   mpv = lib.getExe config.programs.mpv.finalPackage;
   mediainfo = lib.getExe pkgs.mediainfo;
@@ -16,7 +16,7 @@ let
   sqlitebrowser = lib.getExe pkgs.sqlitebrowser;
   adb = lib.getExe' pkgs.android-tools "adb";
   rich = lib.getExe pkgs.rich-cli;
-  swayimg = lib.getExe pkgs.swayimg;
+  swayimg = lib.getExe config.programs.swayimg.package;
 in
 {
   mgr = {
