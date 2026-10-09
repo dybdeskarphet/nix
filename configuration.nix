@@ -12,6 +12,10 @@
     connect-timeout = 5;
     stalled-download-timeout = 10;
     download-buffer-size = 128 * 1024 * 1024;
+    allowed-users = [
+      "@wheel"
+      "skarphet"
+    ];
   };
   nix.gc = {
     automatic = true;
