@@ -11,7 +11,7 @@
       extraArgs ? [ ],
     }:
     let
-      bin = if binName != null then binName else (lib.getName pkg);
+      bin = if binName != null then binName else (pkg.meta.mainProgram or (lib.getName pkg));
 
       roBindsStr = lib.concatMapStringsSep " " (p: "--ro-bind-try '${p}' '${p}'") roBinds;
       rwBindsStr = lib.concatMapStringsSep " " (p: "--bind-try '${p}' '${p}'") rwBinds;
@@ -57,5 +57,6 @@
         wrapped
         pkg
       ];
+      meta.mainProgram = bin;
     };
 }
