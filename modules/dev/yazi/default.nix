@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   myPlugins = pkgs.fetchFromGitHub {
     owner = "dybdeskarphet";
@@ -14,7 +19,7 @@ in
     shellWrapperName = "r";
     initLua = ./init.lua;
     keymap = import ./keymap.nix { inherit pkgs lib; };
-    settings = import ./settings.nix { inherit pkgs lib; };
+    settings = import ./settings.nix { inherit pkgs lib config; };
     theme = {
       flavor = {
         dark = "matugen";

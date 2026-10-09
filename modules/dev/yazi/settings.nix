@@ -1,10 +1,15 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   rnote = lib.getExe' pkgs.rnote "rnote";
   zathura = lib.getExe pkgs.zathura;
   libreoffice = lib.getExe pkgs.libreoffice;
   tabiew = lib.getExe' pkgs.tabiew "tw";
-  mpv = lib.getExe pkgs.mpv;
+  mpv = lib.getExe config.programs.mpv.finalPackage;
   mediainfo = lib.getExe pkgs.mediainfo;
   vlc = lib.getExe pkgs.vlc;
   vscodium = lib.getExe pkgs.vscodium;
