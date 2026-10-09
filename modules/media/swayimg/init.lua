@@ -50,7 +50,12 @@ swayimg.exif_orientation = true
 swayimg.dnd_button = "MouseRight"
 
 -- Format specific settings
-swayimg.set_format_params("raw", { camera_wb = true })
+swayimg.format_conf = {
+	raw = {
+		enable = true,
+		camera_wb = true,
+	},
+}
 --------------------------------------------------------------------------------
 -- Image List Configuration (nsxiv-like directory scanning)
 --------------------------------------------------------------------------------
