@@ -60,6 +60,10 @@ let
       id = "dbepggeogbaibhgnhhndojpepiihcmeb";
       name = "Vimium";
     }
+    {
+      id = "lpgajkhkagnpdjklmpgjeplmgffnhhjj";
+      name = "Trim";
+    }
   ];
 
   extensionsJson = pkgs.writeText "chromium-extensions.json" (builtins.toJSON extensions);
