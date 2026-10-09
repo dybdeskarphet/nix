@@ -13,7 +13,7 @@
     extraOpts = {
       "PasswordManagerEnabled" = false;
       "SpellcheckEnabled" = true;
-      "RestoreOnStartup" = 1;
+      "RestoreOnStartup" = 5;
       "ShowHomeButton" = false;
       "HighEfficiencyModeEnabled" = true;
       "AutofillAddressEnabled" = false;
