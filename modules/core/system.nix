@@ -68,13 +68,25 @@
         "v4l2loopback"
       ];
     };
+    kernelPackages = pkgs.linuxPackages_zen;
     kernelModules = [
       "vkms"
       "v4l2loopback"
     ];
     kernel.sysctl = {
+      # network related
       "net.core.default_qdisc" = "fq";
       "net.ipv4.tcp_congestion_control" = "bbr";
+      # security
+      "kernel.unprivileged_bpf_disabled" = 1;
+      "net.core.bpf_jit_harden" = 2;
+      "kernel.dmesg_restrict" = 1;
+      "kernel.kptr_restrict" = 2;
+      "fs.protected_hardlinks" = 1;
+      "fs.protected_symlinks" = 1;
+      "fs.protected_fifos" = 2;
+      "fs.protected_regular" = 2;
+      "kernel.yama.ptrace_scope" = 1;
     };
     loader = {
       systemd-boot = {
