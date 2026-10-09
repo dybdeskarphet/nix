@@ -215,7 +215,6 @@
       "network"
       "video"
       "audio"
-      "input"
     ];
     packages = [ ];
     shell = pkgs.fish;
