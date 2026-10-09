@@ -1,8 +1,25 @@
-{ config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+let
+  inherit ((import ../security/sandbox.nix { inherit pkgs lib; })) mkSandboxed;
+in
 {
   programs.yt-dlp = {
     enable = true;
-
+    package = mkSandboxed {
+      pkg = pkgs.yt-dlp;
+      unshareNet = false;
+      bindFiles = true;
+      rwBinds = [
+        "${config.xdg.configHome}/yt-dlp"
+        config.xdg.userDirs.videos
+        config.xdg.userDirs.download
+      ];
+    };
     settings = {
       paths = "home:${config.xdg.userDirs.videos}";
       output = "%(title)s [%(id)s].%(ext)s";

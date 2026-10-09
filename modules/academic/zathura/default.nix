@@ -1,8 +1,27 @@
-{ ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+let
+  inherit ((import ../../security/sandbox.nix { inherit pkgs lib; })) mkSandboxed;
+in
 {
   programs.zathura = {
     enable = true;
-
+    package = mkSandboxed {
+      pkg = pkgs.zathura;
+      unshareNet = true;
+      roBinds = [
+        "${config.xdg.configHome}/zathura"
+        config.xdg.userDirs.documents
+      ];
+      rwBinds = [
+        "${config.xdg.dataHome}/zathura"
+        config.xdg.userDirs.download
+      ];
+    };
     options = {
       recolor = true;
       recolor-keephue = true;

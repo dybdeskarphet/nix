@@ -1,7 +1,15 @@
-{ ... }:
+{ pkgs, lib, ... }:
+let
+  inherit ((import ../../security/sandbox.nix { inherit pkgs lib; })) mkSandboxed;
+in
 {
   programs.pandoc = {
     enable = true;
+    package = mkSandboxed {
+      pkg = pkgs.pandoc;
+      unshareNet = true;
+      bindFiles = true;
+    };
   };
 
   xdg.dataFile = {

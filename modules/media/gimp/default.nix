@@ -6,16 +6,28 @@
 }:
 
 let
+  inherit ((import ../../security/sandbox.nix { inherit pkgs lib; })) mkSandboxed;
+
   photogimpSrc = pkgs.fetchFromGitHub {
     owner = "Diolinux";
     repo = "PhotoGIMP";
     rev = "eca3a8f57b9944c063d043ce7c07524107b5292d";
     hash = "sha256-LNopObpXTkYbjqZMkwu0DhdLROuTkE+LYsnwdaICTd0=";
   };
+
+  sandboxedGimp = mkSandboxed {
+    pkg = pkgs.gimp;
+    unshareNet = true;
+    rwBinds = [
+      "${config.xdg.configHome}/GIMP"
+      config.xdg.userDirs.pictures
+      config.xdg.userDirs.download
+    ];
+  };
 in
 {
-  home.packages = with pkgs; [
-    gimp
+  home.packages = [
+    sandboxedGimp
   ];
 
   home.activation.setupPhotoGIMP = lib.hm.dag.entryAfter [ "writeBoundary" ] ''

@@ -20,7 +20,6 @@ let
     python3
     inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.antigravity-cli
     axel
-    libreoffice
     ffmpeg
     obs-studio
     spotify
@@ -30,6 +29,7 @@ let
 in
 {
   imports = [
+    ../academic/libreoffice.nix
     ../academic/rnote
     ../academic/write
     ../academic/zathura
