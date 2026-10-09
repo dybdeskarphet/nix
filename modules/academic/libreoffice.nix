@@ -8,8 +8,9 @@ let
   inherit ((import ../security/sandbox.nix { inherit pkgs lib; })) mkSandboxed;
 in
 {
-  home.packages = [
-    (mkSandboxed {
+  programs.libreoffice = {
+    enable = true;
+    package = mkSandboxed {
       pkg = pkgs.libreoffice;
       unshareNet = true;
       rwBinds = [
@@ -17,6 +18,6 @@ in
         config.xdg.userDirs.documents
         config.xdg.userDirs.download
       ];
-    })
-  ];
+    };
+  };
 }
