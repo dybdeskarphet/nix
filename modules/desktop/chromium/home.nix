@@ -56,18 +56,11 @@ let
       id = "mmioliijnhnoblpgimnlajmefafdfilb";
       name = "Shazam";
     }
-    {
-      id = "dbepggeogbaibhgnhhndojpepiihcmeb";
-      name = "Vimium";
-    }
-    {
-      id = "lpgajkhkagnpdjklmpgjeplmgffnhhjj";
-      name = "Trim";
-    }
   ];
 
-  extensionsJson = pkgs.writeText "chromium-extensions.json" (builtins.toJSON extensions);
-  extensionsHash = builtins.hashString "sha256" (builtins.toJSON extensions);
+  uniqueExtensions = lib.unique extensions;
+  extensionsJson = pkgs.writeText "chromium-extensions.json" (builtins.toJSON uniqueExtensions);
+  extensionsHash = builtins.hashString "sha256" (builtins.toJSON uniqueExtensions);
 
   rawChromium =
     (pkgs.ungoogled-chromium.override {
