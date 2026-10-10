@@ -25,6 +25,7 @@ let
     spotify
     borgbackup
     mermaid-cli
+    duf
   ];
 in
 {
@@ -99,6 +100,7 @@ in
     find = "fd";
     hyprpicker = "hyprpicker -a";
     grep = "rg";
+    df = "duf";
   };
   # }}}
 }
