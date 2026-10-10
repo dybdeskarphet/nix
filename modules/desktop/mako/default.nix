@@ -15,6 +15,7 @@ let
     anchor = "top-right";
     outer-margin = 7;
     margin = "0,0,8,0";
+    default-timeout = 5000;
 
     markup = true;
     format = "<b>%s</b> <span rise='2pt' size='small' fgalpha='60%%' text_transform='uppercase'>| %a</span>\\n%b";
@@ -42,10 +43,12 @@ let
 
     "app-name=ZapZap" = {
       max-icon-size = 64;
+      default-timeout = 8000;
     };
 
     "app-name=Screenshot" = {
       max-icon-size = 128;
+      default-timeout = 3000;
     };
 
     "urgency=critical" = {
