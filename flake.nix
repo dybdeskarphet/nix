@@ -8,10 +8,6 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    easyclone = {
-      url = "github:dybdeskarphet/easyclone";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     llm-agents.url = "github:numtide/llm-agents.nix";
     neovim-config = {
       url = "github:dybdeskarphet/neovim-config";
