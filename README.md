@@ -23,8 +23,8 @@ Rebuild and switch using `nh` (don't forget to configure your `/etc/nixos/env.ni
 
 ```bash
 # apply
-nh os switch .
+nh os switch . -- --impure
 
 # test
-nh os test .
+nh os test . -- --impure
 ```
