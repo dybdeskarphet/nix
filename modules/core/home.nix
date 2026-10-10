@@ -49,7 +49,6 @@ in
     ../desktop/qt
     ../desktop/rofi
     ../desktop/waybar
-    ../desktop/whatsapp.nix
     ../dev/bat.nix
     ../dev/fish/home.nix
     ../dev/foot
