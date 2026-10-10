@@ -13,8 +13,9 @@ let
     bindFiles = false;
     unshareNet = false;
     rwBinds = [
-      "${config.xdg.configHome}/zapzap"
-      "${config.xdg.dataHome}/zapzap"
+      "${config.xdg.configHome}/ZapZap"
+      "${config.xdg.cacheHome}/ZapZap"
+      "${config.xdg.dataHome}/ZapZap"
       config.xdg.userDirs.download
     ];
   };
