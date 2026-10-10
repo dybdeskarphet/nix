@@ -127,6 +127,8 @@
       "rfkill.default_state=1"
 
       "dyndbg=\"func fw_log_firmware_info +p\""
+
+      "initcall_blacklist=init_ima"
     ];
   };
   # }}}
