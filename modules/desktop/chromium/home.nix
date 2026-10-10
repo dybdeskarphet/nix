@@ -6,6 +6,11 @@ let
       url = "https://meet.google.com";
       icon = "google-meet";
     };
+    whatsapp = {
+      name = "WhatsApp";
+      url = "https://web.whatsapp.com";
+      icon = "whatsapp";
+    };
   };
 
   chromiumWebStore = pkgs.fetchFromGitHub {
