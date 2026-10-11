@@ -241,7 +241,19 @@
   # }}}
 
   # Dynamic binary support {{{
-  programs.nix-ld.enable = true;
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      wayland
+      glib
+      libGL
+      libxkbcommon
+      fontconfig
+      freetype
+      dbus
+      xorg.libX11
+    ];
+  };
   # }}}
 }
 
