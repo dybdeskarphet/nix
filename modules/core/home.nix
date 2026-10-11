@@ -57,6 +57,7 @@ in
     ../dev/lazygit
     ../dev/lsd.nix
     ../dev/neovim/home.nix
+    ../dev/python
     ../dev/sqlite.nix
     ../dev/tmux
     ../dev/yazi
