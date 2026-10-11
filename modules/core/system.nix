@@ -240,7 +240,7 @@
   services.timesyncd.enable = lib.mkDefault true;
   # }}}
 
-  # Dynamic binary support {{{
+  # Linker {{{
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
