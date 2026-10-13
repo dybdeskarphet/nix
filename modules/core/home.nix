@@ -26,6 +26,9 @@ let
     borgbackup
     mermaid-cli
     duf
+    kdePackages.kdenlive
+    mediainfo
+    pavucontrol
   ];
 in
 {
