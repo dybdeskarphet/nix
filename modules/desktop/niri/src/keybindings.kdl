@@ -32,6 +32,8 @@ binds {
     Mod+Shift+K         { move-column-to-workspace-up; }
     Mod+Shift+U         { move-workspace-down; }
     Mod+Shift+I         { move-workspace-up; }
+    Mod+Shift+WheelScrollDown      { move-column-to-workspace-down; }
+    Mod+Shift+WheelScrollUp        { move-column-to-workspace-up; }
 
     Mod+X { spawn-sh "nirius toggle-follow-mode";}
 
@@ -44,8 +46,6 @@ binds {
 
     Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
     Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
-    Mod+Shift+WheelScrollDown      { focus-column-right; }
-    Mod+Shift+WheelScrollUp        { focus-column-left; }
 
     Mod+TouchpadScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }
     Mod+TouchpadScrollUp   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
