@@ -10,11 +10,20 @@ let
     "#FE811A"
     "#FB4A35"
   ];
-
   savedColors = lib.concatMapStringsSep "," (hex: "#FF" + (lib.removePrefix "#" hex)) palette;
+  write-wrapped = pkgs.symlinkJoin {
+    name = "styluslabs-write-wrapped";
+    paths = [ pkgs.styluslabs-write ];
+    nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/Write \
+        --set SDL_VIDEODRIVER x11
+      ln -s $out/bin/Write $out/bin/write_stylus
+    '';
+  };
 in
 {
-  home.packages = [ pkgs.styluslabs-write ];
+  home.packages = [ write-wrapped ];
 
   xdg.configFile."styluslabs/write.xml".text = ''
     <?xml version="1.0"?>
