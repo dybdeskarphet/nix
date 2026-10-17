@@ -61,6 +61,10 @@ let
       id = "mmioliijnhnoblpgimnlajmefafdfilb";
       name = "Shazam";
     }
+    {
+      id = "hlepfoohegkhhmjieoechaddaejaokhf";
+      name = "Refined GitHub";
+    }
   ];
 
   uniqueExtensions = lib.unique extensions;
