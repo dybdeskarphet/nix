@@ -27,6 +27,7 @@
     dates = [ "weekly" ];
   };
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
+  programs.nix-index-database.comma.enable = true;
 
   imports = [
     ./modules/core/system.nix

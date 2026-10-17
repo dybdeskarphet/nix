@@ -13,6 +13,10 @@
       url = "github:dybdeskarphet/neovim-config";
       flake = false;
     };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -49,7 +53,7 @@
         modules = [
           ./configuration.nix
           activeHardwarePath
-
+          inputs.nix-index-database.nixosModules.nix-index
           {
             warnings = [
               "using ${toString activeHardwarePath} for hardware config"
