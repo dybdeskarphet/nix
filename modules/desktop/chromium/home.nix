@@ -54,9 +54,8 @@ let
     }
   ];
 
-  uniqueExtensions = lib.unique extensions;
-  extensionsJson = pkgs.writeText "chromium-extensions.json" (builtins.toJSON uniqueExtensions);
-  extensionsHash = builtins.hashString "sha256" (builtins.toJSON uniqueExtensions);
+  extensionsJson = pkgs.writeText "chromium-extensions.json" (builtins.toJSON lib.unique extensions);
+  extensionsHash = builtins.hashString "sha256" (builtins.toJSON lib.unique extensions);
 
   rawChromium =
     (pkgs.ungoogled-chromium.override {
@@ -103,6 +102,7 @@ let
       }
     )
   );
+  apps = import ./apps.nix;
 in
 {
   programs.chromium = {
@@ -113,5 +113,16 @@ in
 
   home.packages = [
     installExtensionsScript
-  ];
+  ]
+  ++ map (
+    app:
+    pkgs.writeShellScriptBin app.bin ''
+      desktop_file=$(grep -l -i "^Name=${app.name}$" ~/.local/share/applications/chrome-*-Default.desktop 2>/dev/null | head -n 1)
+      if [ -n "$desktop_file" ]; then
+        exec $(sed -n 's/^Exec=//p' "$desktop_file") "$@"
+      else
+        exec chromium --profile-directory=Default --app="${app.url}" "$@"
+      fi
+    ''
+  ) apps;
 }
