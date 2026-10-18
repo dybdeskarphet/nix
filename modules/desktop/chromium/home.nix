@@ -1,18 +1,5 @@
 { pkgs, lib, ... }:
 let
-  webApps = {
-    google-meet = {
-      name = "Google Meet";
-      url = "https://meet.google.com";
-      icon = "google-meet";
-    };
-    instagram = {
-      name = "instagram";
-      url = "https://instagram.com";
-      icon = "instagram";
-    };
-  };
-
   chromiumWebStore = pkgs.fetchFromGitHub {
     owner = "NeverDecaf";
     repo = "chromium-web-store";
@@ -126,23 +113,5 @@ in
 
   home.packages = [
     installExtensionsScript
-  ]
-  ++ lib.mapAttrsToList (
-    bin: app:
-    pkgs.writeShellScriptBin bin ''
-      exec chromium --profile-directory=Default --app="${app.url}" "$@"
-    ''
-  ) webApps;
-
-  xdg.desktopEntries = builtins.mapAttrs (bin: app: {
-    name = app.name;
-    exec = bin;
-    icon = app.icon or "chromium";
-    terminal = false;
-    type = "Application";
-    categories = [
-      "Network"
-      "Application"
-    ];
-  }) webApps;
+  ];
 }

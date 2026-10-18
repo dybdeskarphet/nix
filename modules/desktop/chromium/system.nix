@@ -36,6 +36,20 @@
       "DefaultSearchProviderSearchURL" = "https://www.google.com/search?q={searchTerms}";
       "DefaultSearchProviderSuggestURL" =
         "https://www.google.com/complete/search?client=chrome&q={searchTerms}";
+      "WebAppInstallForceList" = [
+        {
+          url = "https://meet.google.com";
+          default_launch_container = "window";
+          create_desktop_shortcut = true;
+          fallback_app_name = "Google Meet";
+        }
+        {
+          url = "https://instagram.com";
+          default_launch_container = "window";
+          create_desktop_shortcut = true;
+          fallback_app_name = "Instagram";
+        }
+      ];
     };
   };
 }
