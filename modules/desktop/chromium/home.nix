@@ -7,53 +7,7 @@ let
     hash = "sha256-Hsk3bh4AYWCYyK8JJjWV1gcdQTrdzTODQithRHeCzu8=";
   };
 
-  extensions = [
-    {
-      id = "ddkjiahejlhfcafbddmgiahcphecmpfh";
-      name = "uBlock Origin Lite";
-    }
-    {
-      id = "dbepggeogbaibhgnhhndojpepiihcmeb";
-      name = "Vimium";
-    }
-    {
-      id = "eimadpbcbfnmbkopoojfekhnkhdbieeh";
-      name = "Dark Reader";
-    }
-    {
-      id = "jplgfhpmjnbigmhklmmbgecoobifkmpa";
-      name = "Proton VPN";
-    }
-    {
-      id = "oocalimimngaihdkbihfgmpkcpnmlaoa";
-      name = "Teleparty";
-    }
-    {
-      id = "ekhagklcjbdpajgpjgmbionohlpdbjgc";
-      name = "Zotero Connector";
-    }
-    {
-      id = "oboonakemofpalcgghocfoadofidjkkk";
-      name = "KeePassXC-Browser";
-    }
-    {
-      id = "lpgajkhkagnpdjklmpgjeplmgffnhhjj";
-      name = "Trim";
-    }
-    {
-      id = "jinjaccalgkegednnccohejagnlnfdag";
-      name = "Violentmonkey";
-    }
-    {
-      id = "mmioliijnhnoblpgimnlajmefafdfilb";
-      name = "Shazam";
-    }
-    {
-      id = "hlepfoohegkhhmjieoechaddaejaokhf";
-      name = "Refined GitHub";
-    }
-  ];
-
+  extensions = import ./extensions.nix;
   uniqueExtensions = lib.unique extensions;
   extensionsJson = pkgs.writeText "chromium-extensions.json" (builtins.toJSON uniqueExtensions);
   extensionsHash = builtins.hashString "sha256" (builtins.toJSON uniqueExtensions);
