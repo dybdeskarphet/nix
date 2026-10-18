@@ -6,10 +6,10 @@ let
       url = "https://meet.google.com";
       icon = "google-meet";
     };
-    whatsapp = {
-      name = "WhatsApp";
-      url = "https://web.whatsapp.com";
-      icon = "whatsapp";
+    instagram = {
+      name = "instagram";
+      url = "https://instagram.com";
+      icon = "instagram";
     };
   };
 
