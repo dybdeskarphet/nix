@@ -29,6 +29,7 @@ let
     kdePackages.kdenlive
     mediainfo
     pavucontrol
+    super-productivity
   ];
 in
 {
