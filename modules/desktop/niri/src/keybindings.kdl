@@ -111,7 +111,7 @@ binds {
     XF86AudioMicMute { spawn-sh "volumectl -m -a toggle-mute && pkill -RTMIN+5 waybar"; }
     XF86HomePage { spawn-sh "volumectl -m -a toggle-mute && pkill -RTMIN+5 waybar"; }
     XF86Calculator { spawn "footclient" "-T" "qalc" "-a" "qalc" "qalc"; }
-    XF86Launch4 { spawn "shortcuts" "-t"; }
+    XF86Launch4 { spawn-sh "kill -s SIGUSR1 $(pidof waybar)" }
     XF86Macro27 { spawn "notify-send" "-r" "134897" "-a" "Razer" "-i" "keyboard" "brightness increased"; }
     XF86Macro28 { spawn "notify-send" "-r" "134897" "-a" "Razer" "-i" "keyboard" "brightness decreased"; }
     XF86Favorites hotkey-overlay-title="Open quick menu" { spawn "quickmenu"; }
@@ -123,7 +123,6 @@ binds {
     ISO_Level3_Shift+J { spawn "volumectl" "-m" "down"; }
 
     Mod+Space hotkey-overlay-title="Close the latest notification" { spawn "makoctl" "dismiss"; }
-    Mod+b hotkey-overlay-title="Show notification history" { spawn "shortcuts" "-n"; }
-    Mod+t hotkey-overlay-title="Show todo" { spawn "shortcuts" "-o"; }
-    Mod+shift+b hotkey-overlay-title="Toggle do-not-disturb mode" { spawn "shortcuts" "-d"; }
+    Mod+b hotkey-overlay-title="Show notification history" { spawn-sh "makoctl history -j | tw -f json"; }
+    Mod+shift+b hotkey-overlay-title="Toggle do-not-disturb mode" { spawn-sh "makoctl" "mode" "-t" "dnd"; }
 } 
