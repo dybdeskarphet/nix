@@ -82,7 +82,7 @@
         }
         {
           monitor = "";
-          text = "    $USER";
+          text = "    $USER";
           color = "rgba(216, 222, 233, 0.80)";
           font_size = 16;
           font_family = "proportional_font";
@@ -116,7 +116,8 @@
           font_color = "rgb(200, 200, 200)";
           fade_on_empty = false;
           font_family = "proportional_font";
-          placeholder_text = ''<i><span foreground="##ffffff99">    Enter Password </span></i>'';
+          placeholder_text = ''<i><span foreground="##ffffff99">    Enter Password </span></i>'';
+
           hide_input = false;
           position = "160, -220";
           halign = "left";
