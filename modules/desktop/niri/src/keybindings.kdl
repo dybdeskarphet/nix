@@ -111,7 +111,7 @@ binds {
     XF86AudioMicMute { spawn-sh "volumectl -m -a toggle-mute && pkill -RTMIN+5 waybar"; }
     XF86HomePage { spawn-sh "volumectl -m -a toggle-mute && pkill -RTMIN+5 waybar"; }
     XF86Calculator { spawn "footclient" "-T" "qalc" "-a" "qalc" "qalc"; }
-    XF86Launch4 { spawn-sh "kill -s SIGUSR1 $(pidof waybar)" }
+    XF86Launch4 { spawn-sh "kill -s SIGUSR1 $(pidof waybar)"; }
     XF86Macro27 { spawn "notify-send" "-r" "134897" "-a" "Razer" "-i" "keyboard" "brightness increased"; }
     XF86Macro28 { spawn "notify-send" "-r" "134897" "-a" "Razer" "-i" "keyboard" "brightness decreased"; }
     XF86Favorites hotkey-overlay-title="Open quick menu" { spawn "quickmenu"; }
