@@ -124,5 +124,5 @@ binds {
 
     Mod+Space hotkey-overlay-title="Close the latest notification" { spawn "makoctl" "dismiss"; }
     Mod+b hotkey-overlay-title="Show notification history" { spawn-sh "makoctl history -j | tw -f json"; }
-    Mod+shift+b hotkey-overlay-title="Toggle do-not-disturb mode" { spawn-sh "makoctl" "mode" "-t" "dnd"; }
+    Mod+shift+b hotkey-overlay-title="Toggle do-not-disturb mode" { spawn "makoctl" "mode" "-t" "dnd"; }
 } 
