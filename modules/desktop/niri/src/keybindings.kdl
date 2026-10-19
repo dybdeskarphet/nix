@@ -123,6 +123,6 @@ binds {
     ISO_Level3_Shift+J { spawn "volumectl" "-m" "down"; }
 
     Mod+Space hotkey-overlay-title="Close the latest notification" { spawn "makoctl" "dismiss"; }
-    Mod+b hotkey-overlay-title="Show notification history" { spawn-sh "makoctl history -j | tw -f json"; }
+    Mod+b hotkey-overlay-title="Show notification history" { spawn "footclient" "-T" "Notification History" "sh" "-c" "makoctl history -j | tw -f json"; }
     Mod+shift+b hotkey-overlay-title="Toggle do-not-disturb mode" { spawn "makoctl" "mode" "-t" "dnd"; }
 } 
