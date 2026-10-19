@@ -30,6 +30,7 @@ let
     mediainfo
     pavucontrol
     super-productivity
+    wev
   ];
 in
 {
