@@ -6,6 +6,10 @@
     items = [ ];
   };
 
+  hyprlock = {
+    pp = "path to your profile picture";
+  };
+
   screenshot = {
     dir = "~/Pictures/Screenshots";
     ocr_lang = "tur+eng";

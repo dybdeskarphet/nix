@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, env, ... }:
 {
   programs.hyprlock = {
     enable = true;
@@ -19,7 +19,7 @@
       image = [
         {
           monitor = "";
-          path = "${./images/profile.jpeg}";
+          path = env.hyprlock.pp;
           border_size = 2;
           border_color = "rgba(255, 255, 255, .75)";
           size = 95;
