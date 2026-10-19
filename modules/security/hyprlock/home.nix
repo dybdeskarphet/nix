@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, ... }:
 {
   programs.hyprlock = {
     enable = true;
@@ -11,31 +11,8 @@
 
       background = [
         {
-          monitor = "HDMI-A-1";
-          path = "${./images/lock_wall.png}";
-          blur_passes = 0;
-          contrast = 0.8916;
-          brightness = 0.8172;
-          vibrancy = 0.1696;
-          vibrancy_darkness = 0.0;
-        }
-        {
-          monitor = "eDP-1";
-          path = "${./images/lock_wall.png}";
-          blur_passes = 0;
-          contrast = 0.8916;
-          brightness = 0.8172;
-          vibrancy = 0.1696;
-          vibrancy_darkness = 0.0;
-        }
-        {
-          monitor = "Virtual-1";
-          path = "${./images/lock_wall.png}";
-          blur_passes = 0;
-          contrast = 0.8916;
-          brightness = 0.8172;
-          vibrancy = 0.1696;
-          vibrancy_darkness = 0.0;
+          monitor = "";
+          path = "${config.home.homeDirectory}/img/.wallpaper_lock.png";
         }
       ];
 
