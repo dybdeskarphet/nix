@@ -31,7 +31,6 @@ let
     "uefi" = "systemctl reboot --firmware-setup";
 
     "svim" = "sudo ${nvim}";
-    "t" = "${nvim} ${config.home.homeDirectory}/doc/todo.txt";
   };
 
   nixAbbrs = {
