@@ -41,7 +41,7 @@ let
       invisible = 1;
     };
 
-    "app-name=ZapZap" = {
+    "app-name=elecwhat" = {
       max-icon-size = 64;
       default-timeout = 8000;
     };
