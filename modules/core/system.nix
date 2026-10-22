@@ -65,13 +65,11 @@
       kernelModules = [
         "amdgpu"
         "vkms"
-        "v4l2loopback"
       ];
     };
     kernelPackages = pkgs.linuxPackages_zen;
     kernelModules = [
       "vkms"
-      "v4l2loopback"
     ];
     kernel.sysctl = {
       # network related
@@ -106,9 +104,6 @@
       options rtw88_pci disable_aspm=y
       options rtw88_core disable_lps_deep=y
     '';
-    extraModulePackages = with config.boot.kernelPackages; [
-      v4l2loopback
-    ];
     tmp.useTmpfs = true;
     tmp.cleanOnBoot = true;
     kernelParams = [
