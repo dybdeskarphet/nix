@@ -33,6 +33,7 @@
     wget
     curl
     htop
+    bubblewrap
   ];
   # }}}
 
