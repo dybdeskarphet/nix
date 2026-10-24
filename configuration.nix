@@ -29,6 +29,20 @@
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
   programs.nix-index-database.comma.enable = true;
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      aggregateModules =
+        modules:
+        (prev.aggregateModules modules).overrideAttrs (old: {
+          postBuild =
+            builtins.replaceStrings
+              [ "xargs -d'\\n' cat >> modules.cer" ]
+              [ "while read -r cer; do if [ -f \"$cer\" ]; then cat \"$cer\"; fi; done >> modules.cer" ]
+              old.postBuild;
+        });
+    })
+  ];
+
   imports = [
     ./modules/core/system.nix
   ];
