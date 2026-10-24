@@ -248,6 +248,10 @@
       freetype
       dbus
       libx11
+      alsa-lib
+      libpulseaudio
+      libogg
+      libvorbis
     ];
   };
   # }}}
