@@ -62,7 +62,6 @@
   # Boot {{{
   boot = {
     initrd = {
-      systemd.enable = true;
       kernelModules = [
         "amdgpu"
         "vkms"
