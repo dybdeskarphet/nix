@@ -37,7 +37,8 @@ let
     "ned" = "${tmuxp} load nix";
     "nev" = "sudo ${nvim} /etc/nixos/env.nix";
 
-    "nbu" = "${nh} os switch --impure";
+    "nbu" = "${nh} os boot --impure";
+    "nbun" = "${nh} os switch --impure";
     "nts" = "${nh} os test --impure";
     "nup" = "${nh} os boot -u --commit-lock-file --impure";
 
