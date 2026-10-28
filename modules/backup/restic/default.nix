@@ -73,6 +73,7 @@ in
       "--keep-daily 7"
       "--keep-weekly 4"
       "--keep-monthly 6"
+      "--keep-tag permanent"
     ];
 
     timerConfig = {
