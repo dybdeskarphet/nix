@@ -31,6 +31,8 @@ let
     pavucontrol
     super-productivity
     wev
+    sirikali
+    gocryptfs
   ];
 in
 {
