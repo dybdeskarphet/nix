@@ -7,7 +7,7 @@
     enable = true;
     settings = {
       paths = "home:${config.xdg.userDirs.videos}";
-      output = "%(title)s [%(id)s].%(ext)s";
+      output = "\"%(title)s [%(id)s].%(ext)s\"";
       embed-metadata = true;
       embed-chapters = true;
       embed-thumbnail = true;
