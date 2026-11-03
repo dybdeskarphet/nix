@@ -10,6 +10,10 @@ let
   wrapperPkg = lib.findFirst (
     p: p.name == "restic-cloud-backup"
   ) null config.environment.systemPackages;
+  fusermountCompat = pkgs.runCommand "fusermount-compat" { } ''
+    mkdir -p $out/bin
+    ln -s ${pkgs.fuse3}/bin/fusermount3 $out/bin/fusermount
+  '';
 in
 {
   environment.systemPackages = [
@@ -94,7 +98,8 @@ in
     wants = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
     path = [
-      pkgs.fuse
+      pkgs.fuse3
+      fusermountCompat
     ];
     serviceConfig = {
       Type = "simple";
@@ -109,7 +114,7 @@ in
           ${cld}
       '';
 
-      ExecStop = "${pkgs.fuse}/bin/fusermount -u ${cld}";
+      ExecStop = "${pkgs.fuse3}/bin/fusermount3 -u ${cld}";
       Restart = "on-failure";
       RestartSec = "10s";
     };
