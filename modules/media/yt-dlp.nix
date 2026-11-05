@@ -13,7 +13,7 @@
       embed-thumbnail = true;
       embed-subs = true;
       sub-langs = "all,-live_chat";
-      format-sort = "res,codec:av01:vp9.2:vp9:h264";
+      format-sort = "res,vcodec:av01:vp9.2:vp9:h264";
       merge-output-format = "mkv";
       concurrent-fragments = 4;
       retries = 10;
