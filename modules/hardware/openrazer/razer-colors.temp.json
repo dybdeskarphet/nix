@@ -1,5 +1,5 @@
 {
-  "r": {{colors.primary.dark.red}},
-  "g": {{colors.primary.dark.green}},
-  "b": {{colors.primary.dark.blue}}
+  "r": {{colors.primary.dark.hex | saturate: 30.0, "hsl" | format: "red"}},
+  "g": {{colors.primary.dark.hex | saturate: 30.0, "hsl" | format: "green"}},
+  "b": {{colors.primary.dark.hex | saturate: 30.0, "hsl" | format: "blue"}}
 }
