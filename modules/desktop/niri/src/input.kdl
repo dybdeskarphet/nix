@@ -15,11 +15,6 @@ input {
         accel-profile "adaptive"
     }
 
-    tablet {
-        map-to-output "Virtual-1"
-        calibration-matrix 1.0 0.0 0.0 0.0 1.0 0.0
-    }
-
     touch {
         map-to-output "Virtual-1"
     }
