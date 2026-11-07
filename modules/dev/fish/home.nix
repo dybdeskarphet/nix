@@ -83,14 +83,10 @@ in
   xdg.configFile = {
     "matugen/templates/fish_prompt.fish".source = ./templates/fish_prompt.temp.fish;
     "matugen/templates/sudo_prompt.fish".source = ./templates/sudo_prompt.temp.fish;
+    "matugen/templates/fzf_colors.fish".source = ./templates/fzf_colors.temp.fish;
     "fish/functions" = {
       source = ./config/functions;
       recursive = true;
     };
   };
-
-  home.packages = with pkgs; [
-    wl-clipboard
-    yt-dlp
-  ];
 }
