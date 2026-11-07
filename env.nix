@@ -1,8 +1,8 @@
 {
   homeSSID = null;
 
-  nvim = {
-    todotxt = "path to todotxt";
+  todotxt = {
+    current = "path to todotxt";
   };
 
   borg = {
