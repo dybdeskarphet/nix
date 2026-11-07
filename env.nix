@@ -1,6 +1,10 @@
 {
   homeSSID = null;
 
+  nvim = {
+    todotxt = "path to todotxt";
+  };
+
   borg = {
     repo = "";
     items = [ ];

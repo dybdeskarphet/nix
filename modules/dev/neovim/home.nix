@@ -1,4 +1,9 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  env,
+  ...
+}:
 {
   xdg.configFile."nvim".source = inputs.neovim-config;
 
@@ -24,4 +29,8 @@
     pandoc
     typst
   ];
+
+  programs.fish.shellAbbrs = {
+    "t" = "nvim ${env.nvim.todotxt}";
+  };
 }
