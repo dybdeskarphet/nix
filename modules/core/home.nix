@@ -39,6 +39,7 @@ in
   imports = [
     ../academic/libreoffice.nix
     ../academic/rnote
+    ../academic/todotxt.nix
     ../academic/write
     ../academic/zathura
     ../academic/zotero.nix

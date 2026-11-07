@@ -29,8 +29,4 @@
     pandoc
     typst
   ];
-
-  programs.fish.shellAbbrs = {
-    "t" = "nvim ${env.nvim.todotxt}";
-  };
 }
