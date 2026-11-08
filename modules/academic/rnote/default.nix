@@ -70,5 +70,24 @@ in
         show_origin_indicator = true;
       };
     };
+
+    engine-config = builtins.toJSON {
+      pens_config = {
+        shortcuts = {
+          stylus_primary_button = {
+            change_pen_style = {
+              style = "eraser";
+              mode = "temporary";
+            };
+          };
+          stylus_secondary_button = {
+            change_pen_style = {
+              style = "tools";
+              mode = "disabled";
+            };
+          };
+        };
+      };
+    };
   };
 }
