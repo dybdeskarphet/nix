@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,10 +47,15 @@
         system = "x86_64-linux";
         config.allowUnfree = true;
       };
+
+      pkgs-small = import inputs.nixpkgs-small {
+        system = "x86_64-linux";
+        config.allowUnfree = true;
+      };
     in
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs env pkgs-stable; };
+        specialArgs = { inherit inputs env pkgs-stable pkgs-small; };
         modules = [
           ./configuration.nix
           activeHardwarePath
@@ -65,7 +71,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs env pkgs-stable; };
+            home-manager.extraSpecialArgs = { inherit inputs env pkgs-stable pkgs-small; };
             home-manager.users.skarphet = ./home.nix;
           }
         ];

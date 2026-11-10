@@ -9,4 +9,9 @@
     name = "Instagram";
     url = "https://instagram.com";
   }
+  {
+    bin = "gemini";
+    name = "Gemini";
+    url = "https://gemini.google.com";
+  }
 ]

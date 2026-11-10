@@ -3,6 +3,8 @@ let
   apps = import ./apps.nix;
 in
 {
+  environment.etc."brave/policies".source = "/etc/chromium/policies";
+
   programs.chromium = {
     enable = true;
 
@@ -14,6 +16,12 @@ in
     };
 
     extraOpts = {
+      # Brave bloat elimination
+      "BraveRewardsDisabled" = true;
+      "BraveWalletDisabled" = true;
+      "BraveVPNDisabled" = true;
+      "BraveAIChatEnabled" = false;
+
       "PasswordManagerEnabled" = false;
       "SpellcheckEnabled" = true;
       "RestoreOnStartup" = 5;

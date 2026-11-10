@@ -2,7 +2,7 @@ binds {
     Mod+Return hotkey-overlay-title="Open the terminal" { spawn-sh "footclient"; }
     Mod+Shift+Return hotkey-overlay-title="Open the terminal" { spawn-sh "foot"; }
     Mod+P hotkey-overlay-title="Open application launcher" { spawn "rofi" "-show" "run" "-show-icons" "-display-run" "   run"; }
-    Mod+W hotkey-overlay-title="Open browser" { spawn "chromium"; }
+    Mod+W hotkey-overlay-title="Open browser" { spawn "brave"; }
     Mod+Escape hotkey-overlay-title="Open quick menu" { spawn "quickmenu"; }
     Mod+Shift+V hotkey-overlay-title="Open clipboard manager" { spawn "footclient" "-a" "clipse" "-T" "clipse" "clipse"; }
 
