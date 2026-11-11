@@ -14,6 +14,18 @@ in
         system_theme = 1; # GTK theme
         use_system = true;
       };
+      brave = {
+        tabs = {
+          vertical_tabs_enabled = true;
+          tree_tabs_enabled = true;
+          vertical_tabs_floating_enabled = true;
+          vertical_tabs_expanded_state_per_window = false;
+          vertical_tabs_hide_completely_when_collapsed = false;
+        };
+        sidebar.sidebar_show_option = 3; # Never
+        show_side_panel_button = false;
+      };
+      vertical_tabs.collapsed_state = true;
     };
 
     extraOpts = {

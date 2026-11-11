@@ -28,11 +28,10 @@ in
     ];
 
     commandLineArgs = [
-      "--enable-features=UseOzonePlatform"
+      "--enable-features=UseOzonePlatform,BraveTreeTab"
       "--ozone-platform=wayland"
       "--enable-gpu-rasterization"
       "--enable-zero-copy"
-      "--gtk-version=4"
     ];
   };
 
