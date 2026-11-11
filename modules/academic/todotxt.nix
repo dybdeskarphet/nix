@@ -20,8 +20,8 @@ in
   xdg.configFile."todo/config".text = ''
     export TODO_DIR="${config.xdg.userDirs.documents}"
     export TODO_FILE="$TODO_DIR/todo.txt"
-    export DONE_FILE="$TODO_DIR/done.txt"
-    export REPORT_FILE="$TODO_DIR/report.txt"
+    export DONE_FILE="$TODO_DIR/.done.todo.txt"
+    export REPORT_FILE="$TODO_DIR/.report.txt"
   '';
 
   programs.fish.functions = {
