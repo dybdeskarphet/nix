@@ -32,6 +32,7 @@ in
       "--ozone-platform=wayland"
       "--enable-gpu-rasterization"
       "--enable-zero-copy"
+      "--gtk-version=4"
     ];
   };
 

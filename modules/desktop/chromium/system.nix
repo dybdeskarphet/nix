@@ -4,6 +4,7 @@ let
 in
 {
   environment.etc."brave/policies".source = "/etc/chromium/policies";
+  environment.etc."brave/initial_preferences".source = "/etc/chromium/initial_preferences";
 
   programs.chromium = {
     enable = true;
