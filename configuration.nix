@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs-stable, ... }:
 {
   nixpkgs.config.allowUnfree = true;
   nix.settings = {
@@ -30,6 +30,9 @@
   programs.nix-index-database.comma.enable = true;
 
   nixpkgs.overlays = [
+    (final: prev: {
+      tabiew = pkgs-stable.tabiew;
+    })
     (final: prev: {
       aggregateModules =
         modules:
