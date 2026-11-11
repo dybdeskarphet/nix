@@ -11,11 +11,11 @@ in
 
     initialPrefs = {
       extensions.theme = {
-        system_theme = 1; # GTK theme
+        system_theme = 1;
         use_system = true;
       };
       brave = {
-        sidebar.sidebar_show_option = 3; # Never
+        sidebar.sidebar_show_option = 3;
         show_side_panel_button = false;
       };
     };
