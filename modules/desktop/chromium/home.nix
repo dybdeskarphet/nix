@@ -24,7 +24,7 @@ in
       { id = "jinjaccalgkegednnccohejagnlnfdag"; } # Violentmonkey
       { id = "mmioliijnhnoblpgimnlajmefafdfilb"; } # Shazam
       { id = "hlepfoohegkhhmjieoechaddaejaokhf"; } # Refined GitHub
-      { id = "aobahdccfeoakodfnbgmkknokbmnndjm"; } # Tabliss
+      { id = "hipekcciheckooncpjeljhnekcoolahp"; } # Tabliss
     ];
 
     commandLineArgs = [
