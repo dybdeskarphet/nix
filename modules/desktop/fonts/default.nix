@@ -1,8 +1,9 @@
 { pkgs, ... }:
 let
   myFonts = pkgs.runCommand "my-fonts" { } ''
-    mkdir -p $out/share/fonts/truetype
-    cp ${./fonts}/*.ttf $out/share/fonts/truetype/
+    mkdir -p $out/share/fonts/truetype $out/share/fonts/opentype
+    for f in ${./fonts}/*.ttf; do [ -e "$f" ] && cp "$f" $out/share/fonts/truetype/; done
+    for f in ${./fonts}/*.otf; do [ -e "$f" ] && cp "$f" $out/share/fonts/opentype/; done
   '';
 in
 {
