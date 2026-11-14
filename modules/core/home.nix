@@ -22,7 +22,6 @@ let
     axel
     ffmpeg
     obs-studio
-    spotify
     borgbackup
     mermaid-cli
     duf
@@ -76,6 +75,7 @@ in
     ../media/cava
     ../media/gimp
     ../media/mpv
+    ../media/spicetify.nix
     ../media/streamlink
     ../media/swayimg
     ../media/yt-dlp.nix
