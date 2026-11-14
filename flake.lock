@@ -101,11 +101,11 @@
     "neovim-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1794619390,
-        "narHash": "sha256-/CaymLY6KNv7IzSJ4au0sdCVsG6JzvhHb5WOT49hA5U=",
+        "lastModified": 1794621259,
+        "narHash": "sha256-IJUd1JIFd6ZbU5CXDlRfT/o5DKEBBFkgnYB+vYR4w0A=",
         "owner": "dybdeskarphet",
         "repo": "neovim-config",
-        "rev": "08351caec6b6359aed14e5caf506f7215fab74b1",
+        "rev": "acc422e45b11e2eb7520dac7cc2b1f208eab33e9",
         "type": "github"
       },
       "original": {
