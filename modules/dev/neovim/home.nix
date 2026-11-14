@@ -1,11 +1,18 @@
 {
   pkgs,
   inputs,
+  lib,
   env,
   ...
 }:
 {
-  xdg.configFile."nvim".source = inputs.neovim-config;
+  xdg.configFile."nvim" = {
+    source = lib.cleanSourceWith {
+      src = inputs.neovim-config;
+      filter = path: _type: baseNameOf path != "nvim-pack-lock.json";
+    };
+    recursive = true;
+  };
 
   home.packages = with pkgs; [
     # general
