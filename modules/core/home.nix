@@ -67,6 +67,7 @@ in
     ../dev/neovim/home.nix
     ../dev/python
     ../dev/sqlite.nix
+    ../dev/ssh/home.nix
     ../dev/tmux
     ../dev/yazi
     ../dev/zoxide.nix

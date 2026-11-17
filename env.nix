@@ -44,4 +44,12 @@
   syncthing = {
     # Use the settings part of syncthing module for reference, you don't need to call settings = { } inside this though, it will directly be inside settings
   };
+  sshHosts = {
+    # Entries for programs.ssh.settings, e.g.:
+    # minecraft-server = {
+    #   HostName = "192.168.1.1";
+    #   User = "mc";
+    #   Port = 22;
+    # };
+  };
 }
