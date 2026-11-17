@@ -52,4 +52,7 @@
     #   Port = 22;
     # };
   };
+  openvpn = {
+    configDir = "your directory for the .ovpn files";
+  };
 }

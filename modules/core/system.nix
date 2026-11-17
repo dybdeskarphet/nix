@@ -27,6 +27,7 @@
     ../utility/battery/system.nix
     ../utility/localsend.nix
     ../utility/nh
+    ../utility/openvpn
   ];
   # Essential Packages {{{
   environment.systemPackages = with pkgs; [
