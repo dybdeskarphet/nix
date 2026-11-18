@@ -80,7 +80,7 @@ text.status_timeout = 3
 viewer.default_scale = "optimal" -- Fit to window if larger, 100% if smaller
 viewer.default_position = "center"
 viewer.drag_button = "MouseLeft"
-viewer.autocenter = true
+viewer.autopos = "center"
 viewer.loop = true
 viewer.preload = 2
 viewer.history = 5
@@ -276,28 +276,16 @@ viewer.on_key({ "q", "Escape" }, function()
 end)
 
 -- Mouse Bindings (Viewer)
-viewer.on_mouse("ScrollUp", function()
-	pan(0, pan_step)
-end)
-viewer.on_mouse("ScrollDown", function()
-	pan(0, -pan_step)
-end)
-viewer.on_mouse("ScrollLeft", function()
-	pan(-pan_step, 0)
-end)
-viewer.on_mouse("ScrollRight", function()
-	pan(pan_step, 0)
-end)
-
-viewer.on_mouse("Ctrl+ScrollUp", function()
-	local mouse = s.get_mouse_pos()
-	local scale = viewer.scale
-	viewer.set_abs_scale(scale * 1.15, mouse.x, mouse.y)
-end)
-viewer.on_mouse("Ctrl+ScrollDown", function()
-	local mouse = s.get_mouse_pos()
-	local scale = viewer.scale
-	viewer.set_abs_scale(scale / 1.15, mouse.x, mouse.y)
+viewer.on_scroll(function(kmods, horizontal, vertical)
+	if kmods == "Ctrl" then
+		if vertical ~= 0 then
+			local mouse = s.get_mouse_pos()
+			local scale = viewer.scale
+			viewer.set_abs_scale(scale - scale * vertical / 10.0, mouse.x, mouse.y)
+		end
+	else
+		pan(math.floor(horizontal * pan_step), -math.floor(vertical * pan_step))
+	end
 end)
 
 --------------------------------------------------------------------------------
@@ -421,25 +409,21 @@ gallery.on_key({ "q", "Escape" }, function()
 end)
 
 -- Mouse Bindings (Gallery)
-gallery.on_mouse("ScrollUp", function()
-	gallery.select("up")
-end)
-gallery.on_mouse("ScrollDown", function()
-	gallery.select("down")
-end)
-gallery.on_mouse("ScrollLeft", function()
-	gallery.select("left")
-end)
-gallery.on_mouse("ScrollRight", function()
-	gallery.select("right")
-end)
-
-gallery.on_mouse("Ctrl+ScrollUp", function()
-	gallery.thumb_size = gallery.thumb_size + 20
-end)
-gallery.on_mouse("Ctrl+ScrollDown", function()
-	if gallery.thumb_size > 40 then
-		gallery.thumb_size = gallery.thumb_size - 20
+gallery.on_scroll(function(kmods, horizontal, vertical)
+	if kmods == "Ctrl" then
+		if vertical ~= 0 then
+			local next_size = gallery.thumb_size + math.floor(-vertical * 20)
+			if next_size > 40 then
+				gallery.thumb_size = next_size
+			end
+		end
+	else
+		if horizontal ~= 0 then
+			gallery.select(horizontal < 0 and "left" or "right")
+		end
+		if vertical ~= 0 then
+			gallery.select(vertical > 0 and "down" or "up")
+		end
 	end
 end)
 
