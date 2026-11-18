@@ -10,10 +10,8 @@
     ../dev/docker.nix
     ../dev/neovim/system.nix
     ../dev/ssh/system.nix
-    ../hardware/bluetooth.nix
     ../hardware/network.nix
     ../hardware/opentabletdriver/system.nix
-    ../hardware/tlp.nix
     ../security/firewall
     ../security/hyprlock/system.nix
     ../utility/battery/system.nix
