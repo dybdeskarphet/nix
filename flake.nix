@@ -44,6 +44,11 @@
       localEnv = if hasLocalEnv then import localEnvPath else { };
       env = nixpkgs.lib.recursiveUpdate defaultEnv localEnv;
 
+      rawColors = builtins.fromJSON (builtins.readFile ./colors.json);
+      colors = nixpkgs.lib.mapAttrs (
+        _: v: if builtins.isAttrs v then v.dark.color else v
+      ) (rawColors.colors or rawColors);
+
       activeHardwarePath = if hasHardwareConfig then hardwarePath else vmHardwarePath;
       activeEnvPath = if hasLocalEnv then localEnvPath else defaultEnvPath;
 
@@ -59,7 +64,7 @@
     in
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs env pkgs-stable pkgs-small; };
+        specialArgs = { inherit inputs env colors pkgs-stable pkgs-small; };
         modules = [
           ./configuration.nix
           activeHardwarePath
@@ -75,7 +80,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs env pkgs-stable pkgs-small; };
+            home-manager.extraSpecialArgs = { inherit inputs env colors pkgs-stable pkgs-small; };
             home-manager.users.skarphet = ./home.nix;
           }
         ];
