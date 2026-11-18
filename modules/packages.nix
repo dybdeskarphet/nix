@@ -19,6 +19,7 @@
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
+        jq
         fzf
         keepassxc
         bun
