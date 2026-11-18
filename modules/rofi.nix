@@ -2,6 +2,9 @@
 {
   home.gui =
     { pkgs, colors, ... }:
+    let
+      emptyTheme = pkgs.writeText "empty.rasi" "";
+    in
     {
       # Packages & Rofimoji {{{
       home.packages = with pkgs; [
@@ -23,6 +26,8 @@
             show-icons: true;
             drun-match-fields: "name,generic,exec,categories,keywords";
         }
+
+        @theme "${emptyTheme}"
 
         * {
             font: "proportional_font SemiBold 13";
@@ -66,6 +71,7 @@
             placeholder: "Search...";
             placeholder-color: ${colors.on_surface_variant};
             text-color: ${colors.on_surface};
+            cursor: text;
             vertical-align: 0.5;
         }
 
@@ -94,13 +100,30 @@
         element {
             padding: 10px 12px;
             spacing: 12px;
+            border: 1px;
+            border-color: transparent;
             border-radius: 8px;
+            background-color: transparent;
+            text-color: ${colors.on_surface};
+            cursor: pointer;
+        }
+
+        element normal.normal,
+        element alternate.normal {
+            background-color: transparent;
             text-color: ${colors.on_surface};
         }
 
         element normal.active,
         element alternate.active {
+            background-color: transparent;
             text-color: ${colors.tertiary};
+        }
+
+        element normal.urgent,
+        element alternate.urgent {
+            background-color: transparent;
+            text-color: ${colors.error};
         }
 
         element selected.normal,
@@ -111,14 +134,23 @@
             text-color: ${colors.primary};
         }
 
+        element selected.urgent {
+            background-color: ${colors.error_container}80;
+            border: 1px;
+            border-color: ${colors.error}80;
+            text-color: ${colors.on_error_container};
+        }
+
         element-icon {
             size: 1.4em;
             vertical-align: 0.5;
+            cursor: inherit;
         }
 
         element-text {
             text-color: inherit;
             vertical-align: 0.5;
+            cursor: inherit;
         }
       '';
       # }}}
