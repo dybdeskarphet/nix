@@ -46,7 +46,6 @@
     ../security/hyprlock/home.nix
     ../utility/battery/home.nix
     ../utility/btop
-    ../utility/fastfetch
     ../utility/htop.nix
     ../utility/prismlauncher.nix
     ../utility/qalc.nix
