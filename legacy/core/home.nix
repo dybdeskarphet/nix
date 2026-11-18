@@ -36,7 +36,6 @@
     ../dev/zoxide.nix
     ../hardware/openrazer/home.nix
     ../hardware/opentabletdriver/home.nix
-    ../media/cava
     ../media/gimp
     ../media/mpv
     ../media/spicetify.nix
