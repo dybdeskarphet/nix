@@ -10,6 +10,5 @@
     recursive = true;
   };
   xdg.configFile."matugen/templates/vimium.css".source = ./templates/vimium.css;
-  xdg.configFile."matugen/templates/issue_template".source = ./templates/issue_template;
   xdg.configFile."matugen/templates/current_colors.txt".source = ./templates/current_colors.txt;
 }
