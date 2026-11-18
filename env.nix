@@ -1,6 +1,8 @@
 {
   homeSSID = null;
 
+  wallpaper = null; # absolute path
+
   todotxt = {
     current = "path to todotxt";
   };
