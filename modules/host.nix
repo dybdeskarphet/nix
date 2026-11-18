@@ -46,19 +46,27 @@ let
     [templates]
   '';
 
+  matugenTarget =
+    if wallpaperSrc != null then
+      ''image "${wallpaperSrc}" --source-color-index 0 --include-image-in-json false''
+    else
+      ''color hex "#808080"'';
+
   generatedColorsJson = pkgs.runCommand "colors.json" { } ''
-    ${pkgs.lib.getExe pkgs.matugen} \
-      ${
-        if wallpaperSrc != null then
-          ''image "${wallpaperSrc}" --source-color-index 0 --include-image-in-json false''
-        else
-          ''color hex "#808080"''
-      } \
-      -c "${matugenCfg}" \
-      -m dark \
-      -t scheme-fidelity \
-      --dry-run \
-      -j hex > "$out"
+    run_matugen() {
+      ${pkgs.lib.getExe pkgs.matugen} \
+        ${matugenTarget} \
+        -c "${matugenCfg}" \
+        -m dark \
+        -t "$1" \
+        --dry-run \
+        -j hex > "$out"
+    }
+
+    run_matugen scheme-neutral
+    if [ "$(${pkgs.lib.getExe pkgs.jq} -r '.colors.source_color.dark.color' "$out")" = "#808080" ]; then
+      run_matugen scheme-fidelity
+    fi
   '';
 
   rawColors = builtins.fromJSON (
