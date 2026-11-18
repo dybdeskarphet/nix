@@ -12,7 +12,6 @@
     ../dev/ssh/system.nix
     ../hardware/bluetooth.nix
     ../hardware/network.nix
-    ../hardware/openrazer/system.nix
     ../hardware/opentabletdriver/system.nix
     ../hardware/tlp.nix
     ../security/firewall

@@ -22,7 +22,6 @@
     ../dev/sqlite.nix
     ../dev/ssh/home.nix
     ../dev/zoxide.nix
-    ../hardware/openrazer/home.nix
     ../hardware/opentabletdriver/home.nix
     ../media/gimp
     ../media/spicetify.nix
