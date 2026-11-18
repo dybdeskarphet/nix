@@ -16,11 +16,6 @@ cyan = { color = "#00ffff", blend = true }
 input_path = '~/.config/matugen/templates/current_colors.txt'
 output_path = '~/.config/matugen/references/colors.txt'
 
-[templates.btop]
-pre_hook = 'mkdir -p ~/.config/btop/themes'
-input_path = '~/.config/matugen/templates/btop.theme'
-output_path = '~/.config/btop/themes/matugen.theme'
-
 [templates.matugen]
 input_path = '~/.config/matugen/templates/vimium.css'
 output_path = '~/.config/matugen/outputs/vimium.css'
