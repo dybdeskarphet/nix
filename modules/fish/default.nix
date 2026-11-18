@@ -111,6 +111,23 @@
             echo -n "  "
             set_color normal
           '';
+
+          fish_right_prompt = ''
+            set -l exit_code $status
+            if test $exit_code -eq 0
+                set status_symbol (set_color "${colors.green}")(set_color normal)
+            else
+                set status_symbol (set_color "${colors.yellow}")$exit_code(set_color normal)" "(set_color "${colors.red}")(set_color normal)
+            end
+
+            set time (date "+%H:%M:%S")
+
+            echo -n "$status_symbol "
+            echo -n $time
+            set_color -o "${colors.yellow}"
+            echo -n (fish_git_prompt)
+            set_color normal
+          '';
         };
         # }}}
 
