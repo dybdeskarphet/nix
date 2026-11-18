@@ -11,7 +11,6 @@
     ../desktop/chromium/home.nix
     ../desktop/hypridle.nix
     ../desktop/kanshi.nix
-    ../desktop/matugen
     ../desktop/whatsapp.nix
     ../dev/bat.nix
     ../dev/git

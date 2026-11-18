@@ -46,6 +46,8 @@
         wev
         sirikali
         gocryptfs
+        matugen
+        skate
       ];
 
       programs.fish.shellAbbrs = {
