@@ -1,4 +1,4 @@
-{ inputs, config, ... }:
+{ inputs, config, helpers, ... }:
 let
   # Host Paths, Env & Colors {{{
   hardwarePath = /etc/nixos/hardware-configuration.nix;
@@ -64,6 +64,7 @@ in
         inputs
         env
         colors
+        helpers
         pkgs-stable
         pkgs-small
         ;
@@ -91,6 +92,7 @@ in
             inputs
             env
             colors
+            helpers
             pkgs-stable
             pkgs-small
             ;
