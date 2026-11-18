@@ -1,6 +1,6 @@
 { inputs, config, helpers, ... }:
 let
-  # Host Paths, Env & Colors {{{1
+  # Host Paths, Env & Colors {{{
   hardwarePath = /etc/nixos/hardware-configuration.nix;
   vmHardwarePath = ../hardware-vm.nix;
 
@@ -31,10 +31,10 @@ let
     system = "x86_64-linux";
     config.allowUnfree = true;
   };
-  # }}}1
+  # }}}
 in
 {
-  # Shared Flake Args & Topic Buckets {{{1
+  # Shared Flake Args & Topic Buckets {{{
   _module.args = {
     inherit
       env
@@ -55,9 +55,9 @@ in
     desktop = { };
     laptop = { };
   };
-  # }}}1
+  # }}}
 
-  # NixOS Host Configuration {{{1
+  # NixOS Host Configuration {{{
   flake.nixosConfigurations.nixos = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {
       inherit
@@ -106,7 +106,7 @@ in
       }
     ];
   };
-  # }}}1
+  # }}}
 }
 
 # -- vim: fdm=marker fdl=0

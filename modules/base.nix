@@ -60,7 +60,7 @@
             });
         })
       ];
-      # }}}2
+      # }}}
 
       # Boot & Storage {{{2
       boot = {
@@ -119,7 +119,7 @@
         enable = true;
         notifications.wall.enable = true;
       };
-      # }}}2
+      # }}}
 
       # Audio & Power {{{2
       security.rtkit.enable = true;
@@ -143,7 +143,7 @@
           HandleLidSwitchExternalPower = "suspend";
         };
       };
-      # }}}2
+      # }}}
 
       # Localization & Documentation {{{2
       i18n.supportedLocales = [
@@ -173,7 +173,7 @@
         man.enable = true;
         dev.enable = true;
       };
-      # }}}2
+      # }}}
 
       # Users & Login {{{2
       programs.fish.enable = true;
@@ -199,7 +199,7 @@
           "${config.users.users.skarphet.home}/.config/matugen/references/issue"
         ];
       };
-      # }}}2
+      # }}}
 
       # Packages & Linker {{{2
       environment.systemPackages = with pkgs; [
@@ -227,11 +227,11 @@
           libvorbis
         ];
       };
-      # }}}2
+      # }}}
 
       system.stateVersion = "25.11";
     };
-  # }}}1
+  # }}}
 
   # Home Base {{{1
   flake.modules.homeManager.base =
@@ -285,7 +285,7 @@
       ];
 
       allSessionVars = xdgVars // waylandVars // generalVars;
-      # }}}2
+      # }}}
 
       # Packages Without Config {{{2
       packagesWithoutConfig = with pkgs; [
@@ -316,7 +316,7 @@
         sirikali
         gocryptfs
       ];
-      # }}}2
+      # }}}
     in
     {
       # Identity & Environment {{{2
@@ -346,7 +346,7 @@
         videos = "${config.home.homeDirectory}/vid";
         projects = "${config.home.homeDirectory}";
       };
-      # }}}2
+      # }}}
 
       # Packages & Shell Abbrs {{{2
       home.packages = packagesWithoutConfig;
@@ -359,9 +359,9 @@
         grep = "rg";
         df = "duf";
       };
-      # }}}2
+      # }}}
     };
-  # }}}1
+  # }}}
 }
 
 # -- vim: fdm=marker fdl=0
