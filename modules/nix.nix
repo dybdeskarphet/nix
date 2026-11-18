@@ -1,7 +1,12 @@
 { inputs, ... }:
 {
   nixos.base =
-    { pkgs, pkgs-stable, ... }:
+    {
+      pkgs,
+      pkgs-stable,
+      config,
+      ...
+    }:
     {
       # Nix & Packaging {{{
       nixpkgs.config.allowUnfree = true;
@@ -36,6 +41,11 @@
 
       nix.registry.nixpkgs.flake = inputs.nixpkgs;
       programs.nix-index-database.comma.enable = true;
+
+      programs.nh = {
+        enable = true;
+        flake = "${config.users.users.skarphet.home}/code/nix";
+      };
 
       nixpkgs.overlays = [
         (final: prev: {
