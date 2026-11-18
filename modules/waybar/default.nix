@@ -1,15 +1,18 @@
+{ ... }:
 {
-  pkgs,
-  lib,
-  colors,
-  ...
-}:
-let
-  waybar-scripts = pkgs.writeScriptBin "waybar-scripts" (
-    builtins.readFile ./scripts/waybar-scripts.sh
-  );
-in
-{
+  flake.modules.homeManager.desktop =
+    {
+      pkgs,
+      lib,
+      colors,
+      ...
+    }:
+    let
+      waybar-scripts = pkgs.writeScriptBin "waybar-scripts" (
+        builtins.readFile ./scripts/waybar-scripts.sh
+      );
+    in
+    {
   home.packages = with pkgs; [
     waybar-scripts
     pipewire
@@ -333,4 +336,5 @@ in
       };
     };
   };
+    };
 }
