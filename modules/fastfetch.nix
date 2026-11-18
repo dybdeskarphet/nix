@@ -3,7 +3,6 @@
   flake.modules.homeManager.base =
     { colors, ... }:
     {
-      # Fastfetch Configuration {{{
       programs.fastfetch = {
         enable = true;
 
@@ -32,8 +31,5 @@
           ];
         };
       };
-      # }}}
     };
 }
-
-# -- vim: fdm=marker fdl=0

@@ -5,5 +5,3 @@ in
 {
   _module.args.helpers = helpers;
 }
-
-# -- vim: fdm=marker fdl=0

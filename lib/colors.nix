@@ -26,5 +26,3 @@ rec {
       lib.mapAttrsToList (name: hex: "@define-color ${name} ${hex};") colors
     );
 }
-
-# -- vim: fdm=marker fdl=0

@@ -3,7 +3,6 @@
   flake.modules.homeManager.desktop =
     { colors, helpers, ... }:
     {
-      # Avizo Service & Settings {{{
       services.avizo = {
         enable = true;
 
@@ -21,8 +20,5 @@
           bar-fg-color = helpers.colors.hexToRgba 0.8 colors.background;
         };
       };
-      # }}}
     };
 }
-
-# -- vim: fdm=marker fdl=0
