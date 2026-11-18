@@ -22,7 +22,6 @@
 
           gui = {
             nerdFontsVersion = "3";
-            commitGraphStyle = "detailed";
 
             theme = {
               activeBorderColor = [
