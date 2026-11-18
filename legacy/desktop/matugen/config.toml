@@ -44,10 +44,6 @@ pre_hook = 'mkdir -p ~/.config/yazi/flavors/matugen.yazi'
 input_path = '~/.config/matugen/templates/yazi.toml'
 output_path = '~/.config/yazi/flavors/matugen.yazi/flavor.toml'
 
-[templates.fish_prompt]
-input_path = '~/.config/matugen/templates/fish_prompt.fish'
-output_path = '~/.config/fish/functions/fish_prompt.fish'
-
 [templates.gtk3]
 input_path = '~/.config/matugen/templates/gtk-colors.css'
 output_path = '~/.config/gtk-3.0/colors.css'
@@ -70,10 +66,6 @@ output_path = '~/.config/qt6ct/colors/matugen.conf'
 pre_hook = 'mkdir -p ~/.config/btop/themes'
 input_path = '~/.config/matugen/templates/btop.theme'
 output_path = '~/.config/btop/themes/matugen.theme'
-
-[templates.sudo_prompt]
-input_path = '~/.config/matugen/templates/sudo_prompt.fish'
-output_path = '~/.config/fish/conf.d/sudo_prompt.fish'
 
 [templates.matugen]
 input_path = '~/.config/matugen/templates/vimium.css'
@@ -111,7 +103,3 @@ output_path = "~/.config/mako/colors"
 [templates.swayimg]
 input_path = '~/.config/matugen/templates/swayimg.lua'
 output_path = '~/.config/swayimg/colors.lua'
-
-[templates.fzf]
-input_path = '~/.config/matugen/templates/fzf_colors.fish'
-output_path = '~/.config/fish/conf.d/fzf_colors.fish'
