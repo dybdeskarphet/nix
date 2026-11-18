@@ -1,4 +1,9 @@
-{ inputs, config, helpers, ... }:
+{
+  inputs,
+  config,
+  helpers,
+  ...
+}:
 let
   # Host Paths, Env & Colors {{{
   hardwarePath = /etc/nixos/hardware-configuration.nix;
@@ -51,7 +56,7 @@ let
       } \
       -c "${matugenCfg}" \
       -m dark \
-      -t scheme-tonal-spot \
+      -t scheme-fidelity \
       --dry-run \
       -j hex > "$out"
   '';
@@ -64,9 +69,9 @@ let
         ../colors.json
     )
   );
-  colors = inputs.nixpkgs.lib.mapAttrs (
-    _: v: if builtins.isAttrs v then v.dark.color else v
-  ) (rawColors.colors or rawColors);
+  colors = inputs.nixpkgs.lib.mapAttrs (_: v: if builtins.isAttrs v then v.dark.color else v) (
+    rawColors.colors or rawColors
+  );
 
   activeHardwarePath = if hasHardwareConfig then hardwarePath else vmHardwarePath;
   activeEnvPath = if hasLocalEnv then localEnvPath else defaultEnvPath;
