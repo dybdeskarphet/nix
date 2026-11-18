@@ -3,6 +3,7 @@
   flake.modules.nixos.laptop =
     { ... }:
     {
+      # Boot & Kernel {{{
       boot = {
         initrd.kernelModules = [
           "amdgpu"
@@ -23,7 +24,9 @@
           "rfkill.default_state=1"
         ];
       };
+      # }}}
 
+      # Hardware & Power {{{
       hardware = {
         graphics.enable = true;
         cpu.amd.updateMicrocode = true;
@@ -37,5 +40,8 @@
         percentageAction = 3;
         criticalPowerAction = "Hibernate"; # or "PowerOff" / "Suspend"
       };
+      # }}}
     };
 }
+
+# -- vim: fdm=marker fdl=0

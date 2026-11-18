@@ -13,6 +13,7 @@
       );
     in
     {
+  # Packages & Styling {{{
   home.packages = with pkgs; [
     waybar-scripts
     pipewire
@@ -36,8 +37,10 @@
 
       ${builtins.readFile ./style.css}
     '';
+    # }}}
 
     settings.mainBar = {
+      # Bar Layout {{{
       position = "top";
       height = 24;
       spacing = 0;
@@ -92,7 +95,9 @@
           "backlight/slider"
         ];
       };
+      # }}}
 
+      # Modules {{{
       clock = {
         locale = "tr_TR.UTF-8";
         format = "<span font_desc='Robot_Font 14' weight='700'>{:%H:%M}</span>";
@@ -334,7 +339,10 @@
         separate-outputs = true;
         max-length = 20;
       };
+      # }}}
     };
   };
     };
 }
+
+# -- vim: fdm=marker fdl=0

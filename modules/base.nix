@@ -1,5 +1,6 @@
 { inputs, ... }:
 {
+  # NixOS Base {{{
   flake.modules.nixos.base =
     {
       pkgs,
@@ -9,6 +10,7 @@
       ...
     }:
     {
+      # Nix & Overlays {{{2
       nixpkgs.config.allowUnfree = true;
 
       nix.settings = {
@@ -58,33 +60,9 @@
             });
         })
       ];
+      # }}}
 
-      environment.systemPackages = with pkgs; [
-        git
-        wget
-        curl
-        htop
-        bubblewrap
-      ];
-
-      i18n.supportedLocales = [
-        "C.UTF-8/UTF-8"
-        "en_US.UTF-8/UTF-8"
-        "tr_TR.UTF-8/UTF-8"
-      ];
-      i18n.defaultLocale = "en_US.UTF-8";
-      i18n.extraLocaleSettings = {
-        LC_ADDRESS = "tr_TR.UTF-8";
-        LC_IDENTIFICATION = "tr_TR.UTF-8";
-        LC_MEASUREMENT = "tr_TR.UTF-8";
-        LC_MONETARY = "tr_TR.UTF-8";
-        LC_NAME = "tr_TR.UTF-8";
-        LC_NUMERIC = "tr_TR.UTF-8";
-        LC_PAPER = "tr_TR.UTF-8";
-        LC_TELEPHONE = "tr_TR.UTF-8";
-        LC_TIME = "tr_TR.UTF-8";
-      };
-
+      # Boot & Storage {{{2
       boot = {
         kernelPackages = pkgs.linuxPackages_zen;
         kernel.sysctl = {
@@ -141,7 +119,9 @@
         enable = true;
         notifications.wall.enable = true;
       };
+      # }}}
 
+      # Audio & Power {{{2
       security.rtkit.enable = true;
       services.pulseaudio.enable = false;
       services.pipewire = {
@@ -155,12 +135,6 @@
       systemd.user.services.pipewire.wantedBy = [ "default.target" ];
       systemd.user.services.pipewire-pulse.wantedBy = [ "default.target" ];
 
-      documentation = {
-        enable = true;
-        man.enable = true;
-        dev.enable = true;
-      };
-
       services.logind.settings = {
         Login = {
           HandlePowerKey = "poweroff";
@@ -169,7 +143,39 @@
           HandleLidSwitchExternalPower = "suspend";
         };
       };
+      # }}}
 
+      # Localization & Documentation {{{2
+      i18n.supportedLocales = [
+        "C.UTF-8/UTF-8"
+        "en_US.UTF-8/UTF-8"
+        "tr_TR.UTF-8/UTF-8"
+      ];
+      i18n.defaultLocale = "en_US.UTF-8";
+      i18n.extraLocaleSettings = {
+        LC_ADDRESS = "tr_TR.UTF-8";
+        LC_IDENTIFICATION = "tr_TR.UTF-8";
+        LC_MEASUREMENT = "tr_TR.UTF-8";
+        LC_MONETARY = "tr_TR.UTF-8";
+        LC_NAME = "tr_TR.UTF-8";
+        LC_NUMERIC = "tr_TR.UTF-8";
+        LC_PAPER = "tr_TR.UTF-8";
+        LC_TELEPHONE = "tr_TR.UTF-8";
+        LC_TIME = "tr_TR.UTF-8";
+      };
+
+      time.timeZone = "Europe/Istanbul";
+      console.keyMap = "trq";
+      services.timesyncd.enable = lib.mkDefault true;
+
+      documentation = {
+        enable = true;
+        man.enable = true;
+        dev.enable = true;
+      };
+      # }}}
+
+      # Users & Login {{{2
       programs.fish.enable = true;
       users.users.skarphet = {
         isNormalUser = true;
@@ -193,10 +199,16 @@
           "${config.users.users.skarphet.home}/.config/matugen/references/issue"
         ];
       };
+      # }}}
 
-      time.timeZone = "Europe/Istanbul";
-      console.keyMap = "trq";
-      services.timesyncd.enable = lib.mkDefault true;
+      # Packages & Linker {{{2
+      environment.systemPackages = with pkgs; [
+        git
+        wget
+        curl
+        htop
+        bubblewrap
+      ];
 
       programs.nix-ld = {
         enable = true;
@@ -215,10 +227,13 @@
           libvorbis
         ];
       };
+      # }}}
 
       system.stateVersion = "25.11";
     };
+  # }}}
 
+  # Home Base {{{
   flake.modules.homeManager.base =
     {
       pkgs,
@@ -228,6 +243,7 @@
       ...
     }:
     let
+      # Variable Definitions {{{2
       generalVars = {
         EDITOR = "nvim";
         VISUAL = "nvim";
@@ -269,7 +285,9 @@
       ];
 
       allSessionVars = xdgVars // waylandVars // generalVars;
+      # }}}
 
+      # Packages Without Config {{{2
       packagesWithoutConfig = with pkgs; [
         fzf
         keepassxc
@@ -298,8 +316,10 @@
         sirikali
         gocryptfs
       ];
+      # }}}
     in
     {
+      # Identity & Environment {{{2
       home.username = "skarphet";
       home.stateVersion = "25.11";
       home.homeDirectory = "/home/skarphet";
@@ -309,6 +329,7 @@
       systemd.user.sessionVariables = allSessionVars // {
         PATH = "${lib.concatStringsSep ":" additionalPaths}:$PATH";
       };
+      xdg.configFile."user-env.json".text = builtins.toJSON env;
 
       xdg.userDirs = {
         enable = true;
@@ -325,10 +346,11 @@
         videos = "${config.home.homeDirectory}/vid";
         projects = "${config.home.homeDirectory}";
       };
+      # }}}
 
+      # Packages & Shell Abbrs {{{2
       home.packages = packagesWithoutConfig;
       dconf.enable = true;
-      xdg.configFile."user-env.json".text = builtins.toJSON env;
 
       programs.fish.shellAbbrs = {
         cp = "xcp";
@@ -337,5 +359,9 @@
         grep = "rg";
         df = "duf";
       };
+      # }}}
     };
+  # }}}
 }
+
+# -- vim: fdm=marker fdl=0
