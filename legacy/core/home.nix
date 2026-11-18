@@ -37,7 +37,6 @@
     ../hardware/openrazer/home.nix
     ../hardware/opentabletdriver/home.nix
     ../media/gimp
-    ../media/mpv
     ../media/spicetify.nix
     ../media/streamlink
     ../media/swayimg
