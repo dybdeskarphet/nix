@@ -5,7 +5,6 @@
     ../backup/restic
     ../backup/syncthing
     ../desktop/chromium/system.nix
-    ../desktop/fonts
     ../desktop/sunshine
     ../dev/docker.nix
     ../dev/neovim/system.nix
