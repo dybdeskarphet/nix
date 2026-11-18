@@ -70,10 +70,6 @@ output_path = '~/.config/lazygit/theme.yml'
 input_path = '~/.config/matugen/templates/tabiew.toml'
 output_path = '~/.config/tabiew/theme.toml'
 
-[templates.clipse]
-input_path = '~/.config/matugen/templates/clipse.json'
-output_path = '~/.config/clipse/custom_theme.json'
-
 [templates.issue]
 input_path = '~/.config/matugen/templates/issue_template'
 output_path = '~/.config/matugen/references/issue'
