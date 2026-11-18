@@ -1,39 +1,4 @@
-{
-  pkgs,
-  env,
-  inputs,
-  ...
-}:
-let
-  packagesWithoutConfig = with pkgs; [
-    fzf
-    keepassxc
-    bun
-    xcp
-    fd
-    hyprpicker
-    ripgrep
-    android-tools
-    uv
-    glib
-    gsettings-desktop-schemas
-    python3
-    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.antigravity-cli
-    axel
-    ffmpeg
-    obs-studio
-    borgbackup
-    mermaid-cli
-    duf
-    kdePackages.kdenlive
-    mediainfo
-    pavucontrol
-    super-productivity
-    wev
-    sirikali
-    gocryptfs
-  ];
-in
+{ ... }:
 {
   imports = [
     ../academic/libreoffice.nix
@@ -90,30 +55,5 @@ in
     ../utility/scrcpy.nix
     ../utility/scripts
     ../utility/tabiew
-    ./env.nix
   ];
-
-  # Install packages without config {{{
-  home.packages = packagesWithoutConfig;
-  # }}}
-
-  # Enable programs without config {{{
-  dconf.enable = true;
-  # }}}
-
-  # Dump env.nix to .config {{{
-  xdg.configFile."user-env.json".text = builtins.toJSON env;
-  # }}}
-
-  # Abbrs for packages without config {{{
-  programs.fish.shellAbbrs = {
-    cp = "xcp";
-    find = "fd";
-    hyprpicker = "hyprpicker -a";
-    grep = "rg";
-    df = "duf";
-  };
-  # }}}
 }
-
-# -- vim: fdm=marker fdl=0

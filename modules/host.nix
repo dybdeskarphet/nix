@@ -64,7 +64,7 @@ in
         ;
     };
     modules = [
-      ../configuration.nix
+      ../legacy/core/system.nix
       activeHardwarePath
       inputs.nix-index-database.nixosModules.nix-index
       config.flake.modules.nixos.base
@@ -91,7 +91,7 @@ in
             ;
         };
         home-manager.users.skarphet.imports = [
-          ../home.nix
+          ../legacy/core/home.nix
           config.flake.modules.homeManager.base
           config.flake.modules.homeManager.desktop
           config.flake.modules.homeManager.laptop
