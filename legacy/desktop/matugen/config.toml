@@ -16,20 +16,10 @@ cyan = { color = "#00ffff", blend = true }
 input_path = '~/.config/matugen/templates/current_colors.txt'
 output_path = '~/.config/matugen/references/colors.txt'
 
-[templates.yazilua]
-pre_hook = 'mkdir -p ~/.config/yazi/plugins/matugen.yazi'
-input_path = '~/.config/matugen/templates/colors.lua'
-output_path = '~/.config/yazi/plugins/matugen.yazi/main.lua'
-
 [templates.zathura]
 pre_hook = 'mkdir -p ~/.config/zathura'
 input_path = '~/.config/matugen/templates/zathura-colors'
 output_path = '~/.config/zathura/colors'
-
-[templates.yazi]
-pre_hook = 'mkdir -p ~/.config/yazi/flavors/matugen.yazi'
-input_path = '~/.config/matugen/templates/yazi.toml'
-output_path = '~/.config/yazi/flavors/matugen.yazi/flavor.toml'
 
 [templates.btop]
 pre_hook = 'mkdir -p ~/.config/btop/themes'
