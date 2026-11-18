@@ -21,7 +21,6 @@
     ../desktop/rofi
     ../desktop/whatsapp.nix
     ../dev/bat.nix
-    ../dev/fish/home.nix
     ../dev/foot
     ../dev/git
     ../dev/gpg

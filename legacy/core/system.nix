@@ -9,7 +9,6 @@
     ../desktop/niri/system.nix
     ../desktop/sunshine
     ../dev/docker.nix
-    ../dev/fish/system.nix
     ../dev/neovim/system.nix
     ../dev/ssh/system.nix
     ../hardware/bluetooth.nix
