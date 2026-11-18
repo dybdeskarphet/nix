@@ -5,6 +5,6 @@
   home.homeDirectory = "/home/skarphet";
 
   imports = [
-    ./modules/core/home.nix
+    ./legacy/core/home.nix
   ];
 }
