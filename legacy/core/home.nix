@@ -8,7 +8,6 @@
     ../academic/zathura
     ../academic/zotero.nix
     ../backup/rclone/home.nix
-    ../desktop/avizo
     ../desktop/awww
     ../desktop/chromium/home.nix
     ../desktop/clipboard
