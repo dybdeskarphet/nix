@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   # NixOS Base {{{1
-  flake.modules.nixos.base =
+  nixos.base =
     {
       pkgs,
       pkgs-stable,
@@ -234,7 +234,7 @@
   # }}}
 
   # Home Base {{{1
-  flake.modules.homeManager.base =
+  home.base =
     {
       pkgs,
       lib,

@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.gui =
+  home.gui =
     { colors, helpers, ... }:
     {
       services.avizo = {

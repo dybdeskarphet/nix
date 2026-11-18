@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.cli =
+  home.cli =
     { colors, ... }:
     {
       programs.fastfetch = {

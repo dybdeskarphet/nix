@@ -1,7 +1,7 @@
 { ... }:
 {
   # NixOS {{{
-  flake.modules.nixos.gui =
+  nixos.gui =
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
@@ -16,7 +16,7 @@
   # }}}
 
   # Home Manager {{{
-  flake.modules.homeManager.gui =
+  home.gui =
     {
       pkgs,
       colors,

@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.nixos.hardware =
+  nixos.hardware =
     { ... }:
     {
       # Boot & Kernel {{{

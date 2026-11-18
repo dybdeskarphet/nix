@@ -1,7 +1,7 @@
 { ... }:
 {
   # NixOS {{{
-  flake.modules.nixos.cli =
+  nixos.cli =
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
@@ -13,7 +13,7 @@
   # }}}
 
   # Home Manager {{{1
-  flake.modules.homeManager.cli =
+  home.cli =
     {
       pkgs,
       lib,
