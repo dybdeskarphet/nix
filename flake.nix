@@ -31,6 +31,8 @@
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         inputs.flake-parts.flakeModules.modules
+        (inputs.nixpkgs.lib.mkAliasOptionModule [ "nixos" ] [ "flake" "modules" "nixos" ])
+        (inputs.nixpkgs.lib.mkAliasOptionModule [ "home" ] [ "flake" "modules" "homeManager" ])
         (inputs.import-tree ./modules)
       ];
       systems = [ "x86_64-linux" ];
