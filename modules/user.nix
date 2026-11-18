@@ -2,7 +2,31 @@
 {
   # NixOS User & Login {{{
   nixos.base =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      colors,
+      helpers,
+      ...
+    }:
+    let
+      s = helpers.colors.stripHash;
+      c0 = s colors.surface_container;
+      c1 = s colors.error;
+      c2 = s colors.primary;
+      c3 = s colors.inverse_primary;
+      c4 = s colors.primary;
+      c5 = s colors.tertiary;
+      c6 = s colors.secondary;
+      c7 = s colors.on_surface;
+
+      issueFile = pkgs.writeText "issue" ''
+        \e]P0${c0}\e]P1${c1}\e]P2${c2}\e]P3${c3}\e]P4${c4}\e]P5${c5}\e]P6${c6}\e]P7${c7}\e]P8${c0}\e]P9${c1}\e]PA${c2}\e]PB${c3}\e]PC${c4}\e]PD${c5}\e]PE${c6}\e]PF${c7}\e[2J\e[H
+        \e[1;35m ▄████▀  \e[1;32m██████▀  \e[1;35m  ▄█▄    \e[1;32m██████▄  \e[1;35m██████▄  \e[1;32m█▄   ▄█  \e[1;35m███      \e[1;32m███████
+        \e[1;35m▀████▄   \e[1;32m████▀    \e[1;35m ▄███▄   \e[1;32m███████  \e[1;35m███████  \e[1;32m███▄███  \e[1;35m█████    \e[1;32m▀▀███▀▀
+        \e[1;35m ▄████▀  \e[1;32m█████▄   \e[1;35m▄█████▄  \e[1;32m██████   \e[1;35m████▀▀   \e[1;32m██▀ ▀██  \e[1;35m███████  \e[1;32m  ███
+        \e[1;35m▀▀▀▀▀    \e[1;32m▀▀▀▀▀▀▀  \e[1;35m▀▀▀▀▀▀▀  \e[1;32m▀▀▀▀▀▀▀  \e[1;35m▀▀▀▀     \e[1;32m▀     ▀  \e[1;35m▀▀▀▀▀▀▀  \e[1;32m  ▀▀▀\e[1;37m
+      '';
+    in
     {
       programs.fish.enable = true;
       users.users.skarphet = {
@@ -25,7 +49,7 @@
           "--skip-login"
           "--noclear"
           "--issue-file"
-          "${config.users.users.skarphet.home}/.config/matugen/references/issue"
+          "${issueFile}"
         ];
       };
     };
