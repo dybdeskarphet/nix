@@ -35,6 +35,5 @@
     ../utility/qalc.nix
     ../utility/scrcpy.nix
     ../utility/scripts
-    ../utility/tabiew
   ];
 }
