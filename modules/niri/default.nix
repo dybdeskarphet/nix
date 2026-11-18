@@ -25,8 +25,6 @@
     }:
     {
       home.packages = with pkgs; [
-        jq
-        rofi
         playerctl
         libnotify
         libqalculate

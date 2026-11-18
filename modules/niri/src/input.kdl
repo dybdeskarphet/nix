@@ -2,7 +2,7 @@ input {
     keyboard {
         xkb {
             layout "tr"
-            options "caps:swapescape,altwin:swap_lalt_lwin,grp:ctrls_toggle"
+            options "caps:swapescape,altwin:swap_lalt_lwin"
         }
         numlock
     }
