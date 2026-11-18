@@ -3,8 +3,8 @@
   flake.modules.homeManager.desktop =
     {
       pkgs,
-      lib,
       colors,
+      helpers,
       ...
     }:
     let
@@ -31,9 +31,7 @@
     systemd.enable = true;
 
     style = ''
-      ${lib.concatStringsSep "\n" (
-        lib.mapAttrsToList (name: hex: "@define-color ${name} ${hex};") colors
-      )}
+      ${helpers.colors.toCssDefineColors colors}
 
       ${builtins.readFile ./style.css}
     '';
