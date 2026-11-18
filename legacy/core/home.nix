@@ -17,7 +17,6 @@
     ../dev/bat.nix
     ../dev/git
     ../dev/gpg
-    ../dev/lazygit
     ../dev/lsd.nix
     ../dev/neovim/home.nix
     ../dev/python
