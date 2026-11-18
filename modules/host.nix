@@ -83,6 +83,7 @@ in
       config.nixos.services
       config.nixos.hardware
       {
+        system.stateVersion = "25.11";
         warnings = [
           "using ${toString activeHardwarePath} for hardware config"
           "using ${toString activeEnvPath} for env"
@@ -103,14 +104,17 @@ in
             pkgs-small
             ;
         };
-        home-manager.users.skarphet.imports = [
-          ../legacy/core/home.nix
-          config.home.base
-          config.home.cli
-          config.home.gui
-          config.home.services
-          config.home.hardware
-        ];
+        home-manager.users.skarphet = {
+          home.stateVersion = "25.11";
+          imports = [
+            ../legacy/core/home.nix
+            config.home.base
+            config.home.cli
+            config.home.gui
+            config.home.services
+            config.home.hardware
+          ];
+        };
       }
     ];
   };
