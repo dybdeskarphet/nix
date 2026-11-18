@@ -12,14 +12,6 @@ blue = { color = "#7daea3", blend = true }
 magenta = { color = "#d3869b", blend = true }
 cyan = { color = "#89b482", blend = true }
 
-[templates.rofi]
-input_path = '~/.config/matugen/templates/rofi.rasi'
-output_path = '~/.local/share/rofi/themes/basic_launcher/colors.rasi'
-
-[templates.rofi-launchpad]
-input_path = '~/.config/matugen/templates/rofi.rasi'
-output_path = '~/.local/share/rofi/themes/launchpad/colors.rasi'
-
 [templates.plaintext]
 input_path = '~/.config/matugen/templates/current_colors.txt'
 output_path = '~/.config/matugen/references/colors.txt'
