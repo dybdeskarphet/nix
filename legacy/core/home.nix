@@ -16,7 +16,6 @@
     ../desktop/kanshi.nix
     ../desktop/mako
     ../desktop/matugen
-    ../desktop/niri/home.nix
     ../desktop/qt
     ../desktop/rofi
     ../desktop/whatsapp.nix

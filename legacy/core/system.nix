@@ -6,7 +6,6 @@
     ../backup/syncthing
     ../desktop/chromium/system.nix
     ../desktop/fonts
-    ../desktop/niri/system.nix
     ../desktop/sunshine
     ../dev/docker.nix
     ../dev/neovim/system.nix
