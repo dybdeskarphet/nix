@@ -90,7 +90,7 @@ in
     ];
     open_tw = [
       {
-        run = "${tabiew} %s";
+        run = "${tabiew} --theme config %s";
         desc = "Open with tabiew";
         block = true;
       }

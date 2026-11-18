@@ -3,6 +3,7 @@
   home.cli =
     {
       pkgs,
+      lib,
       colors,
       ...
     }:
@@ -13,10 +14,24 @@
         add_modifier = "";
         sub_modifier = "";
       };
+      tabiew = pkgs.symlinkJoin {
+        name = "tabiew-wrapped";
+        paths = [
+          (pkgs.writeShellScriptBin "tw" ''
+            for arg in "$@"; do
+              case "$arg" in
+                --theme|--theme=*) exec ${lib.getExe' pkgs.tabiew "tw"} "$@" ;;
+              esac
+            done
+            exec ${lib.getExe' pkgs.tabiew "tw"} --theme config "$@"
+          '')
+          pkgs.tabiew
+        ];
+      };
     in
     {
       home.packages = [
-        pkgs.tabiew
+        tabiew
       ];
 
       xdg.configFile."tabiew/theme.toml".source = toml.generate "tabiew-theme.toml" {
