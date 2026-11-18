@@ -24,7 +24,6 @@
     ../dev/python
     ../dev/sqlite.nix
     ../dev/ssh/home.nix
-    ../dev/tmux
     ../dev/zoxide.nix
     ../hardware/openrazer/home.nix
     ../hardware/opentabletdriver/home.nix
