@@ -15,7 +15,6 @@
     ../desktop/matugen
     ../desktop/whatsapp.nix
     ../dev/bat.nix
-    ../dev/foot
     ../dev/git
     ../dev/gpg
     ../dev/lazygit
