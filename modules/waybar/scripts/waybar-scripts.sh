@@ -84,9 +84,6 @@ do_not_disturb)
 switch_audio_sink)
   switch_audio_sink
   ;;
-sync_icon_click)
-  termwin 'watch -c -n 0.5 easyclone get-status'
-  ;;
 gpu_click)
   termwin radeontop
   ;;

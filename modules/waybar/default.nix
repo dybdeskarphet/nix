@@ -18,12 +18,10 @@
     waybar-scripts
     pipewire
     wireplumber
-    jq
     libnotify
     wl-clipboard
     bluez
     radeontop
-    impala
   ];
 
   programs.waybar = {
