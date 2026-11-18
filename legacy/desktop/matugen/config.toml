@@ -111,10 +111,6 @@ output_path = '~/.config/matugen/references/issue'
 input_path = '~/.config/matugen/templates/uosc.conf'
 output_path = '~/.config/mpv/script-opts/uosc.conf'
 
-[templates.avizo]
-input_path = '~/.config/matugen/templates/avizo.ini'
-output_path = '~/.config/avizo/config.ini'
-
 [templates.razer]
 input_path = "~/.config/matugen/templates/razer-colors.json"
 output_path = '~/.config/openrazer/razer-colors.json'
