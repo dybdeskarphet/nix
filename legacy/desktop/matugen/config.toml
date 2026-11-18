@@ -99,10 +99,6 @@ output_path = '~/.config/clipse/custom_theme.json'
 input_path = '~/.config/matugen/templates/issue_template'
 output_path = '~/.config/matugen/references/issue'
 
-[templates.uosc]
-input_path = '~/.config/matugen/templates/uosc.conf'
-output_path = '~/.config/mpv/script-opts/uosc.conf'
-
 [templates.razer]
 input_path = "~/.config/matugen/templates/razer-colors.json"
 output_path = '~/.config/openrazer/razer-colors.json'
