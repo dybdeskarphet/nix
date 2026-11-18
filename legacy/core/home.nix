@@ -13,7 +13,6 @@
     ../desktop/hypridle.nix
     ../desktop/kanshi.nix
     ../desktop/matugen
-    ../desktop/qt
     ../desktop/whatsapp.nix
     ../dev/bat.nix
     ../dev/foot
