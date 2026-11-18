@@ -16,11 +16,6 @@ cyan = { color = "#00ffff", blend = true }
 input_path = '~/.config/matugen/templates/current_colors.txt'
 output_path = '~/.config/matugen/references/colors.txt'
 
-[templates.zathura]
-pre_hook = 'mkdir -p ~/.config/zathura'
-input_path = '~/.config/matugen/templates/zathura-colors'
-output_path = '~/.config/zathura/colors'
-
 [templates.btop]
 pre_hook = 'mkdir -p ~/.config/btop/themes'
 input_path = '~/.config/matugen/templates/btop.theme'
