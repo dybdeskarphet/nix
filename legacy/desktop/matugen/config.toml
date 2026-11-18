@@ -37,7 +37,3 @@ output_path = '~/.config/matugen/references/issue'
 input_path = "~/.config/matugen/templates/razer-colors.json"
 output_path = '~/.config/openrazer/razer-colors.json'
 post_hook = "razer-matugen"
-
-[templates.swayimg]
-input_path = '~/.config/matugen/templates/swayimg.lua'
-output_path = '~/.config/swayimg/colors.lua'
