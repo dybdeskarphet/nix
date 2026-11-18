@@ -20,10 +20,6 @@ output_path = '~/.config/matugen/references/colors.txt'
 input_path = '~/.config/matugen/templates/vimium.css'
 output_path = '~/.config/matugen/outputs/vimium.css'
 
-[templates.tabiew]
-input_path = '~/.config/matugen/templates/tabiew.toml'
-output_path = '~/.config/tabiew/theme.toml'
-
 [templates.issue]
 input_path = '~/.config/matugen/templates/issue_template'
 output_path = '~/.config/matugen/references/issue'
