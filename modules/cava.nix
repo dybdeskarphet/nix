@@ -1,6 +1,6 @@
 { ... }:
 {
-  flake.modules.homeManager.base =
+  flake.modules.homeManager.cli =
     { colors, ... }:
     {
       programs.cava = {

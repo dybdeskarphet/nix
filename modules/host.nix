@@ -46,14 +46,18 @@ in
 
   flake.modules.nixos = {
     base = { };
-    desktop = { };
-    laptop = { };
+    cli = { };
+    gui = { };
+    services = { };
+    hardware = { };
   };
 
   flake.modules.homeManager = {
     base = { };
-    desktop = { };
-    laptop = { };
+    cli = { };
+    gui = { };
+    services = { };
+    hardware = { };
   };
   # }}}
 
@@ -74,8 +78,10 @@ in
       activeHardwarePath
       inputs.nix-index-database.nixosModules.nix-index
       config.flake.modules.nixos.base
-      config.flake.modules.nixos.desktop
-      config.flake.modules.nixos.laptop
+      config.flake.modules.nixos.cli
+      config.flake.modules.nixos.gui
+      config.flake.modules.nixos.services
+      config.flake.modules.nixos.hardware
       {
         warnings = [
           "using ${toString activeHardwarePath} for hardware config"
@@ -100,8 +106,10 @@ in
         home-manager.users.skarphet.imports = [
           ../legacy/core/home.nix
           config.flake.modules.homeManager.base
-          config.flake.modules.homeManager.desktop
-          config.flake.modules.homeManager.laptop
+          config.flake.modules.homeManager.cli
+          config.flake.modules.homeManager.gui
+          config.flake.modules.homeManager.services
+          config.flake.modules.homeManager.hardware
         ];
       }
     ];
