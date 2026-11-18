@@ -27,7 +27,7 @@
       programs.mpv = {
         enable = true;
 
-        # Core & Profiles {{{
+        # Core & Scripts {{{
         scripts = with pkgs.mpvScripts; [
           uosc
           thumbfast
@@ -49,15 +49,6 @@
           cache = true;
           demuxer-max-bytes = "150M";
           demuxer-max-back-bytes = "75M";
-        };
-
-        profiles = {
-          pyradio = {
-            volume = 50;
-          };
-          pyradio-volume = {
-            volume = 20;
-          };
         };
         # }}}
 
@@ -111,10 +102,6 @@
         };
         # }}}
       };
-
-      home.packages = with pkgs; [
-        yt-dlp
-      ];
     };
 }
 
