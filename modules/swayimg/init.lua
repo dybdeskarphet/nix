@@ -22,34 +22,16 @@ local function hex_to_argb(hex, alpha)
 	return 0xffffffff
 end
 
-local config_dir = os.getenv("HOME") .. "/.config/swayimg"
-local has_colors, colors_mod = pcall(dofile, config_dir .. "/colors.lua")
-local palette = (has_colors and colors_mod and colors_mod.palette)
-	or {
-		background = "#18120b",
-		surface = "#18120b",
-		surface_container = "#251f17",
-		surface_container_high = "#2f2921",
-		surface_container_lowest = "#120d07",
-		surface_dim = "#18120b",
-		primary = "#f3bd6e",
-		secondary = "#ddc2a1",
-		tertiary = "#b7cea2",
-		on_surface = "#ede0d4",
-		on_surface_variant = "#d3c4b4",
-		outline = "#9b8f80",
-	}
-
-local c_bg = hex_to_argb(palette.background or "#000000", 0xff)
-local c_surface = hex_to_argb(palette.surface or "#18120b", 0xff)
-local c_surface_container = hex_to_argb(palette.surface_container or "#251f17", 0xff)
-local c_surface_container_high = hex_to_argb(palette.surface_container_high or "#2f2921", 0xff)
-local c_surface_lowest_trans = hex_to_argb(palette.surface_container_lowest or palette.background or "#000000", 0xd0)
-local c_primary = hex_to_argb(palette.primary or "#f3bd6e", 0xff)
-local c_secondary = hex_to_argb(palette.secondary or "#ddc2a1", 0xff)
-local c_tertiary = hex_to_argb(palette.tertiary or "#b7cea2", 0xff)
-local c_on_surface = hex_to_argb(palette.on_surface or "#ede0d4", 0xff)
-local c_outline = hex_to_argb(palette.outline or "#9b8f80", 0xff)
+local c_bg = hex_to_argb(palette.background, 0xff)
+local c_surface = hex_to_argb(palette.surface, 0xff)
+local c_surface_container = hex_to_argb(palette.surface_container, 0xff)
+local c_surface_container_high = hex_to_argb(palette.surface_container_high, 0xff)
+local c_surface_lowest_trans = hex_to_argb(palette.surface_container_lowest, 0xd0)
+local c_primary = hex_to_argb(palette.primary, 0xff)
+local c_secondary = hex_to_argb(palette.secondary, 0xff)
+local c_tertiary = hex_to_argb(palette.tertiary, 0xff)
+local c_on_surface = hex_to_argb(palette.on_surface, 0xff)
+local c_outline = hex_to_argb(palette.outline, 0xff)
 
 --------------------------------------------------------------------------------
 -- General Configuration

@@ -27,7 +27,6 @@
     ../media/gimp
     ../media/spicetify.nix
     ../media/streamlink
-    ../media/swayimg
     ../media/yt-dlp.nix
     ../security/hyprlock/home.nix
     ../utility/battery/home.nix
