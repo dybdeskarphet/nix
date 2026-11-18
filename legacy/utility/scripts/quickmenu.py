@@ -1,7 +1,6 @@
 import subprocess
 import sys
 from dataclasses import dataclass
-from pathlib import Path
 
 
 @dataclass(frozen=True)
@@ -11,10 +10,6 @@ class MenuItem:
     message: str
     rofi_icon: str
 
-
-THEME = Path(
-    "~/.local/share/rofi/themes/basic_launcher/rounded_with_listview.rasi"
-).expanduser()
 
 MENU: dict[str, MenuItem] = {
     "reload: waybar": MenuItem(
@@ -100,8 +95,6 @@ def main() -> None:
         [
             "rofi",
             "-dmenu",
-            "-theme",
-            str(THEME),
             "-p",
             "   quick settings",
         ],

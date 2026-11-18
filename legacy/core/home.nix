@@ -16,7 +16,6 @@
     ../desktop/kanshi.nix
     ../desktop/matugen
     ../desktop/qt
-    ../desktop/rofi
     ../desktop/whatsapp.nix
     ../dev/bat.nix
     ../dev/foot
