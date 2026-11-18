@@ -31,14 +31,6 @@ pre_hook = 'mkdir -p ~/.config/yazi/flavors/matugen.yazi'
 input_path = '~/.config/matugen/templates/yazi.toml'
 output_path = '~/.config/yazi/flavors/matugen.yazi/flavor.toml'
 
-[templates.gtk3]
-input_path = '~/.config/matugen/templates/gtk-colors.css'
-output_path = '~/.config/gtk-3.0/colors.css'
-
-[templates.gtk4]
-input_path = '~/.config/matugen/templates/gtk-colors.css'
-output_path = '~/.config/gtk-4.0/colors.css'
-
 [templates.qt5ct]
 pre_hook = 'mkdir -p ~/.config/qt5ct/colors'
 input_path = '~/.config/matugen/templates/qt-colors.conf'
