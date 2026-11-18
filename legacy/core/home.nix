@@ -14,7 +14,6 @@
     ../desktop/gtk
     ../desktop/hypridle.nix
     ../desktop/kanshi.nix
-    ../desktop/mako
     ../desktop/matugen
     ../desktop/qt
     ../desktop/rofi
