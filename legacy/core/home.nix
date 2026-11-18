@@ -10,7 +10,6 @@
     ../backup/rclone/home.nix
     ../desktop/awww
     ../desktop/chromium/home.nix
-    ../desktop/gtk
     ../desktop/hypridle.nix
     ../desktop/kanshi.nix
     ../desktop/matugen
