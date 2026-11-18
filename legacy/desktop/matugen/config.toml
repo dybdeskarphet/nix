@@ -23,8 +23,3 @@ output_path = '~/.config/matugen/outputs/vimium.css'
 [templates.issue]
 input_path = '~/.config/matugen/templates/issue_template'
 output_path = '~/.config/matugen/references/issue'
-
-[templates.razer]
-input_path = "~/.config/matugen/templates/razer-colors.json"
-output_path = '~/.config/openrazer/razer-colors.json'
-post_hook = "razer-matugen"
