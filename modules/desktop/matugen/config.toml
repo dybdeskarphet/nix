@@ -17,15 +17,6 @@ input_path = '~/.config/matugen/templates/niri.kdl'
 output_path = '~/.config/niri/matugen.kdl'
 post_hook = 'niri msg action load-config-file'
 
-[templates.waybar-style]
-input_path = '~/.config/matugen/templates/colors.css'
-output_path = '~/.config/waybar/colors.css'
-
-[templates.waybar-config]
-input_path = '~/.config/matugen/templates/waybar.jsonc'
-output_path = '~/.config/waybar/config.jsonc'
-post_hook = 'systemctl --user reload waybar.service'
-
 [templates.rofi]
 input_path = '~/.config/matugen/templates/rofi.rasi'
 output_path = '~/.local/share/rofi/themes/basic_launcher/colors.rasi'
@@ -47,10 +38,6 @@ output_path = '~/.config/yazi/plugins/matugen.yazi/main.lua'
 pre_hook = 'mkdir -p ~/.config/zathura'
 input_path = '~/.config/matugen/templates/zathura-colors'
 output_path = '~/.config/zathura/colors'
-
-[templates.syshud]
-input_path = '~/.config/matugen/templates/colors.css'
-output_path = '~/.config/sys64/hud/colors.css'
 
 [templates.yazi]
 pre_hook = 'mkdir -p ~/.config/yazi/flavors/matugen.yazi'
@@ -127,10 +114,6 @@ output_path = '~/.config/mpv/script-opts/uosc.conf'
 [templates.avizo]
 input_path = '~/.config/matugen/templates/avizo.ini'
 output_path = '~/.config/avizo/config.ini'
-
-[templates.skshell]
-input_path = '~/.config/matugen/templates/colors.css'
-output_path = '~/.code/git/skshell/src/colors.css'
 
 [templates.razer]
 input_path = "~/.config/matugen/templates/razer-colors.json"
