@@ -1,5 +1,3 @@
-@import "colors.css";
-
 * {
   border: none;
   border-radius: 0;
@@ -10,7 +8,11 @@
 }
 
 window#waybar {
-  background: linear-gradient(180deg, alpha(@surface_container_lowest, 0.8), alpha(@surface_container_lowest, 0.0));
+  background: linear-gradient(
+    180deg,
+    alpha(@surface_container_lowest, 0.8),
+    alpha(@surface_container_lowest, 0)
+  );
 }
 
 tooltip {
@@ -25,8 +27,6 @@ tooltip label {
   font-family: proportional_font;
 }
 
-#custom-updates,
-#custom-keyboard_lighting,
 #network,
 #bluetooth,
 #custom-gpu_usage,
@@ -38,8 +38,12 @@ tooltip label {
   padding-top: 2px;
 }
 
-#systemd-failed-units {
-  color: @error;
+#bluetooth.disabled,
+#bluetooth.off,
+#bluetooth.on,
+#network.disabled,
+#network.disconnected {
+  color: @outline;
   margin-right: 9px;
   transition: 0.3s;
   padding-top: 2px;
@@ -47,32 +51,15 @@ tooltip label {
 
 #bluetooth:hover,
 #custom-gpu_usage:hover,
-#custom-keyboard_lighting:hover,
 #memory:hover,
-#network:hover {
+#network:hover,
+#cpuntemp:hover,
+#tray:hover {
   background: transparent;
   color: @primary;
   padding-left: 5px;
   padding-right: 5px;
-  box-shadow: inset 0 0 0px 1px @primary;
-}
-
-#systemd-failed-units:hover {
-  background: transparent;
-  padding-left: 5px;
-  padding-right: 5px;
-  box-shadow: inset 0 0 0px 1px @primary;
-}
-
-#bluetooth.disabled,
-#bluetooth.off,
-#network.disabled,
-#network.disconnected,
-#bluetooth.on {
-  color: @outline;
-  margin-right: 9px;
-  transition: 0.3s;
-  padding-top: 2px;
+  box-shadow: inset 0 0 0 1px @primary;
 }
 
 #network.disabled:hover,
@@ -83,7 +70,7 @@ tooltip label {
   color: @on_background;
   padding-left: 5px;
   padding-right: 5px;
-  box-shadow: inset 0 0 0px 1px @primary;
+  box-shadow: inset 0 0 0 1px @primary;
 }
 
 #pulseaudionslider {
@@ -92,7 +79,8 @@ tooltip label {
   margin-left: 9px;
 }
 
-#pulseaudio {
+#pulseaudio,
+#backlight {
   color: @primary;
   margin-top: 2px;
 }
@@ -102,39 +90,12 @@ tooltip label {
   padding-bottom: 1px;
 }
 
-#pulseaudio-slider slider {
-  min-height: 0px;
-  min-width: 0px;
-  opacity: 0;
-  background-image: none;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-}
-
-#pulseaudio-slider trough {
-  min-height: 10px;
-  min-width: 50px;
-  border-radius: 2px;
-  background: transparent;
-}
-
-#pulseaudio-slider highlight {
-  min-width: 10px;
-  border-radius: 2px;
-  background: @primary;
-}
-
-#backlight {
-  color: @primary;
-  margin-top: 2px;
-}
-
 #backlight-slider {
   padding-top: 4px;
   padding-bottom: 1px;
 }
 
+#pulseaudio-slider slider,
 #backlight-slider slider {
   min-height: 0px;
   min-width: 0px;
@@ -145,6 +106,7 @@ tooltip label {
   box-shadow: none;
 }
 
+#pulseaudio-slider trough,
 #backlight-slider trough {
   min-height: 10px;
   min-width: 50px;
@@ -152,28 +114,38 @@ tooltip label {
   background: transparent;
 }
 
+#pulseaudio-slider highlight,
 #backlight-slider highlight {
   min-width: 10px;
   border-radius: 2px;
   background: @primary;
 }
 
-#custom-updates:hover {
-  color: @primary;
-  padding-left: 5px;
-  padding-right: 5px;
-  box-shadow: inset 0 0 0px 1px @primary;
-}
-
 #workspaces {
   margin-right: 0px;
 }
 
-#custom-hiddenwindow {
+#workspaces button {
   background: transparent;
-  color: @tertiary_fixed;
-  padding-left: 7px;
-  padding-right: 7px;
+  color: @on_background;
+  padding: 0px 3px;
+}
+
+#workspaces button:hover,
+#workspaces button.active {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px @primary;
+  color: @primary;
+}
+
+#workspaces button.urgent {
+  background: transparent;
+  box-shadow: inset 0 0 0 2px @error;
+}
+
+#workspaces button.empty {
+  background: transparent;
+  color: @outline;
 }
 
 #custom-mic {
@@ -182,104 +154,6 @@ tooltip label {
   padding-left: 7px;
   padding-right: 7px;
   border-radius: 5px;
-}
-
-#workspaces button {
-  background: transparent;
-  color: @on_background;
-  padding-left: 3px;
-  padding-right: 3px;
-  /* NOTE: 0px paddings are needed. module expands the bar if not set. */
-  padding-bottom: 0px;
-  padding-top: 0px;
-}
-
-#workspaces button:hover {
-  box-shadow: inset 0 0 0px 1px @primary;
-  background: transparent;
-  color: @primary;
-  margin-bottom: 0px;
-}
-
-#workspaces button.active {
-  background: transparent;
-  box-shadow: inset 0 0 0px 1px @primary;
-  color: @primary;
-}
-
-#workspaces button.urgent {
-  background: transparent;
-  box-shadow: inset 0 0 0px 2px @error;
-}
-
-#workspaces button.empty {
-  background: transparent;
-  color: @outline;
-}
-
-#clock {
-  color: @primary;
-  transition: 0.2s;
-  padding-left: 8px;
-  padding-right: 7px;
-  padding-top: 2px;
-}
-
-#clock:hover {
-  box-shadow: inset 0 0 0px 1px @primary;
-}
-
-#battery {
-  background: transparent;
-  color: @primary;
-  transition: 0.2s;
-  margin-right: 4px;
-  margin-left: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 2px;
-  padding-bottom: 1px;
-}
-
-#battery.charging {
-  background: transparent;
-  color: @primary;
-  transition: 0.2s;
-  font-weight: 900;
-}
-
-#cpuntemp {
-  color: @primary;
-  background: transparent;
-  margin-right: 9px;
-  transition: 0.3s;
-  border: 0px solid transparent;
-  padding-top: 2px;
-}
-
-#cpuntemp:hover {
-  background: transparent;
-  color: @primary;
-  padding-left: 5px;
-  padding-right: 5px;
-  box-shadow: inset 0 0 0px 1px @primary;
-}
-
-#cpu {
-  color: @primary;
-  margin-right: 9px;
-}
-
-#temperature.cpu {
-  color: @primary;
-}
-
-#temperature.cpu.critical {
-  border: 1px solid @error;
-  color: @error;
-  transition: 0.2s;
-  border-radius: 5px;
-  padding: 0px 5px 0px 5px;
 }
 
 #custom-dnd {
@@ -296,20 +170,61 @@ tooltip label {
   color: @tertiary_fixed_dim;
 }
 
-#custom-sync,
+#clock {
+  color: @primary;
+  transition: 0.2s;
+  padding: 2px 7px 0px 8px;
+}
+
+#clock:hover {
+  box-shadow: inset 0 0 0 1px @primary;
+}
+
+#battery {
+  background: transparent;
+  color: @primary;
+  transition: 0.2s;
+  margin: 0px 4px;
+  padding: 2px 5px 1px 5px;
+}
+
+#battery.charging {
+  background: transparent;
+  color: @primary;
+  transition: 0.2s;
+  font-weight: 900;
+}
+
+#cpuntemp {
+  color: @primary;
+  background: transparent;
+  margin-right: 9px;
+  transition: 0.3s;
+  padding-top: 2px;
+}
+
+#cpu {
+  color: @primary;
+  margin-right: 9px;
+}
+
+#temperature.cpu {
+  color: @primary;
+}
+
+#temperature.cpu.critical {
+  border: 1px solid @error;
+  color: @error;
+  transition: 0.2s;
+  border-radius: 5px;
+  padding: 0px 5px;
+}
+
 #tray {
   background: transparent;
   color: @primary;
   transition: 0.2s;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 2px;
-}
-
-#custom-sync:hover,
-#tray:hover {
-  background: transparent;
-  box-shadow: inset 0 0 0 1px @primary;
+  padding: 2px 5px 0px 5px;
 }
 
 #tray menu {
@@ -327,12 +242,12 @@ tooltip label {
   transition: 0.2s;
 }
 
+window#waybar.empty #window {
+  background: transparent;
+}
+
 #privacy {
   color: @error;
   margin-top: 3px;
   margin-left: 1px;
-}
-
-window#waybar.empty #window {
-  background: transparent;
 }
