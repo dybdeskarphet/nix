@@ -5,7 +5,6 @@
     ../academic/rnote
     ../academic/todotxt.nix
     ../academic/write
-    ../academic/zathura
     ../academic/zotero.nix
     ../backup/rclone/home.nix
     ../desktop/awww
