@@ -12,11 +12,6 @@ blue = { color = "#7daea3", blend = true }
 magenta = { color = "#d3869b", blend = true }
 cyan = { color = "#89b482", blend = true }
 
-[templates.niri]
-input_path = '~/.config/matugen/templates/niri.kdl'
-output_path = '~/.config/niri/matugen.kdl'
-post_hook = 'niri msg action load-config-file'
-
 [templates.rofi]
 input_path = '~/.config/matugen/templates/rofi.rasi'
 output_path = '~/.local/share/rofi/themes/basic_launcher/colors.rasi'
