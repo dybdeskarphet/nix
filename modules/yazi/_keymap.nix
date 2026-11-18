@@ -3,7 +3,6 @@ let
   dragon = lib.getExe pkgs.dragon-drop;
   ouch = lib.getExe pkgs.ouch;
   zip = lib.getExe pkgs.zip;
-  # localsend = lib.getExe pkgs.localsend-cli;
 in
 {
   mgr = {
@@ -87,16 +86,6 @@ in
         run = ''shell --orphan -- cp -r "$(${dragon} -t -p -x)" .'';
         desc = "Open current directory with dragon as target (drag-and-drop)";
       }
-      # localsend
-      #      {
-      #        on = [
-      #          "c"
-      #          "p"
-      #        ];
-      #        run = "shell --block -- sh -c 'for f in \"$@\"; do [ -f \"$f\" ] && set -- \"$@\" --file \"$f\"; shift;
-      #  done; if [ $# -gt 0 ]; then ${localsend} \"$@\"; fi' _ %s";
-      #        desc = "Send with localsend";
-      #      }
       # compression
       {
         on = [

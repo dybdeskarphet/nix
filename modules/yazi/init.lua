@@ -1,7 +1,3 @@
--- matugen colors {{{
-local colors = require("matugen").palette
--- }}}
-
 -- Folder-specific rules {{{
 ps.sub("ind-sort", function(opt)
 	local cwd = cx.active.current.cwd
