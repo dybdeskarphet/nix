@@ -27,7 +27,6 @@
     ../media/streamlink
     ../media/yt-dlp.nix
     ../security/hyprlock/home.nix
-    ../utility/battery/home.nix
     ../utility/htop.nix
     ../utility/prismlauncher.nix
     ../utility/qalc.nix

@@ -14,7 +14,6 @@
     ../hardware/opentabletdriver/system.nix
     ../security/firewall
     ../security/hyprlock/system.nix
-    ../utility/battery/system.nix
     ../utility/localsend.nix
     ../utility/openvpn
   ];
