@@ -6,18 +6,10 @@
       emptyTheme = pkgs.writeText "empty.rasi" "";
     in
     {
-      # Packages & Rofimoji {{{
       home.packages = with pkgs; [
         rofi
-        rofimoji
       ];
 
-      xdg.configFile."rofimoji.rc".text = ''
-        action clipboard
-      '';
-      # }}}
-
-      # Spotlight Theme & Config {{{
       xdg.configFile."rofi/config.rasi".text = ''
         configuration {
             matching: "fuzzy";
@@ -153,8 +145,5 @@
             cursor: inherit;
         }
       '';
-      # }}}
     };
 }
-
-# -- vim: fdm=marker fdl=0
