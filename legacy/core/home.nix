@@ -6,7 +6,6 @@
     ../academic/todotxt.nix
     ../academic/write
     ../academic/zotero.nix
-    ../backup/rclone/home.nix
     ../dev/bat.nix
     ../dev/git
     ../dev/gpg
