@@ -7,7 +7,6 @@
     ../academic/write
     ../academic/zotero.nix
     ../backup/rclone/home.nix
-    ../desktop/chromium/home.nix
     ../dev/bat.nix
     ../dev/git
     ../dev/gpg

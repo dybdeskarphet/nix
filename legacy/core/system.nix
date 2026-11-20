@@ -4,7 +4,6 @@
     ../backup/rclone/system.nix
     ../backup/restic
     ../backup/syncthing
-    ../desktop/chromium/system.nix
     ../dev/docker.nix
     ../dev/neovim/system.nix
     ../dev/ssh/system.nix
