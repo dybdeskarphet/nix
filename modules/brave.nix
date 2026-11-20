@@ -5,6 +5,8 @@
       pkgs,
       pkgs-small,
       lib,
+      config,
+      colors,
       ...
     }:
     let
@@ -76,25 +78,49 @@
           "BraveWalletDisabled" = true;
           "BraveVPNDisabled" = true;
           "BraveAIChatEnabled" = false;
+          "BraveNewsDisabled" = true;
+          "BraveTalkDisabled" = true;
+          "BravePlaylistEnabled" = false;
+          "TorDisabled" = true;
+          "BraveWaybackMachineEnabled" = false;
 
+          # Privacy & telemetry
+          "BraveStatsPingEnabled" = false;
+          "BraveP3AEnabled" = false;
+          "BraveWebDiscoveryEnabled" = false;
+          "DefaultBraveFingerprintingV2Setting" = 3;
+          "BrowserSignin" = 0;
+          "SyncDisabled" = true;
+          "MetricsReportingEnabled" = false;
+          "UrlKeyedAnonymizedDataCollectionEnabled" = false;
+          "PrivacySandboxPromptEnabled" = false;
+          "DoNotTrack" = true;
+          "PaymentMethodQueryEnabled" = false;
+          "WebRtcIPHandlingPolicy" = "disable_non_proxied_udp";
+          "HttpsOnlyMode" = "force_enabled";
+          "BuiltInDnsClientEnabled" = false;
+
+          # Browser behavior & UI
+          "BrowserThemeColor" = colors.surface_container;
+          "BookmarkBarEnabled" = false;
+          "BackgroundModeEnabled" = false;
+          "TabHoverCardImagesEnabled" = false;
+          "ShoppingListEnabled" = false;
           "PasswordManagerEnabled" = false;
           "SpellcheckEnabled" = true;
+          "SpellcheckLanguage" = [
+            "en-US"
+            "tr"
+          ];
           "RestoreOnStartup" = 5;
           "ShowHomeButton" = false;
           "HighEfficiencyModeEnabled" = true;
           "AutofillAddressEnabled" = false;
           "AutofillCreditCardEnabled" = false;
-          "DoNotTrack" = true;
           "PromptForDownloadLocation" = false;
-
-          "BrowserSignin" = 0;
-          "SyncDisabled" = true;
-          "MetricsReportingEnabled" = false;
+          "DownloadDirectory" = config.home-manager.users.skarphet.xdg.userDirs.download;
           "TranslateEnabled" = false;
           "NetworkPredictionOptions" = 1;
-
-          "WebRtcIPHandlingPolicy" = "disable_non_proxied_udp";
-          "HttpsOnlyMode" = "force_enabled";
 
           "DefaultSearchProviderEnabled" = true;
           "DefaultSearchProviderName" = "Google";
@@ -115,8 +141,8 @@
       # Initial Preferences & PWA Launchers {{{
       environment.etc."brave/initial_preferences".text = builtins.toJSON {
         extensions.theme = {
-          system_theme = 1;
-          use_system = true;
+          system_theme = 0;
+          use_system = false;
         };
         brave = {
           sidebar.sidebar_show_option = 3;
