@@ -6,15 +6,6 @@
     ../academic/todotxt.nix
     ../academic/write
     ../academic/zotero.nix
-    ../dev/bat.nix
-    ../dev/git
-    ../dev/gpg
-    ../dev/lsd.nix
-    ../dev/neovim/home.nix
-    ../dev/python
-    ../dev/sqlite.nix
-    ../dev/ssh/home.nix
-    ../dev/zoxide.nix
     ../hardware/opentabletdriver/home.nix
     ../media/gimp
     ../media/spicetify.nix
