@@ -15,7 +15,7 @@
         settings = {
           colorScheme = "terminal";
           altScreenMode = "default";
-          agentMode = "default";
+          agentMode = "";
           enableTerminalSandbox = true;
           allowNonWorkspaceAccess = false;
           toolPermission = "request-review";
