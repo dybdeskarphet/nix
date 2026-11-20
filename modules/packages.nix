@@ -32,7 +32,6 @@
         glib
         gsettings-desktop-schemas
         python3
-        inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.antigravity-cli
         axel
         ffmpeg
         obs-studio
