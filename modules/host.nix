@@ -136,7 +136,6 @@ in
         ;
     };
     modules = [
-      ../legacy/core/system.nix
       activeHardwarePath
       inputs.nix-index-database.nixosModules.nix-index
       config.nixos.base
@@ -169,7 +168,6 @@ in
         home-manager.users.skarphet = {
           home.stateVersion = "25.11";
           imports = [
-            ../legacy/core/home.nix
             config.home.base
             config.home.cli
             config.home.gui
