@@ -4,6 +4,7 @@
     {
       pkgs,
       lib,
+      config,
       ...
     }:
     {
@@ -41,7 +42,7 @@
             "command(rm -rf /)"
             "command(sudo )"
             "write_file(/etc)"
-            "read_file(~/.ssh)"
+            "read_file(${config.home.homeDirectory}/.ssh)"
           ];
         };
 
