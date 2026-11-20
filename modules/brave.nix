@@ -6,7 +6,6 @@
       pkgs-small,
       lib,
       config,
-      colors,
       ...
     }:
     let
@@ -101,7 +100,6 @@
           "BuiltInDnsClientEnabled" = false;
 
           # Browser behavior & UI
-          "BrowserThemeColor" = colors.surface_container;
           "BookmarkBarEnabled" = false;
           "BackgroundModeEnabled" = false;
           "TabHoverCardImagesEnabled" = false;
@@ -141,8 +139,8 @@
       # Initial Preferences & PWA Launchers {{{
       environment.etc."brave/initial_preferences".text = builtins.toJSON {
         extensions.theme = {
-          system_theme = 0;
-          use_system = false;
+          system_theme = 1;
+          use_system = true;
         };
         brave = {
           sidebar.sidebar_show_option = 3;
