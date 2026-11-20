@@ -7,11 +7,7 @@
     ../academic/write
     ../academic/zotero.nix
     ../backup/rclone/home.nix
-    ../desktop/awww
     ../desktop/chromium/home.nix
-    ../desktop/hypridle.nix
-    ../desktop/kanshi.nix
-    ../desktop/whatsapp.nix
     ../dev/bat.nix
     ../dev/git
     ../dev/gpg
@@ -26,7 +22,6 @@
     ../media/spicetify.nix
     ../media/streamlink
     ../media/yt-dlp.nix
-    ../security/hyprlock/home.nix
     ../utility/htop.nix
     ../utility/prismlauncher.nix
     ../utility/qalc.nix

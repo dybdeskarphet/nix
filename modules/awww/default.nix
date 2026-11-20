@@ -1,0 +1,68 @@
+{ ... }:
+{
+  home.gui =
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
+    let
+      awwwDaemon = lib.getExe' pkgs.awww "awww-daemon";
+      wallpaperScript = pkgs.writeShellApplication {
+        name = "wallpaper";
+        runtimeInputs = [
+          pkgs.awww
+          pkgs.ffmpeg
+          pkgs.coreutils
+        ];
+        text = builtins.readFile ./wallpaper.sh;
+      };
+    in
+    {
+      home.packages = [
+        pkgs.awww
+        wallpaperScript
+      ];
+
+      # Systemd Services {{{
+      systemd.user.services = {
+        awww-bg = {
+          Unit = {
+            Description = "awww-daemon (main background)";
+            ConditionEnvironment = "WAYLAND_DISPLAY";
+            After = [ config.wayland.systemd.target ];
+            PartOf = [ config.wayland.systemd.target ];
+          };
+          Install = {
+            WantedBy = [ config.wayland.systemd.target ];
+          };
+          Service = {
+            ExecStart = "${awwwDaemon} --namespace bg";
+            Restart = "always";
+            RestartSec = 5;
+          };
+        };
+
+        awww-backdrop = {
+          Unit = {
+            Description = "awww-daemon (niri backdrop)";
+            ConditionEnvironment = "WAYLAND_DISPLAY";
+            After = [ config.wayland.systemd.target ];
+            PartOf = [ config.wayland.systemd.target ];
+          };
+          Install = {
+            WantedBy = [ config.wayland.systemd.target ];
+          };
+          Service = {
+            ExecStart = "${awwwDaemon} --namespace backdrop";
+            Restart = "always";
+            RestartSec = 5;
+          };
+        };
+      };
+      # }}}
+    };
+}
+
+# -- vim: fdm=marker fdl=0
