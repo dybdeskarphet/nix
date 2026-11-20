@@ -15,6 +15,9 @@
         settings = {
           colorScheme = "terminal";
           altScreenMode = "default";
+          agentMode = "default";
+          enableTerminalSandbox = true;
+          allowNonWorkspaceAccess = false;
           toolPermission = "request-review";
           artifactReviewPolicy = "asks-for-review";
         };
@@ -28,16 +31,12 @@
             "command(nix eval)"
             "command(nix-instantiate --parse)"
             "read_file(/nix/store)"
+            "read_file(/run/current-system)"
             "read_url(nixos.org)"
             "read_url(wiki.nixos.org)"
             "read_url(github.com)"
           ];
-          ask = [
-            "command(git push)"
-            "command(git reset)"
-            "command(nixos-rebuild)"
-            "command(rm )"
-          ];
+          ask = [ ];
           deny = [
             "command(rm -rf /)"
             "command(sudo )"
