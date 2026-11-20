@@ -26,7 +26,7 @@
             "command(nix flake check)"
             "command(nix eval)"
             "command(nix-instantiate --parse)"
-            "read_file(/nix/store/*)"
+            "read_file(/nix/store)"
             "read_url(nixos.org)"
             "read_url(wiki.nixos.org)"
             "read_url(github.com)"
@@ -40,8 +40,8 @@
           deny = [
             "command(rm -rf /)"
             "command(sudo )"
-            "write_file(/etc/*)"
-            "read_file(~/.ssh/*)"
+            "write_file(/etc)"
+            "read_file(~/.ssh)"
           ];
         };
 
