@@ -65,6 +65,10 @@
               "git+https://github.com/oraios/serena"
               "serena"
               "start-mcp-server"
+              "--context"
+              "ide-assistant"
+              "--open-web-dashboard"
+              "False"
             ];
           };
         };
