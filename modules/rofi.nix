@@ -16,13 +16,14 @@
             sorting-method: "fzf";
             sort: true;
             show-icons: true;
+            click-to-exit: false;
             drun-match-fields: "name,generic,exec,categories,keywords";
         }
 
         @theme "${emptyTheme}"
 
         * {
-            font: "proportional_font SemiBold 13";
+            font: "proportional_font Medium 13";
             background-color: transparent;
             text-color: ${colors.on_surface};
             margin: 0px;
@@ -33,12 +34,12 @@
         window {
             location: north;
             anchor: north;
-            y-offset: 22%;
-            width: 640px;
-            border-radius: 12px;
-            border: 2px;
-            border-color: ${colors.primary}66;
-            background-color: ${colors.surface_container}cc;
+            y-offset: 20%;
+            width: 660px;
+            border-radius: 8px;
+            border: 1px;
+            border-color: ${colors.outline_variant}b3;
+            background-color: ${colors.surface_container_low}99;
         }
 
         mainbox {
@@ -47,14 +48,14 @@
 
         inputbar {
             children: [ prompt, entry ];
-            spacing: 10px;
-            padding: 14px 18px;
+            spacing: 12px;
+            padding: 15px 18px;
             border: 0px 0px 1px 0px;
-            border-color: ${colors.outline_variant}80;
+            border-color: ${colors.outline_variant}66;
         }
 
         prompt {
-            font: "proportional_font Bold 13";
+            font: "proportional_font SemiBold 13";
             text-color: ${colors.primary};
             vertical-align: 0.5;
         }
@@ -68,25 +69,25 @@
         }
 
         message {
-            padding: 8px 18px;
+            padding: 9px 18px;
             border: 0px 0px 1px 0px;
-            border-color: ${colors.outline_variant}80;
-            background-color: ${colors.secondary_container}4d;
+            border-color: ${colors.outline_variant}66;
+            background-color: ${colors.surface_container}66;
         }
 
         textbox {
-            text-color: ${colors.primary};
+            text-color: ${colors.on_surface_variant};
             vertical-align: 0.5;
         }
 
         listview {
             columns: 1;
-            lines: 7;
+            lines: 8;
             fixed-height: false;
             dynamic: true;
             scrollbar: false;
             padding: 8px;
-            spacing: 4px;
+            spacing: 3px;
         }
 
         element {
@@ -94,7 +95,7 @@
             spacing: 12px;
             border: 1px;
             border-color: transparent;
-            border-radius: 8px;
+            border-radius: 5px;
             background-color: transparent;
             text-color: ${colors.on_surface};
             cursor: pointer;
@@ -120,21 +121,21 @@
 
         element selected.normal,
         element selected.active {
-            background-color: ${colors.primary}2b;
+            background-color: ${colors.on_surface}1a;
             border: 1px;
-            border-color: ${colors.primary}66;
+            border-color: ${colors.outline_variant}99;
             text-color: ${colors.primary};
         }
 
         element selected.urgent {
             background-color: ${colors.error_container}80;
             border: 1px;
-            border-color: ${colors.error}80;
+            border-color: ${colors.error}66;
             text-color: ${colors.on_error_container};
         }
 
         element-icon {
-            size: 1.4em;
+            size: 1.45em;
             vertical-align: 0.5;
             cursor: inherit;
         }

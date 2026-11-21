@@ -49,7 +49,7 @@ layer-rule {
 
 layer-rule {
     match namespace="^rofi$"
-    geometry-corner-radius 12 
+    geometry-corner-radius 8
     background-effect {
         blur true
         xray false
