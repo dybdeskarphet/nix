@@ -19,7 +19,7 @@
         {
           bin = "instagram";
           name = "Instagram";
-          url = "https://instagram.com";
+          url = "https://www.instagram.com/";
         }
         {
           bin = "gemini";
@@ -27,6 +27,19 @@
           url = "https://gemini.google.com";
         }
       ];
+
+      initialPrefs = pkgs.writeText "initial_preferences" (
+        builtins.toJSON {
+          extensions.theme = {
+            system_theme = 1;
+            use_system = true;
+          };
+          brave = {
+            sidebar.sidebar_show_option = 3;
+            show_side_panel_button = false;
+          };
+        }
+      );
 
       pwaWrappers = map (
         app:
@@ -47,14 +60,20 @@
       programs.brave = {
         enable = true;
 
-        package = pkgs-small.brave.override {
-          commandLineArgs = lib.concatStringsSep " " [
-            "--enable-features=BraveTreeTab"
-            "--ozone-platform=wayland"
-            "--enable-gpu-rasterization"
-            "--enable-zero-copy"
-          ];
-        };
+        package =
+          (pkgs-small.brave.override {
+            commandLineArgs = lib.concatStringsSep " " [
+              "--enable-features=BraveTreeTab"
+              "--ozone-platform=wayland"
+              "--enable-gpu-rasterization"
+              "--enable-zero-copy"
+            ];
+          }).overrideAttrs
+            (old: {
+              postInstall = (old.postInstall or "") + ''
+                cp ${initialPrefs} $out/opt/brave.com/brave/initial_preferences
+              '';
+            });
 
         extensions = [
           "ddkjiahejlhfcafbddmgiahcphecmpfh" # uBlock Origin Lite
@@ -136,18 +155,7 @@
       };
       # }}}
 
-      # Initial Preferences & PWA Launchers {{{
-      environment.etc."brave/initial_preferences".text = builtins.toJSON {
-        extensions.theme = {
-          system_theme = 1;
-          use_system = true;
-        };
-        brave = {
-          sidebar.sidebar_show_option = 3;
-          show_side_panel_button = false;
-        };
-      };
-
+      # PWA Launchers {{{
       environment.systemPackages = pwaWrappers;
       # }}}
     };
