@@ -14,7 +14,7 @@
         {
           bin = "google-meet";
           name = "Google Meet";
-          url = "https://meet.google.com";
+          url = "https://meet.google.com/home";
         }
         {
           bin = "instagram";
