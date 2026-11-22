@@ -96,7 +96,7 @@
           # Modules {{{
           clock = {
             locale = "tr_TR.UTF-8";
-            format = "<span font_desc='Spell of Asia 14' weight='700'>{:%H:%M}</span>";
+            format = "<span font_desc='Spell of Asia 16' weight='700'>{:%H:%M}</span>";
             interval = 1;
             format-alt = "{:L%H:%M:%S  │ %F │ %B │ %A}";
             tooltip-format = "<tt><small>{calendar}</small></tt>";
