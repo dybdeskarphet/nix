@@ -13,7 +13,7 @@ blur_img="$cache_dir/.wallpaper_blur.png"
 lock_img="$cache_dir/.wallpaper_lock.png"
 
 ffmpeg -y -i "$image" \
-  -vf "scale=iw/4:-1,gblur=sigma=20:steps=2,eq=brightness=-0.05,scale=4*iw:-1" \
+  -vf "scale=iw/4:-1,gblur=sigma=20:steps=2,colorchannelmixer=rr=0.75:gg=0.75:bb=0.75,eq=saturation=0.85,scale=4*iw:-1" \
   -update 1 -frames:v 1 "$blur_img" -loglevel error
 
 ffmpeg -y -i "$image" -filter_complex "
