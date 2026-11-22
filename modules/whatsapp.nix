@@ -4,11 +4,11 @@
     { pkgs, lib, ... }:
     let
       pname = "elecwhat";
-      version = "1.14.0";
+      version = "1.16.2";
 
       src = pkgs.fetchurl {
         url = "https://github.com/piec/elecwhat/releases/download/v${version}/elecwhat-${version}.AppImage";
-        hash = "sha512-2Rf7OmKbYGjxQ0RKeJgZ0qOPdiUsidqoWEXCgr8FFLawiO+98ltANes+UFVJYRijmdoecCqF5d3XSno2+MwpHg==";
+        hash = "sha512-+LW7WmnPOrjJqsg99WmJhuhBwNqSLtG2b1IJq3o9mc5ccOv8Ev8aBoaqobdc73lBMj4kB4IDCZ4/WvXc7JR4TA==";
       };
 
       whatsapp = pkgs.appimageTools.wrapType2 {
