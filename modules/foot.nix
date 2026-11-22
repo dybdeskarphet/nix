@@ -49,7 +49,7 @@
             bright6 = s colors.cyan;
             bright7 = s colors.on_background;
 
-            alpha = 0.85;
+            alpha = 0.90;
             alpha-mode = "matching";
 
             jump-labels = "${s colors.background} ${s colors.yellow}";
