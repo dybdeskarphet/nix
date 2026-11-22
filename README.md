@@ -1,25 +1,20 @@
-# Nix
+<p align="center">
+    <img width="160" alt="NixOS logo" src="./assets/nix-logo.svg"/>
+</p>
 
-Personal **NixOS** configuration managed with Flakes and Home Manager.
+<p align="center">
+    Personal <strong>NixOS</strong> configuration managed with Flakes, <code>flake-parts</code>, <code>import-tree</code>, and Home Manager.
+</p>
 
-## Stack
+<h2><img src="./assets/icon-architecture.svg" width="24" height="24" align="absmiddle" alt=""/> Architecture</h2>
 
-- [Niri](https://github.com/YaLTeR/niri) (Waybar, Mako, Avizo, Kanshi)
-- [Matugen](https://github.com/InioX/matugen) (Material You dynamic colors from wallpaper)
-- [Foot](https://codeberg.org/dnkl/foot) + [Fish](https://fishshell.com)
-- Neovim ([dybdeskarphet/neovim-config](https://github.com/dybdeskarphet/neovim-config))
-- [Yazi](https://github.com/sxyazi/yazi)
-- Zotero, LibreOffice, Pandoc, Rnote, Zathura
-- Bubblewrap application sandboxing, Hyprlock
+- Modular `flake-parts` configuration under `modules/`, auto-imported via `import-tree` and grouped into `nixos` and `home` topic buckets in `modules/host.nix`.
+- Dynamic Material You theming generated from `env.wallpaper` via `matugen`.
+- Host-specific identifiers, paths, and secrets kept out of the repository via `/etc/nixos/env.nix` (overriding `env.nix`), while hardware configuration uses `/etc/nixos/hardware-configuration.nix` when present and falls back to `hardware-vm.nix`.
 
-## Architecture & Secrets
+<h2><img src="./assets/icon-usage.svg" width="24" height="24" align="absmiddle" alt=""/> Usage</h2>
 
-- Split according to human context: `desktop`, `dev`, `academic`, `security`, `backup`, and `utility`.
-- Personal identifiers, signing keys, and paths are kept in `env.nix` and overridden locally via `/etc/nixos/env.nix`.
-
-## Usage
-
-Rebuild and switch using `nh` (don't forget to configure your `/etc/nixos/env.nix`):
+Configure `/etc/nixos/env.nix`, then rebuild and switch using `nh`:
 
 ```bash
 # apply
