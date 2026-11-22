@@ -1,9 +1,15 @@
 { ... }:
 {
   home.gui =
-    { pkgs, colors, ... }:
+    {
+      pkgs,
+      colors,
+      helpers,
+      ...
+    }:
     let
       emptyTheme = pkgs.writeText "empty.rasi" "";
+      rgba = helpers.colors.hexToRgba;
     in
     {
       home.packages = with pkgs; [
@@ -38,8 +44,8 @@
             width: 660px;
             border-radius: 8px;
             border: 1px;
-            border-color: ${colors.outline_variant}b3;
-            background-color: ${colors.surface_container_low}99;
+            border-color: ${rgba 0.7 colors.outline_variant};
+            background-color: ${rgba 0.8 colors.surface_container_low};
         }
 
         mainbox {
@@ -51,7 +57,7 @@
             spacing: 12px;
             padding: 15px 18px;
             border: 0px 0px 1px 0px;
-            border-color: ${colors.outline_variant}66;
+            border-color: ${rgba 0.4 colors.outline_variant};
         }
 
         prompt {
@@ -71,8 +77,8 @@
         message {
             padding: 9px 18px;
             border: 0px 0px 1px 0px;
-            border-color: ${colors.outline_variant}66;
-            background-color: ${colors.surface_container}66;
+            border-color: ${rgba 0.4 colors.outline_variant};
+            background-color: ${rgba 0.4 colors.surface_container};
         }
 
         textbox {
@@ -121,16 +127,16 @@
 
         element selected.normal,
         element selected.active {
-            background-color: ${colors.on_surface}1a;
+            background-color: ${rgba 0.1 colors.on_surface};
             border: 1px;
-            border-color: ${colors.outline_variant}99;
+            border-color: ${rgba 0.6 colors.outline_variant};
             text-color: ${colors.primary};
         }
 
         element selected.urgent {
-            background-color: ${colors.error_container}80;
+            background-color: ${rgba 0.5 colors.error_container};
             border: 1px;
-            border-color: ${colors.error}66;
+            border-color: ${rgba 0.4 colors.error};
             text-color: ${colors.on_error_container};
         }
 
