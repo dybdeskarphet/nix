@@ -17,7 +17,7 @@
       ];
 
       programs.fish.shellAbbrs = {
-        "ted" = "nvim ${env.todotxt.current}";
+        "t" = "nvim ${env.todotxt.current}";
       };
 
       xdg.configFile."todo/config".text = ''
