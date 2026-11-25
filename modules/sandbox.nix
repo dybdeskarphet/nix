@@ -25,7 +25,6 @@
           bubblewrap = {
             dieWithParent = true;
             newSession = true;
-            tmpfs = [ "/tmp" ];
             sockets.pulse = lib.mkOverride 90 false;
             bind = {
               ro = [
@@ -33,6 +32,10 @@
                 "/etc/group"
               ];
               rw = lib.mkBefore [
+                [
+                  (sloth.mkdir (sloth.concat' sloth.appCacheDir "/tmp"))
+                  "/tmp"
+                ]
                 [
                   (sloth.mkdir sloth.appCacheDir)
                   sloth.xdgCacheHome
@@ -74,6 +77,13 @@
 
         notify = {
           dbus.policies."org.freedesktop.Notifications" = "talk";
+        };
+
+        tray = {
+          dbus.policies = {
+            "org.kde.StatusNotifierWatcher" = "talk";
+            "org.freedesktop.StatusNotifierWatcher" = "talk";
+          };
         };
 
         isolatedConfig =
@@ -119,6 +129,7 @@
             caps.net
             caps.audio
             caps.notify
+            caps.tray
             caps.x11
           ];
         };
