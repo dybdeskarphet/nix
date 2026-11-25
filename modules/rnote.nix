@@ -1,7 +1,13 @@
 { ... }:
 {
   home.gui =
-    { pkgs, lib, ... }:
+    {
+      pkgs,
+      lib,
+      config,
+      sandbox,
+      ...
+    }:
     let
       c = r: g: b: a: [
         (r / 255.0)
@@ -9,9 +15,30 @@
         (b / 255.0)
         a
       ];
+
+      sandboxedRnote = sandbox.wrap (
+        { sloth, ... }:
+        {
+          imports = [ sandbox.offline ];
+
+          app = {
+            package = pkgs.rnote;
+            binPath = "bin/rnote";
+          };
+          flatpak.appId = "com.github.flxzt.rnote";
+
+          bubblewrap.bind.rw = [
+            (sloth.mkdir "${config.xdg.configHome}/rnote")
+            (sloth.mkdir "${config.xdg.dataHome}/rnote")
+            config.xdg.userDirs.documents
+            config.xdg.userDirs.download
+            config.xdg.userDirs.pictures
+          ];
+        }
+      );
     in
     {
-      home.packages = [ pkgs.rnote ];
+      home.packages = [ sandboxedRnote ];
 
       dconf.settings."com/github/flxzt/rnote" = {
         active-stroke-color = lib.hm.gvariant.mkTuple (c 249 245 215 1.0);
