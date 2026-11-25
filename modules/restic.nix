@@ -25,13 +25,18 @@
         pkgs.rclone
       ];
 
+      sops.secrets."restic/password" = { };
+      sops.secrets."restic/rclone_conf" = {
+        mode = "0600";
+      };
+
       services.restic.backups.cloud-backup = {
         initialize = true;
         createWrapper = true;
         paths = env.restic.paths;
         repository = env.restic.repository;
-        passwordFile = env.restic.passwordFile;
-        rcloneConfigFile = env.restic.rcloneConfigFile;
+        passwordFile = config.sops.secrets."restic/password".path;
+        rcloneConfigFile = config.sops.secrets."restic/rclone_conf".path;
         exclude = [
           # OS / file manager noise
           ".DS_Store"
