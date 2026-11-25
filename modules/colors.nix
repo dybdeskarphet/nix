@@ -4,7 +4,7 @@
   ...
 }:
 let
-  pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+  pkgs = inputs.nixpkgs.legacyPackages.${env.system};
 
   wallpaperPath = env.wallpaper or null;
   wallpaperSrc =

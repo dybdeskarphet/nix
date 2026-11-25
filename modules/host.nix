@@ -19,12 +19,12 @@ let
   activeEnvPath = if hasLocalEnv then localEnvPath else defaultEnvPath;
 
   pkgs-stable = import inputs.nixpkgs-stable {
-    system = "x86_64-linux";
+    system = env.system;
     config.allowUnfree = true;
   };
 
   pkgs-small = import inputs.nixpkgs-small {
-    system = "x86_64-linux";
+    system = env.system;
     config.allowUnfree = true;
   };
   # }}}
@@ -45,6 +45,7 @@ in
     gui = { };
     services = { };
     hardware = { };
+    x86_64 = { };
   };
 
   home = {
@@ -53,6 +54,7 @@ in
     gui = { };
     services = { };
     hardware = { };
+    x86_64 = { };
   };
   # }}}
 
@@ -76,6 +78,7 @@ in
       config.nixos.gui
       config.nixos.services
       config.nixos.hardware
+      (if env.system == "x86_64-linux" then config.nixos.x86_64 else { })
       {
         system.stateVersion = "25.11";
         warnings = [
@@ -106,6 +109,7 @@ in
             config.home.gui
             config.home.services
             config.home.hardware
+            (if env.system == "x86_64-linux" then config.home.x86_64 else { })
           ];
         };
       }

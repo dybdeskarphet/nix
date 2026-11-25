@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.gui =
+  home.x86_64 =
     { pkgs, lib, ... }:
     let
       pname = "elecwhat";

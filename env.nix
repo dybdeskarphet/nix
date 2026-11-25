@@ -2,6 +2,7 @@
   homeSSID = null;
 
   wallpaper = null; # absolute path
+  system = "x86_64-linux";
 
   todotxt = {
     current = "path to todotxt";

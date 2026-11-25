@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ ... }:
 {
   # System Packages {{{
   nixos.base =
