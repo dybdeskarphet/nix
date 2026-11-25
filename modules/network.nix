@@ -69,9 +69,10 @@
       };
       # }}}
 
-      # Wi-Fi Powersave {{{
+      # Wi-Fi Powersave & RFKill {{{
       services.udev.extraRules = ''
         ACTION=="add", SUBSYSTEM=="net", KERNEL=="wl*", RUN+="${pkgs.iw}/bin/iw dev %k set power_save off"
+        ACTION=="add", SUBSYSTEM=="rfkill", ATTR{type}=="wlan", RUN+="${pkgs.util-linux}/bin/rfkill unblock wlan"
       '';
       # }}}
 
