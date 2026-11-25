@@ -9,7 +9,27 @@ MAG=$'\e[35m'
 CYN=$'\e[36m'
 WHT=$'\e[37m'
 
-read -r LINES_N COLS < <(stty size 2>/dev/null || echo "24 80")
+LINES_N=0
+COLS=0
+if read -r r c < <(stty -F /dev/tty size 2>/dev/null); then
+  LINES_N="$r"
+  COLS="$c"
+fi
+if [ "${LINES_N:-0}" -le 24 ] && [ "${COLS:-0}" -le 80 ] && [ -r /dev/tty ] && [ -w /dev/tty ]; then
+  old_stty="$(stty -F /dev/tty -g 2>/dev/null || true)"
+  stty -F /dev/tty raw -echo min 0 time 2 2>/dev/null || true
+  printf '\e[999;999H\e[6n' > /dev/tty
+  IFS='[;' read -r -t 1 -d R _ dsr_r dsr_c < /dev/tty 2>/dev/null || true
+  if [ -n "$old_stty" ]; then
+    stty -F /dev/tty "$old_stty" 2>/dev/null || true
+  fi
+  if [ "${dsr_r:-0}" -gt 0 ] 2>/dev/null && [ "${dsr_c:-0}" -gt 0 ] 2>/dev/null; then
+    LINES_N="$dsr_r"
+    COLS="$dsr_c"
+  fi
+fi
+if [ "${LINES_N:-0}" -le 0 ]; then LINES_N=24; fi
+if [ "${COLS:-0}" -le 0 ]; then COLS=80; fi
 
 HOST="$(uname -n)"
 KERNEL="$(uname -r)"
