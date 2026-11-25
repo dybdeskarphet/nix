@@ -290,11 +290,11 @@
     "private": {
       "flake": false,
       "locked": {
-        "lastModified": 1795630297,
-        "narHash": "sha256-OWbbU9ayQfpRaX38MawHPSC9BfCpXf4ZdbkmSD2EsOU=",
+        "lastModified": 1795634504,
+        "narHash": "sha256-c9enE+i4/Cy/K+30CxlO1N6JhsK3eWH4kDhfNJbraoY=",
         "ref": "refs/heads/main",
-        "rev": "8e24fc9ff9628243927399e08a86463d6a250e44",
-        "revCount": 1,
+        "rev": "81ce2b13fc1ca771f7381a477c7553df04c2a00c",
+        "revCount": 2,
         "type": "git",
         "url": "ssh://git@github.com/dybdeskarphet/nix-private"
       },
