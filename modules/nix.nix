@@ -49,6 +49,9 @@
         flake = "${config.users.users.skarphet.home}/code/nix";
       };
 
+      # }}}
+
+      # Overlays {{{
       nixpkgs.overlays = [
         (final: prev: {
           tabiew = pkgs-stable.tabiew;
