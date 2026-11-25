@@ -1,7 +1,7 @@
 {
   homeSSID = null;
 
-  wallpaper = null; # absolute path
+  wallpaper = null; # filename in assets/wallpapers
   system = "x86_64-linux";
 
   todotxt = {
@@ -40,9 +40,6 @@
       "/home/john/Documents"
     ];
     repository = "";
-    passwordFile = "";
-    rcloneConfigFile = "";
-
   };
   syncthing = {
     # Use the settings part of syncthing module for reference, you don't need to call settings = { } inside this though, it will directly be inside settings
@@ -56,6 +53,6 @@
     # };
   };
   openvpn = {
-    configDir = "your directory for the .ovpn files";
+    profiles = [ ];
   };
 }
