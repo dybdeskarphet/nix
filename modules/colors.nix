@@ -51,14 +51,7 @@ let
     fi
   '';
 
-  rawColors = builtins.fromJSON (
-    builtins.readFile (
-      if wallpaperSrc != null || !(builtins.pathExists ../colors.json) then
-        generatedColorsJson
-      else
-        ../colors.json
-    )
-  );
+  rawColors = builtins.fromJSON (builtins.readFile generatedColorsJson);
 
   colors = inputs.nixpkgs.lib.mapAttrs (_: v: if builtins.isAttrs v then v.dark.color else v) (
     rawColors.colors or rawColors
