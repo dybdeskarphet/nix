@@ -5,7 +5,7 @@
   ...
 }:
 let
-  rnote = lib.getExe' pkgs.rnote "rnote";
+  rnote = "rnote";
   zathura = lib.getExe config.programs.zathura.package;
   libreoffice = lib.getExe config.programs.libreoffice.package;
   tabiew = lib.getExe' pkgs.tabiew "tw";
