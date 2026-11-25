@@ -33,12 +33,7 @@
       };
     in
     {
-      console = {
-        earlySetup = true;
-        packages = [ pkgs.terminus_font ];
-        font = "ter-v20n";
-        colors = consolePalette ++ consolePalette;
-      };
+      console.colors = consolePalette ++ consolePalette;
 
       services.getty = {
         loginProgram = lib.getExe loginProgram;
