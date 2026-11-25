@@ -56,10 +56,10 @@
         "nsed" = "${tmuxp} load nix-private";
         "nev" = "${nvim} ~/code/nix-private/env.nix";
 
-        "nbu" = "${nh} os boot --impure";
-        "nbun" = "${nh} os switch --impure";
-        "nts" = "${nh} os test --impure";
-        "nup" = "${nh} os boot -u --commit-lock-file --impure";
+        "nbu" = "${nh} os boot";
+        "nbun" = "${nh} os switch";
+        "nts" = "${nh} os test";
+        "nup" = "${nh} os boot -u --commit-lock-file";
 
         "ncl" = "${nh} clean all --keep 5";
         "npr" = "${nh} clean all --keep 1";
