@@ -16,8 +16,8 @@
       sops.secrets = lib.listToAttrs (
         map (
           name:
-          lib.nameValuePair "openvpn/${name}" {
-            path = "${configDir}/${name}.ovpn";
+          lib.nameValuePair "openvpn/${name}.ovpn" {
+            key = "openvpn/${name}";
             mode = "0400";
           }
         ) profiles
