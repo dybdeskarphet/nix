@@ -1,0 +1,15 @@
+session_name: nix-private
+start_directory: ~/code/nix-private/
+windows:
+  - window_name: secrets
+    panes:
+      - sudo -H EDITOR=nvim sops secrets.yaml
+  - window_name: env
+    panes:
+      - nvim env.nix
+  - window_name: lazygit
+    panes:
+      - lazygit
+  - window_name: shell
+    panes:
+      - clear

@@ -53,7 +53,8 @@
 
       nixAbbrs = {
         "ned" = "${tmuxp} load nix";
-        "nev" = "sudo ${nvim} /etc/nixos/env.nix";
+        "nsed" = "${tmuxp} load nix-private";
+        "nev" = "${nvim} ~/code/nix-private/env.nix";
 
         "nbu" = "${nh} os boot --impure";
         "nbun" = "${nh} os switch --impure";
