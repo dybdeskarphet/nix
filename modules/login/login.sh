@@ -19,6 +19,7 @@ if [ "${LINES_N:-0}" -le 24 ] && [ "${COLS:-0}" -le 80 ] && [ -r /dev/tty ] && [
   old_stty="$(stty -F /dev/tty -g 2>/dev/null || true)"
   stty -F /dev/tty raw -echo min 0 time 2 2>/dev/null || true
   printf '\e[999;999H\e[6n' > /dev/tty
+  # shellcheck disable=SC2034
   IFS='[;' read -r -t 1 -d R _ dsr_r dsr_c < /dev/tty 2>/dev/null || true
   if [ -n "$old_stty" ]; then
     stty -F /dev/tty "$old_stty" 2>/dev/null || true
