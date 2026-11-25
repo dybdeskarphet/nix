@@ -5,22 +5,35 @@
       pkgs,
       config,
       colors,
-      helpers,
+      mkNixPak,
+      nixpakGuiBase,
       ...
     }:
     {
       programs.swayimg = {
         enable = true;
-        package = helpers.sandbox.mkSandboxed {
-          inherit pkgs;
-          pkg = pkgs.swayimg;
-          unshareNet = true;
-          roBinds = [
-            "${config.xdg.configHome}/swayimg"
-            config.xdg.userDirs.pictures
-            config.xdg.userDirs.download
-          ];
-        };
+        package =
+          (mkNixPak {
+            config =
+              { lib, ... }:
+              {
+                imports = [ nixpakGuiBase ];
+
+                app.package = pkgs.swayimg;
+                flatpak.appId = "org.swayimg.swayimg";
+                dbus.enable = false;
+
+                bubblewrap = {
+                  network = false;
+                  sockets.pulse = lib.mkForce false;
+                  bind.ro = [
+                    "${config.xdg.configHome}/swayimg"
+                    config.xdg.userDirs.pictures
+                    config.xdg.userDirs.download
+                  ];
+                };
+              };
+          }).config.env;
         initLua = ''
           local palette = {
             background = "${colors.background}",
