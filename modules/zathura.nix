@@ -6,24 +6,39 @@
       config,
       colors,
       helpers,
+      mkNixPak,
+      nixpakGuiBase,
       ...
     }:
     {
       programs.zathura = {
         enable = true;
-        package = helpers.sandbox.mkSandboxed {
-          inherit pkgs;
-          pkg = pkgs.zathura;
-          unshareNet = true;
-          roBinds = [
-            "${config.xdg.configHome}/zathura"
-            config.xdg.userDirs.documents
-          ];
-          rwBinds = [
-            "${config.xdg.dataHome}/zathura"
-            config.xdg.userDirs.download
-          ];
-        };
+        package =
+          (mkNixPak {
+            config =
+              { lib, sloth, ... }:
+              {
+                imports = [ nixpakGuiBase ];
+
+                app.package = pkgs.zathura;
+                flatpak.appId = "org.pwmt.zathura";
+
+                bubblewrap = {
+                  network = false;
+                  sockets.pulse = lib.mkForce false;
+                  bind = {
+                    ro = [
+                      "${config.xdg.configHome}/zathura"
+                      config.xdg.userDirs.documents
+                    ];
+                    rw = [
+                      (sloth.mkdir "${config.xdg.dataHome}/zathura")
+                      config.xdg.userDirs.download
+                    ];
+                  };
+                };
+              };
+          }).config.env;
 
         options = {
           recolor = true;
