@@ -8,7 +8,7 @@
 let
   lib = inputs.nixpkgs.lib;
 
-  env = lib.recursiveUpdate (import ../env.nix) (import "${inputs.private}/env.nix");
+  env = import "${inputs.private}/env.nix";
 
   pkgs-stable = import inputs.nixpkgs-stable {
     system = env.system;
