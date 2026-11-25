@@ -6,14 +6,9 @@
 }:
 let
   # Host Paths, Env & Colors {{{
-  hardwarePath = /etc/nixos/hardware-configuration.nix;
-  vmHardwarePath = ../hardware-vm.nix;
-
   localEnvPath = /etc/nixos/env.nix;
   defaultEnvPath = ../env.nix;
-
   hasLocalEnv = builtins.pathExists localEnvPath;
-  hasHardwareConfig = builtins.pathExists hardwarePath;
 
   defaultEnv = import defaultEnvPath;
   localEnv = if hasLocalEnv then import localEnvPath else { };
@@ -81,7 +76,7 @@ let
     rawColors.colors or rawColors
   );
 
-  activeHardwarePath = if hasHardwareConfig then hardwarePath else vmHardwarePath;
+  activeHardwarePath = /etc/nixos/hardware-configuration.nix;
   activeEnvPath = if hasLocalEnv then localEnvPath else defaultEnvPath;
 
   pkgs-stable = import inputs.nixpkgs-stable {
