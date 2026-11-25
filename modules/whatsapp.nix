@@ -36,7 +36,7 @@
             mkdir -p $out/bin $out/share/applications $out/share/icons/hicolor/512x512/apps
             cat > $out/bin/whatsapp <<EOF
             #!${pkgs.runtimeShell}
-            exec ${lib.getExe pkgs.electron} --no-sandbox ${extracted}/resources/app.asar "\$@"
+            exec ${lib.getExe pkgs.electron} --no-sandbox --ozone-platform=x11 ${extracted}/resources/app.asar "\$@"
             EOF
             chmod +x $out/bin/whatsapp
             ln -s whatsapp $out/bin/elecwhat
@@ -56,11 +56,18 @@
           };
           flatpak.appId = "io.github.piec.elecwhat";
 
-          bubblewrap.bind.rw = [
-            (sloth.mkdir "${config.xdg.configHome}/elecwhat")
-            config.xdg.userDirs.download
-            config.xdg.userDirs.pictures
-          ];
+          bubblewrap = {
+            env = {
+              TMPDIR = sloth.concat' sloth.runtimeDir "/app/io.github.piec.elecwhat";
+              LD_LIBRARY_PATH = lib.makeLibraryPath [ pkgs.stdenv.cc.cc.lib ];
+            };
+            bind.rw = [
+              (sloth.mkdir (sloth.concat' sloth.runtimeDir "/app/io.github.piec.elecwhat"))
+              (sloth.mkdir "${config.xdg.configHome}/elecwhat")
+              config.xdg.userDirs.download
+              config.xdg.userDirs.pictures
+            ];
+          };
         }
       );
     in
