@@ -4,22 +4,20 @@
     {
       pkgs,
       config,
-      mkNixPak,
-      nixpakGuiBase,
+      sandbox,
       ...
     }:
     let
-      libreofficePak = mkNixPak {
+      libreofficePak = sandbox.mk {
         config =
           { sloth, ... }:
           {
-            imports = [ nixpakGuiBase ];
+            imports = [ sandbox.offline ];
 
             app.package = pkgs.libreoffice;
             flatpak.appId = "org.libreoffice.LibreOffice";
 
             bubblewrap = {
-              network = false;
               env.SAL_USE_VCLPLUGIN = "gtk3";
               bind.rw = [
                 (sloth.mkdir "${config.xdg.configHome}/libreoffice")

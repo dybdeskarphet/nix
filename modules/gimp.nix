@@ -5,8 +5,7 @@
       pkgs,
       lib,
       config,
-      mkNixPak,
-      nixpakGuiBase,
+      sandbox,
       ...
     }:
     let
@@ -17,32 +16,27 @@
         hash = "sha256-LNopObpXTkYbjqZMkwu0DhdLROuTkE+LYsnwdaICTd0=";
       };
 
-      sandboxedGimp =
-        (mkNixPak {
-          config =
-            { sloth, ... }:
-            {
-              imports = [ nixpakGuiBase ];
+      sandboxedGimp = sandbox.wrap (
+        { sloth, ... }:
+        {
+          imports = [ sandbox.offline ];
 
-              app = {
-                package = pkgs.gimp;
-                extraEntrypoints = [
-                  "/bin/gimp-3.2"
-                  "/bin/gimp-3"
-                ];
-              };
-              flatpak.appId = "org.gimp.GIMP";
+          app = {
+            package = pkgs.gimp;
+            extraEntrypoints = [
+              "/bin/gimp-3.2"
+              "/bin/gimp-3"
+            ];
+          };
+          flatpak.appId = "org.gimp.GIMP";
 
-              bubblewrap = {
-                network = false;
-                bind.rw = [
-                  (sloth.mkdir "${config.xdg.configHome}/GIMP")
-                  config.xdg.userDirs.pictures
-                  config.xdg.userDirs.download
-                ];
-              };
-            };
-        }).config.env;
+          bubblewrap.bind.rw = [
+            (sloth.mkdir "${config.xdg.configHome}/GIMP")
+            config.xdg.userDirs.pictures
+            config.xdg.userDirs.download
+          ];
+        }
+      );
     in
     {
       home.packages = [
