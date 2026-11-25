@@ -9,10 +9,7 @@ let
   wallpaperPath = env.wallpaper or null;
   wallpaperSrc =
     if wallpaperPath != null && wallpaperPath != "" then
-      builtins.path {
-        path = if builtins.isPath wallpaperPath then wallpaperPath else /. + wallpaperPath;
-        name = "wallpaper";
-      }
+      ../assets/wallpapers + "/${baseNameOf wallpaperPath}"
     else
       null;
 

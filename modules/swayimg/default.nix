@@ -30,6 +30,7 @@
                     "${config.xdg.configHome}/swayimg"
                     config.xdg.userDirs.pictures
                     config.xdg.userDirs.download
+                    "${config.home.homeDirectory}/code/nix/assets/wallpapers"
                   ];
                 };
               };
