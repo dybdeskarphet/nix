@@ -12,6 +12,7 @@
         bubblewrap
         sops
         age
+        ssh-to-age
       ];
     };
   # }}}
