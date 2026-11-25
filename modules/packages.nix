@@ -10,6 +10,8 @@
         curl
         htop
         bubblewrap
+        sops
+        age
       ];
     };
   # }}}
