@@ -1,7 +1,13 @@
 { ... }:
 {
   home.gui =
-    { pkgs, lib, ... }:
+    {
+      pkgs,
+      lib,
+      config,
+      sandbox,
+      ...
+    }:
     let
       palette = [
         "#1E2122"
@@ -14,19 +20,44 @@
         "#FB4A35"
       ];
       savedColors = lib.concatMapStringsSep "," (hex: "#FF" + (lib.removePrefix "#" hex)) palette;
-      write-wrapped = pkgs.symlinkJoin {
+
+      writePkg = pkgs.symlinkJoin {
         name = "styluslabs-write-wrapped";
         paths = [ pkgs.styluslabs-write ];
-        nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
         postBuild = ''
-          wrapProgram $out/bin/Write \
-            --set SDL_VIDEODRIVER x11
-          ln -s $out/bin/Write $out/bin/write_stylus
+          ln -s Write $out/bin/write_stylus
         '';
       };
+
+      sandboxedWrite = sandbox.wrap (
+        { sloth, ... }:
+        {
+          imports = [
+            sandbox.offline
+            sandbox.caps.x11
+          ];
+
+          app = {
+            package = writePkg;
+            binPath = "bin/Write";
+            extraEntrypoints = [ "/bin/write_stylus" ];
+          };
+          flatpak.appId = "com.styluslabs.Write";
+
+          bubblewrap = {
+            env.SDL_VIDEODRIVER = "x11";
+            bind.rw = [
+              (sloth.mkdir "${config.xdg.configHome}/styluslabs")
+              config.xdg.userDirs.documents
+              config.xdg.userDirs.download
+              config.xdg.userDirs.pictures
+            ];
+          };
+        }
+      );
     in
     {
-      home.packages = [ write-wrapped ];
+      home.packages = [ sandboxedWrite ];
 
       xdg.configFile."styluslabs/write.xml".text = ''
         <?xml version="1.0"?>
