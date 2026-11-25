@@ -6,12 +6,9 @@
   ...
 }:
 let
-  # Host Paths & Env {{{
-  defaultEnv = import ../env.nix;
-  localEnv = import "${inputs.private}/env.nix";
-  env = inputs.nixpkgs.lib.recursiveUpdate defaultEnv localEnv;
+  lib = inputs.nixpkgs.lib;
 
-  activeHardwarePath = "${inputs.private}/hardware-configuration.nix";
+  env = lib.recursiveUpdate (import ../env.nix) (import "${inputs.private}/env.nix");
 
   pkgs-stable = import inputs.nixpkgs-stable {
     system = env.system;
@@ -22,10 +19,29 @@ let
     system = env.system;
     config.allowUnfree = true;
   };
-  # }}}
+
+  sharedArgs = {
+    inherit
+      inputs
+      env
+      colors
+      helpers
+      pkgs-stable
+      pkgs-small
+      ;
+  };
+
+  commonBuckets = [
+    "base"
+    "cli"
+    "gui"
+    "services"
+    "hardware"
+  ];
+  emptyBuckets = lib.genAttrs (commonBuckets ++ [ "x86_64" ]) (_: { });
+  activeBuckets = commonBuckets ++ lib.optionals (env.system == "x86_64-linux") [ "x86_64" ];
 in
 {
-  # Shared Flake Args & Topic Buckets {{{
   _module.args = {
     inherit
       env
@@ -34,80 +50,27 @@ in
       ;
   };
 
-  nixos = {
-    base = { };
-    cli = { };
-    gui = { };
-    services = { };
-    hardware = { };
-    x86_64 = { };
-  };
+  nixos = emptyBuckets;
+  home = emptyBuckets;
 
-  home = {
-    base = { };
-    cli = { };
-    gui = { };
-    services = { };
-    hardware = { };
-    x86_64 = { };
-  };
-  # }}}
-
-  # NixOS Host Configuration {{{
-  flake.nixosConfigurations.nixos = inputs.nixpkgs.lib.nixosSystem {
-    specialArgs = {
-      inherit
-        inputs
-        env
-        colors
-        helpers
-        pkgs-stable
-        pkgs-small
-        ;
-    };
+  flake.nixosConfigurations.nixos = lib.nixosSystem {
+    specialArgs = sharedArgs;
     modules = [
-      activeHardwarePath
-      inputs.nix-index-database.nixosModules.nix-index
-      inputs.sops-nix.nixosModules.sops
-      config.nixos.base
-      config.nixos.cli
-      config.nixos.gui
-      config.nixos.services
-      config.nixos.hardware
-      (if env.system == "x86_64-linux" then config.nixos.x86_64 else { })
-      {
-        system.stateVersion = "25.11";
-      }
-
+      "${inputs.private}/hardware-configuration.nix"
       inputs.home-manager.nixosModules.home-manager
       {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = {
-          inherit
-            inputs
-            env
-            colors
-            helpers
-            pkgs-stable
-            pkgs-small
-            ;
-        };
-        home-manager.users.skarphet = {
-          home.stateVersion = "25.11";
-          imports = [
-            config.home.base
-            config.home.cli
-            config.home.gui
-            config.home.services
-            config.home.hardware
-            (if env.system == "x86_64-linux" then config.home.x86_64 else { })
-          ];
+        system.stateVersion = "25.11";
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          extraSpecialArgs = sharedArgs;
+          users.skarphet = {
+            home.stateVersion = "25.11";
+            imports = map (b: config.home.${b}) activeBuckets;
+          };
         };
       }
-    ];
+    ]
+    ++ map (b: config.nixos.${b}) activeBuckets;
   };
-  # }}}
 }
-
-# -- vim: fdm=marker fdl=0

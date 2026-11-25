@@ -8,6 +8,8 @@
       ...
     }:
     {
+      imports = [ inputs.nix-index-database.nixosModules.nix-index ];
+
       # Nix & Packaging {{{
       nixpkgs.config.allowUnfree = true;
 
