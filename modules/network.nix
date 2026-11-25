@@ -12,18 +12,9 @@
       networking = {
         hostName = "nixos";
         useNetworkd = true;
-        wireless = {
-          iwd = {
-            enable = true;
-            settings = {
-              Network = {
-                EnableIPv6 = false;
-              };
-              Settings = {
-                AutoConnect = true;
-              };
-            };
-          };
+        wireless.iwd = {
+          enable = true;
+          settings.Settings.AutoConnect = true;
         };
 
         firewall = {
@@ -40,23 +31,30 @@
       systemd.network.networks = {
         "10-home" = lib.mkIf (env.homeSSID != null) {
           matchConfig = {
-            Name = "wlan0";
+            Type = "wlan";
             SSID = env.homeSSID;
           };
-          networkConfig.DHCP = "yes";
+          networkConfig = {
+            DHCP = "yes";
+            IgnoreCarrierLoss = "3s";
+          };
           dhcpV4Config = {
             SendHostname = true;
             Anonymize = false;
+            RouteMetric = 600;
           };
+          ipv6AcceptRAConfig.RouteMetric = 600;
         };
 
         "20-wired" = {
           matchConfig.Name = "en*";
           networkConfig.DHCP = "yes";
+          dhcpV4Config.RouteMetric = 100;
+          ipv6AcceptRAConfig.RouteMetric = 100;
         };
 
         "25-wireless" = {
-          matchConfig.Name = "wlan0";
+          matchConfig.Type = "wlan";
           networkConfig = {
             DHCP = "yes";
             IgnoreCarrierLoss = "3s";
@@ -64,28 +62,17 @@
           dhcpV4Config = {
             Anonymize = true;
             SendHostname = false;
+            RouteMetric = 600;
           };
+          ipv6AcceptRAConfig.RouteMetric = 600;
         };
       };
       # }}}
 
-      # Wi-Fi Powersave & RFKill {{{
+      # Wi-Fi Powersave {{{
       services.udev.extraRules = ''
-        ACTION=="add", SUBSYSTEM=="net", KERNEL=="wlan*", RUN+="${pkgs.iw}/bin/iw dev %k set power_save off"
+        ACTION=="add", SUBSYSTEM=="net", KERNEL=="wl*", RUN+="${pkgs.iw}/bin/iw dev %k set power_save off"
       '';
-
-      systemd.services.rfkill-unblock = {
-        description = "Unblock Wi-Fi on boot";
-        wantedBy = [ "network-pre.target" ];
-        before = [
-          "network-pre.target"
-          "iwd.service"
-        ];
-        serviceConfig = {
-          Type = "oneshot";
-          ExecStart = "${pkgs.util-linux}/bin/rfkill unblock all";
-        };
-      };
       # }}}
 
       # systemd-resolved {{{
