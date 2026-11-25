@@ -7,16 +7,11 @@
 }:
 let
   # Host Paths & Env {{{
-  localEnvPath = /etc/nixos/env.nix;
-  defaultEnvPath = ../env.nix;
-  hasLocalEnv = builtins.pathExists localEnvPath;
-
-  defaultEnv = import defaultEnvPath;
-  localEnv = if hasLocalEnv then import localEnvPath else { };
+  defaultEnv = import ../env.nix;
+  localEnv = import "${inputs.private}/env.nix";
   env = inputs.nixpkgs.lib.recursiveUpdate defaultEnv localEnv;
 
-  activeHardwarePath = /etc/nixos/hardware-configuration.nix;
-  activeEnvPath = if hasLocalEnv then localEnvPath else defaultEnvPath;
+  activeHardwarePath = "${inputs.private}/hardware-configuration.nix";
 
   pkgs-stable = import inputs.nixpkgs-stable {
     system = env.system;
@@ -73,6 +68,7 @@ in
     modules = [
       activeHardwarePath
       inputs.nix-index-database.nixosModules.nix-index
+      inputs.sops-nix.nixosModules.sops
       config.nixos.base
       config.nixos.cli
       config.nixos.gui
@@ -81,10 +77,6 @@ in
       (if env.system == "x86_64-linux" then config.nixos.x86_64 else { })
       {
         system.stateVersion = "25.11";
-        warnings = [
-          "using ${toString activeHardwarePath} for hardware config"
-          "using ${toString activeEnvPath} for env"
-        ];
       }
 
       inputs.home-manager.nixosModules.home-manager
