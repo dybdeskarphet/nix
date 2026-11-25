@@ -4,11 +4,50 @@
     {
       pkgs,
       lib,
+      config,
       colors,
       helpers,
+      sandbox,
       ...
     }:
     let
+      mpvWithScripts = pkgs.mpv.override {
+        scripts = with pkgs.mpvScripts; [
+          uosc
+          thumbfast
+          sponsorblock
+        ];
+      };
+
+      sandboxedMpv = sandbox.wrap (
+        { sloth, ... }:
+        {
+          imports = [
+            sandbox.media
+            sandbox.caps.net
+          ];
+
+          app.package = mpvWithScripts;
+          flatpak.appId = "io.mpv.Mpv";
+
+          dbus.policies."org.mpris.MediaPlayer2.mpv.*" = "own";
+
+          bubblewrap.bind = {
+            ro = [
+              "${config.xdg.configHome}/mpv"
+              "${config.xdg.configHome}/yt-dlp"
+              config.xdg.userDirs.videos
+              config.xdg.userDirs.music
+              config.xdg.userDirs.pictures
+              config.xdg.userDirs.download
+            ];
+            rw = [
+              (sloth.mkdir "${config.xdg.stateHome}/mpv")
+            ];
+          };
+        }
+      );
+
       uoscColors = lib.concatStringsSep "," [
         "foreground=${helpers.colors.stripHash colors.primary}"
         "foreground_text=${helpers.colors.stripHash colors.on_primary}"
@@ -26,14 +65,10 @@
     {
       programs.mpv = {
         enable = true;
+        package = sandboxedMpv;
+        scripts = [ ];
 
-        # Core & Scripts {{{
-        scripts = with pkgs.mpvScripts; [
-          uosc
-          thumbfast
-          sponsorblock
-        ];
-
+        # Core {{{
         config = {
           osc = false;
           osd-bar = false;
@@ -92,7 +127,7 @@
             audio = false;
             hwdec = false;
             direct_io = false;
-            mpv_path = "mpv";
+            mpv_path = lib.getExe mpvWithScripts;
           };
 
           uosc = {

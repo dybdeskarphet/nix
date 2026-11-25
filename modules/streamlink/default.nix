@@ -1,13 +1,17 @@
 { ... }:
 {
   home.gui =
-    { pkgs, ... }:
+    {
+      lib,
+      config,
+      ...
+    }:
     {
       programs.streamlink = {
         enable = true;
 
         settings = {
-          player = "${pkgs.mpv}/bin/mpv";
+          player = lib.getExe config.programs.mpv.package;
           default-stream = "best,1080p60,1080p,720p60,720p";
 
           player-args = "--title='{author} - {title}' --cache=yes --demuxer-max-bytes=100M";
