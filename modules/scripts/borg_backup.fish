@@ -12,13 +12,13 @@ end
 
 if test (count $BACKUP_ITEMS) -eq 0
     echo (set_color red)"No backup items found in $ENV_FILE."(set_color normal) >&2
-    echo "Please configure 'borg.items' in your /etc/nixos/env.nix (or ~/.config/user-env.json)." >&2
+    echo "Please configure 'borg.items' in your nix-private/env.nix (or ~/.config/user-env.json)." >&2
     exit 1
 end
 
 if test -z "$BORG_REPO"
     echo (set_color red)"No Borg repository path configured in $ENV_FILE."(set_color normal) >&2
-    echo "Please configure 'borg.repo' in your /etc/nixos/env.nix (or ~/.config/user-env.json)." >&2
+    echo "Please configure 'borg.repo' in your nix-private/env.nix (or ~/.config/user-env.json)." >&2
     exit 1
 end
 
