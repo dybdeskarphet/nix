@@ -8,10 +8,21 @@
       ...
     }:
     let
-      configDir = lib.removeSuffix "/" env.openvpn.configDir;
+      profiles = env.openvpn.profiles or [ ];
+      configDir = "/run/secrets/openvpn";
       resolvedScript = "${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved";
     in
     {
+      sops.secrets = lib.listToAttrs (
+        map (
+          name:
+          lib.nameValuePair "openvpn/${name}" {
+            path = "${configDir}/${name}.ovpn";
+            mode = "0400";
+          }
+        ) profiles
+      );
+
       boot.kernelModules = [ "tun" ];
 
       environment.systemPackages = [ pkgs.openvpn ];
