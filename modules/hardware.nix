@@ -4,7 +4,6 @@
   nixos.base =
     { ... }:
     {
-      services.fwupd.enable = true;
       services.fstrim.enable = true;
       services.smartd = {
         enable = true;
@@ -25,10 +24,12 @@
       services.pipewire = {
         enable = true;
         socketActivation = false;
-        alsa.enable = true;
-        alsa.support32Bit = true;
         pulse.enable = true;
         wireplumber.enable = true;
+        alsa = {
+          enable = true;
+          support32Bit = true;
+        };
       };
       systemd.user.services.pipewire.wantedBy = [ "default.target" ];
       systemd.user.services.pipewire-pulse.wantedBy = [ "default.target" ];
