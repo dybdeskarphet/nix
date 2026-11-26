@@ -9,8 +9,19 @@
       ...
     }:
     let
-      consolePalette = map helpers.colors.stripHash [
+      normalColors = map helpers.colors.stripHash [
         colors.surface_container
+        colors.error
+        colors.primary
+        colors.inverse_primary
+        colors.primary
+        colors.tertiary
+        colors.secondary
+        colors.on_surface
+      ];
+
+      brightColors = map helpers.colors.stripHash [
+        colors.outline
         colors.error
         colors.primary
         colors.inverse_primary
@@ -33,7 +44,12 @@
       };
     in
     {
-      console.colors = consolePalette ++ consolePalette;
+      console = {
+        earlySetup = true;
+        packages = [ pkgs.terminus_font ];
+        font = "ter-i20b";
+        colors = normalColors ++ brightColors;
+      };
 
       services.getty = {
         loginProgram = lib.getExe loginProgram;

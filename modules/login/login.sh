@@ -2,7 +2,6 @@ export LC_ALL=C.UTF-8
 
 RST=$'\e[0m'
 BOLD=$'\e[1m'
-DIM=$'\e[2m'
 RED=$'\e[31m'
 GRN=$'\e[32m'
 MAG=$'\e[35m'
@@ -19,7 +18,7 @@ FAILED="$(systemctl --failed --no-legend 2>/dev/null | wc -l | tr -d ' ')"
 BAT_COL=""
 if [ -r /sys/class/power_supply/BAT0/capacity ]; then
   bat_val="$(cat /sys/class/power_supply/BAT0/capacity)%"
-  BAT_COL=" ${DIM}·${RST} ${CYN}${bat_val}${RST}"
+  BAT_COL=" ${CYN}•${RST} ${WHT}${bat_val}${RST}"
 fi
 
 if [ "${FAILED:-0}" -eq 0 ]; then
@@ -29,19 +28,19 @@ else
 fi
 
 printf '\e%%G\e[2J\e[H\n'
-printf ' %s ▄████▀  %s██████▀  %s  ▄█▄    %s██████▄  %s██████▄  %s█▄   ▄█  %s███      %s███████%s\n' \
+printf '  %s ▄████▀  %s██████▀  %s  ▄█▄    %s██████▄  %s██████▄  %s█▄   ▄█  %s███      %s███████%s\n' \
   "${BOLD}${MAG}" "${BOLD}${GRN}" "${BOLD}${MAG}" "${BOLD}${GRN}" "${BOLD}${MAG}" "${BOLD}${GRN}" "${BOLD}${MAG}" "${BOLD}${GRN}" "$RST"
-printf ' %s▀████▄   %s████▀    %s ▄███▄   %s███████  %s███████  %s███▄███  %s█████    %s▀▀███▀▀%s\n' \
+printf '  %s▀████▄   %s████▀    %s ▄███▄   %s███████  %s███████  %s███▄███  %s█████    %s▀▀███▀▀%s\n' \
   "${BOLD}${MAG}" "${BOLD}${GRN}" "${BOLD}${MAG}" "${BOLD}${GRN}" "${BOLD}${MAG}" "${BOLD}${GRN}" "${BOLD}${MAG}" "${BOLD}${GRN}" "$RST"
-printf ' %s ▄████▀  %s█████▄   %s▄█████▄  %s██████   %s████▀▀   %s██▀ ▀██  %s███████  %s  ███  %s\n' \
+printf '  %s ▄████▀  %s█████▄   %s▄█████▄  %s██████   %s████▀▀   %s██▀ ▀██  %s███████  %s  ███  %s\n' \
   "${BOLD}${MAG}" "${BOLD}${GRN}" "${BOLD}${MAG}" "${BOLD}${GRN}" "${BOLD}${MAG}" "${BOLD}${GRN}" "${BOLD}${MAG}" "${BOLD}${GRN}" "$RST"
-printf ' %s▀▀▀▀▀    %s▀▀▀▀▀▀▀  %s▀▀▀▀▀▀▀  %s▀▀▀▀▀▀▀  %s▀▀▀▀     %s▀     ▀  %s▀▀▀▀▀▀▀  %s  ▀▀▀  %s\n' \
+printf '  %s▀▀▀▀▀    %s▀▀▀▀▀▀▀  %s▀▀▀▀▀▀▀  %s▀▀▀▀▀▀▀  %s▀▀▀▀     %s▀     ▀  %s▀▀▀▀▀▀▀  %s  ▀▀▀  %s\n' \
   "${BOLD}${MAG}" "${BOLD}${GRN}" "${BOLD}${MAG}" "${BOLD}${GRN}" "${BOLD}${MAG}" "${BOLD}${GRN}" "${BOLD}${MAG}" "${BOLD}${GRN}" "$RST"
 
-printf '\n %s──────────────────────────────────────────────────────────────────────%s\n' "${DIM}${CYN}" "$RST"
-printf ' %s%s%s %s·%s %sgen #%s%s %s·%s %s%s%s%s %s·%s %s %s·%s %s%s%s %s· %s%s\n\n' \
-  "${BOLD}${WHT}" "$HOST" "$RST" "$DIM" "$RST" "$MAG" "$GEN" "$RST" "$DIM" "$RST" \
-  "$WHT" "${KERNEL%%-*}" "$RST" "$BAT_COL" "$DIM" "$RST" "$health_col" "$DIM" "$RST" \
-  "$WHT" "$NOW" "$RST" "$DIM" "$TTY_NAME" "$RST"
+printf '\n  %s──────────────────────────────────────────────────────────────────────%s\n' "$CYN" "$RST"
+printf '  %s%s%s %s•%s %sgen #%s%s %s•%s %s%s%s%s %s•%s %s %s•%s %s%s%s %s• %s%s\n\n' \
+  "${BOLD}${WHT}" "$HOST" "$RST" "$CYN" "$RST" "$MAG" "$GEN" "$RST" "$CYN" "$RST" \
+  "$WHT" "${KERNEL%%-*}" "$RST" "$BAT_COL" "$CYN" "$RST" "$health_col" "$CYN" "$RST" \
+  "$WHT" "$NOW" "$RST" "$CYN" "$TTY_NAME" "$RST"
 
 exec login "$@"
