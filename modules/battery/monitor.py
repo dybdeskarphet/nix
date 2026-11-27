@@ -1,53 +1,62 @@
 #!/usr/bin/env python3
-"""
-Event-driven Battery & Bluetooth Monitor Daemon.
-Subscribes to UPower and BlueZ D-Bus signals (zero polling).
-"""
+"""Event-driven Battery & Bluetooth monitor (UPower + BlueZ D-Bus)."""
 
 import subprocess
 from gi.repository import GLib
 from pydbus import SystemBus
 
-PC_REPLACE_ID = 87873
-BT_REPLACE_ID = 87874
+# UPower constants
+UPOWER_CHARGING = 1
+UPOWER_DISCHARGING = 2
+UPOWER_FULL = 4
+UPOWER_LAPTOP_BATTERY = 2
+UPOWER_PERIPHERALS = {5, 6, 7, 8, 20}  # mouse, keyboard, headset, etc.
 
-last_pc_tier = None
-last_bt_tiers: dict[str, str] = {}
+# (max_percent, urgency, message, dim_and_beep) — checked most severe first
+PC_RULES = [
+    (4, "critical", "device is about to hibernate!", True),
+    (5, "critical", "device may shut down in a few minutes.", False),
+    (15, "normal", "plug in your device!", False),
+]
+
+BT_RULES = [
+    (10, "critical", "the device may shut down in a few minutes."),
+    (20, "normal", "it is recommended to plug in your device."),
+]
+
+notified: dict[str, int] = {}  # device_key -> lowest threshold already alerted
 
 
-def notify(app: str, title: str, message: str, icon: str, urgency: str = "normal", replace_id: int = 0) -> None:
-    cmd = [
-        "notify-send",
-        "-a", app,
-        "-i", icon,
-        "-t", "10000",
-        f"--urgency={urgency}",
-    ]
-    if replace_id > 0:
-        cmd.append(f"--replace-id={replace_id}")
-    cmd.extend([title, message])
-    subprocess.run(cmd, check=False)
+def notify(app: str, title: str, body: str, urgency: str, replace_id: int) -> None:
+    subprocess.run(
+        [
+            "notify-send",
+            "-a", app,
+            "-i", "battery-010",
+            "-t", "10000",
+            f"--urgency={urgency}",
+            f"--replace-id={replace_id}",
+            title,
+            body,
+        ],
+        check=False,
+    )
 
 
-def handle_pc_battery(percentage: float, state: int) -> None:
-    """
-    UPower State: 1 = Charging, 2 = Discharging, 4 = Fully Charged
-    """
-    global last_pc_tier
-
-    if state in (1, 4):
-        last_pc_tier = None
+def check_pc(pct: int, state: int) -> None:
+    if state in (UPOWER_CHARGING, UPOWER_FULL) or pct > PC_RULES[-1][0]:
+        notified.pop("pc", None)
+        return
+    if state != UPOWER_DISCHARGING:
         return
 
-    if state != 2:
+    threshold, urgency, msg, dim_and_beep = next(r for r in PC_RULES if pct <= r[0])
+    if threshold >= notified.get("pc", 101):
         return
 
-    pct = int(percentage)
-
-    if pct < 2 and last_pc_tier != "danger":
-        last_pc_tier = "danger"
-        notify("ACPI", f"battery {pct}%", "device is about to shut down!", "battery-010", "critical", PC_REPLACE_ID)
-        # Dim brightness and play alert sound
+    notified["pc"] = threshold
+    notify("ACPI", f"battery {pct}%", msg, urgency, replace_id=87873)
+    if dim_and_beep:
         subprocess.run(["brightnessctl", "set", "20%"], check=False)
         subprocess.Popen(
             ["canberra-gtk-play", "-i", "dialog-warning"],
@@ -55,85 +64,62 @@ def handle_pc_battery(percentage: float, state: int) -> None:
             stderr=subprocess.DEVNULL,
         )
 
-    elif pct <= 5 and last_pc_tier not in ("danger", "critical"):
-        last_pc_tier = "critical"
-        notify("ACPI", f"battery {pct}%", "device may shut down in a few minutes.", "battery-010", "critical", PC_REPLACE_ID)
 
-    elif pct < 15 and last_pc_tier is None:
-        last_pc_tier = "warn"
-        notify("ACPI", f"battery {pct}%", "plug in your device!", "battery-010", "normal", PC_REPLACE_ID)
+def check_bt(name: str, pct: int) -> None:
+    if pct > BT_RULES[-1][0]:
+        notified.pop(name, None)
+        return
 
-    elif pct >= 15:
-        last_pc_tier = None
+    threshold, urgency, msg = next(r for r in BT_RULES if pct <= r[0])
+    if threshold >= notified.get(name, 101):
+        return
 
-
-def handle_bt_battery(device_name: str, percentage: float) -> None:
-    global last_bt_tiers
-    pct = int(percentage)
-    current_tier = last_bt_tiers.get(device_name)
-
-    if pct <= 10 and current_tier != "critical":
-        last_bt_tiers[device_name] = "critical"
-        notify("Bluetooth", f"{device_name} battery low ({pct}%)", "the device may shut down in a few minutes.", "battery-010", "critical", BT_REPLACE_ID)
-
-    elif pct < 20 and current_tier is None:
-        last_bt_tiers[device_name] = "warn"
-        notify("Bluetooth", f"{device_name} battery ({pct}%)", "it is recommended to plug in your device.", "battery-010", "normal", BT_REPLACE_ID)
-
-    elif pct >= 20:
-        last_bt_tiers.pop(device_name, None)
+    notified[name] = threshold
+    notify("Bluetooth", f"{name} battery ({pct}%)", msg, urgency, replace_id=87874)
 
 
-def on_properties_changed(connection, sender, object_path, interface_name, signal_name, params, *user_data):
-    iface, changed_props, _ = params
+def main() -> None:
+    bus = SystemBus()
 
-    # 1. Handle UPower Devices (Laptop BAT0 and UPower-managed peripherals)
-    if iface == "org.freedesktop.UPower.Device":
-        bus = SystemBus()
+    def on_upower(_conn, _sender, path, _iface, _sig, _params, *_user_data):
         try:
-            dev = bus.get("org.freedesktop.UPower", object_path)
+            dev = bus.get("org.freedesktop.UPower", path)
             dev_type = getattr(dev, "Type", 0)
-            percentage = getattr(dev, "Percentage", 100.0)
-            state = getattr(dev, "State", 0)
-            model = getattr(dev, "Model", "") or getattr(dev, "NativePath", "Bluetooth Device")
-
-            if dev_type == 2:  # Type 2 = Laptop Battery
-                handle_pc_battery(percentage, state)
-            elif dev_type in (5, 6, 7, 8, 20):  # Peripherals (Mouse, Keyboard, Headset, etc.)
-                handle_bt_battery(model, percentage)
+            pct = int(getattr(dev, "Percentage", 100.0))
+            if dev_type == UPOWER_LAPTOP_BATTERY:
+                check_pc(pct, getattr(dev, "State", 0))
+            elif dev_type in UPOWER_PERIPHERALS:
+                name = getattr(dev, "Model", "") or getattr(dev, "NativePath", "Bluetooth Device")
+                check_bt(name, pct)
         except Exception:
             pass
 
-    # 2. Handle BlueZ Direct Battery signals (if device reports via BlueZ GATT)
-    elif iface == "org.bluez.Battery1":
-        if "Percentage" in changed_props:
-            pct = changed_props["Percentage"]
-            bus = SystemBus()
-            try:
-                dev = bus.get("org.bluez", object_path)
-                name = getattr(dev, "Name", getattr(dev, "Alias", "Bluetooth Device"))
-            except Exception:
-                name = "Bluetooth Device"
-            handle_bt_battery(name, pct)
+    def on_bluez(_conn, _sender, path, _iface, _sig, params, *_user_data):
+        _, changed, _ = params
+        if "Percentage" not in changed:
+            return
+        try:
+            dev = bus.get("org.bluez", path)
+            name = getattr(dev, "Name", None) or getattr(dev, "Alias", "Bluetooth Device")
+            check_bt(name, int(changed["Percentage"]))
+        except Exception:
+            pass
 
+    for sender, iface, handler in [
+        ("org.freedesktop.UPower", "org.freedesktop.UPower.Device", on_upower),
+        ("org.bluez", "org.bluez.Battery1", on_bluez),
+    ]:
+        bus.con.signal_subscribe(
+            sender,
+            "org.freedesktop.DBus.Properties",
+            "PropertiesChanged",
+            None,
+            iface,
+            0,
+            handler,
+        )
 
-def main():
-    bus = SystemBus()
-
-    # Subscribe to D-Bus property changes on the system bus
-    bus.con.signal_subscribe(
-        None,
-        "org.freedesktop.DBus.Properties",
-        "PropertiesChanged",
-        None,
-        None,
-        0,
-        on_properties_changed,
-    )
-
-    # GLib event loop blocks until a signal is received
-    loop = GLib.MainLoop()
-    loop.run()
+    GLib.MainLoop().run()
 
 
 if __name__ == "__main__":
