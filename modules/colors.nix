@@ -7,13 +7,6 @@ let
   lib = inputs.nixpkgs.lib;
   pkgs = inputs.nixpkgs.legacyPackages.${env.system};
 
-  wallpaperPath = env.wallpaper or null;
-  wallpaperSrc =
-    if wallpaperPath != null && wallpaperPath != "" then
-      ../assets/wallpapers + "/${baseNameOf wallpaperPath}"
-    else
-      null;
-
   matugenCfg = pkgs.writeText "matugen-config.toml" ''
     [config]
     fallback_color = "#808080"
@@ -30,8 +23,8 @@ let
   '';
 
   matugenTarget =
-    if wallpaperSrc != null then
-      ''image "${wallpaperSrc}" --source-color-index 0 --include-image-in-json false''
+    if (env.wallpaper or null) != null && env.wallpaper != "" then
+      ''image "${../assets/wallpapers + "/${baseNameOf env.wallpaper}"}" --source-color-index 0 --include-image-in-json false''
     else
       ''color hex "#808080"'';
 
