@@ -1,9 +1,8 @@
 binds {
     Mod+Return hotkey-overlay-title="Open the terminal" { spawn-sh "footclient"; }
     Mod+Shift+Return hotkey-overlay-title="Open the terminal" { spawn-sh "foot"; }
-    Mod+P hotkey-overlay-title="Open application launcher" { spawn "rofi" "-show" "run" "-show-icons" "-display-run" "   run"; }
+    Mod+P hotkey-overlay-title="Open application launcher" { spawn-sh "nc -U \"$XDG_RUNTIME_DIR/walker/walker.sock\" </dev/null"; }
     Mod+W hotkey-overlay-title="Open browser" { spawn "brave"; }
-    Mod+Escape hotkey-overlay-title="Open quick menu" { spawn "quickmenu"; }
     Mod+Shift+V hotkey-overlay-title="Open clipboard manager" { spawn "footclient" "-a" "clipse" "-T" "clipse" "clipse"; }
 
     Mod+O repeat=false { toggle-overview; }
@@ -114,7 +113,6 @@ binds {
     XF86Launch4 { spawn-sh "pkill -SIGUSR1 waybar"; }
     XF86Macro27 { spawn "notify-send" "-r" "134897" "-a" "Razer" "-i" "keyboard" "brightness increased"; }
     XF86Macro28 { spawn "notify-send" "-r" "134897" "-a" "Razer" "-i" "keyboard" "brightness decreased"; }
-    XF86Favorites hotkey-overlay-title="Open quick menu" { spawn "quickmenu"; }
 
     // TKL Extras
     Mod+C hotkey-overlay-title="Open the calculator" { spawn "footclient" "-T" "qalc" "-a" "qalc" "qalc"; }

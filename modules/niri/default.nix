@@ -23,6 +23,9 @@
       helpers,
       ...
     }:
+    let
+      tomlFormat = pkgs.formats.toml { };
+    in
     {
       home.packages = with pkgs; [
         playerctl
@@ -61,6 +64,25 @@
         "niri/src" = {
           source = ./src;
           recursive = true;
+        };
+
+        "elephant/menus/niri.toml".source = tomlFormat.generate "niri.toml" {
+          name = "niri";
+          name_pretty = "Niri";
+          icon = "";
+          fixed_order = true;
+          entries = [
+            {
+              text = "niri: immersive";
+              icon = "";
+              actions.activate = "niri msg action load-config-file --path ~/.config/niri/src/modes/immersive.kdl && pkill -SIGUSR1 waybar";
+            }
+            {
+              text = "niri: normal";
+              icon = "";
+              actions.activate = "niri msg action load-config-file --path ~/.config/niri/config.kdl && pkill -SIGUSR1 waybar";
+            }
+          ];
         };
       };
     };
