@@ -93,6 +93,26 @@
       };
       # }}}
     };
+
+  home.cli = { colors, ... }: {
+    programs.impala = {
+      enable = true;
+      settings = {
+        mode = "station";
+        ascii = false;
+        esc_quit = true;
+        theme = {
+          background = colors.surface_container;
+          border = colors.primary;
+          text_color = colors.on_surface;
+          hidden_color = colors.on_surface_variant;
+          info_color = colors.green;
+          warning_color = colors.yellow;
+          error_color = colors.error;
+        };
+      };
+    };
+  };
 }
 
 # -- vim: fdm=marker fdl=0
