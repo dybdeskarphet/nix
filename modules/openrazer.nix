@@ -1,6 +1,6 @@
 { ... }:
 {
-  nixos.hardware =
+  nixos.openrazer =
     { ... }:
     {
       hardware.openrazer = {
@@ -10,7 +10,7 @@
       };
     };
 
-  home.hardware =
+  home.openrazer =
     {
       pkgs,
       colors,
@@ -49,5 +49,12 @@
         };
         Install.WantedBy = [ "graphical-session.target" ];
       };
+
+      xdg.configFile."niri/extra.kdl".text = ''
+        binds {
+            XF86Macro27 { spawn "notify-send" "-r" "134897" "-a" "Razer" "-i" "keyboard" "brightness increased"; }
+            XF86Macro28 { spawn "notify-send" "-r" "134897" "-a" "Razer" "-i" "keyboard" "brightness decreased"; }
+        }
+      '';
     };
 }

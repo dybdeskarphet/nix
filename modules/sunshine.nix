@@ -1,8 +1,13 @@
 { ... }:
 {
-  nixos.gui =
+  nixos.sunshine =
     { ... }:
     {
+      boot = {
+        initrd.kernelModules = [ "vkms" ];
+        kernelModules = [ "vkms" ];
+      };
+
       services.sunshine = {
         enable = true;
         autoStart = false;

@@ -1,6 +1,6 @@
 { ... }:
 {
-  nixos.hardware =
+  nixos.opentabletdriver =
     { ... }:
     {
       hardware.opentabletdriver = {
@@ -9,7 +9,7 @@
       };
     };
 
-  home.hardware =
+  home.opentabletdriver =
     { pkgs, ... }:
     {
       xdg.configFile."OpenTabletDriver/Presets".source = ./presets;
