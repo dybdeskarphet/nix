@@ -6,15 +6,7 @@
       hardware.openrazer = {
         enable = true;
         users = [ "skarphet" ];
-
-        syncEffectsEnabled = true;
-        verboseLogging = false;
-
-        batteryNotifier = {
-          enable = true;
-          frequency = 3600;
-          percentage = 33;
-        };
+        batteryNotifier.frequency = 3600;
       };
     };
 
@@ -26,28 +18,22 @@
       ...
     }:
     let
-      rgb = helpers.colors.hexToRgb colors.primary;
+      rgb = helpers.colors.hexToRgb colors.source_color;
       openrazerColor = pkgs.writers.writePython3 "openrazer-color" {
-        libraries = with pkgs.python3Packages; [ openrazer ];
+        libraries = [ pkgs.python3Packages.openrazer ];
         doCheck = false;
       } ''
         import colorsys
-        import sys
         import openrazer.client
 
         r, g, b = ${toString rgb.r}, ${toString rgb.g}, ${toString rgb.b}
-        h, l, s = colorsys.rgb_to_hls(r / 255.0, g / 255.0, b / 255.0)
-        if s > 0.0:
-            s = min(1.0, s + 0.30)
-            r, g, b = [round(c * 255) for c in colorsys.hls_to_rgb(h, l, s)]
+        h, s, _ = colorsys.rgb_to_hsv(r / 255, g / 255, b / 255)
+        if s > 0:
+            r, g, b = (round(c * 255) for c in colorsys.hsv_to_rgb(h, min(0.65, s + 0.40), 0.75))
 
-        dm = openrazer.client.DeviceManager()
-        for dev in dm.devices:
-            if dev.has("lighting_reactive"):
-                try:
-                    dev.fx.reactive(r, g, b, 0x01)
-                except Exception as e:
-                    print(f"Failed to set effect on {dev.name}: {e}", file=sys.stderr)
+        for dev in openrazer.client.DeviceManager().devices:
+            if dev.has("lighting_ripple"):
+                dev.fx.ripple(r, g, b)
       '';
     in
     {
@@ -61,9 +47,7 @@
           Type = "oneshot";
           ExecStart = "${openrazerColor}";
         };
-        Install = {
-          WantedBy = [ "graphical-session.target" ];
-        };
+        Install.WantedBy = [ "graphical-session.target" ];
       };
     };
 }
