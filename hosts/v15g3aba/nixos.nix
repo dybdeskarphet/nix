@@ -17,7 +17,7 @@
     '';
     kernelParams = [
       "video=1920x1080"
-      "acpi_backlight=amdgpu_bl1"
+      "acpi_backlight=native"
       "btusb.enable_autosuspend=0"
       "rfkill.default_state=1"
     ];

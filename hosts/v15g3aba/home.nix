@@ -1,7 +1,5 @@
 { ... }:
 {
-  xdg.configFile."niri/extra.kdl".text = builtins.readFile ./outputs.kdl;
-
   services.kanshi = {
     enable = true;
     systemdTarget = "graphical-session.target";
