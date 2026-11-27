@@ -1,11 +1,10 @@
 { ... }:
 {
-  # Base Boot & Kernel {{{
-  nixos.base =
-    { pkgs, ... }:
+  nixos.boot =
+    { pkgs, lib, ... }:
     {
       boot = {
-        kernelPackages = pkgs.linuxPackages_zen;
+        kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
         kernel.sysctl = {
           # network related
           "net.core.default_qdisc" = "fq";
@@ -23,7 +22,7 @@
         };
         loader = {
           systemd-boot = {
-            enable = true;
+            enable = lib.mkDefault true;
             configurationLimit = 10;
             editor = false;
             memtest86.enable = true;
@@ -54,34 +53,4 @@
         memoryPercent = 50;
       };
     };
-  # }}}
-
-  # Hardware Boot & Kernel {{{
-  nixos.hardware =
-    { ... }:
-    {
-      boot = {
-        initrd.kernelModules = [
-          "amdgpu"
-          "vkms"
-        ];
-        kernelModules = [
-          "vkms"
-        ];
-        extraModprobeConfig = ''
-          # realtek wi-fi stability
-          options rtw88_pci disable_aspm=y
-          options rtw88_core disable_lps_deep=y
-        '';
-        kernelParams = [
-          "video=1920x1080"
-          "acpi_backlight=amdgpu_bl1"
-          "btusb.enable_autosuspend=0"
-          "rfkill.default_state=1"
-        ];
-      };
-    };
-  # }}}
 }
-
-# -- vim: fdm=marker fdl=0

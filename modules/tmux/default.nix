@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.cli =
+  home.tmux =
     { colors, ... }:
     {
       programs.tmux = {
@@ -36,7 +36,7 @@
           set -g status-left "#[fg=${colors.primary_container},bg=default]#[fg=${colors.on_primary_container},bg=${colors.primary_container}] #S#[fg=${colors.primary_container},bg=default] "
 
           set -g status-right-length 60
-          set -g status-right "#[fg=${colors.primary_container},bg=default,bold]#[fg=${colors.on_primary_container},bg=${colors.primary_container},bold]%Y-%m-%d#[fg=${colors.primary_container},bg=default,bold] #[fg=${colors.primary_container},bg=default,bold]#[fg=${colors.on_primary_container},bg=${colors.primary_container},bold] %H:%M#[fg=${colors.primary_container},bg=default,bold] #[fg=${colors.tertiary_container},bg=default,bold]#[fg=${colors.on_tertiary_container},bg=${colors.tertiary_container},bold]󰁹 #(cat /sys/class/power_supply/BAT0/capacity)%%#[fg=${colors.tertiary_container},bg=default,bold]"
+          set -g status-right "#[fg=${colors.primary_container},bg=default,bold]#[fg=${colors.on_primary_container},bg=${colors.primary_container},bold]%Y-%m-%d#[fg=${colors.primary_container},bg=default,bold] #[fg=${colors.primary_container},bg=default,bold]#[fg=${colors.on_primary_container},bg=${colors.primary_container},bold] %H:%M#[fg=${colors.primary_container},bg=default,bold]"
 
           set -g window-status-current-format '#[fg=${colors.primary},bg=default,bold,nounderscore]#I #[fg=${colors.on_surface},bold,nounderscore]#W #[fg=${colors.secondary},bold,nounderscore]#F'
           set -g window-status-format '#{?window_bell_flag,#[fg=${colors.error}],#[fg=${colors.outline}]}#I #W #{?window_bell_flag,,#F}'

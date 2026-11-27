@@ -16,7 +16,7 @@ TTY_NAME="$(tty 2>/dev/null | sed 's|^/dev/||' || echo tty1)"
 FAILED="$(systemctl --failed --no-legend 2>/dev/null | wc -l | tr -d ' ')"
 
 BAT_COL=""
-if [ -r /sys/class/power_supply/BAT0/capacity ]; then
+if [ "${SHOW_BATTERY:-0}" = "1" ] && [ -r /sys/class/power_supply/BAT0/capacity ]; then
   bat_val="$(cat /sys/class/power_supply/BAT0/capacity)%"
   BAT_COL=" ${CYN}•${RST} ${WHT}${bat_val}${RST}"
 fi

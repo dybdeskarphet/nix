@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.hardware =
+  home.battery =
     { pkgs, ... }:
     let
       pythonEnv = pkgs.python3.withPackages (

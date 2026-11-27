@@ -1,9 +1,10 @@
 { ... }:
 {
-  nixos.base =
+  nixos.login =
     {
       pkgs,
       lib,
+      config,
       colors,
       helpers,
       ...
@@ -40,7 +41,10 @@
           pkgs.systemd
           pkgs.shadow
         ];
-        text = builtins.readFile ./login.sh;
+        text = ''
+          SHOW_BATTERY=${if config.services.upower.enable then "1" else "0"}
+          ${builtins.readFile ./login.sh}
+        '';
       };
     in
     {
