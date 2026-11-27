@@ -21,7 +21,7 @@
       pkgs,
       lib,
       colors,
-      helpers,
+      colorHelpers,
       ...
     }:
     {
@@ -47,7 +47,7 @@
                   urgent-color "${colors.error_container}"
               }
               insert-hint {
-                  color "#${helpers.colors.stripHash colors.primary}aa"
+                  color "#${colorHelpers.stripHash colors.primary}aa"
               }
           }
 

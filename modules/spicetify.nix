@@ -5,13 +5,13 @@
       pkgs,
       config,
       colors,
-      helpers,
+      colorHelpers,
       sandbox,
       ...
     }:
     let
       spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-      s = helpers.colors.stripHash;
+      s = colorHelpers.stripHash;
 
       sandboxedSpotify = sandbox.wrap (
         { sloth, ... }:
@@ -45,6 +45,8 @@
       ];
 
       programs.spicetify = {
+        # Keep false so spicetify-nix does not install unsandboxed spotify
+        # alongside sandboxedSpotify; spicedSpotify is still built and wrapped above.
         enable = false;
         theme = spicePkgs.themes.text;
 

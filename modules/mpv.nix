@@ -6,7 +6,7 @@
       lib,
       config,
       colors,
-      helpers,
+      colorHelpers,
       sandbox,
       ...
     }:
@@ -49,17 +49,17 @@
       );
 
       uoscColors = lib.concatStringsSep "," [
-        "foreground=${helpers.colors.stripHash colors.primary}"
-        "foreground_text=${helpers.colors.stripHash colors.on_primary}"
-        "background=${helpers.colors.stripHash colors.surface}"
-        "background_text=${helpers.colors.stripHash colors.on_surface}"
-        "success=${helpers.colors.stripHash colors.tertiary}"
-        "info=${helpers.colors.stripHash colors.secondary}"
-        "warning=${helpers.colors.stripHash colors.primary_fixed}"
-        "error=${helpers.colors.stripHash colors.error}"
-        "curtain=${helpers.colors.stripHash colors.surface_container}"
-        "match=${helpers.colors.stripHash colors.secondary_fixed_dim}"
-        "heatmap=${helpers.colors.stripHash colors.tertiary_fixed}"
+        "foreground=${colorHelpers.stripHash colors.primary}"
+        "foreground_text=${colorHelpers.stripHash colors.on_primary}"
+        "background=${colorHelpers.stripHash colors.surface}"
+        "background_text=${colorHelpers.stripHash colors.on_surface}"
+        "success=${colorHelpers.stripHash colors.tertiary}"
+        "info=${colorHelpers.stripHash colors.secondary}"
+        "warning=${colorHelpers.stripHash colors.primary_fixed}"
+        "error=${colorHelpers.stripHash colors.error}"
+        "curtain=${colorHelpers.stripHash colors.surface_container}"
+        "match=${colorHelpers.stripHash colors.secondary_fixed_dim}"
+        "heatmap=${colorHelpers.stripHash colors.tertiary_fixed}"
       ];
     in
     {

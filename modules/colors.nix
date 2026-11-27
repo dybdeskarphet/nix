@@ -4,6 +4,7 @@
   ...
 }:
 let
+  lib = inputs.nixpkgs.lib;
   pkgs = inputs.nixpkgs.legacyPackages.${env.system};
 
   wallpaperPath = env.wallpaper or null;
@@ -53,8 +54,38 @@ let
 
   rawColors = builtins.fromJSON (builtins.readFile generatedColorsJson);
 
-  colors = inputs.nixpkgs.lib.mapAttrs (_: v: v.dark.color) rawColors.colors;
+  colors = lib.mapAttrs (_: v: v.dark.color) rawColors.colors;
+
+  colorHelpers = rec {
+    stripHash = lib.removePrefix "#";
+
+    hexToRgb =
+      hex:
+      let
+        clean = stripHash hex;
+      in
+      {
+        r = lib.fromHexString (builtins.substring 0 2 clean);
+        g = lib.fromHexString (builtins.substring 2 2 clean);
+        b = lib.fromHexString (builtins.substring 4 2 clean);
+      };
+
+    hexToRgba =
+      alpha: hex:
+      let
+        rgb = hexToRgb hex;
+      in
+      "rgba(${toString rgb.r}, ${toString rgb.g}, ${toString rgb.b}, ${toString alpha})";
+
+    toCssDefineColors =
+      palette:
+      lib.concatStringsSep "\n" (
+        lib.mapAttrsToList (name: hex: "@define-color ${name} ${hex};") palette
+      );
+  };
 in
 {
-  _module.args.colors = colors;
+  _module.args = {
+    inherit colors colorHelpers;
+  };
 }

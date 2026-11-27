@@ -4,11 +4,11 @@
     {
       pkgs,
       colors,
-      helpers,
+      colorHelpers,
       ...
     }:
     let
-      rgba = helpers.colors.hexToRgba;
+      rgba = colorHelpers.hexToRgba;
     in
     {
       home.packages = [ pkgs.netcat-openbsd ];

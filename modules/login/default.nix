@@ -6,11 +6,11 @@
       lib,
       config,
       colors,
-      helpers,
+      colorHelpers,
       ...
     }:
     let
-      normalColors = map helpers.colors.stripHash [
+      normalColors = map colorHelpers.stripHash [
         colors.surface_container
         colors.error
         colors.primary
@@ -21,7 +21,7 @@
         colors.on_surface
       ];
 
-      brightColors = map helpers.colors.stripHash [
+      brightColors = map colorHelpers.stripHash [
         colors.outline
         colors.error
         colors.primary

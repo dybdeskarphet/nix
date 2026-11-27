@@ -1,7 +1,7 @@
 { ... }:
 {
   home.avizo =
-    { colors, helpers, ... }:
+    { colors, colorHelpers, ... }:
     {
       services.avizo = {
         enable = true;
@@ -15,9 +15,9 @@
           fade-in = 0.2;
           fade-out = 0.3;
 
-          background = helpers.colors.hexToRgba 0.8 colors.primary;
-          border-color = helpers.colors.hexToRgba 0.8 colors.outline;
-          bar-fg-color = helpers.colors.hexToRgba 0.8 colors.background;
+          background = colorHelpers.hexToRgba 0.8 colors.primary;
+          border-color = colorHelpers.hexToRgba 0.8 colors.outline;
+          bar-fg-color = colorHelpers.hexToRgba 0.8 colors.background;
         };
       };
     };

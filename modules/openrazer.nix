@@ -14,11 +14,11 @@
     {
       pkgs,
       colors,
-      helpers,
+      colorHelpers,
       ...
     }:
     let
-      rgb = helpers.colors.hexToRgb colors.source_color;
+      rgb = colorHelpers.hexToRgb colors.source_color;
       openrazerColor = pkgs.writers.writePython3 "openrazer-color" {
         libraries = [ pkgs.python3Packages.openrazer ];
         doCheck = false;

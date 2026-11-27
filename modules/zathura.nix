@@ -5,7 +5,7 @@
       pkgs,
       config,
       colors,
-      helpers,
+      colorHelpers,
       sandbox,
       ...
     }:
@@ -36,8 +36,8 @@
         options = {
           recolor = true;
           recolor-keephue = true;
-          recolor-lightcolor = helpers.colors.hexToRgba 1 colors.surface;
-          recolor-darkcolor = helpers.colors.hexToRgba 1 colors.on_surface;
+          recolor-lightcolor = colorHelpers.hexToRgba 1 colors.surface;
+          recolor-darkcolor = colorHelpers.hexToRgba 1 colors.on_surface;
 
           selection-clipboard = "clipboard";
           incremental-search = true;

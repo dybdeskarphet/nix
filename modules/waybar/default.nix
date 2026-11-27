@@ -4,7 +4,7 @@
     {
       pkgs,
       colors,
-      helpers,
+      colorHelpers,
       ...
     }:
     let
@@ -29,7 +29,7 @@
         systemd.enable = true;
 
         style = ''
-          ${helpers.colors.toCssDefineColors colors}
+          ${colorHelpers.toCssDefineColors colors}
 
           ${builtins.readFile ./style.css}
         '';

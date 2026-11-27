@@ -1,7 +1,7 @@
 {
   inputs,
   config,
-  helpers,
+  colorHelpers,
   colors,
   ...
 }:
@@ -25,7 +25,7 @@ let
       inputs
       env
       colors
-      helpers
+      colorHelpers
       pkgs-stable
       pkgs-small
       ;
@@ -63,11 +63,7 @@ let
 in
 {
   _module.args = {
-    inherit
-      env
-      pkgs-stable
-      pkgs-small
-      ;
+    inherit env;
   };
 
   flake.nixosConfigurations.v15g3aba = mkHost (import ../hosts/v15g3aba);

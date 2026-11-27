@@ -4,11 +4,11 @@
     {
       pkgs,
       colors,
-      helpers,
+      colorHelpers,
       ...
     }:
     let
-      s = helpers.colors.stripHash;
+      s = colorHelpers.stripHash;
     in
     {
       programs.foot = {

@@ -18,7 +18,7 @@
       pkgs,
       lib,
       colors,
-      helpers,
+      colorHelpers,
       ...
     }:
     let
@@ -68,7 +68,7 @@
       };
       # }}}
 
-      primaryRgb = helpers.colors.hexToRgb colors.primary;
+      primaryRgb = colorHelpers.hexToRgb colors.primary;
       primaryRgbSeq = "${toString primaryRgb.r};${toString primaryRgb.g};${toString primaryRgb.b}";
     in
     {

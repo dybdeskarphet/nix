@@ -4,11 +4,11 @@
     {
       pkgs,
       colors,
-      helpers,
+      colorHelpers,
       ...
     }:
     let
-      gtkCss = helpers.colors.toCssDefineColors {
+      gtkCss = colorHelpers.toCssDefineColors {
         accent_color = colors.primary_fixed_dim;
         accent_fg_color = colors.on_primary_fixed;
         accent_bg_color = colors.primary_fixed_dim;
