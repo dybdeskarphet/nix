@@ -1,5 +1,5 @@
 set -l ENV_FILE "$HOME/.config/user-env.json"
-set -l STATE_DIR (or $XDG_STATE_HOME "$HOME/.local/state")/borg
+set -l STATE_DIR (test -n "$XDG_STATE_HOME"; and echo "$XDG_STATE_HOME"; or echo "$HOME/.local/state")/borg
 mkdir -p "$STATE_DIR"
 
 set -l BACKUP_ITEMS

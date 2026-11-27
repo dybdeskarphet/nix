@@ -52,16 +52,22 @@ class Screenshot:
             for f in os.listdir(self.path)
         }
 
-    def _wait_for_file(self):
-        for i in range(60):
+    def _wait_for_file(self) -> bool:
+        for _ in range(60):
             time.sleep(0.5)
             current_state = self._snapshot_dir()
+            new_files = {
+                f: mtime
+                for f, mtime in current_state.items()
+                if self.dir_last_state.get(f) != mtime
+            }
 
-            if current_state != self.dir_last_state:
-                latest_file = max(current_state, key=lambda f: current_state[f])
+            if new_files:
+                latest_file = max(new_files, key=lambda f: new_files[f])
                 print("Latest added file:", latest_file)
                 self.path = self.path / latest_file
-                break
+                return True
+        return False
 
     def _process_ocr(self):
         result = subprocess.run(
@@ -111,7 +117,8 @@ class Screenshot:
         _ = subprocess.run(
             ["niri", "msg", "action", "screenshot", "-p", "false"], check=True
         )
-        self._wait_for_file()
+        if not self._wait_for_file():
+            return
         self._copy()
         self._notify()
 
@@ -119,13 +126,15 @@ class Screenshot:
         _ = subprocess.run(
             ["niri", "msg", "action", "screenshot-screen", "-p", "false"], check=True
         )
-        self._wait_for_file()
+        if not self._wait_for_file():
+            return
         self._copy()
         self._notify()
 
     def window(self):
         _ = subprocess.run(["niri", "msg", "action", "screenshot-window"], check=True)
-        self._wait_for_file()
+        if not self._wait_for_file():
+            return
         self._copy()
         self._notify()
 
@@ -133,7 +142,8 @@ class Screenshot:
         _ = subprocess.run(
             ["niri", "msg", "action", "screenshot", "-p", "false"], check=True
         )
-        self._wait_for_file()
+        if not self._wait_for_file():
+            return
         if not self._process_ocr():
             self._copy()
         self._notify()
@@ -156,7 +166,7 @@ def main():
         screenshot.window()
     elif mode == "ocr":
         screenshot = Screenshot("ocr")
-        result = screenshot.ocr()
+        screenshot.ocr()
     else:
         print("Unknown mode:", mode)
 
