@@ -6,10 +6,11 @@
       env,
       config,
       lib,
+      username,
       ...
     }:
     let
-      cld = "${config.users.users.skarphet.home}/cld";
+      cld = "${config.users.users.${username}.home}/cld";
       wrapperPkg = lib.findFirst (
         p: p.name == "restic-cloud-backup"
       ) null config.environment.systemPackages;

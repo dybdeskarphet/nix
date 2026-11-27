@@ -1,11 +1,11 @@
 { ... }:
 {
   nixos.openrazer =
-    { ... }:
+    { username, ... }:
     {
       hardware.openrazer = {
         enable = true;
-        users = [ "skarphet" ];
+        users = [ username ];
         batteryNotifier.frequency = 3600;
       };
     };

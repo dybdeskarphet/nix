@@ -1,12 +1,12 @@
 { ... }:
 {
   nixos.docker =
-    { ... }:
+    { username, ... }:
     {
       virtualisation.docker = {
         enable = true;
         enableOnBoot = false;
       };
-      users.users.skarphet.extraGroups = [ "docker" ];
+      users.users.${username}.extraGroups = [ "docker" ];
     };
 }

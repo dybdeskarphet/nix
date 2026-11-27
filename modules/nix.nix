@@ -5,6 +5,7 @@
       pkgs,
       pkgs-stable,
       config,
+      username,
       ...
     }:
     {
@@ -26,7 +27,7 @@
         download-buffer-size = 128 * 1024 * 1024;
         allowed-users = [
           "@wheel"
-          "skarphet"
+          username
         ];
       };
 
@@ -46,7 +47,7 @@
 
       programs.nh = {
         enable = true;
-        flake = "${config.users.users.skarphet.home}/code/nix";
+        flake = "${config.users.users.${username}.home}/code/nix";
       };
 
       # }}}

@@ -1,16 +1,21 @@
 { ... }:
 {
   nixos.syncthing =
-    { env, config, ... }:
     {
-      sops.secrets."syncthing/cert".owner = "skarphet";
-      sops.secrets."syncthing/key".owner = "skarphet";
+      env,
+      config,
+      username,
+      ...
+    }:
+    {
+      sops.secrets."syncthing/cert".owner = username;
+      sops.secrets."syncthing/key".owner = username;
 
       services.syncthing = {
         enable = true;
-        user = "skarphet";
-        dataDir = "${config.users.users.skarphet.home}";
-        configDir = "${config.users.users.skarphet.home}/.config/syncthing";
+        user = username;
+        dataDir = config.users.users.${username}.home;
+        configDir = "${config.users.users.${username}.home}/.config/syncthing";
         cert = config.sops.secrets."syncthing/cert".path;
         key = config.sops.secrets."syncthing/key".path;
         openDefaultPorts = true;

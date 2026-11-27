@@ -7,6 +7,7 @@
       config,
       colors,
       colorHelpers,
+      username,
       ...
     }:
     let
@@ -57,7 +58,7 @@
 
       services.getty = {
         loginProgram = lib.getExe loginProgram;
-        loginOptions = "-p -- skarphet";
+        loginOptions = "-p -- ${username}";
         extraArgs = [
           "--skip-login"
           "--noissue"

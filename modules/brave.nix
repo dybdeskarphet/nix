@@ -6,6 +6,7 @@
       pkgs-small,
       lib,
       config,
+      username,
       ...
     }:
     let
@@ -135,7 +136,7 @@
           "AutofillAddressEnabled" = false;
           "AutofillCreditCardEnabled" = false;
           "PromptForDownloadLocation" = false;
-          "DownloadDirectory" = config.home-manager.users.skarphet.xdg.userDirs.download;
+          "DownloadDirectory" = config.home-manager.users.${username}.xdg.userDirs.download;
           "TranslateEnabled" = false;
           "NetworkPredictionOptions" = 1;
 

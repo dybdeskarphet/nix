@@ -37,11 +37,15 @@ let
   mkHost =
     {
       features,
+      username ? env.username or "skarphet",
       nixosModules ? [ ],
       homeModules ? [ ],
     }:
+    let
+      hostArgs = sharedArgs // { inherit username; };
+    in
     lib.nixosSystem {
-      specialArgs = sharedArgs;
+      specialArgs = hostArgs;
       modules = [
         inputs.home-manager.nixosModules.home-manager
         {
@@ -49,8 +53,8 @@ let
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            extraSpecialArgs = sharedArgs;
-            users.skarphet = {
+            extraSpecialArgs = hostArgs;
+            users.${username} = {
               home.stateVersion = "25.11";
               imports = map (f: homeMods.${f} or { }) features ++ homeModules;
             };

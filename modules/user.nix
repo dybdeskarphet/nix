@@ -2,10 +2,10 @@
 {
   # NixOS User {{{
   nixos.user =
-    { pkgs, ... }:
+    { pkgs, username, ... }:
     {
       programs.fish.enable = true;
-      users.users.skarphet = {
+      users.users.${username} = {
         isNormalUser = true;
         extraGroups = [
           "wheel"
@@ -77,9 +77,6 @@
       };
     in
     {
-      home.username = "skarphet";
-      home.homeDirectory = "/home/skarphet";
-
       home.sessionPath = additionalPaths;
       home.sessionVariables = allSessionVars;
       systemd.user.sessionVariables = allSessionVars // {
