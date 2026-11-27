@@ -7,7 +7,10 @@
       services.fstrim.enable = true;
       services.smartd = {
         enable = true;
-        notifications.wall.enable = true;
+        notifications = {
+          systembus-notify.enable = true;
+          wall.enable = true;
+        };
       };
 
       services.logind.settings = {
