@@ -1,7 +1,7 @@
 { ... }:
 {
   # NixOS {{{
-  nixos.gui =
+  nixos.hyprlock =
     { ... }:
     {
       security.pam.services.hyprlock = { };
@@ -9,7 +9,7 @@
   # }}}
 
   # Home Manager {{{
-  home.gui =
+  home.hyprlock =
     { config, env, ... }:
     {
       programs.hyprlock = {

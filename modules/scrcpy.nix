@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.cli =
+  home.scrcpy =
     { pkgs, ... }:
     {
       home.packages = [

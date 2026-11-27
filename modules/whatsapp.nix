@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.x86_64 =
+  home.whatsapp =
     {
       pkgs,
       lib,

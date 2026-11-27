@@ -1,7 +1,7 @@
 { ... }:
 {
   # NixOS {{{
-  nixos.cli =
+  nixos.fish =
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
@@ -13,7 +13,7 @@
   # }}}
 
   # Home Manager {{{1
-  home.cli =
+  home.fish =
     {
       pkgs,
       lib,

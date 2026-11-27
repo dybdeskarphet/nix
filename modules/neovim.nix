@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  nixos.cli =
+  nixos.neovim =
     { ... }:
     {
       programs.neovim = {
@@ -10,7 +10,7 @@
       };
     };
 
-  home.cli =
+  home.neovim =
     { pkgs, lib, ... }:
     {
       xdg.configFile."nvim" = {

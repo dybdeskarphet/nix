@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.gui =
+  home.clipboard =
     { pkgs, colors, ... }:
     {
       home.packages = with pkgs; [

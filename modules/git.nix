@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.cli =
+  home.git =
     {
       pkgs,
       env,

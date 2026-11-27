@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.cli =
+  home.sqlite =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [ sqlite ];

@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.cli =
+  home.bat =
     { pkgs, ... }:
     {
       programs.bat = {

@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.cli =
+  home.lsd =
     { ... }:
     {
       programs.lsd = {

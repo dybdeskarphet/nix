@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.gui =
+  home.zotero =
     {
       pkgs,
       pkgs-stable,

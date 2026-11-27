@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  nixos.base = {
+  nixos.sops = {
     imports = [ inputs.sops-nix.nixosModules.sops ];
 
     sops = {

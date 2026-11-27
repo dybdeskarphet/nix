@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.gui =
+  home.prismlauncher =
     {
       pkgs,
       config,

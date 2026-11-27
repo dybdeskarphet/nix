@@ -1,6 +1,6 @@
 { ... }:
 {
-  nixos.services =
+  nixos.syncthing =
     { env, config, ... }:
     {
       sops.secrets."syncthing/cert".owner = "skarphet";

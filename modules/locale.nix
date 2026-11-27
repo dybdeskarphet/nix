@@ -1,6 +1,6 @@
 { ... }:
 {
-  nixos.base =
+  nixos.locale =
     { lib, ... }:
     {
       i18n.supportedLocales = [

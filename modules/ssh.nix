@@ -1,12 +1,12 @@
 { ... }:
 {
-  nixos.cli =
+  nixos.ssh =
     { ... }:
     {
       services.gnome.gcr-ssh-agent.enable = false;
     };
 
-  home.cli =
+  home.ssh =
     { env, lib, ... }:
     {
       services.ssh-agent.enable = true;

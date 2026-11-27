@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  nixos.base =
+  nixos.nix =
     {
       pkgs,
       pkgs-stable,

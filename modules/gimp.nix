@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.gui =
+  home.gimp =
     {
       pkgs,
       lib,

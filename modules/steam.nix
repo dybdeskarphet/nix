@@ -1,6 +1,6 @@
 { ... }:
 {
-  nixos.gui =
+  nixos.steam =
     { pkgs, ... }:
     {
       programs.steam = {

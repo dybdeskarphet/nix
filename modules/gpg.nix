@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.cli =
+  home.gpg =
     { pkgs, config, ... }:
     {
       programs.gpg = {

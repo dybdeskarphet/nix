@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.gui =
+  home.mako =
     { pkgs, colors, ... }:
     {
       services.mako = {

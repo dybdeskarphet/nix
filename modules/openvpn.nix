@@ -1,6 +1,6 @@
 { ... }:
 {
-  nixos.services =
+  nixos.openvpn =
     {
       pkgs,
       lib,

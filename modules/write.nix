@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.gui =
+  home.write =
     {
       pkgs,
       lib,

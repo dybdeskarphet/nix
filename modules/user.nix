@@ -1,7 +1,7 @@
 { ... }:
 {
   # NixOS User {{{
-  nixos.base =
+  nixos.user =
     { pkgs, ... }:
     {
       programs.fish.enable = true;
@@ -21,7 +21,7 @@
   # }}}
 
   # Home Identity & Environment {{{
-  home.base =
+  home.user =
     {
       lib,
       config,

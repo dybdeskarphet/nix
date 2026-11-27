@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  home.cli =
+  home.antigravity =
     {
       pkgs,
       lib,

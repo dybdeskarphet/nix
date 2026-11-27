@@ -1,6 +1,6 @@
 { ... }:
 {
-  nixos.gui =
+  nixos.brave =
     {
       pkgs,
       pkgs-small,

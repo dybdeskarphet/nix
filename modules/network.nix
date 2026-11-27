@@ -1,6 +1,6 @@
 { ... }:
 {
-  nixos.base =
+  nixos.network =
     {
       pkgs,
       env,
@@ -10,7 +10,7 @@
     {
       # Main Initialization & Firewall {{{
       networking = {
-        hostName = "nixos";
+        hostName = lib.mkDefault "nixos";
         useNetworkd = true;
         wireless.iwd = {
           enable = true;
@@ -94,7 +94,7 @@
       # }}}
     };
 
-  home.cli = { colors, ... }: {
+  home.network = { colors, ... }: {
     programs.impala = {
       enable = true;
       settings = {

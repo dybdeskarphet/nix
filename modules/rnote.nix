@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.gui =
+  home.rnote =
     {
       pkgs,
       lib,

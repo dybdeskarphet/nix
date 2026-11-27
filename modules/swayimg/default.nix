@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.gui =
+  home.swayimg =
     {
       pkgs,
       config,

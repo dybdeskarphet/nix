@@ -1,6 +1,6 @@
 { ... }:
 {
-  nixos.services =
+  nixos.docker =
     { ... }:
     {
       virtualisation.docker = {

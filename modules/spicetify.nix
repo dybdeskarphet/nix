@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  home.gui =
+  home.spicetify =
     {
       pkgs,
       config,

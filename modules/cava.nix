@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.cli =
+  home.cava =
     { colors, ... }:
     {
       programs.cava = {

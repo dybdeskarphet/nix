@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.gui =
+  home.hypridle =
     { pkgs, lib, ... }:
     {
       services.hypridle = {

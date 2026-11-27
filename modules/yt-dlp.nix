@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.cli =
+  home.yt-dlp =
     { config, ... }:
     {
       programs.yt-dlp = {

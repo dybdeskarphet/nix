@@ -1,12 +1,12 @@
 { ... }:
 {
-  nixos.services =
+  nixos.rclone =
     { ... }:
     {
       programs.fuse.userAllowOther = true;
     };
 
-  home.services =
+  home.rclone =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [

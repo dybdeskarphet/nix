@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.cli =
+  home.qalc =
     { pkgs, ... }:
     let
       iniFormat = pkgs.formats.ini { };

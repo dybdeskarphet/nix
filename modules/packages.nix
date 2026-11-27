@@ -1,7 +1,7 @@
 { ... }:
 {
   # System Packages {{{
-  nixos.base =
+  nixos.packages =
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
@@ -18,7 +18,7 @@
   # }}}
 
   # Home Packages & Shell Abbrs {{{
-  home.base =
+  home.packages =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [

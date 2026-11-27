@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.gui =
+  home.avizo =
     { colors, helpers, ... }:
     {
       services.avizo = {

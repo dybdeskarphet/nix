@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.cli =
+  home.fastfetch =
     { colors, ... }:
     {
       programs.fastfetch = {

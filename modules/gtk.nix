@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.gui =
+  home.gtk =
     {
       pkgs,
       colors,

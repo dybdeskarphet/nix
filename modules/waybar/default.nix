@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.gui =
+  home.waybar =
     {
       pkgs,
       colors,

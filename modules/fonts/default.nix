@@ -1,6 +1,6 @@
 { ... }:
 {
-  nixos.gui =
+  nixos.fonts =
     { pkgs, ... }:
     let
       myFonts = pkgs.runCommand "my-fonts" { } ''

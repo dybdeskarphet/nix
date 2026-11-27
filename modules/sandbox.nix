@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  home.base =
+  home.sandbox =
     {
       pkgs,
       lib,

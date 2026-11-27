@@ -1,6 +1,6 @@
 { ... }:
 {
-  home.base =
+  home.scripts =
     { pkgs, lib, ... }:
     let
       dirFiles = builtins.readDir ./.;
