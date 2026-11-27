@@ -23,9 +23,6 @@
       helpers,
       ...
     }:
-    let
-      tomlFormat = pkgs.formats.toml { };
-    in
     {
       home.packages = with pkgs; [
         playerctl
@@ -66,7 +63,7 @@
           recursive = true;
         };
 
-        "elephant/menus/niri.toml".source = tomlFormat.generate "niri.toml" {
+        "elephant/menus/niri.toml".source = (pkgs.formats.toml { }).generate "niri.toml" {
           name = "niri";
           name_pretty = "Niri";
           icon = "";

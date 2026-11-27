@@ -2,11 +2,9 @@
 {
   home.gui =
     { pkgs, ... }:
-    let
-      tomlFormat = pkgs.formats.toml { };
-    in
     {
-      xdg.configFile."elephant/menus/quickmenu.toml".source = tomlFormat.generate "quickmenu.toml" {
+      xdg.configFile."elephant/menus/quickmenu.toml".source =
+        (pkgs.formats.toml { }).generate "quickmenu.toml" {
         name = "quickmenu";
         name_pretty = "Quick Settings";
         icon = "";

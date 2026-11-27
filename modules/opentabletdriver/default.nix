@@ -11,13 +11,11 @@
 
   home.hardware =
     { pkgs, ... }:
-    let
-      tomlFormat = pkgs.formats.toml { };
-    in
     {
       xdg.configFile."OpenTabletDriver/Presets".source = ./presets;
 
-      xdg.configFile."elephant/menus/tablet.toml".source = tomlFormat.generate "tablet.toml" {
+      xdg.configFile."elephant/menus/tablet.toml".source =
+        (pkgs.formats.toml { }).generate "tablet.toml" {
         name = "tablet";
         name_pretty = "Tablet";
         icon = "󰓶";
