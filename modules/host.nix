@@ -31,15 +31,35 @@ let
       ;
   };
 
-  commonBuckets = [
-    "base"
-    "cli"
-    "gui"
-    "services"
-    "hardware"
-  ];
-  emptyBuckets = lib.genAttrs (commonBuckets ++ [ "x86_64" ]) (_: { });
-  activeBuckets = commonBuckets ++ lib.optionals (env.system == "x86_64-linux") [ "x86_64" ];
+  nixosMods = config.flake.modules.nixos or { };
+  homeMods = config.flake.modules.homeManager or { };
+
+  mkHost =
+    {
+      features,
+      nixosModules ? [ ],
+      homeModules ? [ ],
+    }:
+    lib.nixosSystem {
+      specialArgs = sharedArgs;
+      modules = [
+        inputs.home-manager.nixosModules.home-manager
+        {
+          system.stateVersion = "25.11";
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            extraSpecialArgs = sharedArgs;
+            users.skarphet = {
+              home.stateVersion = "25.11";
+              imports = map (f: homeMods.${f} or { }) features ++ homeModules;
+            };
+          };
+        }
+      ]
+      ++ map (f: nixosMods.${f} or { }) features
+      ++ nixosModules;
+    };
 in
 {
   _module.args = {
@@ -50,27 +70,5 @@ in
       ;
   };
 
-  nixos = emptyBuckets;
-  home = emptyBuckets;
-
-  flake.nixosConfigurations.nixos = lib.nixosSystem {
-    specialArgs = sharedArgs;
-    modules = [
-      "${inputs.private}/hardware-configuration.nix"
-      inputs.home-manager.nixosModules.home-manager
-      {
-        system.stateVersion = "25.11";
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          extraSpecialArgs = sharedArgs;
-          users.skarphet = {
-            home.stateVersion = "25.11";
-            imports = map (b: config.home.${b}) activeBuckets;
-          };
-        };
-      }
-    ]
-    ++ map (b: config.nixos.${b}) activeBuckets;
-  };
+  flake.nixosConfigurations.v15g3aba = mkHost (import ../hosts/v15g3aba);
 }
