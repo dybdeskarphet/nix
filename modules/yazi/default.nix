@@ -44,6 +44,7 @@
           recycle-bin = pkgs.yaziPlugins.recycle-bin;
           toggle-pane = pkgs.yaziPlugins.toggle-pane;
           piper = pkgs.yaziPlugins.piper;
+          office = pkgs.yaziPlugins.office;
           vcs-files = pkgs.yaziPlugins.vcs-files;
           git = {
             package = pkgs.yaziPlugins.git;

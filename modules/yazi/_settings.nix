@@ -11,8 +11,6 @@ let
   tabiew = lib.getExe' pkgs.tabiew "tw";
   mpv = lib.getExe config.programs.mpv.finalPackage;
   mediainfo = lib.getExe pkgs.mediainfo;
-  vlc = lib.getExe pkgs.vlc;
-  vscodium = lib.getExe pkgs.vscodium;
   sqlitebrowser = lib.getExe pkgs.sqlitebrowser;
   adb = lib.getExe' pkgs.android-tools "adb";
   rich = lib.getExe pkgs.rich-cli;
@@ -107,25 +105,6 @@ in
         desc = "Show media info";
       }
     ];
-    play_vlc = [
-      {
-        run = "${vlc} %s1";
-        desc = "Play with VLC";
-        orphan = true;
-      }
-      {
-        run = "${mediainfo} %s1; echo 'Press enter to exit'; read _";
-        block = true;
-        desc = "Show media info";
-      }
-    ];
-    edit_vscode = [
-      {
-        run = "${vscodium} %s";
-        desc = "Edit with VSCode";
-        block = false;
-      }
-    ];
     convert_to_py = [
       {
         run = "ipynb2py %s";
@@ -186,10 +165,7 @@ in
       }
       {
         mime = "video/mp4";
-        use = [
-          "play"
-          "play_vlc"
-        ];
+        use = "play";
       }
       {
         mime = "image/{xcf,adobe.photoshop}";
@@ -234,7 +210,6 @@ in
         url = "*.ipynb";
         use = [
           "edit"
-          "edit_vscode"
           "convert_to_py"
         ];
       }
@@ -272,10 +247,6 @@ in
       {
         url = "*.svgz";
         run = "svgz";
-      }
-      {
-        url = "**/.git/";
-        run = "preview-git";
       }
       {
         mime = "application/{openxmlformats-officedocument.*,oasis.opendocument.*,ms-*,msword}";
