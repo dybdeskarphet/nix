@@ -2,15 +2,12 @@
 {
   home.qalc =
     { pkgs, ... }:
-    let
-      iniFormat = pkgs.formats.ini { };
-    in
     {
       home.packages = with pkgs; [
         libqalculate
       ];
 
-      xdg.configFile."qalculate/qalc.cfg".source = iniFormat.generate "qalc.cfg" {
+      xdg.configFile."qalculate/qalc.cfg".source = (pkgs.formats.ini { }).generate "qalc.cfg" {
         General = {
           save_config = 0;
           save_mode_on_exit = 0;

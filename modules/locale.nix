@@ -1,7 +1,7 @@
 { ... }:
 {
   nixos.locale =
-    { lib, ... }:
+    { ... }:
     {
       i18n.supportedLocales = [
         "C.UTF-8/UTF-8"
@@ -23,6 +23,5 @@
 
       time.timeZone = "Europe/Istanbul";
       console.keyMap = "trq";
-      services.timesyncd.enable = lib.mkDefault true;
     };
 }

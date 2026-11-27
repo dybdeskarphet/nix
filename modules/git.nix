@@ -5,6 +5,7 @@
       pkgs,
       env,
       lib,
+      colors,
       ...
     }:
     {
@@ -46,8 +47,8 @@
           };
 
           "color \"diff\"" = {
-            new = "#8ec07c";
-            old = "#fb4934";
+            new = colors.green;
+            old = colors.red;
           };
 
           merge = {

@@ -25,7 +25,6 @@
         wallpaperScript
       ];
 
-      # Systemd Services {{{
       systemd.user.services = {
         awww-bg = {
           Unit = {
@@ -61,8 +60,5 @@
           };
         };
       };
-      # }}}
     };
 }
-
-# -- vim: fdm=marker fdl=0

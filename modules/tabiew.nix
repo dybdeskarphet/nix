@@ -8,7 +8,6 @@
       ...
     }:
     let
-      toml = pkgs.formats.toml { };
       style = fg: bg: {
         inherit fg bg;
         add_modifier = "";
@@ -34,7 +33,7 @@
         tabiew
       ];
 
-      xdg.configFile."tabiew/theme.toml".source = toml.generate "tabiew-theme.toml" {
+      xdg.configFile."tabiew/theme.toml".source = (pkgs.formats.toml { }).generate "tabiew-theme.toml" {
         table_header = style colors.primary colors.surface_container_high;
         table_headers = [
           (style colors.primary colors.surface_container_low)

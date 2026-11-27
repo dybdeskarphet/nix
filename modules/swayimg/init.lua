@@ -28,10 +28,8 @@ local c_surface_container = hex_to_argb(palette.surface_container, 0xff)
 local c_surface_container_high = hex_to_argb(palette.surface_container_high, 0xff)
 local c_surface_lowest_trans = hex_to_argb(palette.surface_container_lowest, 0xd0)
 local c_primary = hex_to_argb(palette.primary, 0xff)
-local c_secondary = hex_to_argb(palette.secondary, 0xff)
 local c_tertiary = hex_to_argb(palette.tertiary, 0xff)
 local c_on_surface = hex_to_argb(palette.on_surface, 0xff)
-local c_outline = hex_to_argb(palette.outline, 0xff)
 
 --------------------------------------------------------------------------------
 -- General Configuration
@@ -136,14 +134,6 @@ viewer.on_key({ "Shift+g", "End" }, function()
 	viewer.open("last")
 end)
 
-viewer.on_key({ "bracketright", "braceright" }, function()
-	viewer.open("next_dir")
-end)
-
-viewer.on_key({ "bracketleft", "braceleft" }, function()
-	viewer.open("prev_dir")
-end)
-
 -- Animation / multi-frame navigation
 viewer.on_key({ "Shift+next", "period" }, function()
 	viewer.frame = viewer.frame + 1
@@ -214,7 +204,7 @@ viewer.on_key({ "0" }, function()
 end)
 
 -- Rotation & Flipping
-viewer.on_key({ "less", "bracketleft", "Ctrl+r" }, function()
+viewer.on_key({ "less", "bracketleft" }, function()
 	viewer.rotate(270)
 end)
 
