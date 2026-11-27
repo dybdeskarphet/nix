@@ -33,7 +33,6 @@
           jq
           nmap
           qrencode
-          rofi
           (tesseract.override {
             enableLanguages = [
               "eng"
