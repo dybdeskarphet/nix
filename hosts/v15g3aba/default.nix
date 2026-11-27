@@ -1,4 +1,6 @@
 {
+  username = "skarphet";
+
   features = [
     # system
     "boot"

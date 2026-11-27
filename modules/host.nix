@@ -36,13 +36,15 @@ let
 
   mkHost =
     {
+      username,
       features,
-      username ? env.username or "skarphet",
       nixosModules ? [ ],
       homeModules ? [ ],
     }:
     let
-      hostArgs = sharedArgs // { inherit username; };
+      hostArgs = sharedArgs // {
+        inherit username;
+      };
     in
     lib.nixosSystem {
       specialArgs = hostArgs;

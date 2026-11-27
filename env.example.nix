@@ -6,7 +6,6 @@
 #   ├── hardware-configuration.nix
 #   └── secrets.yaml  # keys: restic/{password,rclone_conf}, syncthing/{cert,key}, openvpn/<profile>
 {
-  username = "user";
   homeSSID = "MyHomeWiFi"; # or null
   wallpaper = "gashadokuro.png"; # filename in assets/wallpapers/, or null
   system = "x86_64-linux";
