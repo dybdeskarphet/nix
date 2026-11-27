@@ -37,6 +37,7 @@
         python3
         axel
         ffmpeg
+        imagemagick
         obs-studio
         borgbackup
         mermaid-cli

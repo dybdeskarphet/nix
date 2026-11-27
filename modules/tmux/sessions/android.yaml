@@ -1,4 +1,4 @@
-session_name: nix
+session_name: android
 start_directory: ~/code/android/
 windows:
   - window_name: nvim
