@@ -6,11 +6,6 @@ window-rule {
 }
 
 window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
-}
-
-window-rule {
     match title=r#"Layer Select"#
     open-floating true
     open-focused false
@@ -41,7 +36,6 @@ window-rule {
   open-floating true
 }
 
-
 layer-rule {
     match namespace="^awww-daemonbackdrop$"
     place-within-backdrop true
@@ -56,10 +50,9 @@ layer-rule {
     }
 }
 
-
 layer-rule {
     match namespace="^gtk-layer-shell$"
-    geometry-corner-radius 12 
+    geometry-corner-radius 12
     background-effect {
         blur false
         xray false

@@ -20,6 +20,7 @@
     {
       pkgs,
       lib,
+      config,
       colors,
       colorHelpers,
       ...
@@ -28,8 +29,25 @@
       home.packages = with pkgs; [
         playerctl
         libnotify
-        libqalculate
+        nirius
       ];
+
+      systemd.user.services.niriusd = {
+        Unit = {
+          Description = "Nirius daemon for niri";
+          ConditionEnvironment = "WAYLAND_DISPLAY";
+          After = [ config.wayland.systemd.target ];
+          PartOf = [ config.wayland.systemd.target ];
+        };
+        Install = {
+          WantedBy = [ config.wayland.systemd.target ];
+        };
+        Service = {
+          ExecStart = lib.getExe' pkgs.nirius "niriusd";
+          Restart = "on-failure";
+          RestartSec = 5;
+        };
+      };
 
       xdg.configFile = {
         "niri/config.kdl".text = ''
