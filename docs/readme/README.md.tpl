@@ -8,9 +8,9 @@
 
 <h2><img src="./assets/icon-architecture.svg" width="24" height="24" align="absmiddle" alt=""/> Architecture</h2>
 
-- Modular `flake-parts` configuration under `modules/`, auto-imported via `import-tree` and grouped into `nixos` and `home` topic buckets in `modules/host.nix`.
+- Modular `flake-parts` feature modules under `modules/` (auto-imported via `import-tree`), composed per host under `hosts/` via `modules/host.nix`.
 - Dynamic Material You theming generated from `env.wallpaper` (`assets/wallpapers/`) via `matugen`.
-- Host-specific config, hardware configuration, and `sops-nix`-encrypted secrets kept out of the repository via the private flake input (`inputs.private`).
+- Private hardware configuration, host variables (`env.nix`), and `sops-nix`-encrypted secrets kept out of the repository via the private flake input (`inputs.private`).
 
 <h2><img src="./assets/icon-usage.svg" width="24" height="24" align="absmiddle" alt=""/> Usage</h2>
 
