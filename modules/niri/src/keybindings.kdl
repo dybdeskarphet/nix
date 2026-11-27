@@ -111,8 +111,6 @@ binds {
     XF86HomePage { spawn-sh "volumectl -m -a toggle-mute && pkill -RTMIN+5 waybar"; }
     XF86Calculator { spawn "footclient" "-T" "qalc" "-a" "qalc" "qalc"; }
     XF86Launch4 { spawn-sh "pkill -SIGUSR1 waybar"; }
-    XF86Macro27 { spawn "notify-send" "-r" "134897" "-a" "Razer" "-i" "keyboard" "brightness increased"; }
-    XF86Macro28 { spawn "notify-send" "-r" "134897" "-a" "Razer" "-i" "keyboard" "brightness decreased"; }
 
     // TKL Extras
     Mod+C hotkey-overlay-title="Open the calculator" { spawn "footclient" "-T" "qalc" "-a" "qalc" "qalc"; }

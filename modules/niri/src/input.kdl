@@ -15,10 +15,6 @@ input {
         accel-profile "adaptive"
     }
 
-    touch {
-        map-to-output "Virtual-1"
-    }
-
     focus-follows-mouse
     warp-mouse-to-focus
     disable-power-key-handling

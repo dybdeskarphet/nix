@@ -1,7 +1,7 @@
 { ... }:
 {
   # NixOS {{{
-  nixos.gui =
+  nixos.niri =
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
@@ -16,9 +16,10 @@
   # }}}
 
   # Home Manager {{{
-  home.gui =
+  home.niri =
     {
       pkgs,
+      lib,
       colors,
       helpers,
       ...
@@ -37,7 +38,7 @@
           include "~/.config/niri/src/keybindings.kdl"
           include "~/.config/niri/src/rules.kdl"
           include "~/.config/niri/src/visual.kdl"
-          include "~/.config/niri/src/outputs.kdl"
+          include "~/.config/niri/extra.kdl"
 
           layout {
               border {
@@ -62,6 +63,8 @@
           source = ./src;
           recursive = true;
         };
+
+        "niri/extra.kdl".text = lib.mkDefault "";
 
         "elephant/menus/niri.toml".source = (pkgs.formats.toml { }).generate "niri.toml" {
           name = "niri";
