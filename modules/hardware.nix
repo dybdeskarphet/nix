@@ -34,6 +34,8 @@
           support32Bit = true;
         };
       };
+
+      # added for waybar to start faster (pipewire starts lazly by default)
       systemd.user.services.pipewire.wantedBy = [ "default.target" ];
       systemd.user.services.pipewire-pulse.wantedBy = [ "default.target" ];
     };
