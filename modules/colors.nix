@@ -24,7 +24,9 @@ let
 
   matugenTarget =
     if (env.wallpaper or null) != null && env.wallpaper != "" then
-      ''image "${../assets/wallpapers + "/${baseNameOf env.wallpaper}"}" --source-color-index 0 --include-image-in-json false''
+      ''image "${
+        ../assets/wallpapers + "/${baseNameOf env.wallpaper}"
+      }" --source-color-index 0 --include-image-in-json false''
     else
       ''color hex "#808080"'';
 
@@ -72,9 +74,7 @@ let
 
     toCssDefineColors =
       palette:
-      lib.concatStringsSep "\n" (
-        lib.mapAttrsToList (name: hex: "@define-color ${name} ${hex};") palette
-      );
+      lib.concatStringsSep "\n" (lib.mapAttrsToList (name: hex: "@define-color ${name} ${hex};") palette);
   };
 in
 {
