@@ -42,12 +42,12 @@ let
       homeModules ? [ ],
     }:
     let
-      hostArgs = sharedArgs // {
+      combinedArgs = sharedArgs // {
         inherit username;
       };
     in
     lib.nixosSystem {
-      specialArgs = hostArgs;
+      specialArgs = combinedArgs;
       modules = [
         inputs.home-manager.nixosModules.home-manager
         {
@@ -55,7 +55,7 @@ let
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            extraSpecialArgs = hostArgs;
+            extraSpecialArgs = combinedArgs;
             users.${username} = {
               home.stateVersion = "25.11";
               imports = map (f: homeMods.${f} or { }) features ++ homeModules;
