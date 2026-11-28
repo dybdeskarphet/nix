@@ -4,6 +4,7 @@
     {
       pkgs,
       lib,
+      config,
       osConfig,
       ...
     }:
@@ -12,7 +13,6 @@
         inherit lib pkgs;
       };
 
-      # Hardened desktop base: offline, silent, Wayland-only, GPU, fonts, themes, private /tmp & cache.
       base =
         { sloth, ... }:
         {
@@ -20,7 +20,9 @@
 
           gpu.provider = lib.mkForce "nixos";
           timeZone.enable = true;
-          fonts.fonts = osConfig.fonts.packages ++ [ pkgs.adwaita-fonts ];
+          fonts.fonts =
+            osConfig.fonts.packages
+            ++ lib.optional ((config.gtk.font.package or null) != null) config.gtk.font.package;
 
           bubblewrap = {
             dieWithParent = true;
@@ -43,13 +45,20 @@
               ];
             };
             env.XDG_DATA_DIRS = lib.mkForce (
-              lib.makeSearchPath "share" [
-                pkgs.adw-gtk3
-                pkgs.papirus-icon-theme
-                pkgs.adwaita-icon-theme
-                pkgs.hicolor-icon-theme
-                pkgs.shared-mime-info
-              ]
+              lib.makeSearchPath "share" (
+                lib.unique (
+                  lib.filter (p: p != null) [
+                    (config.gtk.theme.package or null)
+                    (config.gtk.iconTheme.package or null)
+                    (config.gtk.cursorTheme.package or null)
+                  ]
+                  ++ [
+                    pkgs.adwaita-icon-theme
+                    pkgs.hicolor-icon-theme
+                    pkgs.shared-mime-info
+                  ]
+                )
+              )
             );
           };
         };
@@ -98,14 +107,11 @@
           };
       };
 
-      # High-level trust/context profiles composed from base + caps
       profiles = {
-        # Offline, silent, Wayland-only (viewers, editors, drawing, office)
         offline = {
           imports = [ base ];
         };
 
-        # Networked productivity & research
         online = {
           imports = [
             base
@@ -113,7 +119,6 @@
           ];
         };
 
-        # Local/streaming audio & video players/editors
         media = {
           imports = [
             base
@@ -122,7 +127,6 @@
           ];
         };
 
-        # Messaging & chat clients
         comms = {
           imports = [
             base
@@ -134,7 +138,6 @@
           ];
         };
 
-        # Games & launchers
         gaming = {
           imports = [
             base
