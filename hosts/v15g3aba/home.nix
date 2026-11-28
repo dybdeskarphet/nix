@@ -1,5 +1,9 @@
-{ ... }:
+{ lib, colors, ... }:
 {
+  programs.tmux.extraConfig = lib.mkAfter ''
+    set -ga status-right " #[fg=${colors.tertiary_container},bg=default,bold]#[fg=${colors.on_tertiary_container},bg=${colors.tertiary_container},bold]󰁹 #(cat /sys/class/power_supply/BAT*/capacity 2>/dev/null | head -n1)%%#[fg=${colors.tertiary_container},bg=default,bold]"
+  '';
+
   services.kanshi = {
     enable = true;
     systemdTarget = "graphical-session.target";

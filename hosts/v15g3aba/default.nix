@@ -18,7 +18,6 @@
     # hardware & peripherals
     "battery"
     "bluetooth"
-    "laptop"
     "openrazer"
     "opentabletdriver"
     "sunshine"
